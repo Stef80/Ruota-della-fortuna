@@ -1,6 +1,6 @@
-package prova;
+package test;
 
-import static java.lang.System.out;
+import utils.DatabaseHelper;
 
 /**
  * @author IvanDan
@@ -8,6 +8,6 @@ import static java.lang.System.out;
 public class MainTestPostgres {
 
   public static void main(String[] args) {
-    out.println("Ciao");
+    new DatabaseHelper("localhost", 5432, "my_database", "postgres", "postgres");
   }
 }
