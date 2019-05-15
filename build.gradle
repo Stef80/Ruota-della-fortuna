@@ -1,6 +1,9 @@
-apply plugin: 'java'
+plugins {
+  id 'java'
+}
 
 sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 // NetBeans will automatically add "run" and "debug" tasks relying on the
@@ -14,6 +17,11 @@ if (!hasProperty('mainClass')) {
   ext.mainClass = ''
 }
 
+sourceSets{
+  main.java.srcDir 'src/main/java'
+  test.java.srcDir 'src/test/java'
+}
+
 repositories {
   mavenCentral()
   // You may define additional repositories, or even remove "mavenCentral()".
@@ -22,7 +30,12 @@ repositories {
 }
 
 dependencies {
-  implementation 'com.jfoenix:jfoenix:9.0.8'
+  runtime fileTree(dir: 'libs', include: '*.jar')
   runtimeOnly 'org.postgresql:postgresql:42.2.+'
-  testCompile group: 'junit', name: 'junit', version: '4.10'
+  testImplementation 'junit:junit:4.12'
+}
+
+task runTest(type: JavaExec, dependsOn: classes, group: 'Test'){
+  classpath = sourceSets.main.runtimeClasspath
+  main = 'test.MainTestPostgres'
 }
