@@ -2,8 +2,11 @@ package utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DatabaseHelper {
 
@@ -11,6 +14,8 @@ public class DatabaseHelper {
   private String user;
   private int port;
   private String database;
+  private Connection connection;
+  private Statement stmt;
 
   /**
    *
@@ -26,11 +31,27 @@ public class DatabaseHelper {
     this.user = u;
     this.database = d;
 
-    try (Connection connection = DriverManager.getConnection("jdbc:postgresql://" + host + ":" + port + "/" + database, user, pwd)) {
+    try (Connection c = DriverManager.getConnection("jdbc:postgresql://" + host + ":" + port + "/" + database, user, pwd)) {
       System.out.println("Connesso al database.");
+      this.connection = c;
+      this.stmt=connection.createStatement();
     } catch (SQLException ex) {
       System.err.println("Connessione fallita.");
       ex.printStackTrace();
+    }
+  }
+
+  public void close() throws SQLException {
+    connection.close();
+  }
+
+  public void queryDB(String s) {
+    int count=0;
+    try {
+      ResultSet rs=stmt.executeQuery(s);
+      rs.next();
+    } catch (SQLException ex) {
+      Logger.getLogger(DatabaseHelper.class.getName()).log(Level.SEVERE, null, ex);
     }
   }
 }

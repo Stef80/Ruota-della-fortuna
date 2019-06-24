@@ -30,8 +30,9 @@ repositories {
 }
 
 dependencies {
-  runtime fileTree(dir: 'libs', include: '*.jar')
-  runtimeOnly 'org.postgresql:postgresql:42.2.+'
+  compile fileTree(dir: 'libs', include: '*.jar')
+  compile 'org.postgresql:postgresql:42.2.5'
+  compile 'org.hibernate:hibernate:5.4.+'
   testImplementation 'junit:junit:4.12'
 }
 
