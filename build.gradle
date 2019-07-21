@@ -33,7 +33,7 @@ dependencies {
   compile fileTree(dir: 'libs', include: '*.jar')
   implementation 'org.postgresql:postgresql:42.2.+'
   implementation 'org.hibernate:hibernate-core:5.4.+'
-  implementation 'com.jfoenix:jfoenix:9.0.+'
+  implementation 'com.jfoenix:jfoenix:8.0.+'
   testImplementation 'junit:junit:4.12'
 }
 
