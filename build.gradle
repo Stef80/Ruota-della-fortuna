@@ -32,12 +32,12 @@ repositories {
 dependencies {
   compile fileTree(dir: 'libs', include: '*.jar')
   implementation 'org.postgresql:postgresql:42.2.+'
-  implementation 'org.hibernate:hibernate-core:5.4.3.Final'
-  implementation 'com.jfoenix:jfoenix:9.0.9'
+  implementation 'org.hibernate:hibernate-core:5.4.+'
+  implementation 'com.jfoenix:jfoenix:9.0.+'
   testImplementation 'junit:junit:4.12'
 }
 
-task runTest(type: JavaExec, dependsOn: classes, group: 'Test') {
+task runTest(type: JavaExec, dependsOn: classes, group: 'test') {
   classpath = sourceSets.main.runtimeClasspath
   main = 'test.MainTestPostgres'
 }
