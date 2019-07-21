@@ -2,3 +2,4 @@
 /.gradle/
 *.lck
 /.idea/workspace.xml
+*vpp.bak*
