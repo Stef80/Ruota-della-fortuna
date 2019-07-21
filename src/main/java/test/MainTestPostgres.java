@@ -1,6 +1,7 @@
 package test;
 
 import java.sql.SQLException;
+
 import utils.DatabaseHelper;
 
 /**
@@ -13,7 +14,7 @@ public class MainTestPostgres {
     dbh.queryDB("create table prova ("
             + "codice varchar(5) primary key,"
             + "nome varchar(50) not null,"
-            + "et‡ decimal(3) not null);");
+            + "et√† decimal(3) not null);");
     dbh.close();
   }
 }
