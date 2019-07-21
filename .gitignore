@@ -1,5 +1,6 @@
 /build/
 /.gradle/
-*.lck
+/out/
 /.idea/workspace.xml
 *vpp.bak*
+*.lck
