@@ -8,28 +8,34 @@ import javax.swing.*;
 import java.util.Properties;
 
 public class EmailSender {
-
-  public static void send_uninsubria_email(String usr, String pwd, String to, String subject, String body) throws SendFailedException, MessagingException {
-    String password = pwd;
-    String username = usr;
-
+  /**
+   * @param from     la mail del mittente
+   * @param password la password del mittente
+   * @param to       la mail del destinatario
+   * @param subject  l'oggetto della mail
+   * @param body     il corpo della mail
+   * @throws SendFailedException
+   * @throws MessagingException
+   */
+  public static void sendUninsubriaEmail(String from, String password, String to, String subject, String body) throws SendFailedException, MessagingException {
+    // host per la mail dell'universita'
     String host = "smtp.office365.com";
-    String from = username;
-
+    // setto le proprieta' smtp
     Properties props = System.getProperties();
     props.put("mail.smtp.host", host);
     props.put("mail.smtp.starttls.enable", "true");
+    // porta per la mail di outlook 587
     props.put("mail.smtp.port", 587);
-
+    // creo la sessione con le proprieta'
     Session session = Session.getInstance(props);
-
+    // creo il messaggio
     Message msg = new MimeMessage(session);
     msg.setFrom(new InternetAddress(from));
     msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to, false));
     msg.setSubject(subject);
     msg.setText(body);
-
-    Transport.send(msg, username, password);
+    // invio la mail
+    Transport.send(msg, from, password);
     System.out.println("\nMail was sent successfully.");
   }
 
@@ -62,7 +68,7 @@ public class EmailSender {
         to = new String(tf.getText());
         subject = new String(sf.getText());
         body = new String(bf.getText());
-        send_uninsubria_email(username, password, to, subject, body);
+        sendUninsubriaEmail(username, password, to, subject, body);
       }
     } catch (MessagingException e) {
       System.err.println("SMTP SEND FAILED:");
