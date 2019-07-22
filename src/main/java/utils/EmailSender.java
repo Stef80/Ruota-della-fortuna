@@ -54,8 +54,6 @@ public class EmailSender {
               "Subject:", sf,
               "Body:", bf
       };
-
-
       int option = JOptionPane.showOptionDialog(null, message, "Send email",
               JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new String[]{"Send", "Cancel"}, "Send");
       if (option == JOptionPane.YES_OPTION) {
@@ -66,12 +64,9 @@ public class EmailSender {
         body = new String(bf.getText());
         send_uninsubria_email(username, password, to, subject, body);
       }
-
     } catch (MessagingException e) {
       System.err.println("SMTP SEND FAILED:");
       System.err.println(e.getMessage());
-
     }
   }
-
 }
