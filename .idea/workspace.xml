@@ -2,18 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3d1434c8-110e-454c-b27d-393a41a407af" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_sun_mail_javax_mail_1_6_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_activation_activation_1_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/DatabaseHelper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/EmailSender.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/MainTestPostgres.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Ruota_della_Fortuna.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/Ruota_della_Fortuna.main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Ruota_della_Fortuna.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/Ruota_della_Fortuna.test.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Finestra.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Finestra.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/finestra.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/finestra.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UML/progettoB.vpp" beforeDir="false" afterPath="$PROJECT_DIR$/UML/progettoB.vpp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -107,6 +97,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -234,7 +225,7 @@
       <option name="presentableId" value="Default" />
       <updated>1564139539615</updated>
       <workItem from="1564139542856" duration="5000" />
-      <workItem from="1564139630059" duration="6506000" />
+      <workItem from="1564139630059" duration="8356000" />
     </task>
     <task id="LOCAL-00001" summary="project refactor">
       <created>1564141249178</created>
@@ -243,7 +234,14 @@
       <option name="project" value="LOCAL" />
       <updated>1564141249179</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="piccole modifiche">
+      <created>1564147802569</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1564147802571</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -263,6 +261,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="project refactor" />
-    <option name="LAST_COMMIT_MESSAGE" value="project refactor" />
+    <MESSAGE value="piccole modifiche" />
+    <option name="LAST_COMMIT_MESSAGE" value="piccole modifiche" />
   </component>
 </project>
