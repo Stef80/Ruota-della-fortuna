@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3d1434c8-110e-454c-b27d-393a41a407af" name="Default Changelist" comment="">
+    <list default="true" id="3d1434c8-110e-454c-b27d-393a41a407af" name="Default Changelist" comment="piccole modifiche">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UML/progettoB.vpp" beforeDir="false" afterPath="$PROJECT_DIR$/UML/progettoB.vpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Finestra.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Finestra.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/finestra.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/finestra.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -50,13 +52,12 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="Ruota della Fortuna" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="Ruota della Fortuna" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="build" type="c8890929:TasksNode$1" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
@@ -80,6 +81,7 @@
         <option value="FxmlFile" />
         <option value="JavaFXApplication" />
         <option value="Class" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -95,13 +97,14 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
+    <property name="settings.editor.selected.configurable" value="preferences.JavaFX" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -120,7 +123,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.RuotaDellaFortuna [buildDependents]">
+  <component name="RunManager" selected="Gradle.RuotaDellaFortuna [runTestFinestra]">
     <configuration name="Prova" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Prova" />
       <module name="Ruota_della_Fortuna.main" />
@@ -206,10 +209,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.RuotaDellaFortuna [runTestFinestra]" />
         <item itemvalue="Gradle.RuotaDellaFortuna [buildDependents]" />
         <item itemvalue="Gradle.RuotaDellaFortuna [clean]" />
         <item itemvalue="Gradle.RuotaDellaFortuna [build]" />
-        <item itemvalue="Gradle.RuotaDellaFortuna [runTestFinestra]" />
         <item itemvalue="Application.Prova" />
       </list>
     </recent_temporary>
@@ -225,7 +228,10 @@
       <option name="presentableId" value="Default" />
       <updated>1564139539615</updated>
       <workItem from="1564139542856" duration="5000" />
-      <workItem from="1564139630059" duration="8356000" />
+      <workItem from="1564139630059" duration="8526000" />
+      <workItem from="1564152366256" duration="160000" />
+      <workItem from="1564386357548" duration="595000" />
+      <workItem from="1564394094265" duration="8642000" />
     </task>
     <task id="LOCAL-00001" summary="project refactor">
       <created>1564141249178</created>
@@ -252,7 +258,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
