@@ -1,0 +1,2 @@
+manca l'attributo tipo in Users. tipo: 1=admin 0=player
+Solo utenti di tipo admin possono essere collegati con una istanza di InsubriaMails
