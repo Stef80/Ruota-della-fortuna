@@ -1,0 +1,31 @@
+risoluzione 640x480 o 500x281
+
+Le schermate LoginAdmin e LoginPlayer:
+	-Il tasto Login porta a menuAdmin o menuPlayer
+	-il tasto Registrati porta al Form
+	-il tasto Dimenticata la Password? porta a password reset
+
+La schermata Form:
+	-Il tasto INVIA porta su Conferma registrazione
+
+La schermata Conferma registrazione:
+	-se il codice viene inserito, apre finestra di dialogo di conferma e riporta a LoginAdmin/Player
+	-altrimenti, apre finestra di dialogo di errore e riporta a LoginAdmin/Player
+
+La schermata Password reset:
+	-il tasto reset riporta a LoginAdmin/Player
+
+La schermata menuAdmin:
+	-il tasto Osserva la partita porta alla visualizzazioneAdmin
+	-il tasto Aggiungi frasi misteriose porta alla schermata di aggiunta
+	-il tasto visualizza statistiche porta alla schermata statistiche
+	-il tasto gestione account porta alla schermata di gestione del profilo
+	-il tasto esci chiude l'applicazione
+
+La schermata menuPlayer:
+	-il tasto organizza una partita porta alla schermata di gamePlayer
+	-il tasto visualizza partite porta alla visualizzazionePlayer
+	-il tasto visualizza statistiche porta alla schermata statistiche
+	-il tasto gestione account porta alla schermata di gestione del profilo
+	-il tasto esci chiude l'applicazione
+
