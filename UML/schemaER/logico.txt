@@ -1,2 +1,4 @@
 manca l'attributo tipo in Users. tipo: 1=admin 0=player
-Solo utenti di tipo admin possono essere collegati con una istanza di InsubriaMails
+Solo utenti di tipo admin possono essere collegati con una istanza di InsubriaMails (fare il vincolo check anche se non serve)
+Played e Observed possono essere riuniti in un'unica relazione con un attributo Observer: 1=osservatore , 0=giocatore
+
