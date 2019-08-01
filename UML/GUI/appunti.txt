@@ -33,9 +33,6 @@ La schermata statistiche:
 	-il tasto visualizza record porta alla schermata record
 	-il tasto visualizza statistiche partite porta alla schermata matchStats
 	-il tasto cerca un utente porta alla schermata utente
-	-il tasto indietro riporta a menuAdmin/Player
 
-La schermata record:
-	-il tasto indietro riporta alla schermata statistiche
 
 
