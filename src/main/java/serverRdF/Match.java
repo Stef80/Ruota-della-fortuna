@@ -4,6 +4,7 @@ import rdFUtil.client.Client;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Match extends UnicastRemoteObject implements RemoteMatch {
@@ -16,6 +17,16 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     private int turn;
     private boolean firstTurn;
 
+
+    public Match(String id) throws RemoteException{
+        this.id = id;
+        onGoing = false;
+        manche = new Manche();
+        players = new ArrayList<Player>();
+        observers = new ArrayList<Client>();
+        turn = -1;
+        firstTurn = true;
+    }
 
     public void wheelSpin() throws RemoteException{}
 

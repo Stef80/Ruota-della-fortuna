@@ -5,6 +5,7 @@ public class MovesDTO {
     private UsersDTO player;
     private String moveType;
     private int outcome;
+    private ManchesDTO manche;
 
     public UsersDTO getPlayer(){
         return player;
@@ -30,9 +31,20 @@ public class MovesDTO {
         outcome = res;
     }
 
-    public MovesDTO(UsersDTO user, String move, int res){
+    public ManchesDTO getManche() {
+        return manche;
+    }
+
+    public void setManche(ManchesDTO manche) {
+        this.manche = manche;
+    }
+
+    public MovesDTO(UsersDTO user, String move, int res, ManchesDTO manche){
         player = user;
         moveType = move;
         outcome = res;
+        this.manche = manche;
     }
+
+    public MovesDTO(){}
 }
