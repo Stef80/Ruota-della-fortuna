@@ -42,5 +42,5 @@ public class Manche {
         this.numManche = numManche;
     }
 
-    //TODO
+    //TODO metodo per iniziare nuova manche (con salvattaggi nel database)
 }

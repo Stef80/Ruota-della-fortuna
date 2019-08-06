@@ -20,5 +20,5 @@ public class CryptedPassword implements Serializable {
     }
 
 
-    //TODO
+    //TODO finire di scrivere i metodi
 }

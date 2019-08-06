@@ -18,7 +18,7 @@ public class MatchManager {
      * @return matchManager il singleton di tipo MatchManager
      */
     public static MatchManager createMatchManager(){
-        if(matchManager.equals(null)) {
+        if(matchManager == null) {
             matchManager = new MatchManager();
             return matchManager;
         }else

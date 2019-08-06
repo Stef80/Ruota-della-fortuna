@@ -56,5 +56,5 @@ public class Player {
         numJolly = 0;
     }
 
-    //TODO
+    //TODO metodi ereditati da Client
 }
