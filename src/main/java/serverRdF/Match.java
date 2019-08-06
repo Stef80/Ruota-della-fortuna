@@ -28,9 +28,11 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         firstTurn = true;
     }
 
-    public void wheelSpin() throws RemoteException{}
+    public int wheelSpin() throws RemoteException{}
 
-    public void giveLetter(char letter, boolean consonant) throws RemoteException{}
+    public void giveConsonant(char letter, int amount) throws RemoteException{}
+
+    public void giveVocal(char letter) throws RemoteException{}
 
     public void jolly() throws RemoteException{}
 
