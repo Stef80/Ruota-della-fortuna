@@ -14,9 +14,12 @@ import java.awt.*;
 import java.io.IOException;
 
 public class Controller {
-
+	@FXML
+    private Button loginButton;
 	@FXML
 	private Button resetButton;
+	@FXML
+	private Button registerButton;
 
 
 
@@ -28,7 +31,8 @@ public class Controller {
 		primaryStage.setTitle("Weel of Fortune");
 		primaryStage.setScene(scene);
 		primaryStage.show();
-		Main.window.hide();
+		Stage oldStage = (Stage) loginButton.getScene().getWindow();
+		oldStage.close();
 	}
 
 	public void register(ActionEvent actionEvent) throws IOException {
@@ -39,7 +43,9 @@ public class Controller {
 		primaryStage.setTitle("Weel of Fortune");
 		primaryStage.setScene(scene);
 		primaryStage.show();
-		Main.window.hide();
+		Stage oldStage = (Stage) registerButton.getScene().getWindow();
+		oldStage.close();
+
 	}
 
 	public void reset(ActionEvent event) throws IOException {
