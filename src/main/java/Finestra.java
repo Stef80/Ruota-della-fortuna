@@ -8,7 +8,7 @@ public class Finestra extends Application {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
-    Parent root = FXMLLoader.load(getClass().getResource("finestra_tab.fxml"));
+    Parent root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("finestra.fxml"));
     primaryStage.setTitle("RdF");
     primaryStage.setScene(new Scene(root));
     primaryStage.setResizable(false);
