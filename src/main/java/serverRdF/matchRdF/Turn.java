@@ -1,4 +1,4 @@
-package serverRdF;
+package serverRdF.matchRdF;
 
 import serverRdF.dbComm.MovesDTO;
 

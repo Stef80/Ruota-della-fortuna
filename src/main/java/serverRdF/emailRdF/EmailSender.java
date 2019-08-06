@@ -1,4 +1,4 @@
-package serverRdF;
+package serverRdF.emailRdF;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;

@@ -1,6 +1,7 @@
 package serverRdF;
 
 import serverRdF.dbComm.PhrasesDTO;
+import serverRdF.matchRdF.Turn;
 
 import java.util.ArrayList;
 import java.util.List;
