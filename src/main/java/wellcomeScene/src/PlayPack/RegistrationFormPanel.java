@@ -1,4 +1,4 @@
-package PlayPack;
+package wellcomeScene.src.PlayPack;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;

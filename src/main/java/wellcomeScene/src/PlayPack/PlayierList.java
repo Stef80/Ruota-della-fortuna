@@ -1,4 +1,4 @@
-package PlayPack;
+package wellcomeScene.src.PlayPack;
 
 import com.sun.javafx.collections.ObservableListWrapper;
 import javafx.beans.Observable;

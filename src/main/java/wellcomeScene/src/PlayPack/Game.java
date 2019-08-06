@@ -1,4 +1,4 @@
-package PlayPack;
+package wellcomeScene.src.PlayPack;
 
 import javafx.collections.ObservableArray;
 

@@ -1,4 +1,4 @@
-package firstPack;
+package wellcomeScene.src.firstPack;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

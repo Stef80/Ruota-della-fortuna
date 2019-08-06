@@ -1,4 +1,4 @@
-package firstPack;
+package wellcomeScene.src.firstPack;
 
 import PlayPack.Game;
 import PlayPack.GameView;
