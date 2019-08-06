@@ -7,6 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -20,24 +21,37 @@
                   <Image url="@ruota_fortuna.png" />
                </image>
             </ImageView>
-            <Label fx:id="label1" prefWidth="80.0" text="Label">
-               <HBox.margin>
-                  <Insets left="10.0" right="10.0" />
-               </HBox.margin>
-               <padding>
-                  <Insets left="10.0" right="10.0" />
-               </padding>
-            </Label>
-            <Label fx:id="label2" prefWidth="80.0" text="Label">
-               <HBox.margin>
-                  <Insets right="20.0" />
-               </HBox.margin>
-            </Label>
-            <Label fx:id="label3" prefWidth="80.0" text="Label">
-               <HBox.margin>
-                  <Insets right="20.0" />
-               </HBox.margin>
-            </Label>
+            <VBox alignment="TOP_CENTER" prefWidth="60.0">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@ruota_fortuna.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="label1" text="id1" />
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefWidth="60.0">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@ruota_fortuna.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="label2" text="id2" />
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefWidth="60.0">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@ruota_fortuna.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="label3" text="id3" />
+               </children>
+            </VBox>
+            <Label fx:id="validateLabel" prefWidth="60.0" text="Label" />
             <Button fx:id="observeButton" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="60.0" text="observe" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" wrapText="true">
                <HBox.margin>
                   <Insets right="20.0" />
