@@ -1,4 +1,4 @@
-package serverRdF;
+package serverRdF.matchRdF;
 
 import serverRdF.dbComm.PhrasesDTO;
 import serverRdF.matchRdF.Turn;

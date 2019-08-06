@@ -1,7 +1,6 @@
 package serverRdF.matchRdF;
 
 import rdFUtil.client.Client;
-import serverRdF.Manche;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
