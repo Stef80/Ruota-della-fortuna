@@ -14,4 +14,6 @@ public interface Client extends Remote {
     public void setId() throws RemoteException;
 
     public void notifyServerError() throws RemoteException;
+
+    public void notifyTooManyPlayers() throws RemoteException;
 }

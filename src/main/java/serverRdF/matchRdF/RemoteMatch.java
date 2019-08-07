@@ -25,7 +25,7 @@ public interface RemoteMatch extends Remote {
 
     public void endMatch() throws RemoteException;
 
-    public void addPlayer(Client c) throws RemoteException;
+    public boolean addPlayer(Client c) throws RemoteException;
 
     public void addObserver(Client c) throws RemoteException;
 
