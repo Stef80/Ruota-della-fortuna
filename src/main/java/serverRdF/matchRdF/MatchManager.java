@@ -2,6 +2,7 @@ package serverRdF.matchRdF;
 
 import rdFUtil.client.Client;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -27,8 +28,11 @@ public class MatchManager {
 
     public void createMatch(Client c){
         String id = UUID.randomUUID().toString();
-        //TODO
+        LocalDateTime currentTime = LocalDateTime.now();
+
     }
+
+    public 
 
     //TODO
 }
