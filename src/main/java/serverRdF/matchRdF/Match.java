@@ -48,7 +48,13 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
 
     public void endMatch() throws RemoteException{}
 
-    public void addPlayer(Client c) throws RemoteException{}
+    /**
+     *
+     * @param c
+     * @return full full=true se la partita è piena rendendo impossibile la partecipazione, full=false altrimenti
+     * @throws RemoteException
+     */
+    public boolean addPlayer(Client c) throws RemoteException{}
 
     public void addObserver(Client c) throws RemoteException{}
 
