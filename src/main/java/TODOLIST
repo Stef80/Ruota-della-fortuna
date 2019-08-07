@@ -4,6 +4,7 @@
 * Traduzione schema ER
 * qualche schema UML
 * VARIE CLASSI E INTERFACCIA PER IL DAO
+* Inserire nello schema ER nell'entità Matches gli attributi Data - ora (tipi DATE e TIME)
 *
 *
 * VARI MANAGERS CON SINGLETON E METODI
