@@ -1,6 +1,6 @@
 package serverRdF.dbComm;
 
-public interface DBManager {
+public class DBManager implements DBManagerInterface{
 
-    //TODO tutti i metodi che servono agli altri manager e a Match. ricordarsi di aggiungere man mano i metodi utilizzati nelle altre classi per non perderli.
+    //TODO sarà singleton e bisogna implementare i metodi dell'interfaccia
 }
