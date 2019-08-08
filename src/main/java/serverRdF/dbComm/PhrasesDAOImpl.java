@@ -9,6 +9,12 @@ public class PhrasesDAOImpl implements PhrasesDAO {
     static final String PhrasePhraseAttribute = "phrase";
     static final String PhraseThemeAttribute = "theme";
 
+    /**
+     * @param idPlayer1 id del primo concorrente iscritto alla partita
+     * @param idPlayer2 id del secondo concorrente iscritto alla partita
+     * @param idPlayer3 id del terzo concorrente iscritto alla partita
+     * @return la lista delle cinque frasi, con relativo tema, se trovate, altrimenti null
+     */
     @Override
     public List<PhrasesDTO> get5Phrases(int idPlayer1, int idPlayer2, int idPlayer3) {
         //TODO rendere costanti attributi e tabelle Manches e MatchJoiner
@@ -18,6 +24,9 @@ public class PhrasesDAOImpl implements PhrasesDAO {
         return null;
     }
 
+    /**
+     * @param phrases lista delle frasi, con relativo tema, da aggiungere nel database
+     */
     @Override
     public void addPhrase(ArrayList<PhrasesDTO> phrases) {
        String queryAdd = "INSERT INTO "+PhraseTable+"("+PhraseThemeAttribute+","+PhrasePhraseAttribute+") VALUES ";
@@ -31,6 +40,9 @@ public class PhrasesDAOImpl implements PhrasesDAO {
        }
     }
 
+    /**
+     * @return la lista di tutte le frasi, con relativo tema, presenti nel database
+     */
     @Override
     public List<PhrasesDTO> getAllPhrases() {
         String query = "SELECT * FROM "+PhraseTable+";";
