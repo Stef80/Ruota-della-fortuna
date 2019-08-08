@@ -11,6 +11,11 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 public interface Server extends Remote {
+    //ritorna false se la mail esiste già , ture altrimenti.
+    public boolean checkMail( String mail)throws RemoteException;
+   //ritorna false se il nick esiste già , true altrimenti.
+    public boolean checkNickname( String name)throws RemoteException;
+
     public void signUp(User form, Client c) throws RemoteException;
 
     public void signIn(Login form, Client c) throws RemoteException;
