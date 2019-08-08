@@ -11,4 +11,16 @@ public class User extends Login {
         this.surname = surname;
         this.nickname = nickname;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
 }

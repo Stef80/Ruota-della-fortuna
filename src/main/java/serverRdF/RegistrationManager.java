@@ -1,16 +1,79 @@
 package serverRdF;
 
+import rdFUtil.client.Client;
 import rdFUtil.logging.User;
+import serverRdF.dbComm.DBManager;
+import serverRdF.dbComm.UsersDTO;
 
+import java.rmi.RemoteException;
+
+
+/**
+ * Questa classe gestisce la registrazione dell'utente. I metodi checkEmail e checkNickname permettono di allegerire i controlli sul metodo principale della classe (signUp)
+ */
 public class RegistrationManager {
+    private DBManager dbManager;
+    private static RegistrationManager registrationManager = null;
 
-    //TODO singleton-metodi
-
-    public void signUp(User form){
-
+    private RegistrationManager(DBManager dbManager){
+        this.dbManager = dbManager;
     }
 
-    public boolean checkEmail(String email){}
 
-    public boolean checkNickname(String nickname){}
+    /**
+     *
+     * @param dbManager il riferimento al manager del db
+     * @return registrationManager il singleton della classe.
+     */
+    public static RegistrationManager createRegistrationManager(DBManager dbManager){
+        if (registrationManager == null) {
+            registrationManager = new RegistrationManager(dbManager);
+            return registrationManager;
+        } else
+            return registrationManager;
+    }
+
+    /**
+     *
+     * @param form contenente i dati necessari alla registrazione
+     * @param c il riferimento al client
+     *
+     * Registra l'utente nel database. Nel caso non riesca notifica al client l'errore
+     */
+    public void signUp(User form, Client c){
+        boolean bool = dbManager.addUser(form);
+        if (!bool) {
+            try {
+                c.notifyServerError();
+            } catch (RemoteException ex) {
+                System.err.println(ex.getMessage());
+            }
+        }
+    }
+
+    /**
+     *
+     * @param email L'indirizzo email da controllare
+     * @return true se l'indirizzo email non è stato già utilizzato, false altrimenti
+     */
+    public boolean checkEmail(String email){
+        UsersDTO user = dbManager.getUser(true, email);
+        if(user != null){
+            return false;
+        }
+        else return true;
+    }
+
+    /**
+     *
+     * @param nickname il nickname da controllare
+     * @return true se il nickname non è stato già utilizzato, false altrimenti
+     */
+    public boolean checkNickname(String nickname){
+        UsersDTO user = dbManager.getUser(false, nickname);
+        if(user != null){
+            return false;
+        }
+        else return true;
+    }
 }

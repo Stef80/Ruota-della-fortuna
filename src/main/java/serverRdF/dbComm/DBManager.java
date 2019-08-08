@@ -1,5 +1,7 @@
 package serverRdF.dbComm;
 
+import rdFUtil.logging.User;
+
 import java.time.LocalDateTime;
 
 public class DBManager implements DBManagerInterface{
@@ -17,8 +19,14 @@ public class DBManager implements DBManagerInterface{
         } else
             return dbManager;
     }
-    @Override
+
+
     public boolean addMatch(String id, LocalDateTime time) {
+        //TODO
+        return false;
+    }
+
+    public boolean addUser(User user){
         //TODO
         return false;
     }

@@ -12,4 +12,16 @@ public class Login implements Serializable {
         passwordC = CryptedPassword.encrypt(password);
         email = mail;
     }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public CryptedPassword getPasswordC() {
+        return passwordC;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 }
