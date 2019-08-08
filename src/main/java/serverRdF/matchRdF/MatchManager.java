@@ -57,7 +57,7 @@ public class MatchManager {
                     System.err.println(ex.getMessage());
                 }
             }
-            match = new Match(id);
+            match = new Match(id,currentTime);
             match.addPlayer(c);
             matches.put(id, match);
             return match;

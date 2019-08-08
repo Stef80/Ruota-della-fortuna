@@ -1,9 +1,12 @@
 package serverRdF.matchRdF;
 
+import rdFUtil.MatchData;
 import rdFUtil.client.Client;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,9 +19,10 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     private Manche manche;
     private int turn;
     private boolean firstTurn;
+    private LocalDateTime creationTime;
 
 
-    public Match(String id) throws RemoteException{
+    public Match(String id, LocalDateTime localDateTime) throws RemoteException{
         this.id = id;
         onGoing = false;
         manche = new Manche();
@@ -26,6 +30,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         observers = new ArrayList<Client>();
         turn = -1;
         firstTurn = true;
+        creationTime = localDateTime;
     }
 
     public int wheelSpin() throws RemoteException{
@@ -54,7 +59,9 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
      * @return full full=true se la partita è piena rendendo impossibile la partecipazione, full=false altrimenti
      * @throws RemoteException
      */
-    public boolean addPlayer(Client c) throws RemoteException{}
+    public boolean addPlayer(Client c) throws RemoteException{
+        return false;
+    }
 
     public void addObserver(Client c) throws RemoteException{}
 
@@ -63,6 +70,33 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     public void askNotify() throws RemoteException{}
 
     public Match() throws RemoteException{}
+
+    public MatchData createMatchData(){
+        MatchData result = new MatchData();
+
+        String noName = "--";
+        result.setPlayer1(players.get(0).getNickname());
+        if(players.get(1) != null){
+            result.setPlayer2(players.get(1).getNickname());
+        }else{
+            result.setPlayer2(noName);
+        }
+        if(players.get(2) != null){
+            result.setPlayer3(players.get(2).getNickname());
+        }else{
+            result.setPlayer3(noName);
+        }
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd");
+        result.setDate(dtf.format(creationTime));
+        dtf = DateTimeFormatter.ofPattern("HH:mm");
+        result.setTime(dtf.format(creationTime));
+
+        result.setOnGoing(onGoing);
+        result.setNumManche(manche.getNumManche());
+
+        return result;
+    }
 
     //TODO
 }

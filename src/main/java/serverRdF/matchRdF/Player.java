@@ -2,18 +2,22 @@ package serverRdF.matchRdF;
 
 import rdFUtil.client.Client;
 
+import java.rmi.RemoteException;
+
 public class Player {
 
     private Client client;
+    private String nickname;
     private int points;
     private int partialPoints;
     private int numJolly;
 
-    public Player(Client c){
+    public Player(Client c) throws RemoteException{
         client = c;
         points = 0;
         partialPoints = 0;
         numJolly = 0;
+        nickname = c.getNickname();
     }
 
     public Client getClient(){
@@ -55,6 +59,13 @@ public class Player {
     public void setNumJollyToZero(){
         numJolly = 0;
     }
+
+    public String getNickname(){
+        return nickname;
+    }
+
+
+    //metodi ereditati da Client con la delega
 
     //TODO metodi ereditati da Client
 }
