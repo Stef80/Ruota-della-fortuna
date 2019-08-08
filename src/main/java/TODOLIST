@@ -5,7 +5,7 @@
 * qualche schema UML
 * VARIE CLASSI E INTERFACCIA PER IL DAO
 * Inserire nello schema ER nell'entità Matches gli attributi Data - ora (tipi DATE e TIME)
-*
+* Mostrare nello schema ER l'identificatore misto di Manches e di Moves
 *
 * VARI MANAGERS CON SINGLETON E METODI
 * IMPLEMENTAZIONI DEL CLIENT IN ADMIN E PLAYER RDF
