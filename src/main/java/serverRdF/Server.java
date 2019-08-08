@@ -4,6 +4,7 @@ import rdFUtil.client.Client;
 import rdFUtil.logging.CryptedPassword;
 import rdFUtil.logging.Login;
 import rdFUtil.logging.User;
+import serverRdF.matchRdF.RemoteMatch;
 
 import java.io.File;
 import java.rmi.Remote;
@@ -21,11 +22,11 @@ public interface Server extends Remote {
 
     public void visualizeMatch(Client c) throws RemoteException;
 
-    public void createMatch(Client c) throws RemoteException;
+    public RemoteMatch createMatch(Client c) throws RemoteException;
 
-    public void joinMatch(Client c, String idMatch) throws RemoteException;
+    public RemoteMatch joinMatch(Client c, String idMatch) throws RemoteException;
 
-    public void observeMatch(Client c, String idMatch) throws RemoteException;
+    public RemoteMatch observeMatch(Client c, String idMatch) throws RemoteException;
 
     public void addPhrases(File file, Client c) throws RemoteException;
 

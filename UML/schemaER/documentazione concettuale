@@ -1,0 +1,51 @@
+DOCUMENTAZIONE PROGETTAZIONE CONCETTUALE: a corredo dello schema concettuale
+
+Vincoli di integrità:
+
+Entità InsubriaMails
+->email: string, identificatore minimale dell'entità. Attributo obbligatorio e monovalore.
+->password: string, obbligatorio e monovalore.
+Partecipa all'associazione binaria own, con cardinalità (1,1) quindi ogni istanza di InsubriaMails partecipa ad una ed una sola istanza di own. La seconda entità che partecipa all'associazione è Admin, in particolare con cardinalità (0,1), ossia ogni sua istanza può partecipare massimo a un'istanza di own.
+
+Entità Users
+->id: int, identificatore interno e semplice dell'entità. Attributo obbligatorio e monovalore.
+->nickname: string, obbligatorio e monovalore.
+->email: string, obbligatorio e monovalore.
+nickname e email sono un identificatore interno e composto.
+->name: string, obbligatorio e monovalore.
+->surname: string, obbligatorio e monovalore.
+->password: stirng, obbligatorio e monovalore.
+Partecipa all'associazione binaria observed, con cardinalità (0,n) quindi ogni istanza di Users può partecipare ad un numero qualsiasi di istanze di observed, anche nessuna. La seconda entità che partecipa all'associazione è l'entità Manches, in particolare vi partecipa con cardinalità (0,n), allo stesso modo di Users.
+
+Le entità Admin e Player possiedono due identificatori esterni, di cui uno semplice e uno composto. Il primo è l'attributo id dell'entità Users, mentre il secondo è formato dagli attributi nickname e email della medesima entità.
+
+Entità Moves
+->moveType: {consonante, vocale, "perde", "perde", "passa", "jolly", "soluzione"}, obbligatorio e monovalore.
+->outcome: {0,-1}, obbligatorio e monovalore.
+Partecipa alle seguenti associazioni binarie:
+-contain, con cardinalità (1,1), quindi ogni istanza di Moves deve obbligatoriamente partecipare ad una ed una sola istanza dell'associazione. La seconda entità che partecipa all'associazione è l'entità Manches, in particolare vi partecipa con cardinalità (0,n), perciò ogni sua istanza può partecipare ad un numero qualsiasi di istanze di contain, anche nessuna.
+-made, insieme all'entità Player e con le medesime cardinalità della precedente associazione, ossia (1,1) per Moves e (0,n) per Player.
+
+Entità Matches
+->id: int, identificatore interno e semplice dell'entità. Attributo obbligatorio e monovalore.
+->date: date, obbligatorio e monovalore.
+->hour: time, obbligatorio e monovalore.
+Partecipa alle seguenti associazioni binarie:
+-won, con cardinalità (0,1) quindi ogni istanza di Matches può partecipare al massimo ad una sola istanza di won. L'altra partecipante è l'entità Player con cardinalità (0,n) perciò senza particolari vincoli per quanto riguarda il numero minimo o massimo di istanze.
+Tale associazione contiene un attributo amount, di dominio int.
+-is made of, con cardinalità (1,5), ciò significa che ogni sua istanza deve obbligatoriamente partecipare a massimo cinque istanze dell'associazione. L'altra partecipante è l'associazione Manches, con cardinalità (1,1), quindi ogni sua istanza deve partecipare a una e una sola istanza di is made of.
+
+Entità Phrase
+->phrase: string, identificatore interno e semplice. Attributo obbligatorio e monovalore.
+->theme: string, obbligatorio e monovalore.
+Partecipa all'associazione binaria use con cardinalità (0,1), quindi ogni sua istanza può partecipare massimo ad una ed una sola istanza dell'associazione. L'altra entità che partecipa a use è Manches con cardinalità (1,1), perciò ogni sua istanza deve partecipare ad una ed una sola istanza di use.
+
+Entità Manches
+->number: int, obbligatorio e monovalore.
+Possiede un identificatore misto composto da tre attriburi: number, id appartenente all'entità Matches e phrase, dell'entità Phrases.
+Oltre alle associazioni già descritte, Manches partecipa inoltre a:
+-won con cardinalità (0,1), cioè ogni istanza di Manches può partecipare a massimo una istanza di won, insieme all'entità Player con (0,n), ossia senza particolari vincoli. Inoltre won possiede anche l'attributo amount, di dominio int.
+-played con cardinalità (3,3), perciò ogni istanza della corrente entità deve partecipare per tre volte a non più di tre istanze di played. Vi partecipa insieme all'entità Player, la quale è partecipe con cardinalità (0,n), come nella precedente.
+
+Generalizzazione:
+è presente una gerarchia di generalizzazione che coinvolge le entità Users, padre, Player e Admin, figli. In particolare, questa è totale ed esclusiva in quanto ogni istanza del padre è istanza di una e una sola entità figlia.
