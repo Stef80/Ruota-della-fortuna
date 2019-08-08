@@ -43,7 +43,12 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
 
     public void jolly() throws RemoteException{}
 
-    public void nextTurn() throws RemoteException{}
+    public void nextTurn() throws RemoteException{
+        if(turn==2)
+            turn=0;
+        else
+            ++turn;
+    }
 
     public void giveSolution(String solution) throws RemoteException{}
 
@@ -54,16 +59,24 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     public void endMatch() throws RemoteException{}
 
     /**
-     *
      * @param c
      * @return full full=true se la partita è piena rendendo impossibile la partecipazione, full=false altrimenti
      * @throws RemoteException
      */
     public boolean addPlayer(Client c) throws RemoteException{
-        return false;
+        boolean full;
+        if(players.size()>=3)
+            full=true;
+        else {
+            players.add(new Player(c));
+            full=false;
+        }
+        return full;
     }
 
-    public void addObserver(Client c) throws RemoteException{}
+    public void addObserver(Client c) throws RemoteException{
+        observers.add(c);
+    }
 
     public void leaveMatch() throws RemoteException{}
 
