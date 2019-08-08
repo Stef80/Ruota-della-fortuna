@@ -12,7 +12,7 @@ public class EmailManager {
     /**
      * @return matchManager il singleton di tipo EmailManager
      */
-    public static EmailManager createMatchManager() {
+    public static EmailManager createEmailManager() {
         if (emailManager == null) {
             emailManager = new EmailManager();
             return emailManager;
