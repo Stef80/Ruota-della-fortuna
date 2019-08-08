@@ -53,14 +53,34 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
 
     public void startMatch() throws RemoteException{}
 
-    public void endManche(Player winner) throws RemoteException{}
 
-    public void endMatch() throws RemoteException{}
+    /**
+     *
+     * @param winner =null se la manche non si è conclusa con un vincitore
+     * @throws RemoteException
+     */
+    public void endManche(Player winner) throws RemoteException{
+        //TODO
+    }
+
+
+    /**
+     *
+     * @param isThereAWinner =true se il match si è concluso dopo la conclusione della quinta manche, portando ad un vincitore. =false altrimenti
+     * @throws RemoteException
+     */
+    public void endMatch(boolean isThereAWinner) throws RemoteException{
+        //TODO
+
+    }
+
 
     /**
      * @param c
      * @return full full=true se la partita è piena rendendo impossibile la partecipazione, full=false altrimenti
      * @throws RemoteException
+     *
+     * il metodo si occupa di notificare ai partecipanti e ai giocatori l'abbandono di un giocatore e porta alla conclusione del match
      */
     public boolean addPlayer(Client c) throws RemoteException{
         boolean full;
@@ -73,16 +93,58 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         return full;
     }
 
+
+
     public void addObserver(Client c) throws RemoteException{
         observers.add(c);
     }
 
-    public void leaveMatch() throws RemoteException{}
+    /**
+     *
+     * @param c Il client che abbandona il match
+     * @throws RemoteException
+     */
+    public void leaveMatchAsPlayer(Client c) throws RemoteException{
+        String name = c.getNickname();
+        for(Player p : players){
+            if(p.getClient().equals(c)){
+                players.remove(p);
+            }else{
+                p.getClient().notifyLeaver(name);
+            }
+        }
+
+        for(Client client : observers){
+            client.notifyLeaver(name);
+        }
+
+        endManche(null);
+        endMatch(false);
+    }
+
+
+    /**
+     *
+     * @param c Il riferimento al client che smette di guardare la partita
+     * @throws RemoteException
+     *
+     * il suo abbandono non viene notificato
+     */
+    public void leaveMatchAsObserver(Client c) throws RemoteException{
+        observers.remove(c);
+    }
 
     public void askNotify() throws RemoteException{}
 
-    public Match() throws RemoteException{}
+    public Match() throws RemoteException{
 
+    }
+
+
+    /**
+     *
+     * @return result, un oggetto di tipo MatchData contenente tutte le informazioni del match necessarie a MatchVisualizer
+     */
     public MatchData createMatchData(){
         MatchData result = new MatchData();
 

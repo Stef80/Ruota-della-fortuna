@@ -16,4 +16,6 @@ public interface Client extends Remote {
     public void notifyServerError() throws RemoteException;
 
     public void notifyTooManyPlayers() throws RemoteException;
+
+    public void notifyLeaver(String nickname) throws RemoteException;
 }

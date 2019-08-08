@@ -23,13 +23,15 @@ public interface RemoteMatch extends Remote {
 
     public void endManche(Player winner) throws RemoteException;
 
-    public void endMatch() throws RemoteException;
+    public void endMatch(boolean isThereAWinner) throws RemoteException;
 
     public boolean addPlayer(Client c) throws RemoteException;
 
     public void addObserver(Client c) throws RemoteException;
 
-    public void leaveMatch() throws RemoteException;
+    public void leaveMatchAsPlayer(Client c) throws RemoteException;
+
+    public void leaveMatchAsObserver(Client c) throws RemoteException;
 
     public void askNotify() throws RemoteException;
 }

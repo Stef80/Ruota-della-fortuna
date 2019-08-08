@@ -67,5 +67,5 @@ public class Player {
 
     //metodi ereditati da Client con la delega
 
-    //TODO metodi ereditati da Client
+    //TODO metodi ereditati da Client forse non necessari visto che è possibile ottenere direttamente il riferimento al Client
 }
