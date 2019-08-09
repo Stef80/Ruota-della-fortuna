@@ -7,6 +7,9 @@ import serverRdF.ServerImplementation;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+/**
+ * Oggetto remoto utilizzato dal client per inviare l'OTP ricevuta via email. Se il codice è esatto permette a {@link WaitingThread} di completare la registrazione.
+ */
 public class OTPHelperImplementation extends UnicastRemoteObject implements OTPHelper {
     private String otp;
     private WaitingThread thread;
