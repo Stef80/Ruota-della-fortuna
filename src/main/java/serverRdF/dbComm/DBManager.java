@@ -23,6 +23,7 @@ public class DBManager implements DBManagerInterface{
 
     /**
      * @return dbManager il singleton di tipo DBManager
+     * @throws SQLException
      */
     public static DBManager createDBManager() throws SQLException {
         if (dbManager == null) {
