@@ -79,7 +79,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     }
 
     /**
-     * @param isThereAWinner <code>true</code> se il match si è concluso dopo la conclusione della quinta manche, portando ad un vincitore. <code>false</code> altrimenti
+     * @param isThereAWinner <code>true</code> se il match si è concluso dopo la conclusione della quinta manche, portando ad un vincitore, <code>false</code> altrimenti
      * @throws RemoteException
      */
     public void endMatch(boolean isThereAWinner) throws RemoteException {
@@ -89,7 +89,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
 
     /**
      * @param c riferimento al concorrente
-     * @return full full=true se la partita è piena rendendo impossibile la partecipazione, full=false altrimenti
+     * @return full <code>true</code> se la partita è piena rendendo impossibile la partecipazione, <code>false</code> altrimenti
      * @throws RemoteException
      */
     public boolean addPlayer(Client c) throws RemoteException {
@@ -151,7 +151,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     public Match() throws RemoteException {
 
     }
-    
+
     /**
      * @return un oggetto di tipo MatchData contenente tutte le informazioni del match necessarie a MatchVisualizer
      */
