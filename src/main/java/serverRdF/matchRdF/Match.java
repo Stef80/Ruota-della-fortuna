@@ -55,18 +55,26 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
 
 
     /**
+     * Questo metodo conclude la manche se ci e' stato un vincitore
      *
-     * @param winner =null se la manche non si è conclusa con un vincitore
+     * @param winner il vincitore della manche
      * @throws RemoteException
      */
-    public void endManche(Player winner) throws RemoteException{
+    public void endManche(Player winner) throws RemoteException {
         //TODO
     }
 
-
+    /**
+     * Questo metodo conclude la manche se non ci e' stato un vincitore
+     *
+     * @throws RemoteException
+     */
+    public void endManche() throws RemoteException {
+        //TODO
+    }
     /**
      *
-     * @param isThereAWinner =true se il match si è concluso dopo la conclusione della quinta manche, portando ad un vincitore. =false altrimenti
+     * @param isThereAWinner <code>true</code> se il match si è concluso dopo la conclusione della quinta manche, portando ad un vincitore. <code>false</code> altrimenti
      * @throws RemoteException
      */
     public void endMatch(boolean isThereAWinner) throws RemoteException{
@@ -76,11 +84,12 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
 
 
     /**
-     * @param c
-     * @return full full=true se la partita è piena rendendo impossibile la partecipazione, full=false altrimenti
+     * Il metodo si occupa di notificare ai partecipanti e ai giocatori l'abbandono di un giocatore e porta alla conclusione del match
+     * @param c // TODO
+     * @return full <code>true</code>> se la partita è piena rendendo impossibile la partecipazione, <code>false</code>> altrimenti
      * @throws RemoteException
      *
-     * il metodo si occupa di notificare ai partecipanti e ai giocatori l'abbandono di un giocatore e porta alla conclusione del match
+     *
      */
     public boolean addPlayer(Client c) throws RemoteException{
         boolean full;
@@ -124,13 +133,12 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
 
 
     /**
+     * Il suo abbandono non viene notificato
      *
      * @param c Il riferimento al client che smette di guardare la partita
      * @throws RemoteException
-     *
-     * il suo abbandono non viene notificato
      */
-    public void leaveMatchAsObserver(Client c) throws RemoteException{
+    public void leaveMatchAsObserver(Client c) throws RemoteException {
         observers.remove(c);
     }
 
@@ -143,7 +151,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
 
     /**
      *
-     * @return result, un oggetto di tipo MatchData contenente tutte le informazioni del match necessarie a MatchVisualizer
+     * @return un oggetto di tipo MatchData contenente tutte le informazioni del match necessarie a MatchVisualizer
      */
     public MatchData createMatchData(){
         MatchData result = new MatchData();
