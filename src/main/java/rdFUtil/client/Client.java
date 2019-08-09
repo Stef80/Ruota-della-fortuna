@@ -15,7 +15,9 @@ public interface Client extends Remote {
 
     public void notifyServerError() throws RemoteException;
 
-    public void notifyRegistrationConfirmed() throws RemoteException;
+    public void notifyRegistrationResult(boolean success) throws RemoteException;
+
+    public void notifyWrongOTP() throws RemoteException;
 
     public void notifyTooManyPlayers() throws RemoteException;
 

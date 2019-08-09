@@ -12,12 +12,6 @@ public class PhrasesDAOImpl implements PhrasesDAO {
     PhrasesDAOImpl(Connection c){
         this.con=c;
     }
-    /**
-     * @param idPlayer1 id del primo concorrente iscritto alla partita
-     * @param idPlayer2 id del secondo concorrente iscritto alla partita
-     * @param idPlayer3 id del terzo concorrente iscritto alla partita
-     * @return la lista delle cinque frasi, con relativo tema, se trovate, altrimenti <code>null</code>
-     */
     @Override
     public List<PhrasesDTO> get5Phrases(String idPlayer1, String idPlayer2, String idPlayer3) throws SQLException {
         //TODO rendere costanti attributi e tabelle Manches e MatchJoiner
@@ -34,11 +28,6 @@ public class PhrasesDAOImpl implements PhrasesDAO {
         return pDTO;
     }
 
-    /**
-     *
-     * @param phrases lista delle frasi, con relativo tema, da aggiungere nel database
-     * @return <code>true</code> se la query è andata a buon fine, <code>false</code> altrimenti
-     */
     @Override
     public boolean addPhrases(ArrayList<PhrasesDTO> phrases) throws SQLException {
        String queryAdd = "INSERT INTO "+PhraseTable+"("+PhraseThemeAttribute+","+PhrasePhraseAttribute+") VALUES ";
@@ -57,9 +46,6 @@ public class PhrasesDAOImpl implements PhrasesDAO {
             return false;
     }
 
-    /**
-     * @return la lista di tutte le frasi, con relativo tema, presenti nel database. In caso di problemi si restituisce <code>null</code>
-     */
     @Override
     public List<PhrasesDTO> getAllPhrases() throws SQLException {
         String query = "SELECT * FROM "+PhraseTable+";";

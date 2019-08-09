@@ -1,15 +1,19 @@
 package rdFUtil.logging;
 
+import java.util.UUID;
+
 public class User extends Login {
     private String name;
     private String surname;
     private String nickname;
+    private String id;
 
     public User(String password, String email, String name, String surname, String nickname){
         super(password,email);
         this.name = name;
         this.surname = surname;
         this.nickname = nickname;
+        id = UUID.randomUUID().toString();
     }
 
     public String getName() {
@@ -22,5 +26,9 @@ public class User extends Login {
 
     public String getNickname() {
         return nickname;
+    }
+
+    public String getId() {
+        return id;
     }
 }

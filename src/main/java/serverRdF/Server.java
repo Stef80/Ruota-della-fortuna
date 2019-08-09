@@ -5,6 +5,7 @@ import rdFUtil.logging.CryptPassword;
 import rdFUtil.logging.Login;
 import rdFUtil.logging.User;
 import serverRdF.matchRdF.RemoteMatch;
+import serverRdF.registrationRdF.OTPHelper;
 
 import java.io.File;
 import java.rmi.Remote;
@@ -18,9 +19,7 @@ public interface Server extends Remote {
    //ritorna false se il nick esiste già , true altrimenti.
     public boolean checkNickname(String name)throws RemoteException;
 
-    public void signUp(User form, Client c) throws RemoteException;
-
-    public void checkOTP(String otp) throws RemoteException;
+    public OTPHelper signUp(User form, Client c) throws RemoteException;
 
     public void signIn(Login form, Client c) throws RemoteException;
 
