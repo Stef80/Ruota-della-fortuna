@@ -8,7 +8,7 @@ Entità InsubriaMails
 Partecipa all'associazione binaria own, con cardinalità (1,1) quindi ogni istanza di InsubriaMails partecipa ad una ed una sola istanza di own. La seconda entità che partecipa all'associazione è Admin, in particolare con cardinalità (0,1), ossia ogni sua istanza può partecipare massimo a un'istanza di own.
 
 Entità Users
-->id: int, identificatore interno e semplice dell'entità. Attributo obbligatorio e monovalore.
+->id: string, identificatore interno e semplice dell'entità. Attributo obbligatorio e monovalore.
 ->nickname: string, obbligatorio e monovalore.
 ->email: string, obbligatorio e monovalore.
 nickname e email sono un identificatore interno e composto.
@@ -27,7 +27,7 @@ Partecipa alle seguenti associazioni binarie:
 -made, insieme all'entità Player e con le medesime cardinalità della precedente associazione, ossia (1,1) per Moves e (0,n) per Player.
 
 Entità Matches
-->id: int, identificatore interno e semplice dell'entità. Attributo obbligatorio e monovalore.
+->id: string, identificatore interno e semplice dell'entità. Attributo obbligatorio e monovalore.
 ->date: date, obbligatorio e monovalore.
 ->hour: time, obbligatorio e monovalore.
 Partecipa alle seguenti associazioni binarie:

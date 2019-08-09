@@ -11,23 +11,19 @@ public interface DBManagerInterface {
 
     //i metodi ritornano false se non riescono a fare le query (per esempio a causa di SQLException) o null quando la query ritorna una tabella vuota. negli altri casi ritorna true/riferimento
 
-    public boolean addMatch(String id, LocalDateTime time);
+    boolean addMatch(String id, LocalDateTime time);
 
-    public boolean addUser(User user);
+    boolean addUser(User user);
 
-    public UsersDTO getUserByEmail(String email);
+    UsersDTO getUser(boolean email, String unique);
 
-    public UsersDTO getUserByNickname(String nickname);
+    boolean checkLogin(String email, String password) throws SQLException;
 
-    public UsersDTO getUserById(String id);
+    List<PhrasesDTO> get5Phrases(String idPlayer1, String idPlayer2, String idPlayer3) throws SQLException;
 
-    public boolean checkLogin(String email, String password) throws SQLException;
+    boolean addPhrases(ArrayList<String> phrases, ArrayList<String> themes) throws SQLException;
 
-    public List<PhrasesDTO> get5Phrases(int idPlayer1, int idPlayer2, int idPlayer3);
-
-    public boolean addPhrase(ArrayList<PhrasesDTO> phrases);
-
-    public List<PhrasesDTO> getAllPhrases();
+    List<PhrasesDTO> getAllPhrases() throws SQLException;
 
     //TODO tutti i metodi che servono agli altri manager e a Match. ricordarsi di aggiungere man mano i metodi utilizzati nelle altre classi per non perderli.
 }

@@ -2,6 +2,8 @@ package serverRdF.dbComm;
 
 import rdFUtil.logging.User;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -10,13 +12,18 @@ import java.util.List;
 public class DBManager implements DBManagerInterface{
     //TODO bisogna implementare i metodi dell'interfaccia
     private static DBManager dbManager=null;
-    PhrasesDAO pDAO = new PhrasesDAOImpl();
-    private DBManager(){}
+    private Connection con;
+    private PhrasesDAO pDAO;
+
+    private DBManager() throws SQLException {
+        //TODO connessione con database
+        con = DriverManager.getConnection("DB","userID", "password");
+    }
 
     /**
      * @return dbManager il singleton di tipo DBManager
      */
-    public static DBManager createDBManager(){
+    public static DBManager createDBManager() throws SQLException {
         if (dbManager == null) {
             dbManager = new DBManager();
             return dbManager;
@@ -36,8 +43,17 @@ public class DBManager implements DBManagerInterface{
     }
 
     @Override
-    public UsersDTO getUser(boolean email, String unique) {
-        //TODO
+    public UsersDTO getUserByEmail(String email) {
+        return null;
+    }
+
+    @Override
+    public UsersDTO getUserByNickname(String nickname) {
+        return null;
+    }
+
+    @Override
+    public UsersDTO getUserById(String id) {
         return null;
     }
 
@@ -47,18 +63,32 @@ public class DBManager implements DBManagerInterface{
         return false;
     }
 
-    @Override
-    public List<PhrasesDTO> get5Phrases(int idPlayer1, int idPlayer2, int idPlayer3) {
-        return pDAO.get5Phrases(idPlayer1,idPlayer2,idPlayer3);
+    private void createPhrasesDAO(){
+        pDAO = new PhrasesDAOImpl(con);
     }
 
     @Override
-    public boolean addPhrase(ArrayList<PhrasesDTO> phrases) {
-        return pDAO.addPhrase(phrases);
+    public List<PhrasesDTO> get5Phrases(String idPlayer1, String idPlayer2, String idPlayer3) throws SQLException{
+        if(pDAO==null)
+            createPhrasesDAO();
+       return pDAO.get5Phrases(idPlayer1,idPlayer2,idPlayer3);
     }
 
     @Override
-    public List<PhrasesDTO> getAllPhrases() {
+    public boolean addPhrases(ArrayList<String> phrases, ArrayList<String> themes) throws SQLException{
+        if(pDAO==null)
+            createPhrasesDAO();
+        ArrayList<PhrasesDTO> pDTO = new ArrayList<>();
+        for(int i=0; i<phrases.size();i++){
+            pDTO.add(new PhrasesDTO(themes.get(i),phrases.get(i)));
+        }
+        return pDAO.addPhrases(pDTO);
+    }
+
+    @Override
+    public List<PhrasesDTO> getAllPhrases() throws SQLException{
+        if(pDAO==null)
+            createPhrasesDAO();
        return pDAO.getAllPhrases();
     }
 }
