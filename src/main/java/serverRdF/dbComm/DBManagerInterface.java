@@ -4,6 +4,8 @@ import rdFUtil.logging.User;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public interface DBManagerInterface {
 
@@ -13,9 +15,19 @@ public interface DBManagerInterface {
 
     public boolean addUser(User user);
 
-    public UsersDTO getUser(boolean email, String unique);
+    public UsersDTO getUserByEmail(String email);
+
+    public UsersDTO getUserByNickname(String nickname);
+
+    public UsersDTO getUserById(String id);
 
     public boolean checkLogin(String email, String password) throws SQLException;
+
+    public List<PhrasesDTO> get5Phrases(int idPlayer1, int idPlayer2, int idPlayer3);
+
+    public boolean addPhrase(ArrayList<PhrasesDTO> phrases);
+
+    public List<PhrasesDTO> getAllPhrases();
 
     //TODO tutti i metodi che servono agli altri manager e a Match. ricordarsi di aggiungere man mano i metodi utilizzati nelle altre classi per non perderli.
 }

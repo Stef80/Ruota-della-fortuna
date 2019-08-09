@@ -25,23 +25,26 @@ public class PhrasesDAOImpl implements PhrasesDAO {
     }
 
     /**
+     *
      * @param phrases lista delle frasi, con relativo tema, da aggiungere nel database
+     * @return true se la query è andata a buon fine, false altrimenti
      */
     @Override
-    public void addPhrase(ArrayList<PhrasesDTO> phrases) {
+    public boolean addPhrase(ArrayList<PhrasesDTO> phrases) {
        String queryAdd = "INSERT INTO "+PhraseTable+"("+PhraseThemeAttribute+","+PhrasePhraseAttribute+") VALUES ";
        int count=0;
        for(PhrasesDTO phrasesDTO : phrases){
-           queryAdd+="('"+phrasesDTO.getTheme()+"',"+phrasesDTO.getPhrase()+"')";
+           queryAdd+="('"+phrasesDTO.getTheme()+"','"+phrasesDTO.getPhrase()+"')";
            if(++count<phrases.size())
                queryAdd+=",";
            else
                queryAdd+=";";
        }
+       return true;
     }
 
     /**
-     * @return la lista di tutte le frasi, con relativo tema, presenti nel database
+     * @return la lista di tutte le frasi, con relativo tema, presenti nel database. In caso di problemi si restituisce null
      */
     @Override
     public List<PhrasesDTO> getAllPhrases() {

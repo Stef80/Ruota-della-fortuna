@@ -4,10 +4,13 @@ import rdFUtil.logging.User;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DBManager implements DBManagerInterface{
     //TODO bisogna implementare i metodi dell'interfaccia
     private static DBManager dbManager=null;
+    PhrasesDAO pDAO = new PhrasesDAOImpl();
     private DBManager(){}
 
     /**
@@ -34,11 +37,28 @@ public class DBManager implements DBManagerInterface{
 
     @Override
     public UsersDTO getUser(boolean email, String unique) {
+        //TODO
         return null;
     }
 
     @Override
     public boolean checkLogin(String email, String password) throws SQLException {
+        //TODO
         return false;
+    }
+
+    @Override
+    public List<PhrasesDTO> get5Phrases(int idPlayer1, int idPlayer2, int idPlayer3) {
+        return pDAO.get5Phrases(idPlayer1,idPlayer2,idPlayer3);
+    }
+
+    @Override
+    public boolean addPhrase(ArrayList<PhrasesDTO> phrases) {
+        return pDAO.addPhrase(phrases);
+    }
+
+    @Override
+    public List<PhrasesDTO> getAllPhrases() {
+       return pDAO.getAllPhrases();
     }
 }
