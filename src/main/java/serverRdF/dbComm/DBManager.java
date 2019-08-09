@@ -2,6 +2,7 @@ package serverRdF.dbComm;
 
 import rdFUtil.logging.User;
 
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 public class DBManager implements DBManagerInterface{
@@ -28,6 +29,16 @@ public class DBManager implements DBManagerInterface{
 
     public boolean addUser(User user){
         //TODO
+        return false;
+    }
+
+    @Override
+    public UsersDTO getUser(boolean email, String unique) {
+        return null;
+    }
+
+    @Override
+    public boolean checkLogin(String email, String password) throws SQLException {
         return false;
     }
 }
