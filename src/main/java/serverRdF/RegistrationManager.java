@@ -61,6 +61,8 @@ public class RegistrationManager {
         return res;
     }
 
+    public void
+
     /**
      * @param email L'indirizzo email da controllare
      * @return <code>true</code> se l'indirizzo email non e' stato gia' utilizzato, <code>false</code>false altrimenti
@@ -82,4 +84,26 @@ public class RegistrationManager {
             return false;
         } else return true;
     }
+
+    private class WaitingThread extends Thread{
+        private Client client;
+
+        public WaitingThread(Client c){
+            client = c;
+        }
+
+        public void run(){
+            int tenMininSec = 600000;
+            try{
+                sleep(tenMininSec);
+            }catch(InterruptedException e){
+                try{
+                    client.notifyRegistrationConfirmed();
+                }catch(RemoteException exc){
+                    ServerImplementation.serverError(client);
+                }
+            }
+        }
+    }
 }
+
