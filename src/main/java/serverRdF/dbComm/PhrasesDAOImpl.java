@@ -13,7 +13,7 @@ public class PhrasesDAOImpl implements PhrasesDAO {
      * @param idPlayer1 id del primo concorrente iscritto alla partita
      * @param idPlayer2 id del secondo concorrente iscritto alla partita
      * @param idPlayer3 id del terzo concorrente iscritto alla partita
-     * @return la lista delle cinque frasi, con relativo tema, se trovate, altrimenti null
+     * @return la lista delle cinque frasi, con relativo tema, se trovate, altrimenti <code>null</code>
      */
     @Override
     public List<PhrasesDTO> get5Phrases(int idPlayer1, int idPlayer2, int idPlayer3) {
@@ -27,7 +27,7 @@ public class PhrasesDAOImpl implements PhrasesDAO {
     /**
      *
      * @param phrases lista delle frasi, con relativo tema, da aggiungere nel database
-     * @return true se la query è andata a buon fine, false altrimenti
+     * @return <code>true</code> se la query è andata a buon fine, <code>false</code> altrimenti
      */
     @Override
     public boolean addPhrase(ArrayList<PhrasesDTO> phrases) {
@@ -44,10 +44,10 @@ public class PhrasesDAOImpl implements PhrasesDAO {
     }
 
     /**
-     * @return la lista di tutte le frasi, con relativo tema, presenti nel database. In caso di problemi si restituisce null
+     * @return la lista di tutte le frasi, con relativo tema, presenti nel database. In caso di problemi si restituisce <code>null</code>
      */
     @Override
-    public List<PhrasesDTO> getAllPhrases() {
+    public List<PhrasesDTO> getAllPhrases() {//TODO restituisce sempre null?
         String query = "SELECT * FROM "+PhraseTable+";";
         return null;
     }

@@ -11,8 +11,9 @@ import java.util.UUID;
 
 
 /**
- * Questa è la classe che si occupa della gestione delle partita in attesa di giocatori e in corso. Permette la creazione e la partecipazione alle partite, le quali sono
- * contenute in una tabella hash accessibile tramite l'apposito getter.
+ * Questa e' la classe che si occupa della gestione delle partita in attesa di giocatori e in corso.
+ * <p>
+ * Permette la creazione e la partecipazione alle partite, le quali sono contenute in una tabella hash accessibile tramite l'apposito getter.
  */
 public class MatchManager {
     private HashMap<String, Match> matches;
@@ -39,11 +40,10 @@ public class MatchManager {
 
 
     /**
+     * Il client richiamera' questo metodo per creare una partita e ricevera' il refiremento all'oggetto che si occupera' della gestione del singolo Match
      *
-     * @param c il riferimento del Client che sarà fornito all'oggetto remoto Match in modo da poter inviargli le notifiche (Observers design pattern)
-     * @return match un riferimento all'oggetto remoto RemoteMatch della partita appena creata.
-     *
-     * Il client richiamerà questo metodo per creare una partita e riceverà il refiremento all'oggetto che si occuperà della gestione del singolo Match
+     * @param c il riferimento del Client che sara' fornito all'oggetto remoto {@link Match} in modo da poter inviargli le notifiche (Observers design pattern)
+     * @return match un riferimento all'oggetto remoto {@link RemoteMatch} della partita appena creata.
      */
     public RemoteMatch createMatch(Client c) {
         String id = UUID.randomUUID().toString();
@@ -59,7 +59,7 @@ public class MatchManager {
                     System.err.println(ex.getMessage());
                 }
             }
-            match = new Match(id,currentTime);
+            match = new Match(id, currentTime);
             match.addPlayer(c);
             matches.put(id, match);
             return match;
@@ -71,21 +71,20 @@ public class MatchManager {
     }
 
     /**
-     *
-     * @param c il riferimento del Client che sarà fornito all'oggetto remoto Match in modo da poter inviargli le notifiche (Observers design pattern)
+     * @param c       il riferimento del Client che sara' fornito all'oggetto remoto {@link Match} in modo da poter inviargli le notifiche (Observers design pattern)
      * @param idMatch il nome del match al quale si vuole partecipare
-     * @return match un riferimento all'oggetto remoto RemoteMatch della partita a cui si ha appena partecipato, o null nel caso in cui la partita sia piena o ci siano stati problemi con la connessione al server
+     * @return un riferimento all'oggetto remoto {@link RemoteMatch} della partita a cui si ha appena partecipato, o null nel caso in cui la partita sia piena o ci siano stati problemi con la connessione al server
      */
     public synchronized RemoteMatch joinMatch(Client c, String idMatch) {
         Match match = matches.get(idMatch);
         boolean full;
         try {
             full = match.addPlayer(c);
-            if(full){
+            if (full) {
                 try {
                     c.notifyTooManyPlayers();
                     return null;
-                }catch(RemoteException e){
+                } catch (RemoteException e) {
                     try {
                         c.notifyServerError();
                         return null;
@@ -95,7 +94,7 @@ public class MatchManager {
                     }
                 }
             }
-        }catch (RemoteException e){
+        } catch (RemoteException e) {
             try {
                 c.notifyServerError();
                 return null;
@@ -109,16 +108,15 @@ public class MatchManager {
 
 
     /**
-     *
-     * @param c il riferimento del Client che sarà fornito all'oggetto remoto Match in modo da poter inviargli le notifiche (Observers design pattern)
+     * @param c       il riferimento del Client che sara' fornito all'oggetto remoto {@link Match} in modo da poter inviargli le notifiche (Observers design pattern)
      * @param idMatch il nome del match al quale si vuole partecipare
-     * @return match un riferimento all'oggetto remoto RemoteMatch della partita a cui si ha appena partecipato come osservatore, o null nel caso in cui ci siano stati problemi con la connessione al server
+     * @return match un riferimento all'oggetto remoto {@link RemoteMatch} della partita a cui si ha appena partecipato come osservatore, o null nel caso in cui ci siano stati problemi con la connessione al server
      */
     public RemoteMatch observeMatch(Client c, String idMatch) {
         Match match = matches.get(idMatch);
-        try{
+        try {
             match.addObserver(c);
-        }catch(RemoteException e){
+        } catch (RemoteException e) {
             try {
                 c.notifyServerError();
                 return null;

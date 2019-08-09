@@ -1,11 +1,8 @@
 package rdFUtil;
 
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 /**
- * è una classe di supporto utilizzata dal client e da MatchVisualizer per l'invio delle informazioni dei match senza dover passare al client gli oggetti remoti
+ * E' una classe di supporto utilizzata dal client e da {@link serverRdF.MatchVisualizer} per l'invio delle informazioni dei match senza dover passare al client gli oggetti remoti
  */
 public class MatchData {
     private String Player1;

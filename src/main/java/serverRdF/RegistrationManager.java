@@ -6,7 +6,9 @@ import serverRdF.dbComm.DBManager;
 import serverRdF.dbComm.UsersDTO;
 
 /**
- * Questa classe gestisce la registrazione dell'utente. I metodi checkEmail e checkNickname permettono di allegerire i controlli sul metodo principale della classe (signUp)
+ * Questa classe gestisce la registrazione dell'utente.
+ * <p>
+ * I metodi {@link #checkEmail(String)} e {@link #checkNickname(String)} permettono di allegerire i controlli sul metodo principale della classe {@link #signUp(User, Client)}
  */
 public class RegistrationManager {
     private DBManager dbManager;
@@ -19,7 +21,7 @@ public class RegistrationManager {
 
     /**
      * @param dbManager il riferimento al manager del db
-     * @return registrationManager il singleton della classe.
+     * @return il singleton della classe.
      */
     public static RegistrationManager createRegistrationManager(DBManager dbManager) {
         if (registrationManager == null) {
@@ -46,7 +48,7 @@ public class RegistrationManager {
 
     /**
      * @param email L'indirizzo email da controllare
-     * @return <code>true</code> se l'indirizzo email non è stato già utilizzato, <code>false</code>false altrimenti
+     * @return <code>true</code> se l'indirizzo email non è stato già utilizzato, <code>false</code> altrimenti
      */
     public boolean checkEmail(String email) {
         UsersDTO user = dbManager.getUserByEmail(email);
