@@ -20,12 +20,13 @@ public class RegistrationManager {
 
     private RegistrationManager(DBManager dbManager, EmailManager emailManager) {
         this.dbManager = dbManager;
+        this.emailManager = emailManager;
     }
 
 
     /**
      * @param dbManager il riferimento al manager del db
-     * @param emailManager //TODO
+     * @param emailManager il riferimento al manager delle email
      * @return          il singleton della classe.
      */
     public static RegistrationManager createRegistrationManager(DBManager dbManager, EmailManager emailManager) {
