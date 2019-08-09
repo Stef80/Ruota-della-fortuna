@@ -1,14 +1,17 @@
 package serverRdF.dbComm;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PhrasesDAOImpl implements PhrasesDAO {
-    //TODO connessione con database
-    static final String PhraseTable = "Phrases";
-    static final String PhrasePhraseAttribute = "phrase";
-    static final String PhraseThemeAttribute = "theme";
-
+    private Connection con;
+    PhrasesDAOImpl(Connection c){
+        this.con=c;
+    }
     /**
      * @param idPlayer1 id del primo concorrente iscritto alla partita
      * @param idPlayer2 id del secondo concorrente iscritto alla partita
@@ -16,12 +19,19 @@ public class PhrasesDAOImpl implements PhrasesDAO {
      * @return la lista delle cinque frasi, con relativo tema, se trovate, altrimenti <code>null</code>
      */
     @Override
-    public List<PhrasesDTO> get5Phrases(int idPlayer1, int idPlayer2, int idPlayer3) {
+    public List<PhrasesDTO> get5Phrases(String idPlayer1, String idPlayer2, String idPlayer3) throws SQLException {
         //TODO rendere costanti attributi e tabelle Manches e MatchJoiner
         String query5Phrases = "SELECT * FROM "+PhraseTable+" WHERE "+PhrasePhraseAttribute+" <>" +
                 "(SELECT "+PhrasePhraseAttribute+" FROM Manches M JOIN MatchJoiners MJ ON M.id=MJ.id AND M.number = MJ.number " +
-                "WHERE idPlayer = "+idPlayer1+" OR idPlayer = "+idPlayer2+" OR idPlayer = "+idPlayer3+"HAVING COUNT(*)=5);";
-        return null;
+                "WHERE idPlayer = '"+idPlayer1+"' OR idPlayer = '"+idPlayer2+"' OR idPlayer = '"+idPlayer3+"' HAVING COUNT(*)=5);";
+        Statement stmt = con.createStatement();
+        ResultSet resultSet = stmt.executeQuery(query5Phrases);
+        if(resultSet==null)
+            return null;
+        ArrayList<PhrasesDTO> pDTO = new ArrayList<>();
+        while(resultSet.next())
+            pDTO.add(new PhrasesDTO(resultSet.getString(PhraseThemeAttribute), resultSet.getString(PhrasePhraseAttribute)));
+        return pDTO;
     }
 
     /**
@@ -30,7 +40,7 @@ public class PhrasesDAOImpl implements PhrasesDAO {
      * @return <code>true</code> se la query è andata a buon fine, <code>false</code> altrimenti
      */
     @Override
-    public boolean addPhrase(ArrayList<PhrasesDTO> phrases) {
+    public boolean addPhrases(ArrayList<PhrasesDTO> phrases) throws SQLException {
        String queryAdd = "INSERT INTO "+PhraseTable+"("+PhraseThemeAttribute+","+PhrasePhraseAttribute+") VALUES ";
        int count=0;
        for(PhrasesDTO phrasesDTO : phrases){
@@ -40,15 +50,26 @@ public class PhrasesDAOImpl implements PhrasesDAO {
            else
                queryAdd+=";";
        }
-       return true;
+        Statement stmt = con.createStatement();
+        if(stmt.executeUpdate(queryAdd)==phrases.size())
+            return true;
+        else
+            return false;
     }
 
     /**
      * @return la lista di tutte le frasi, con relativo tema, presenti nel database. In caso di problemi si restituisce <code>null</code>
      */
     @Override
-    public List<PhrasesDTO> getAllPhrases() {//TODO restituisce sempre null?
+    public List<PhrasesDTO> getAllPhrases() throws SQLException {
         String query = "SELECT * FROM "+PhraseTable+";";
-        return null;
+        Statement stmt = con.createStatement();
+        ResultSet resultSet = stmt.executeQuery(query);
+        if(resultSet==null)
+            return null;
+        ArrayList<PhrasesDTO> pDTO = new ArrayList<>();
+        while(resultSet.next())
+            pDTO.add(new PhrasesDTO(resultSet.getString(PhraseThemeAttribute), resultSet.getString(PhrasePhraseAttribute)));
+        return pDTO;
     }
 }
