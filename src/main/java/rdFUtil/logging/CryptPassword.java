@@ -3,6 +3,9 @@ package rdFUtil.logging;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * Questa classe si occupa di criptare la password degli utenti registrati
+ */
 public class CryptPassword {
 
     private static MessageDigest md;
@@ -29,5 +32,4 @@ public class CryptPassword {
         }
         return null;
     }
-    //TODO finire di scrivere i metodi
 }
