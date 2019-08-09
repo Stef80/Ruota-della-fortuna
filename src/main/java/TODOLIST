@@ -1,7 +1,7 @@
 /**TODO
 * mappa progettuale ER
 * mappa logica ER
-* Traduzione schema ER
+* Traduzione schema ER: aggiungere codici vincoli check
 * qualche schema UML
 * VARIE CLASSI E INTERFACCIA PER IL DAO
 * Inserire nello schema ER nell'entità Matches gli attributi Data - ora (tipi DATE e TIME)
