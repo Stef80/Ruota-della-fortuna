@@ -36,8 +36,17 @@ public class DBManager implements DBManagerInterface{
     }
 
     @Override
-    public UsersDTO getUser(boolean email, String unique) {
-        //TODO
+    public UsersDTO getUserByEmail(String email) {
+        return null;
+    }
+
+    @Override
+    public UsersDTO getUserByNickname(String nickname) {
+        return null;
+    }
+
+    @Override
+    public UsersDTO getUserById(String id) {
         return null;
     }
 
