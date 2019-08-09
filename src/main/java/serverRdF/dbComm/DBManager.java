@@ -34,11 +34,13 @@ public class DBManager implements DBManagerInterface{
 
     @Override
     public UsersDTO getUser(boolean email, String unique) {
+        //TODO
         return null;
     }
 
     @Override
     public boolean checkLogin(String email, String password) throws SQLException {
+        //TODO
         return false;
     }
 }

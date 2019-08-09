@@ -32,7 +32,7 @@ public class PhrasesDAOImpl implements PhrasesDAO {
        String queryAdd = "INSERT INTO "+PhraseTable+"("+PhraseThemeAttribute+","+PhrasePhraseAttribute+") VALUES ";
        int count=0;
        for(PhrasesDTO phrasesDTO : phrases){
-           queryAdd+="('"+phrasesDTO.getTheme()+"',"+phrasesDTO.getPhrase()+"')";
+           queryAdd+="('"+phrasesDTO.getTheme()+"','"+phrasesDTO.getPhrase()+"')";
            if(++count<phrases.size())
                queryAdd+=",";
            else

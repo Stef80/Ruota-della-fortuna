@@ -76,11 +76,9 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
 
 
     /**
-     * @param c
+     * @param c riferimento al concorrente
      * @return full full=true se la partita è piena rendendo impossibile la partecipazione, full=false altrimenti
      * @throws RemoteException
-     *
-     * il metodo si occupa di notificare ai partecipanti e ai giocatori l'abbandono di un giocatore e porta alla conclusione del match
      */
     public boolean addPlayer(Client c) throws RemoteException{
         boolean full;
@@ -94,7 +92,11 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     }
 
 
-
+    /**
+     *
+     * @param c riferimento all'osservatore
+     * @throws RemoteException
+     */
     public void addObserver(Client c) throws RemoteException{
         observers.add(c);
     }
@@ -103,6 +105,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
      *
      * @param c Il client che abbandona il match
      * @throws RemoteException
+     * il metodo si occupa di notificare ai partecipanti e ai giocatori l'abbandono di un giocatore e porta alla conclusione del match
      */
     public void leaveMatchAsPlayer(Client c) throws RemoteException{
         String name = c.getNickname();
