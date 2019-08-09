@@ -6,16 +6,16 @@ import javafx.stage.Stage;
 
 public class Finestra extends Application {
 
-  @Override
-  public void start(Stage primaryStage) throws Exception {
-    Parent root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("finestra.fxml"));
-    primaryStage.setTitle("RdF");
-    primaryStage.setScene(new Scene(root));
-    primaryStage.setResizable(false);
-    primaryStage.show();
-  }
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("finestra.fxml"));
+        primaryStage.setTitle("RdF");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.setResizable(false);
+        primaryStage.show();
+    }
 
-  public static void main(String[] args) {
-    launch(args);
-  }
+    public static void main(String[] args) {
+        launch(args);
+    }
 }
