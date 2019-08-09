@@ -7,6 +7,10 @@ import serverRdF.dbComm.DBManager;
 
 import java.rmi.RemoteException;
 
+
+/**
+ * Classe che aspetta per dieci minuti che venga inserita l'OTP esatta. In caso contrario la registrazione viene annullata.
+ */
 public class WaitingThread extends Thread {
     private Client client;
     private DBManager dbManager;
