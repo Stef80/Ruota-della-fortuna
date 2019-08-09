@@ -42,8 +42,7 @@ public class DBManager implements DBManagerInterface{
     public boolean addMatch(String id, LocalDateTime time) throws SQLException {
         if(matchesDAO==null)
             createMatchesDAO();
-        matchesDAO.addMatch(new MatchesDTO(id, time));
-        return false;
+        return matchesDAO.addMatch(new MatchesDTO(id, time));
     }
 
     public boolean addUser(User user){
