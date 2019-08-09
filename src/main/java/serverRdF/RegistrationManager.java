@@ -49,7 +49,7 @@ public class RegistrationManager {
      * @return <code>true</code> se l'indirizzo email non è stato già utilizzato, <code>false</code>false altrimenti
      */
     public boolean checkEmail(String email) {
-        UsersDTO user = dbManager.getUser(true, email);
+        UsersDTO user = dbManager.getUserByEmail(email);
         if (user != null) {
             return false;
         } else return true;
@@ -57,10 +57,10 @@ public class RegistrationManager {
 
     /**
      * @param nickname il nickname da controllare
-     * @return true se il nickname non è stato già utilizzato, false altrimenti
+     * @return <code>true</code> se il nickname non è stato già utilizzato, <code>false</code> altrimenti
      */
     public boolean checkNickname(String nickname) {
-        UsersDTO user = dbManager.getUser(false, nickname);
+        UsersDTO user = dbManager.getUserByNickname(nickname);
         if (user != null) {
             return false;
         } else return true;
