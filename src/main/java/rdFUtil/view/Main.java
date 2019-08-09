@@ -19,7 +19,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("mainPane.fxml"));
+        Parent root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("main_pane.fxml"));
         Scene scene = new Scene(root);
         //scene.getStylesheets().add(getClass().getResource("/resources/sampleScene.css").toExternalForm());
         primaryStage.setTitle("Weel of Fortune");
