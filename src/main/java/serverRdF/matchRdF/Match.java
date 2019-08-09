@@ -121,7 +121,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
             client.notifyLeaver(name);
         }
 
-        endManche(null);
+        endManche();
         endMatch(false);
     }
 
