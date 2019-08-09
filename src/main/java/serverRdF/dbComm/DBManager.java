@@ -10,7 +10,8 @@ import java.util.List;
 public class DBManager implements DBManagerInterface{
     //TODO bisogna implementare i metodi dell'interfaccia
     private static DBManager dbManager=null;
-    PhrasesDAO pDAO = new PhrasesDAOImpl();
+    private PhrasesDAO pDAO = new PhrasesDAOImpl();
+
     private DBManager(){}
 
     /**
@@ -48,13 +49,17 @@ public class DBManager implements DBManagerInterface{
     }
 
     @Override
-    public List<PhrasesDTO> get5Phrases(int idPlayer1, int idPlayer2, int idPlayer3) {
-        return pDAO.get5Phrases(idPlayer1,idPlayer2,idPlayer3);
+    public List<PhrasesDTO> get5Phrases(String idPlayer1, String idPlayer2, String idPlayer3) {
+       return pDAO.get5Phrases(idPlayer1,idPlayer2,idPlayer3);
     }
 
     @Override
-    public boolean addPhrase(ArrayList<PhrasesDTO> phrases) {
-        return pDAO.addPhrase(phrases);
+    public boolean addPhrase(ArrayList<String> phrases, ArrayList<String> themes){
+        ArrayList<PhrasesDTO> pDTO = new ArrayList<>();
+        for(int i=0; i<phrases.size();i++){
+            pDTO.add(new PhrasesDTO(themes.get(i),phrases.get(i)));
+        }
+        return pDAO.addPhrase(pDTO);
     }
 
     @Override
