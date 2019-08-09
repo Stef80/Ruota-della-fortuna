@@ -3,7 +3,6 @@ package serverRdF.registrationRdF;
 import rdFUtil.client.Client;
 import rdFUtil.logging.CryptPassword;
 import rdFUtil.logging.User;
-import serverRdF.ServerImplementation;
 import serverRdF.dbComm.DBManager;
 import serverRdF.dbComm.UsersDTO;
 import serverRdF.emailRdF.EmailManager;
