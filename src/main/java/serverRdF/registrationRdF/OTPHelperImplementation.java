@@ -1,6 +1,7 @@
 package serverRdF.registrationRdF;
 
 import rdFUtil.client.Client;
+import rdFUtil.logging.CryptPassword;
 import serverRdF.ServerImplementation;
 
 import java.rmi.RemoteException;
@@ -16,7 +17,8 @@ public class OTPHelperImplementation extends UnicastRemoteObject implements OTPH
     }
 
     public void checkOTP(String otp, Client c) throws RemoteException{
-        if(otp.equals(this.otp)){
+        String cryptedOTP = CryptPassword.encrypt(otp);
+        if(cryptedOTP.equals(this.otp)){
             thread.interrupt();
         }else{
             try{

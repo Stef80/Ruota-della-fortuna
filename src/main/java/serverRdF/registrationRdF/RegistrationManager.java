@@ -1,6 +1,7 @@
 package serverRdF.registrationRdF;
 
 import rdFUtil.client.Client;
+import rdFUtil.logging.CryptPassword;
 import rdFUtil.logging.User;
 import serverRdF.ServerImplementation;
 import serverRdF.dbComm.DBManager;
@@ -43,17 +44,14 @@ public class RegistrationManager {
      * @param c    il riferimento al client
      */
     public OTPHelper signUp(User form, Client c) throws RemoteException{
-        boolean bool = dbManager.addUser(form);
-        if (!bool) {
-            ServerImplementation.serverError(c);
-        }
         //TODO la parte di invio della email
         String otp = generateOTP();
         String obj = "Conferma della registrazione a Ruota della Fortuna";
         String text = "Prego inserire il codice: " + otp + " per ultimare la registrazione. Il codice deve essere inserito entro 10 minuti pena l'annullamento della registrazione";
         emailManager.sendEmail(form.getEmail(), obj, text);
-        WaitingThread thread = new WaitingThread(c, dbManager, form.getId());
-        OTPHelperImplementation otpHelper = new OTPHelperImplementation(thread, otp);
+        WaitingThread thread = new WaitingThread(c, dbManager, form);
+        String cryptedOTP = CryptPassword.encrypt(otp);
+        OTPHelperImplementation otpHelper = new OTPHelperImplementation(thread, cryptedOTP);
         thread.start();
         return otpHelper;
     }
@@ -64,6 +62,7 @@ public class RegistrationManager {
         for(int i=0; i<6; i++){
             res += rd.nextInt(10);
         }
+
         return res;
     }
 
