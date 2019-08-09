@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<JFXTabPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="firstPack.TabPane">
+<tabs>
+    <Tab text="Game List">
+        <content>
+            <AnchorPane prefHeight="300.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+                <children>
+                    <ListView fx:id="gameList" editable="true" fixedCellSize="0.0" layoutX="-1.0" prefHeight="330.0" prefWidth="650.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                    <Button layoutX="64.0" layoutY="347.0" mnemonicParsing="false" onAction="#addMatch" text="create match" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0" />
+                </children>
+            </AnchorPane>
+        </content>
+    </Tab>
+    <Tab text="Statistics">
+        <content>
+            <HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="650.0" spacing="5.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+                <children>
+                    <Separator orientation="VERTICAL" prefHeight="200.0" />
+                    <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0" spacing="8.0">
+                        <children>
+                            <Label alignment="CENTER" text="statistiche Utente" textAlignment="CENTER">
+                                <font>
+                                    <Font name="System Bold" size="14.0" />
+                                </font>
+                            </Label>
+                            <Separator prefWidth="200.0" />
+                            <Label text="Numero Manche" />
+                            <HBox prefWidth="200.0" spacing="50.0">
+                                <children>
+                                    <Label text="giocate   " />
+                                    <Label text="Label" />
+                                </children>
+                            </HBox>
+                            <HBox prefWidth="200.0" spacing="50.0">
+                                <children>
+                                    <Label text="osservate" />
+                                    <Label text="Label" />
+                                </children>
+                            </HBox>
+                            <Separator prefWidth="200.0" />
+                            <Label text="Numero Partite" />
+                            <HBox prefWidth="200.0" spacing="50.0">
+                                <children>
+                                    <Label text="giocate   " />
+                                    <Label text="Label" />
+                                </children>
+                            </HBox>
+                            <HBox prefWidth="200.0" spacing="50.0">
+                                <children>
+                                    <Label text="osservate" />
+                                    <Label text="Label" />
+                                </children>
+                            </HBox>
+                            <Separator prefWidth="200.0" />
+                            <Label text="Numero Vittorie" />
+                            <HBox prefWidth="200.0" spacing="50.0">
+                                <children>
+                                    <Label text="partite   " />
+                                    <Label text="Label" />
+                                </children>
+                            </HBox>
+                            <HBox prefWidth="200.0" spacing="50.0">
+                                <children>
+                                    <Label text="manche " />
+                                    <Label text="Label" />
+                                </children>
+                            </HBox>
+                            <Separator prefWidth="200.0" />
+                            <Label text="Punteggio medio vinto" />
+                            <Label text="Label" />
+                            <Separator prefWidth="200.0" />
+                        </children>
+                    </VBox>
+                    <Separator orientation="VERTICAL" prefHeight="200.0" />
+                    <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0" spacing="8.0">
+                        <children>
+                            <Label text="Label" />
+                            <HBox prefWidth="200.0" spacing="50.0">
+                                <children>
+                                    <Label text="osservate" />
+                                    <Label text="Label" />
+                                </children>
+                            </HBox>
+                            <HBox prefWidth="200.0" spacing="50.0">
+                                <children>
+                                    <Label text="osservate" />
+                                    <Label text="Label" />
+                                </children>
+                            </HBox>
+                            <Separator prefWidth="200.0" />
+                            <Label text="Label" />
+                            <HBox prefWidth="200.0" spacing="50.0">
+                                <children>
+                                    <Label text="osservate" />
+                                    <Label text="Label" />
+                                </children>
+                            </HBox>
+                            <HBox prefWidth="200.0" spacing="50.0">
+                                <children>
+                                    <Label text="osservate" />
+                                    <Label text="Label" />
+                                </children>
+                            </HBox>
+                            <Separator prefWidth="200.0" />
+                            <Label alignment="CENTER" text="Miglior chiamata consonante" textAlignment="CENTER">
+                                <font>
+                                    <Font name="System Bold" size="12.0" />
+                                </font>
+                            </Label>
+                            <Separator prefWidth="200.0" />
+                            <Label text="Label" />
+                            <Label text="Label" />
+                            <Label layoutX="87.0" layoutY="243.0" text="Label" />
+                            <Separator prefWidth="200.0" />
+                            <Label alignment="CENTER" prefWidth="200.0" text="Media mosse per soluzione " textAlignment="CENTER">
+                                <font>
+                                    <Font name="System Bold" size="12.0" />
+                                </font>
+                            </Label>
+                            <Separator prefWidth="200.0" />
+                            <Label text="Label" textAlignment="CENTER" />
+                            <Label text="Label" textAlignment="CENTER" />
+                            <Separator prefWidth="200.0" />
+                        </children>
+                    </VBox>
+                    <Separator orientation="VERTICAL" prefHeight="200.0" />
+                    <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0" spacing="10.0">
+                        <children>
+                            <Label alignment="CENTER" text="statistiche concorrente" textAlignment="CENTER">
+                                <font>
+                                    <Font name="System Bold" size="14.0" />
+                                </font>
+                            </Label>
+                            <Separator prefWidth="200.0" />
+                            <Label text="Primato di punteggio" />
+                            <HBox prefWidth="200.0" spacing="50.0">
+                                <children>
+                                    <Label text="per manche" />
+                                    <Label text="Label" />
+                                </children>
+                            </HBox>
+                            <HBox layoutX="10.0" layoutY="80.0" prefWidth="200.0" spacing="50.0">
+                                <children>
+                                    <Label text="per partita  " />
+                                    <Label text="Label" />
+                                </children>
+                            </HBox>
+                            <Separator prefWidth="200.0" />
+                            <Label text="Giocato piu manche" />
+                            <Label text="Label" />
+                            <Separator prefWidth="200.0" />
+                            <Label text="Media di punti per manche" />
+                            <Label text="Label" />
+                            <Separator prefWidth="200.0" />
+                            <Label text="Maggior numero di volte che ha ceduto il turno " />
+                            <Label text="Label" />
+                            <Separator prefWidth="200.0" />
+                            <Label text="Maggior nume di Perde Tutto" />
+                            <Label text="Label" />
+                            <Separator prefHeight="50.0" prefWidth="200.0" />
+                        </children>
+                    </VBox>
+                    <Separator layoutX="409.0" layoutY="10.0" orientation="VERTICAL" prefHeight="200.0" />
+                </children>
+            </HBox>
+        </content>
+    </Tab>
+    <Tab text="Profile">
+        <content>
+            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+                <children>
+                    <VBox prefHeight="385.0" prefWidth="572.0">
+                        <children>
+                            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="400.0" spacing="10.0">
+                                <children>
+                                    <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                        <image>
+                                            <Image url="@male_avatar-512.png" />
+                                        </image>
+                                    </ImageView>
+                                    <Label text="nickName " />
+                                    <TextField />
+                                    <Button mnemonicParsing="false" text="Button" />
+                                </children>
+                                <VBox.margin>
+                                    <Insets />
+                                </VBox.margin>
+                                <padding>
+                                    <Insets left="10.0" />
+                                </padding>
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" spacing="20.0">
+                                <children>
+                                    <Label prefWidth="60.0" text="Nome     " />
+                                    <Label prefWidth="60.0" text="Label" />
+                                    <Label prefWidth="60.0" text="Cognome" />
+                                    <Label prefWidth="60.0" text="Label" />
+                                </children>
+                                <opaqueInsets>
+                                    <Insets />
+                                </opaqueInsets>
+                                <padding>
+                                    <Insets left="70.0" />
+                                </padding>
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="400.0" spacing="10.0">
+                                <padding>
+                                    <Insets left="70.0" />
+                                </padding>
+                                <children>
+                                    <Label prefWidth="100.0" text="Indirizzo mail " />
+                                    <Label prefWidth="100.0" text="Label" />
+                                </children>
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="400.0" spacing="10.0">
+                                <padding>
+                                    <Insets left="70.0" />
+                                </padding>
+                                <children>
+                                    <Label text="Password" />
+                                    <PasswordField alignment="CENTER" />
+                                    <Button mnemonicParsing="false" text="Button" />
+                                </children>
+                            </HBox>
+                        </children>
+                        <HBox.margin>
+                            <Insets top="15.0" />
+                        </HBox.margin>
+                    </VBox>
+                </children>
+            </HBox>
+        </content>
+    </Tab>
+</tabs>
+</JFXTabPane>

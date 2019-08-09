@@ -14,10 +14,10 @@ import java.rmi.RemoteException;
 public interface Server extends Remote {
 
    //ritorna false se la mail esiste già , ture altrimenti.
-    public boolean checkEmail(String email)throws RemoteException;
+    public boolean checkEMail(String email)throws RemoteException;
 
    //ritorna false se il nick esiste già , true altrimenti.
-    public boolean checkNickname(String name)throws RemoteException;
+    public boolean checkNickName(String name)throws RemoteException;
 
     public OTPHelper signUp(User form, Client c) throws RemoteException;
 

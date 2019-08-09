@@ -22,6 +22,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')
     // per la grafica
     compile 'com.jfoenix:jfoenix:8.0.9'
+    compile 'org.controlsfx:controlsfx:8.40.15'
     // per il database
     compile 'org.postgresql:postgresql:42.2.5'
     // per invio della mail
