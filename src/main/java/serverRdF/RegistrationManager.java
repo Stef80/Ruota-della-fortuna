@@ -24,6 +24,7 @@ public class RegistrationManager {
 
     /**
      * @param dbManager il riferimento al manager del db
+     * @param emailManager //TODO
      * @return          il singleton della classe.
      */
     public static RegistrationManager createRegistrationManager(DBManager dbManager, EmailManager emailManager) {
@@ -60,8 +61,6 @@ public class RegistrationManager {
         }
         return res;
     }
-
-    public void
 
     /**
      * @param email L'indirizzo email da controllare
