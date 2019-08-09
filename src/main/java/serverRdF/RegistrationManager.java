@@ -40,6 +40,8 @@ public class RegistrationManager {
         if (!bool) {
             ServerImplementation.serverError(c);
         }
+
+        //TODO la parte di invio della email
     }
 
     /**
