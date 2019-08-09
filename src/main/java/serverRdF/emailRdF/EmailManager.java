@@ -25,7 +25,7 @@ public class EmailManager {
      * @param sub l'oggetto della mail
      * @param txt il corpo del messaggio
      */
-    public void sendEmail(String sub, String txt) {
+    public void sendEmail(String to, String sub, String txt) {
         //TODO
     }
 
