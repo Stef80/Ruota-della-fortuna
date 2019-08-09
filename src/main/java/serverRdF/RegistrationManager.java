@@ -54,7 +54,11 @@ public class RegistrationManager {
 
     private String generateOTP(){
         Random rd = new Random();
-        String res = "O";
+        String res = "";
+        for(int i=0; i<6; i++){
+            res += rd.nextInt(10);
+        }
+        return res;
     }
 
     /**
@@ -62,7 +66,7 @@ public class RegistrationManager {
      * @return <code>true</code> se l'indirizzo email non e' stato gia' utilizzato, <code>false</code>false altrimenti
      */
     public boolean checkEmail(String email) {
-        UsersDTO user = dbManager.getUser(true, email);
+        UsersDTO user = dbManager.getUserByEmail(email);
         if (user != null) {
             return false;
         } else return true;
@@ -73,7 +77,7 @@ public class RegistrationManager {
      * @return true se il nickname non e' stato gia' utilizzato, false altrimenti
      */
     public boolean checkNickname(String nickname) {
-        UsersDTO user = dbManager.getUser(false, nickname);
+        UsersDTO user = dbManager.getUserByNickname(nickname);
         if (user != null) {
             return false;
         } else return true;

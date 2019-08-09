@@ -15,7 +15,11 @@ public interface DBManagerInterface {
 
     boolean addUser(User user);
 
-    UsersDTO getUser(boolean email, String unique);
+    UsersDTO getUserByEmail(String email);
+
+    UsersDTO getUserByNickname(String nickname);
+
+    UsersDTO getUserById(String id);
 
     boolean checkLogin(String email, String password) throws SQLException;
 
