@@ -41,7 +41,7 @@ Entità Phrase
 Partecipa all'associazione binaria use con cardinalità (0,1), quindi ogni sua istanza può partecipare massimo ad una ed una sola istanza dell'associazione. L'altra entità che partecipa a use è Manches con cardinalità (1,1), perciò ogni sua istanza deve partecipare ad una ed una sola istanza di use.
 
 Entità Manches
-->number: string, obbligatorio e monovalore.
+->number: int, obbligatorio e monovalore.
 Possiede un identificatore misto composto da tre attriburi: number, id appartenente all'entità Matches e phrase, dell'entità Phrases.
 Oltre alle associazioni già descritte, Manches partecipa inoltre a:
 -won con cardinalità (0,1), cioè ogni istanza di Manches può partecipare a massimo una istanza di won, insieme all'entità Player con (0,n), ossia senza particolari vincoli. Inoltre won possiede anche l'attributo amount, di dominio int.

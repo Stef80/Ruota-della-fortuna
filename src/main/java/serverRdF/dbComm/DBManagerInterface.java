@@ -19,11 +19,11 @@ public interface DBManagerInterface {
 
     boolean checkLogin(String email, String password) throws SQLException;
 
-    List<PhrasesDTO> get5Phrases(String idPlayer1, String idPlayer2, String idPlayer3);
+    List<PhrasesDTO> get5Phrases(String idPlayer1, String idPlayer2, String idPlayer3) throws SQLException;
 
-    boolean addPhrase(ArrayList<String> phrases, ArrayList<String> themes);
+    boolean addPhrases(ArrayList<String> phrases, ArrayList<String> themes) throws SQLException;
 
-    List<PhrasesDTO> getAllPhrases();
+    List<PhrasesDTO> getAllPhrases() throws SQLException;
 
     //TODO tutti i metodi che servono agli altri manager e a Match. ricordarsi di aggiungere man mano i metodi utilizzati nelle altre classi per non perderli.
 }
