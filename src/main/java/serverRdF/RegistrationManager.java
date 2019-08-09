@@ -10,7 +10,7 @@ import java.rmi.RemoteException;
 import java.util.Random;
 
 /**
- * Questa classe gestisce la registrazione dell'utente. I metodi checkEmail e checkNickname permettono di allegerire i controlli sul metodo principale della classe (signUp)
+ * Questa classe gestisce la registrazione dell'utente. I metodi {@link #checkEmail(String)} e {@link #checkNickname(String)} permettono di allegerire i controlli sul metodo principale della classe {@link #signUp(User, Client)}
  */
 public class RegistrationManager {
     private DBManager dbManager;
@@ -65,7 +65,7 @@ public class RegistrationManager {
 
     /**
      * @param email L'indirizzo email da controllare
-     * @return <code>true</code> se l'indirizzo email non e' stato gia' utilizzato, <code>false</code>false altrimenti
+     * @return <code>true</code> se l'indirizzo email non e' stato gia' utilizzato, <code>false</code> altrimenti
      */
     public boolean checkEmail(String email) {
         UsersDTO user = dbManager.getUserByEmail(email);
@@ -76,7 +76,7 @@ public class RegistrationManager {
 
     /**
      * @param nickname il nickname da controllare
-     * @return true se il nickname non e' stato gia' utilizzato, false altrimenti
+     * @return <code>true</code> se il nickname non e' stato gia' utilizzato, <code>false</code> altrimenti
      */
     public boolean checkNickname(String nickname) {
         UsersDTO user = dbManager.getUserByNickname(nickname);
