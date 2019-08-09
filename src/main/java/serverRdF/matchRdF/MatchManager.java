@@ -28,7 +28,7 @@ public class MatchManager {
 
     /**
      * @param dbmng //TODO
-     * @return matchManager il singleton di tipo MatchManager
+     * @return il singleton di tipo {@link MatchManager}
      */
     public static MatchManager createMatchManager(DBManager dbmng) {
         if (matchManager == null) {
