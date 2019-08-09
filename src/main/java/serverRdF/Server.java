@@ -1,7 +1,7 @@
 package serverRdF;
 
 import rdFUtil.client.Client;
-import rdFUtil.logging.CryptedPassword;
+import rdFUtil.logging.CryptPassword;
 import rdFUtil.logging.Login;
 import rdFUtil.logging.User;
 import serverRdF.matchRdF.RemoteMatch;
@@ -38,7 +38,7 @@ public interface Server extends Remote {
 
     public void changeNickname(String nickname, Client c) throws RemoteException;
 
-    public void changePassword(CryptedPassword password, Client c) throws RemoteException;
+    public void changePassword(CryptPassword password, Client c) throws RemoteException;
 
     public void checkPlayer(Client c) throws RemoteException;
 
