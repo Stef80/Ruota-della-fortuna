@@ -13,7 +13,8 @@ public class DBManager implements DBManagerInterface{
     //TODO bisogna implementare i metodi dell'interfaccia
     private static DBManager dbManager=null;
     private Connection con;
-    private PhrasesDAO pDAO;
+    private PhrasesDAO phrasesDAO;
+    private MatchesDAO matchesDAO;
 
     private DBManager() throws SQLException {
         //TODO connessione con database
@@ -22,6 +23,7 @@ public class DBManager implements DBManagerInterface{
 
     /**
      * @return dbManager il singleton di tipo DBManager
+     * @throws SQLException
      */
     public static DBManager createDBManager() throws SQLException {
         if (dbManager == null) {
@@ -31,10 +33,17 @@ public class DBManager implements DBManagerInterface{
             return dbManager;
     }
 
+    /**
+     * Questo metodo inizializza l'instanzia di MatchedDAO
+     */
+    private void createMatchesDAO(){
+        matchesDAO = new MatchesDAOImpl(con);
+    }
 
-    public boolean addMatch(String id, LocalDateTime time) {
-        //TODO
-        return false;
+    public boolean addMatch(String id, LocalDateTime time) throws SQLException {
+        if(matchesDAO==null)
+            createMatchesDAO();
+        return matchesDAO.addMatch(new MatchesDTO(id, time));
     }
 
     public boolean addUser(User user){
@@ -63,32 +72,35 @@ public class DBManager implements DBManagerInterface{
         return false;
     }
 
+    /**
+     * Questo metodo inizializza l'instanzia di PhrasesDAO
+     */
     private void createPhrasesDAO(){
-        pDAO = new PhrasesDAOImpl(con);
+        phrasesDAO = new PhrasesDAOImpl(con);
     }
 
     @Override
     public List<PhrasesDTO> get5Phrases(String idPlayer1, String idPlayer2, String idPlayer3) throws SQLException{
-        if(pDAO==null)
+        if(phrasesDAO ==null)
             createPhrasesDAO();
-       return pDAO.get5Phrases(idPlayer1,idPlayer2,idPlayer3);
+       return phrasesDAO.get5Phrases(idPlayer1,idPlayer2,idPlayer3);
     }
 
     @Override
     public boolean addPhrases(ArrayList<String> phrases, ArrayList<String> themes) throws SQLException{
-        if(pDAO==null)
+        if(phrasesDAO ==null)
             createPhrasesDAO();
         ArrayList<PhrasesDTO> pDTO = new ArrayList<>();
         for(int i=0; i<phrases.size();i++){
             pDTO.add(new PhrasesDTO(themes.get(i),phrases.get(i)));
         }
-        return pDAO.addPhrases(pDTO);
+        return phrasesDAO.addPhrases(pDTO);
     }
 
     @Override
     public List<PhrasesDTO> getAllPhrases() throws SQLException{
-        if(pDAO==null)
+        if(phrasesDAO ==null)
             createPhrasesDAO();
-       return pDAO.getAllPhrases();
+       return phrasesDAO.getAllPhrases();
     }
 }
