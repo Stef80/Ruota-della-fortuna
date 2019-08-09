@@ -67,6 +67,11 @@ public class DBManager implements DBManagerInterface{
     }
 
     @Override
+    public boolean deleteUser(String id) {
+        return false;
+    }
+
+    @Override
     public boolean checkLogin(String email, String password) throws SQLException {
         //TODO
         return false;
