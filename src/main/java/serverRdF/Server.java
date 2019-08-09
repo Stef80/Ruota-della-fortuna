@@ -20,6 +20,8 @@ public interface Server extends Remote {
 
     public void signUp(User form, Client c) throws RemoteException;
 
+    public void checkOTP(String otp) throws RemoteException;
+
     public void signIn(Login form, Client c) throws RemoteException;
 
     public void visualizeMatch(Client c) throws RemoteException;
@@ -38,7 +40,7 @@ public interface Server extends Remote {
 
     public void changeNickname(String nickname, Client c) throws RemoteException;
 
-    public void changePassword(CryptPassword password, Client c) throws RemoteException;
+    public void changePassword(String password, Client c) throws RemoteException;
 
     public void checkPlayer(Client c) throws RemoteException;
 

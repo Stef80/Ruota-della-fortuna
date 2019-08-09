@@ -4,26 +4,31 @@ import rdFUtil.client.Client;
 import rdFUtil.logging.User;
 import serverRdF.dbComm.DBManager;
 import serverRdF.dbComm.UsersDTO;
+import serverRdF.emailRdF.EmailManager;
+
+import java.rmi.RemoteException;
+import java.util.Random;
 
 /**
  * Questa classe gestisce la registrazione dell'utente. I metodi checkEmail e checkNickname permettono di allegerire i controlli sul metodo principale della classe (signUp)
  */
 public class RegistrationManager {
     private DBManager dbManager;
+    private EmailManager emailManager;
     private static RegistrationManager registrationManager = null;
 
-    private RegistrationManager(DBManager dbManager) {
+    private RegistrationManager(DBManager dbManager, EmailManager emailManager) {
         this.dbManager = dbManager;
     }
 
 
     /**
      * @param dbManager il riferimento al manager del db
-     * @return registrationManager il singleton della classe.
+     * @return          il singleton della classe.
      */
-    public static RegistrationManager createRegistrationManager(DBManager dbManager) {
+    public static RegistrationManager createRegistrationManager(DBManager dbManager, EmailManager emailManager) {
         if (registrationManager == null) {
-            registrationManager = new RegistrationManager(dbManager);
+            registrationManager = new RegistrationManager(dbManager,emailManager);
             return registrationManager;
         } else
             return registrationManager;
@@ -40,13 +45,21 @@ public class RegistrationManager {
         if (!bool) {
             ServerImplementation.serverError(c);
         }
-
         //TODO la parte di invio della email
+        String otp = generateOTP();
+        String obj = "Conferma della registrazione a Ruota della Fortuna";
+        String text = "Prego inserire il codice: " + otp + " per ultimare la registrazione. Il codice deve essere inserito entro 10 minuti pena l'annullamento della registrazione";
+        emailManager.sendEmail(form.getEmail(), obj, text);
+    }
+
+    private String generateOTP(){
+        Random rd = new Random();
+        String res = "O";
     }
 
     /**
      * @param email L'indirizzo email da controllare
-     * @return <code>true</code> se l'indirizzo email non è stato già utilizzato, <code>false</code>false altrimenti
+     * @return <code>true</code> se l'indirizzo email non e' stato gia' utilizzato, <code>false</code>false altrimenti
      */
     public boolean checkEmail(String email) {
         UsersDTO user = dbManager.getUser(true, email);
@@ -57,7 +70,7 @@ public class RegistrationManager {
 
     /**
      * @param nickname il nickname da controllare
-     * @return true se il nickname non è stato già utilizzato, false altrimenti
+     * @return true se il nickname non e' stato gia' utilizzato, false altrimenti
      */
     public boolean checkNickname(String nickname) {
         UsersDTO user = dbManager.getUser(false, nickname);
