@@ -25,13 +25,13 @@ public class RegistrationManager {
 
 
     /**
-     * @param dbManager il riferimento al manager del db
+     * @param dbManager    il riferimento al manager del db
      * @param emailManager il riferimento al manager delle email
-     * @return          il singleton della classe.
+     * @return il singleton della classe.
      */
     public static RegistrationManager createRegistrationManager(DBManager dbManager, EmailManager emailManager) {
         if (registrationManager == null) {
-            registrationManager = new RegistrationManager(dbManager,emailManager);
+            registrationManager = new RegistrationManager(dbManager, emailManager);
             return registrationManager;
         } else
             return registrationManager;
@@ -42,15 +42,15 @@ public class RegistrationManager {
      *
      * @param form contenente i dati necessari alla registrazione
      * @param c    il riferimento al client
-     * @return un riferimento all'oggeto remoto OTPHelper per l'invio del codice da parte del client
+     * @return un riferimento all'oggeto remoto {@link OTPHelper} per l'invio del codice da parte del client
      * @throws RemoteException in caso di errori di connesione al server
      */
-    public OTPHelper signUp(User form, Client c) throws RemoteException{
+    public OTPHelper signUp(User form, Client c) throws RemoteException {
         //TODO la parte di invio della email
         String otp = generateOTP();
-        String obj = "Conferma della registrazione a Ruota della Fortuna";
+        String sub = "Conferma della registrazione a Ruota della Fortuna";
         String text = "Prego inserire il codice: " + otp + " per ultimare la registrazione. Il codice deve essere inserito entro 10 minuti pena l'annullamento della registrazione";
-        emailManager.sendEmail(form.getEmail(), obj, text);
+        emailManager.sendEmail(form.getEmail(), sub, text);
         WaitingThread thread = new WaitingThread(c, dbManager, form);
         String cryptedOTP = CryptPassword.encrypt(otp);
         OTPHelperImplementation otpHelper = new OTPHelperImplementation(thread, cryptedOTP);
@@ -58,17 +58,23 @@ public class RegistrationManager {
         return otpHelper;
     }
 
-    private String generateOTP(){
+    /**
+     * Genera un codice numerico di 6 cifre
+     *
+     * @return il codice OTP random
+     */
+    private String generateOTP() {
         Random rd = new Random();
         String res = "";
-        for(int i=0; i<6; i++){
+        for (int i = 0; i < 6; i++) {
             res += rd.nextInt(10);
         }
-
         return res;
     }
 
     /**
+     * Questo metodo controlla se non esiste gia' un utente con la stessa mail
+     *
      * @param email L'indirizzo email da controllare
      * @return <code>true</code> se l'indirizzo email non e' stato gia' utilizzato, <code>false</code> altrimenti
      */
@@ -80,6 +86,8 @@ public class RegistrationManager {
     }
 
     /**
+     * Questo metodo controlla se non esiste gia' un utente con lo stesso nickname
+     *
      * @param nickname il nickname da controllare
      * @return <code>true</code> se il nickname non e' stato gia' utilizzato, <code>false</code> altrimenti
      */
