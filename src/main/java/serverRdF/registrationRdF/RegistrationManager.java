@@ -41,6 +41,8 @@ public class RegistrationManager {
      *
      * @param form contenente i dati necessari alla registrazione
      * @param c    il riferimento al client
+     * @return un riferimento all'oggeto remoto OTPHelper per l'invio del codice da parte del client
+     * @throws RemoteException in caso di errori di connesione al server
      */
     public OTPHelper signUp(User form, Client c) throws RemoteException{
         //TODO la parte di invio della email
