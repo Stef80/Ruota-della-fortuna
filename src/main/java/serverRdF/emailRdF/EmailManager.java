@@ -1,10 +1,5 @@
 package serverRdF.emailRdF;
 
-import com.sun.xml.internal.bind.v2.TODO;
-
-/**
- *
- */
 public class EmailManager {
     //TODO metodi e commenti javadoc
     private static EmailManager emailManager = null;
@@ -24,6 +19,7 @@ public class EmailManager {
     }
 
     /**
+     * @param to //TODO
      * @param sub l'oggetto della mail
      * @param txt il corpo del messaggio
      */
@@ -32,7 +28,7 @@ public class EmailManager {
     }
 
     /**
-     * @param email
+     * @param email //TODO
      */
     public void checkSMTPAccount(String email) {
         //TODO se decidiamo che quando qualcuno nel server accede come admin si controlla in automatico se ha un account insubria registrato e gli si chiede la password,
