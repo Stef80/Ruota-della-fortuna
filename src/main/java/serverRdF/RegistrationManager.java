@@ -43,11 +43,7 @@ public class RegistrationManager {
     public void signUp(User form, Client c){
         boolean bool = dbManager.addUser(form);
         if (!bool) {
-            try {
-                c.notifyServerError();
-            } catch (RemoteException ex) {
-                System.err.println(ex.getMessage());
-            }
+            ServerImplementation.serverError(c);
         }
     }
 

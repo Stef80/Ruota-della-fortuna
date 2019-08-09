@@ -1,6 +1,7 @@
 package serverRdF.matchRdF;
 
 import rdFUtil.client.Client;
+import serverRdF.ServerImplementation;
 import serverRdF.dbComm.DBManager;
 
 import java.rmi.RemoteException;
@@ -62,11 +63,7 @@ public class MatchManager {
             matches.put(id, match);
             return match;
         } catch (RemoteException e) {
-            try {
-                c.notifyServerError();
-            } catch (RemoteException ex) {
-                System.err.println(ex.getMessage());
-            }
+            ServerImplementation.serverError(c);
         } finally {
             return match;
         }

@@ -2,6 +2,7 @@ package serverRdF.dbComm;
 
 import rdFUtil.logging.User;
 
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 public interface DBManagerInterface {
@@ -13,6 +14,8 @@ public interface DBManagerInterface {
     public boolean addUser(User user);
 
     public UsersDTO getUser(boolean email, String unique);
+
+    public boolean checkLogin(String email, String password) throws SQLException;
 
     //TODO tutti i metodi che servono agli altri manager e a Match. ricordarsi di aggiungere man mano i metodi utilizzati nelle altre classi per non perderli.
 }
