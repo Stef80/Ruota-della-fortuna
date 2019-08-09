@@ -1,7 +1,6 @@
 package serverRdF.dbComm;
 
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 
 public interface MatchesDAO {
     //TODO aggiungere metodi necessari
@@ -14,6 +13,7 @@ public interface MatchesDAO {
      * Questo metodo permette di aggiungere una nuova partita all'interno del database
      * @param matchesDTO riferimento al Data Transfer Object relativo alla partita
      * @return <code>true</code> se la query va a buon fine, altrimenti <code>false</code>
+     * @throws SQLException
      */
     boolean addMatch(MatchesDTO matchesDTO) throws SQLException;
 }
