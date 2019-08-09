@@ -46,6 +46,10 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     public void jolly() throws RemoteException {
     }
 
+    /**
+     * Questo metodo permette di conoscere il concorrente a cui appartiene il nuovo turno di gioco
+     * @throws RemoteException
+     */
     public void nextTurn() throws RemoteException {
         if (turn == 2)
             turn = 0;

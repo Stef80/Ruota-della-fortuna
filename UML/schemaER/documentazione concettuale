@@ -28,8 +28,8 @@ Partecipa alle seguenti associazioni binarie:
 
 Entità Matches
 ->id: string, identificatore interno e semplice dell'entità. Attributo obbligatorio e monovalore.
-->date: date, obbligatorio e monovalore.
-->hour: time, obbligatorio e monovalore.
+->date: DATE, obbligatorio e monovalore.
+->time: TIME, obbligatorio e monovalore.
 Partecipa alle seguenti associazioni binarie:
 -won, con cardinalità (0,1) quindi ogni istanza di Matches può partecipare al massimo ad una sola istanza di won. L'altra partecipante è l'entità Player con cardinalità (0,n) perciò senza particolari vincoli per quanto riguarda il numero minimo o massimo di istanze.
 Tale associazione contiene un attributo amount, di dominio int.
