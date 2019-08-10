@@ -187,6 +187,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
 
         result.setOnGoing(onGoing);
         result.setNumManche(manche.getNumManche());
+        result.setIdMatch(id);
 
         return result;
     }
