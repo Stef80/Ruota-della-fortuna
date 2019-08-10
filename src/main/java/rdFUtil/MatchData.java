@@ -12,6 +12,7 @@ public class MatchData {
     private String time;
     private int numManche;
     private boolean onGoing;
+    private String idMatch;
 
     public String getPlayer1() {
         return Player1;
@@ -67,6 +68,14 @@ public class MatchData {
 
     public void setOnGoing(boolean onGoing) {
         this.onGoing = onGoing;
+    }
+
+    public String getIdMatch() {
+        return idMatch;
+    }
+
+    public void setIdMatch(String idMatch) {
+        this.idMatch = idMatch;
     }
 
     public MatchData(){}
