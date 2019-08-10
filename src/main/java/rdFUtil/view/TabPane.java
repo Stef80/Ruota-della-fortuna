@@ -35,7 +35,6 @@ public class TabPane implements Initializable {
 	public void addMatch(ActionEvent actionEvent) throws RemoteException, NotBoundException {
 		/*RemoteMatch newMatch = (RemoteMatch) registry.lookup("newGame");
 		newMatch.addPlayer(client);*/
-		RemoteMatch newMatch = new Match("nuovo", LocalDateTime.now());
           gameObservableList.add(newMatch);
 	}
 

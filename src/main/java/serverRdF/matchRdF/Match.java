@@ -152,6 +152,11 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     public void askNotify() throws RemoteException {
     }
 
+    @Override
+    public String getid() throws RemoteException {
+        return id;
+    }
+
     public Match() throws RemoteException {
 
     }

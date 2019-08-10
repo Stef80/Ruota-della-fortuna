@@ -8,11 +8,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
+import rdFUtil.client.Client;
 import serverRdF.Server;
 import serverRdF.matchRdF.RemoteMatch;
 
 import javax.swing.text.html.ImageView;
 import java.io.IOException;
+import java.rmi.RemoteException;
 
 public class GameView extends ListCell<RemoteMatch> {
 	@FXML
@@ -35,6 +37,7 @@ public class GameView extends ListCell<RemoteMatch> {
 	private FXMLLoader loader;
 	private Parent pane;
 	private Server server;
+	private Client client;
 
 	public GameView(Server server) {
 		this.server = server ;
@@ -70,6 +73,11 @@ public class GameView extends ListCell<RemoteMatch> {
 			joinButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
 				@Override
 				public void handle(javafx.event.ActionEvent event) {
+					try {
+						server.joinMatch(client, item.getMatchId() );
+					} catch (RemoteException e) {
+						e.printStackTrace();
+					}
 			/*		FXMLLoader loader = new FXMLLoader(getClass().getResource("gameWindowPane.fxml"));
 					Parent root  = null;
 					try {
