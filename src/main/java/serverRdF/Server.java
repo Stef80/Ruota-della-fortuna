@@ -1,5 +1,6 @@
 package serverRdF;
 
+import rdFUtil.MatchData;
 import rdFUtil.client.Client;
 import rdFUtil.logging.CryptPassword;
 import rdFUtil.logging.Login;
@@ -10,6 +11,7 @@ import serverRdF.registrationRdF.OTPHelper;
 import java.io.File;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 public interface Server extends Remote {
 
@@ -23,7 +25,7 @@ public interface Server extends Remote {
 
     public void signIn(Login form, Client c) throws RemoteException;
 
-    public void visualizeMatch(Client c) throws RemoteException;
+    public ArrayList<MatchData> visualizeMatch(Client c) throws RemoteException;
 
     public RemoteMatch createMatch(Client c) throws RemoteException;
 
