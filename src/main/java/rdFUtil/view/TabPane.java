@@ -6,9 +6,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
+import rdFUtil.client.Client;
+import serverRdF.Server;
+import serverRdF.matchRdF.Match;
 import serverRdF.matchRdF.RemoteMatch;
 
 import java.net.URL;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+
+import java.rmi.registry.Registry;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 public class TabPane implements Initializable {
@@ -18,8 +26,17 @@ public class TabPane implements Initializable {
 
 	private ObservableList<RemoteMatch> gameObservableList = FXCollections.observableArrayList();
 
-	public void addMatch(ActionEvent actionEvent){
-          new GameView();
+	private Client client;
+	private Server server;
+
+	public TabPane(Server server){
+		this.server = server;
+	}
+	public void addMatch(ActionEvent actionEvent) throws RemoteException, NotBoundException {
+		/*RemoteMatch newMatch = (RemoteMatch) registry.lookup("newGame");
+		newMatch.addPlayer(client);*/
+		RemoteMatch newMatch = new Match("nuovo", LocalDateTime.now());
+          gameObservableList.add(newMatch);
 	}
 
 

@@ -44,20 +44,15 @@ public class RegistrationFormPanel {
 
 
 
-	public RegistrationFormPanel(){
-		try {
-			registry = LocateRegistry.getRegistry(8888);
-
-		} catch (RemoteException  e) {
-			e.printStackTrace();
-		}
+	public RegistrationFormPanel(Server server){
+		this.server = server;
 
 	}
    /**
 	*Registra il nuovo user verificando che non esista già tramite il confronto
 	* tra la mail inserita e quelle già registrate se non esiste la registra
 	* visualizza unafinestra di errore altrimenti
-	*
+	* @return void
 	* */
 	public void confirm(ActionEvent actionEvent) throws IOException, NotBoundException {
 		//acquisisce il riferimento al server

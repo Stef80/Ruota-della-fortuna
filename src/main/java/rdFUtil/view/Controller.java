@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import serverRdF.Server;
 
 import java.io.IOException;
 
@@ -20,7 +21,11 @@ public class Controller {
 	private Button resetButton;
 	@FXML
 	private Button registerButton;
+	private Server server ;
 
+	public Controller(Server server) {
+		this.server = server;
+	}
 
 
 	public void login(ActionEvent actionEvent) throws IOException {
@@ -34,7 +39,7 @@ public class Controller {
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		Stage oldStage = (Stage) loginButton.getScene().getWindow();
-		oldStage.close();
+		oldStage.hide();
 	}
 
 	public void register(ActionEvent actionEvent) throws IOException {

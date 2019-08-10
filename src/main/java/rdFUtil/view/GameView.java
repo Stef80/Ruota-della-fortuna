@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
+import serverRdF.Server;
 import serverRdF.matchRdF.RemoteMatch;
 
 import javax.swing.text.html.ImageView;
@@ -33,6 +34,12 @@ public class GameView extends ListCell<RemoteMatch> {
 
 	private FXMLLoader loader;
 	private Parent pane;
+	private Server server;
+
+	public GameView(Server server) {
+		this.server = server ;
+	}
+	public GameView(){}
 
 	@Override
 	protected void updateItem(RemoteMatch item, boolean empty) {

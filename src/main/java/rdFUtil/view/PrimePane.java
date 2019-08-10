@@ -8,14 +8,20 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import serverRdF.Server;
 
-public class Main extends Application {
+public class PrimePane extends Application {
     @FXML
     private Label label;
     @FXML
     private Button loginButton;
     @FXML
     private Button registerButton;
+    private Server server;
+
+    public PrimePane(Server server){
+        this.server = server;
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -28,7 +34,4 @@ public class Main extends Application {
     }
 
 
-    public static void main(String[] args) {
-        launch(args);
-    }
 }
