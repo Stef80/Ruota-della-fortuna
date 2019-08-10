@@ -46,7 +46,7 @@ public class RegistrationFormPanel {
 
 	public RegistrationFormPanel(){
 		try {
-			registry = LocateRegistry.createRegistry(8888);
+			registry = LocateRegistry.getRegistry(8888);
 
 		} catch (RemoteException  e) {
 			e.printStackTrace();
@@ -55,27 +55,28 @@ public class RegistrationFormPanel {
 	}
    /**
 	*Registra il nuovo user verificando che non esista già tramite il confronto
-	* tra la mail inserita e quelle già registrate
+	* tra la mail inserita e quelle già registrate se non esiste la registra
+	* visualizza unafinestra di errore altrimenti
 	*
 	* */
 	public void confirm(ActionEvent actionEvent) throws IOException, NotBoundException {
-		//acquisice il riferimento al server
+		//acquisisce il riferimento al server
 		server = (Server) registry.lookup("User");
-		//se la mail non esiste
+		//se la mail non esiste visualizza notifica
 		if(!server.checkEMail(eMail.getText())) {
 			Notifications notification = Notifications.create()
 			                                     .title("Mail Notification")
 			                                     .text("E-mail già presente \nimmettere nuova mail")
 												 .hideAfter(Duration.seconds(3))
-			                                     .position(Pos.BOTTOM_RIGHT);
+			                                     .position(Pos.CENTER);
 			notification.showError();
-
+			//se esiste nickName visualizza notifica
 		}else if(!server.checkNickName(nickname.getText())){
 			Notifications notification = Notifications.create()
 												 .title("Mail Notification")
 												 .text("NickName già presente \nimmettere un nuovo nickname")
 												 .hideAfter(Duration.seconds(3))
-												 .position(Pos.BOTTOM_RIGHT);
+												 .position(Pos.CENTER);
 			notification.showError();
 
 		}else{
@@ -86,16 +87,16 @@ public class RegistrationFormPanel {
 			String passwordStr = password.getText();
             user = new User(passwordStr,mailStr,nameStr,surnameStr,nickStr);
 			server.signUp(user,client);
-		}
+
 		Parent root = FXMLLoader.load(Thread.currentThread().getClass().getResource("main_pane.fxml"));
 		Scene scene = new Scene(root);
 		Stage primaryStage = new Stage();
-		scene.getStylesheets().add(getClass().getResource("/sample/resources/sampleScene.css").toExternalForm());
+		//scene.getStylesheets().add(getClass().getResource("/sample/resources/sampleScene.css").toExternalForm());
 		primaryStage.setTitle("Weel of Fortune");
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		Stage thisStage = (Stage) confirmButton.getScene().getWindow();
 		thisStage.close();
-
+		}
 	}
 }

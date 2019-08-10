@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<AnchorPane prefHeight="500.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PlayPack.RegistrationFormPanel">
+<AnchorPane prefHeight="500.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rdFUtil.view.RegistrationFormPanel">
    <children>
       <JFXTextField layoutX="83.0" layoutY="89.0" AnchorPane.bottomAnchor="380.0" AnchorPane.rightAnchor="76.0" />
       <JFXTextField layoutX="83.0" layoutY="203.0" AnchorPane.bottomAnchor="260.0" AnchorPane.rightAnchor="76.0" />

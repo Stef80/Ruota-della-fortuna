@@ -8,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
-import javafx.stage.Stage;
 import serverRdF.matchRdF.RemoteMatch;
 
 import javax.swing.text.html.ImageView;
@@ -44,7 +43,7 @@ public class GameView extends ListCell<RemoteMatch> {
 			setGraphic(null);
 		}else{
 			if(loader == null){
-				loader = new FXMLLoader(getClass().getResource("gameView.fxml"));
+				loader = new FXMLLoader(Thread.currentThread().getContextClassLoader().getResource("game_list_pane.fxml"));
                  loader.setController(this);
 				try {
 					  pane = loader.load();

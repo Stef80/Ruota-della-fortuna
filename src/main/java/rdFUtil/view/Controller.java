@@ -26,10 +26,10 @@ public class Controller {
 	public void login(ActionEvent actionEvent) throws IOException {
 
 
-		Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("tabPane.fxml"));
+		Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
 		Stage primaryStage = new Stage();
 		Scene scene = new Scene(root1);
-		scene.getStylesheets().add(getClass().getResource("sampleScene.css").toExternalForm());
+	//	scene.getStylesheets().add(getClass().getResource("sampleScene.css").toExternalForm());
 		primaryStage.setTitle("Weel of Fortune");
 		primaryStage.setScene(scene);
 		primaryStage.show();
@@ -38,10 +38,10 @@ public class Controller {
 	}
 
 	public void register(ActionEvent actionEvent) throws IOException {
-		Parent root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("registrationFormPanel.fxml"));
+		Parent root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("registration_form_pane.fxml"));
 		Stage primaryStage = new Stage();
 		Scene scene = new Scene(root);
-		scene.getStylesheets().add(getClass().getResource("sampleScene.css").toExternalForm());
+	//	scene.getStylesheets().add(getClass().getResource("sampleScene.css").toExternalForm());
 		primaryStage.setTitle("Weel of Fortune");
 		primaryStage.setScene(scene);
 		primaryStage.show();
@@ -51,10 +51,10 @@ public class Controller {
 	}
 
 	public void reset(ActionEvent event) throws IOException {
-		Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("forgottenPasswordPane.fxml"));
+		Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("forgotten_password_pane.fxml"));
 		Stage primaryStage = new Stage();
 		Scene scene = new Scene(root1);
-		scene.getStylesheets().add(getClass().getResource("sampleScene.css").toExternalForm());
+	//	scene.getStylesheets().add(getClass().getResource("sampleScene.css").toExternalForm());
 		primaryStage.setTitle("Weel of Fortune");
 		primaryStage.setScene(scene);
 		primaryStage.show();

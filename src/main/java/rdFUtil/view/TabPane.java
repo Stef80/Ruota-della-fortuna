@@ -19,7 +19,7 @@ public class TabPane implements Initializable {
 	private ObservableList<RemoteMatch> gameObservableList = FXCollections.observableArrayList();
 
 	public void addMatch(ActionEvent actionEvent){
-
+          new GameView();
 	}
 
 
