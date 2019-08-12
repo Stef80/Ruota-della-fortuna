@@ -48,6 +48,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
 
     /**
      * Questo metodo permette di conoscere il concorrente a cui appartiene il nuovo turno di gioco
+     *
      * @throws RemoteException
      */
     public void nextTurn() throws RemoteException {
@@ -88,7 +89,6 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
      */
     public void endMatch(boolean isThereAWinner) throws RemoteException {
         //TODO
-
     }
 
     /**
@@ -130,11 +130,9 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                 p.getClient().notifyLeaver(name);
             }
         }
-
         for (Client client : observers) {
             client.notifyLeaver(name);
         }
-
         endManche();
         endMatch(false);
     }
@@ -153,12 +151,11 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     }
 
     @Override
-    public String getid() throws RemoteException {
+    public String getMatchId() throws RemoteException {
         return id;
     }
 
     public Match() throws RemoteException {
-
     }
 
     /**
