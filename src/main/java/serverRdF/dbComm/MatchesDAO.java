@@ -11,6 +11,7 @@ public interface MatchesDAO {
 
     /**
      * Questo metodo permette di aggiungere una nuova partita all'interno del database
+     *
      * @param matchesDTO riferimento al Data Transfer Object relativo alla partita
      * @return <code>true</code> se la query va a buon fine, altrimenti <code>false</code>
      * @throws SQLException
