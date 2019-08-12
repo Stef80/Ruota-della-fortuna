@@ -8,7 +8,10 @@ version '1.0'
 sourceCompatibility = 1.8
 
 sourceSets {
-    main.java.srcDir 'src/main/java'
+    main.java {
+        srcDir 'src/main/java'
+        exclude 'rdFUtil/view/**' //TODO - escluso package perché da correggere
+    }
     main.resources.srcDir 'src/main/resources'
     test.java.srcDir 'src/test/java'
     test.resources.srcDir 'src/main/resources'
@@ -31,6 +34,16 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 }
 
+task runTestClient(type: JavaExec, dependsOn: 'classes', group: 'test') {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'PROVATEST.MainC'
+}
+
+task runTestServer(type: JavaExec, dependsOn: classes, group: 'test') {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'PROVATEST.MainS'
+}
+
 task runTestFinestra(type: JavaExec, dependsOn: classes, group: 'test') {
     classpath = sourceSets.main.runtimeClasspath
     main = 'Finestra'
@@ -39,7 +52,7 @@ task runTestFinestra(type: JavaExec, dependsOn: classes, group: 'test') {
 task createJar(type: Jar, group: 'test') {
     manifest {
         attributes 'Implementation-Title': 'RdF',
-                'Main-Class': '' // TODO - da impostare il nome del main
+                'Main-Class': 'Finestra' // TODO - da impostare il nome del main
 
     }
     from {
