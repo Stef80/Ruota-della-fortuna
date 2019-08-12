@@ -8,7 +8,7 @@ public class EmailManager {
     }
 
     /**
-     * @return emailManager il singleton di tipo EmailManager
+     * @return il singleton di tipo {@link EmailManager}
      */
     public static EmailManager createEmailManager() {
         if (emailManager == null) {
@@ -19,12 +19,11 @@ public class EmailManager {
     }
 
     /**
-     * @param to //TODO
+     * @param to  il destinatario
      * @param sub l'oggetto della mail
      * @param txt il corpo del messaggio
      */
     public void sendEmail(String to, String sub, String txt) {
-        
     }
 
     /**
