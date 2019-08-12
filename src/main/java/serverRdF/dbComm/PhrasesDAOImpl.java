@@ -41,10 +41,7 @@ public class PhrasesDAOImpl implements PhrasesDAO {
                queryAdd+=";";
        }
         Statement stmt = con.createStatement();
-        if(stmt.executeUpdate(queryAdd)==phrases.size())
-            return true;
-        else
-            return false;
+        return stmt.executeUpdate(queryAdd) == phrases.size();
     }
 
     @Override

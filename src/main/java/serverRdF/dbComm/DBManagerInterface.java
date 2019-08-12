@@ -21,15 +21,46 @@ public interface DBManagerInterface {
      */
     boolean addMatch(String id, LocalDateTime time) throws SQLException;
 
-    boolean addUser(User user);
+    /**
+     * Questo metodo permette di aggiungere un utente all'interno del database
+     * @param user riferimento all'utente
+     * @param isAdmin <code>true</code> se l'utente è un amministratore, <code>false</code> se e' un player
+     * @return <code>true</code> se l'inserimento e' andato a buon fine, altrimenti <code>false</code>
+     * @throws SQLException
+     */
+    boolean addUser(User user, boolean isAdmin) throws SQLException;
 
-    UsersDTO getUserByEmail(String email);
+    /**
+     * Questo metodo permette di ottenere le informazioni di un utente conoscendo la sua email
+     * @param email email dell'utente
+     * @return riferimento all'utente trovato (null se non viene trovato)
+     * @throws SQLException
+     */
+    UsersDTO getUserByEmail(String email) throws SQLException;
 
-    UsersDTO getUserByNickname(String nickname);
+    /**
+     * Questo metodo permette di ottenere le informazioni di un utente conoscendo il suo nickname
+     * @param nickname nickname dell'utente
+     * @return riferimento all'utente trovato (null se non viene trovato)
+     * @throws SQLException
+     */
+    UsersDTO getUserByNickname(String nickname) throws SQLException;
 
-    UsersDTO getUserById(String id);
+    /**
+     * Questo metodo permette di ottenere le informazioni di un utente conoscendo il suo id
+     * @param id id dell'utente
+     * @return riferimento all'utente trovato (null se non viene trovato)
+     * @throws SQLException
+     */
+    UsersDTO getUserById(String id) throws SQLException;
 
-    boolean deleteUser(String id);
+    /**
+     * Questo metodo permette di eliminare un utente presente nel database
+     * @param id id dell'utente
+     * @return <code>true</code> se l'inserimento e' andato a buon fine, altrimenti <code>false</code>
+     * @throws SQLException
+     */
+    boolean deleteUser(String id) throws SQLException;
 
     boolean checkLogin(String email, String password) throws SQLException;
 

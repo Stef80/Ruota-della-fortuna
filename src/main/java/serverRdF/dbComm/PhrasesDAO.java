@@ -24,7 +24,7 @@ public interface PhrasesDAO {
     /**
      * Questo metodo permette di aggiungere un insieme di frasi e temi all'interno del database
      * @param phrases lista delle frasi, con relativo tema, da aggiungere nel database
-     * @return true se la query è andata a buon fine, false altrimenti
+     * @return <code>true</code> se la query e' andata a buon fine, <code>false</code> altrimenti
      * @throws SQLException
      */
     boolean addPhrases(ArrayList<PhrasesDTO> phrases) throws SQLException;

@@ -15,6 +15,7 @@ public class DBManager implements DBManagerInterface{
     private Connection con;
     private PhrasesDAO phrasesDAO;
     private MatchesDAO matchesDAO;
+    private UsersDAO usersDAO;
 
     private DBManager() throws SQLException {
         //TODO connessione con database
@@ -34,7 +35,7 @@ public class DBManager implements DBManagerInterface{
     }
 
     /**
-     * Questo metodo inizializza l'instanzia di MatchedDAO
+     * Questo metodo inizializza l'instanza di MatchedDAO
      */
     private void createMatchesDAO(){
         matchesDAO = new MatchesDAOImpl(con);
@@ -46,29 +47,42 @@ public class DBManager implements DBManagerInterface{
         return matchesDAO.addMatch(new MatchesDTO(id, time));
     }
 
-    public boolean addUser(User user){
-        //TODO
-        return false;
+    /**
+     * Questo metodo inizializza l'instanza di UsersDAO
+     */
+    private void createUsersDAO(){
+        usersDAO = new UsersDAOImpl(con);
+    }
+    public boolean addUser(User user, boolean isAdmin) throws SQLException {
+        return usersDAO.addUser(new UsersDTO(user.getId(), isAdmin, user.getName(), user.getSurname(), user.getNickname(), user.getEmail(), user.getPasswordC()));
     }
 
     @Override
-    public UsersDTO getUserByEmail(String email) {
-        return null;
+    public UsersDTO getUserByEmail(String email) throws SQLException {
+        if(usersDAO==null)
+            createUsersDAO();
+        return usersDAO.getUserByEmail(email);
     }
 
     @Override
-    public UsersDTO getUserByNickname(String nickname) {
-        return null;
+    public UsersDTO getUserByNickname(String nickname) throws SQLException {
+        if(usersDAO==null)
+            createUsersDAO();
+        return usersDAO.getUserByNickname(nickname);
     }
 
     @Override
-    public UsersDTO getUserById(String id) {
-        return null;
+    public UsersDTO getUserById(String id) throws SQLException {
+        if(usersDAO==null)
+            createUsersDAO();
+        return usersDAO.getUserById(id);
     }
 
     @Override
-    public boolean deleteUser(String id) {
-        return false;
+    public boolean deleteUser(String id) throws SQLException {
+        if(usersDAO==null)
+            createUsersDAO();
+        return usersDAO.deleteUser(id);
     }
 
     @Override
@@ -78,7 +92,7 @@ public class DBManager implements DBManagerInterface{
     }
 
     /**
-     * Questo metodo inizializza l'instanzia di PhrasesDAO
+     * Questo metodo inizializza l'instanza di PhrasesDAO
      */
     private void createPhrasesDAO(){
         phrasesDAO = new PhrasesDAOImpl(con);

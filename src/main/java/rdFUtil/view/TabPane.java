@@ -1,5 +1,4 @@
 package rdFUtil.view;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -34,8 +33,8 @@ public class TabPane implements Initializable {
 	}
 	public void addMatch(ActionEvent actionEvent) throws RemoteException, NotBoundException {
 		/*RemoteMatch newMatch = (RemoteMatch) registry.lookup("newGame");
-		newMatch.addPlayer(client);*/
-          gameObservableList.add(newMatch);
+		newMatch.addPlayer(client);
+		gameObservableList.add(newMatch);*/
 	}
 
 
