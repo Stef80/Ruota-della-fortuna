@@ -8,6 +8,7 @@ import serverRdF.dbComm.UsersDTO;
 import serverRdF.emailRdF.EmailManager;
 
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.util.Random;
 
 /**
@@ -78,7 +79,7 @@ public class RegistrationManager {
      * @param email L'indirizzo email da controllare
      * @return <code>true</code> se l'indirizzo email non e' stato gia' utilizzato, <code>false</code> altrimenti
      */
-    public boolean checkEmail(String email) {
+    public boolean checkEmail(String email) throws SQLException {
         UsersDTO user = dbManager.getUserByEmail(email);
         if (user != null) {
             return false;
@@ -91,7 +92,7 @@ public class RegistrationManager {
      * @param nickname il nickname da controllare
      * @return <code>true</code> se il nickname non e' stato gia' utilizzato, <code>false</code> altrimenti
      */
-    public boolean checkNickname(String nickname) {
+    public boolean checkNickname(String nickname) throws SQLException {
         UsersDTO user = dbManager.getUserByNickname(nickname);
         if (user != null) {
             return false;
