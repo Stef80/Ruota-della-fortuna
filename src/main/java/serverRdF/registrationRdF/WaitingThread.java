@@ -6,6 +6,7 @@ import serverRdF.ServerImplementation;
 import serverRdF.dbComm.DBManager;
 
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 
 
 /**
@@ -16,29 +17,29 @@ public class WaitingThread extends Thread {
     private DBManager dbManager;
     private User user;
 
-    public WaitingThread(Client c, DBManager dbManager, User id){
+    public WaitingThread(Client c, DBManager dbManager, User id) {
         client = c;
         this.dbManager = dbManager;
         user = id;
     }
 
-    public void run(){
+    public void run() {
         int tenMininSec = 600000;
-        try{
+        try {
             sleep(tenMininSec);
-            try{
+            try {
                 client.notifyRegistrationResult(false);
-            }catch(RemoteException exc){
+            } catch (RemoteException exc) {
                 ServerImplementation.serverError(client);
             }
-        }catch(InterruptedException e){
-            try{
+        } catch (InterruptedException e) {
+            try {
                 client.notifyRegistrationResult(true);
-                boolean bool = dbManager.addUser(user);
+                boolean bool = dbManager.addUser(user, false); //todo da inserire nel costruttore il boolean isAdmin
                 if (!bool) {
                     ServerImplementation.serverError(client);
                 }
-            }catch(RemoteException exc){
+            } catch (RemoteException | SQLException exc) {
                 ServerImplementation.serverError(client);
             }
         }
