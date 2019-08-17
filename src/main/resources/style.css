@@ -3,3 +3,27 @@
     -fx-border-radius: 10px;
     -fx-background-radius: 10px;
 }
+#lettersTable {
+    -fx-background-color: #53c18d;
+    -fx-border-color:#FEFE00;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-border-width: 5px;
+}
+
+.stak-view{
+  -fx-background-color: #FEFE00;
+  -fx-border-color:#CB4335;
+  -fx-border-radius: 3px;
+  -fx-background-radius: 3px;
+  -fx-border-width: 2px;
+
+}
+.root{
+   -fx-background-color: #eefcf9;
+    -fx-border-color:#FEFE00;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+    -fx-border-width: 2px;
+
+   }

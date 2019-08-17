@@ -8,33 +8,37 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import rdFUtil.client.Client;
 import serverRdF.Server;
 
 import java.io.IOException;
 
 public class Controller {
 	@FXML
-	private TextField emailString;
+	private TextField emailText;
 	@FXML
-    private Button loginButton;
+	private Button loginButton;
 	@FXML
 	private Button resetButton;
 	@FXML
 	private Button registerButton;
-	private Server server ;
+	private Server server;
 
-	public Controller(Server server) {
+	public Controller(Server server, Client client) {
 		this.server = server;
 	}
 
-
-	public void login(ActionEvent actionEvent) throws IOException {
-
+	/**
+	 * Legge le credenziali ed effettua il login aprendo la finestra principale.
+	 *
+	 * @throws IOException
+	 */
+	public void login() throws IOException {
 
 		Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
 		Stage primaryStage = new Stage();
 		Scene scene = new Scene(root1);
-	//	scene.getStylesheets().add(getClass().getResource("sampleScene.css").toExternalForm());
+		//	scene.getStylesheets().add(getClass().getResource("sampleScene.css").toExternalForm());
 		primaryStage.setTitle("Weel of Fortune");
 		primaryStage.setScene(scene);
 		primaryStage.show();
@@ -42,11 +46,11 @@ public class Controller {
 		oldStage.hide();
 	}
 
-	public void register(ActionEvent actionEvent) throws IOException {
+	public void register() throws IOException {
 		Parent root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("registration_form_pane.fxml"));
 		Stage primaryStage = new Stage();
 		Scene scene = new Scene(root);
-	//	scene.getStylesheets().add(getClass().getResource("sampleScene.css").toExternalForm());
+		//	scene.getStylesheets().add(getClass().getResource("sampleScene.css").toExternalForm());
 		primaryStage.setTitle("Weel of Fortune");
 		primaryStage.setScene(scene);
 		primaryStage.show();
@@ -55,11 +59,11 @@ public class Controller {
 
 	}
 
-	public void reset(ActionEvent event) throws IOException {
+	public void reset() throws IOException {
 		Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("forgotten_password_pane.fxml"));
 		Stage primaryStage = new Stage();
 		Scene scene = new Scene(root1);
-	//	scene.getStylesheets().add(getClass().getResource("sampleScene.css").toExternalForm());
+		//	scene.getStylesheets().add(getClass().getResource("sampleScene.css").toExternalForm());
 		primaryStage.setTitle("Weel of Fortune");
 		primaryStage.setScene(scene);
 		primaryStage.show();

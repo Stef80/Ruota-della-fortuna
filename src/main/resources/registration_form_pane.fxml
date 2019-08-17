@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
+
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <AnchorPane prefHeight="500.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rdFUtil.view.RegistrationFormPanel">
    <children>
-      <JFXTextField layoutX="83.0" layoutY="89.0" AnchorPane.bottomAnchor="380.0" AnchorPane.rightAnchor="76.0" />
-      <JFXTextField layoutX="83.0" layoutY="203.0" AnchorPane.bottomAnchor="260.0" AnchorPane.rightAnchor="76.0" />
-      <JFXTextField layoutX="83.0" layoutY="270.0" AnchorPane.bottomAnchor="200.0" AnchorPane.rightAnchor="76.0" />
-      <JFXTextField layoutX="83.0" layoutY="171.0" AnchorPane.bottomAnchor="320.0" AnchorPane.rightAnchor="76.0" />
+      <TextField layoutX="83.0" layoutY="89.0" AnchorPane.bottomAnchor="380.0" AnchorPane.rightAnchor="76.0" />
+      <TextField layoutX="83.0" layoutY="203.0" AnchorPane.bottomAnchor="260.0" AnchorPane.rightAnchor="76.0" />
+      <TextField layoutX="83.0" layoutY="270.0" AnchorPane.bottomAnchor="200.0" AnchorPane.rightAnchor="76.0" />
+      <TextField layoutX="83.0" layoutY="171.0" AnchorPane.bottomAnchor="320.0" AnchorPane.rightAnchor="76.0" />
       <Label layoutX="45.0" layoutY="101.0" text="Name" AnchorPane.bottomAnchor="380.0" AnchorPane.rightAnchor="225.0" />
       <Label layoutX="44.0" layoutY="175.0" text="Surname" AnchorPane.bottomAnchor="320.0" AnchorPane.rightAnchor="225.0" />
       <Label layoutX="44.0" layoutY="220.0" text="Nick-Name" AnchorPane.bottomAnchor="260.0" AnchorPane.rightAnchor="225.0" />
       <Label layoutX="44.0" layoutY="287.0" text="e-mail" AnchorPane.bottomAnchor="200.0" AnchorPane.rightAnchor="225.0" />
       <Label layoutX="35.0" layoutY="353.0" text="password" AnchorPane.bottomAnchor="140.0" AnchorPane.rightAnchor="225.0" />
-      <JFXPasswordField layoutX="83.0" layoutY="349.0" AnchorPane.bottomAnchor="140.0" AnchorPane.rightAnchor="76.0" />
+      <PasswordField layoutX="83.0" layoutY="349.0" AnchorPane.bottomAnchor="140.0" AnchorPane.rightAnchor="76.0" />
       <Label layoutX="69.0" layoutY="46.0" text="The Weel of Fortune" AnchorPane.bottomAnchor="427.0" AnchorPane.leftAnchor="69.0" AnchorPane.rightAnchor="69.0">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <JFXButton fx:id="confirmButton" buttonType="RAISED" layoutX="100.0" layoutY="411.0" onAction="#confirm" prefHeight="32.0" prefWidth="80.0" ripplerFill="#2251dc" text="Conferma" />
+      <Button fx:id="confirmButton" layoutX="100.0" layoutY="411.0" onAction="#confirm" prefHeight="32.0" prefWidth="80.0" ripplerFill="#2251dc" text="Conferma" />
    </children>
 </AnchorPane>
