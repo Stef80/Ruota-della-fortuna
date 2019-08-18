@@ -11,6 +11,7 @@ public class Player {
     private int points;
     private int partialPoints;
     private int numJolly;
+    private String idPlayer;
 
     public Player(Client c) throws RemoteException{
         client = c;
@@ -18,6 +19,7 @@ public class Player {
         partialPoints = 0;
         numJolly = 0;
         nickname = c.getNickname();
+        idPlayer = c.getId();
     }
 
     public Client getClient(){
@@ -56,14 +58,17 @@ public class Player {
         partialPoints = 0;
     }
 
-    public void setNumJollyToZero(){
-        numJolly = 0;
-    }
-
     public String getNickname(){
         return nickname;
     }
 
+    public String getIdPlayer() {
+        return idPlayer;
+    }
+
+    public void setIdPlayer(String idPlayer) {
+        this.idPlayer = idPlayer;
+    }
 
     //metodi ereditati da Client con la delega
 

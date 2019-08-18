@@ -37,7 +37,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         onGoing = false;
         dbManager = db;
         emailmng = email;
-        manche = new Manche(dbManager, id);
+        manche = new Manche(dbManager, id, localDateTime);
         players = new ArrayList<Player>();
         observers = new ArrayList<Client>();
         turn = -1;
@@ -119,8 +119,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
 
             turn = rnd.nextInt(3);
             manche.setNumManche(1);
-            //TODO INIZIARE EFFETTIVAMENTE LA PARTITA
-
+            nextTurn(); //TODO forse non necessario vediamo dopo che abbiamo implementato nextTurn
         }catch(SQLException|RemoteException e) {
             try {
                 for (Client c : observers) {
@@ -141,22 +140,33 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     }
 
     /**
-     * Questo metodo conclude la manche se ci e' stato un vincitore
+     * Questo metodo conclude la manche
      *
-     * @param winner il vincitore della manche
+     * @param winner il vincitore della manche o <code>null</code> se non c'è stato alcun vincitore
      * @throws RemoteException
      */
     public void endManche(Player winner) throws RemoteException {
-        manche.endManche(winner);
-    }
-
-    /**
-     * Questo metodo conclude la manche se non ci e' stato un vincitore
-     *
-     * @throws RemoteException
-     */
-    public void endManche() throws RemoteException {
-        //TODO
+       manche.endManche(winner);
+       if(winner != null) {
+           for (Player p : players) {
+               if (p.equals(winner)){
+                   p.addPoints(p.getPartialPoints());
+                   p.partialPointsToZero();
+                   p.getClient().notifyMancheVictory();
+               }else{
+                   p.partialPointsToZero();
+                   p.getClient().notifyMancheResult(winner.getNickname());
+               }
+           }
+           for(Client c : observers){
+               c.notifyMancheResult(winner.getNickname());
+               c.notifyNewManche(manche.getNumManche());
+           }
+           for(Player p : players){
+               p.getClient().notifyNewManche(manche.getNumManche());
+           }
+           //TODO fine del match se la manche che si conlude è la quinta e il setting up della nuova frase (credo serva un metodo a se stante del tipo setPhrase) e dell'inizio della manche
+       }
     }
 
     /**
@@ -212,7 +222,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         for (Client client : observers) {
             client.notifyLeaver(name);
         }
-        endManche();
+        endManche(null);
         endMatch(false);
     }
 

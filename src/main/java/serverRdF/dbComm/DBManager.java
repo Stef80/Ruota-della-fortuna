@@ -19,6 +19,7 @@ public class DBManager implements DBManagerInterface{
     private UsersDAO usersDAO;
     private MovesDAO movesDAO;
     private ManchesDAO manchesDAO;
+    private MancheWinnersDAO mancheWinnersDAO;
 
     private DBManager() throws SQLException {
         //TODO connessione con database
@@ -151,13 +152,29 @@ public class DBManager implements DBManagerInterface{
         return movesDAO.addMove(move);
     }
 
+    /**
+     * Questo metodo inizializza l'istanza di ManchesDAO
+     */
     private void createManchesDAO(){
         manchesDAO = new ManchesDAOImpl(con);
     }
 
+    @Override
     public boolean addManche(ManchesDTO manche) throws SQLException{
         if(manchesDAO==null)
             createManchesDAO();
         return manchesDAO.addManche(manche);
+    }
+
+    /**
+     * Questo metodo inizializza l'istanza di MancheWinnersDAO
+     */
+    private void createMancheWinnersDAO(){mancheWinnersDAO = new MancheWinnersDAOImpl(con);}
+
+    @Override
+    public boolean addMancheWinner(String idPlayer, ManchesDTO manche, int amount) throws SQLException{
+        if(mancheWinnersDAO==null)
+            createMancheWinnersDAO();
+        return mancheWinnersDAO.addMancheWinner(idPlayer,manche,amount);
     }
 }

@@ -122,7 +122,26 @@ public interface DBManagerInterface {
      */
     boolean addMove(Move move) throws SQLException;
 
+
+    /**
+     * Questo metodo aggiunge nel database una manche giocata
+     *
+     * @param manche la manche da inserire
+     * @return <code>true</code> se l'inserimento va a buon fine, altrimenti <code>false</code>
+     * @throws SQLException
+     */
     boolean addManche(ManchesDTO manche) throws SQLException;
+
+    /**
+     * Questo metodo aggiunge nel database il vincitore di una manche giocata
+     *
+     * @param idPlayer l'id del vincitore
+     * @param manche la manche giocata
+     * @param amount il punteggio ottenuto nella manche
+     * @return <code>true</code> se l'inserimento va a buon fine, altrimenti <code>false</code>
+     * @throws SQLException
+     */
+    boolean addMancheWinner(String idPlayer, ManchesDTO manche, int amount) throws SQLException;
 
     //TODO tutti i metodi che servono agli altri manager e a Match. ricordarsi di aggiungere man mano i metodi utilizzati nelle altre classi per non perderli.
 }
