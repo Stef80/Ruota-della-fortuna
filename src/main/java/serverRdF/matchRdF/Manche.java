@@ -1,6 +1,7 @@
 package serverRdF.matchRdF;
 
 import serverRdF.dbComm.DBManager;
+import serverRdF.dbComm.ManchesDTO;
 import serverRdF.dbComm.PhrasesDTO;
 import serverRdF.matchRdF.Turn;
 
@@ -9,25 +10,25 @@ import java.util.List;
 
 public class Manche {
 
-    private List<Turn> turns;
+    private Turn turns;
     private List<PhrasesDTO> phrases;
     private int numManche;
     private DBManager dbManager;
     private String match;
 
     public Manche(DBManager dbmng, String id){
-        turns = new ArrayList<Turn>();
+        turns = new Turn(this);
         phrases = new ArrayList<PhrasesDTO>();
         numManche = 0;
         dbManager = dbmng;
         this.match = id;
     }
 
-    public List<Turn> getTurns() {
+    public Turn getTurns() {
         return turns;
     }
 
-    public void setTurns(List<Turn> turns) {
+    public void setTurns(Turn turns) {
         this.turns = turns;
     }
 
@@ -63,5 +64,12 @@ public class Manche {
         this.match = match;
     }
 
+
+    public void endManche(Player winner){
+        ManchesDTO manche = new ManchesDTO();
+        manche.setNumber(numManche);
+        //TODO
+        if()
+    }
     //TODO metodi per gestione (esempio quando inizia nuova manche o finisce una manche con conseguente salvataggio nel DB)
 }

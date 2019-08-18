@@ -24,4 +24,6 @@ public interface Client extends Remote {
     public void notifyLeaver(String nickname) throws RemoteException;
 
     public void notifyMatchAbort(String reason) throws RemoteException;
+
+    public void notifyMatchStart() throws RemoteException;
 }

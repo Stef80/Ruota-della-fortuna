@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Match extends UnicastRemoteObject implements RemoteMatch {
 
@@ -74,6 +75,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     }
 
     public void startMatch() throws RemoteException {
+        Random rnd = new Random();
         onGoing = true;
         try {
             String idPlayer1 = players.get(0).getNickname();
@@ -106,11 +108,20 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                 }catch(SQLException|RemoteException e){
                     ServerImplementation.serverError(null);
                 }
-                //TODO
             }
 
+            for (Client c : observers) {
+                c.notifyMatchStart();
+            }
+            for (Player p : players) {
+                p.getClient().notifyMatchStart();
+            }
 
-        }catch(SQLException e) {
+            turn = rnd.nextInt(3);
+            manche.setNumManche(1);
+            //TODO INIZIARE EFFETTIVAMENTE LA PARTITA
+
+        }catch(SQLException|RemoteException e) {
             try {
                 for (Client c : observers) {
                     c.notifyMatchAbort("Partita annullata: errore di comunicazione con il server");
@@ -136,7 +147,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
      * @throws RemoteException
      */
     public void endManche(Player winner) throws RemoteException {
-        //TODO
+        manche.endManche(winner);
     }
 
     /**

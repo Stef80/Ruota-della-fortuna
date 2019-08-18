@@ -18,6 +18,7 @@ public class DBManager implements DBManagerInterface{
     private MatchesDAO matchesDAO;
     private UsersDAO usersDAO;
     private MovesDAO movesDAO;
+    private ManchesDAO manchesDAO;
 
     private DBManager() throws SQLException {
         //TODO connessione con database
@@ -148,5 +149,15 @@ public class DBManager implements DBManagerInterface{
         if(movesDAO==null)
             createMovesDAO();
         return movesDAO.addMove(move);
+    }
+
+    private void createManchesDAO(){
+        manchesDAO = new ManchesDAOImpl(con);
+    }
+
+    public boolean addManche(ManchesDTO manche) throws SQLException{
+        if(manchesDAO==null)
+            createManchesDAO();
+        return manchesDAO.addManche(manche);
     }
 }
