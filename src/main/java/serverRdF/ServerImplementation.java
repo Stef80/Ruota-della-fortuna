@@ -20,10 +20,14 @@ public class ServerImplementation {
      * Viene richiamato in caso di eccezioni come RemoteException o SQLException
      */
     public static void serverError(Client c){
-        try {
-            c.notifyServerError();
-        } catch (RemoteException ex) {
-            System.err.println(ex.getMessage());
+        if(c == null){
+            System.out.println("Server error");
+        }else {
+            try {
+                c.notifyServerError();
+            } catch (RemoteException ex) {
+                System.err.println(ex.getMessage());
+            }
         }
     }
 }

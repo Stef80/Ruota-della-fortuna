@@ -16,6 +16,7 @@ public class DBManager implements DBManagerInterface{
     private PhrasesDAO phrasesDAO;
     private MatchesDAO matchesDAO;
     private UsersDAO usersDAO;
+    private MovesDAO movesDAO;
 
     private DBManager() throws SQLException {
         //TODO connessione con database
@@ -47,6 +48,10 @@ public class DBManager implements DBManagerInterface{
         return matchesDAO.addMatch(new MatchesDTO(id, time));
     }
 
+    public boolean deleteMatch(String idMatch) throws SQLException{
+        return matchesDAO.deleteMatch(idMatch);
+    }
+
     /**
      * Questo metodo inizializza l'instanza di UsersDAO
      */
@@ -54,6 +59,8 @@ public class DBManager implements DBManagerInterface{
         usersDAO = new UsersDAOImpl(con);
     }
     public boolean addUser(User user, boolean isAdmin) throws SQLException {
+        if(usersDAO==null)
+            createUsersDAO();
         return usersDAO.addUser(new UsersDTO(user.getId(), isAdmin, user.getName(), user.getSurname(), user.getNickname(), user.getEmail(), user.getPasswordC()));
     }
 
@@ -121,5 +128,19 @@ public class DBManager implements DBManagerInterface{
         if(phrasesDAO ==null)
             createPhrasesDAO();
        return phrasesDAO.getAllPhrases();
+    }
+
+    /**
+     * Questo metodo inizializza l'instanza di MovesDAO
+     */
+    private void createMovesDAO(){
+        usersDAO = new UsersDAOImpl(con);
+    }
+
+    @Override
+    public boolean addMove(MovesDTO move) throws SQLException{
+        if(movesDAO==null)
+            createMovesDAO();
+        return movesDAO.addMove(move);
     }
 }

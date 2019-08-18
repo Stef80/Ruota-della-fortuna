@@ -55,6 +55,14 @@ public interface DBManagerInterface {
     UsersDTO getUserById(String id) throws SQLException;
 
     /**
+     * Questo metodo ritorna tutti gli admin registrati alla piattaforma
+     *
+     * @return La lista di tutti gli admin registrati
+     * @throws SQLException
+     */
+    List<UsersDTO> getAllAdmin() throws SQLException;
+
+    /**
      * Questo metodo permette di eliminare un utente presente nel database
      * @param id id dell'utente
      * @return <code>true</code> se l'inserimento e' andato a buon fine, altrimenti <code>false</code>
@@ -93,6 +101,25 @@ public interface DBManagerInterface {
      * @throws SQLException
      */
     List<PhrasesDTO> getAllPhrases() throws SQLException;
+
+
+    /**
+     * Questo metodo cancella una partita dal database
+     *
+     * @param idMatch id del match da cancellare
+     * @return <code>true</code> se l'eliminazione va a buon fine, <code>false</code> altrimenti
+     * @throws SQLException
+     */
+    boolean deleteMatch(String idMatch) throws SQLException;
+
+    /**
+     * Questo metodo aggiunge nel database una mossa
+     *
+     * @param move la mossa da inserire
+     * @return <code>true</code> se l'inserimento va a buon fine, altrimenti <code>false</code>
+     * @throws SQLException
+     */
+    boolean addMove(MovesDTO move) throws SQLException;
 
     //TODO tutti i metodi che servono agli altri manager e a Match. ricordarsi di aggiungere man mano i metodi utilizzati nelle altre classi per non perderli.
 }

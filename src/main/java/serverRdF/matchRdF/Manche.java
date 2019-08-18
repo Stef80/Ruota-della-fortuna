@@ -1,5 +1,6 @@
 package serverRdF.matchRdF;
 
+import serverRdF.dbComm.DBManager;
 import serverRdF.dbComm.PhrasesDTO;
 import serverRdF.matchRdF.Turn;
 
@@ -11,11 +12,13 @@ public class Manche {
     private List<Turn> turns;
     private List<PhrasesDTO> phrases;
     private int numManche;
+    private DBManager dbManager;
 
-    public Manche(){
+    public Manche(DBManager dbmng){
         turns = new ArrayList<Turn>();
         phrases = new ArrayList<PhrasesDTO>();
         numManche = 0;
+        dbManager = dbmng;
     }
 
     public List<Turn> getTurns() {

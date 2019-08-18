@@ -2,9 +2,16 @@ package serverRdF.matchRdF;
 
 import rdFUtil.MatchData;
 import rdFUtil.client.Client;
+import serverRdF.Server;
+import serverRdF.ServerImplementation;
+import serverRdF.dbComm.DBManager;
+import serverRdF.dbComm.PhrasesDTO;
+import serverRdF.dbComm.UsersDTO;
+import serverRdF.emailRdF.EmailManager;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -20,9 +27,11 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     private int turn;
     private boolean firstTurn;
     private LocalDateTime creationTime;
+    private DBManager dbManager;
+    private EmailManager emailmng;
 
 
-    public Match(String id, LocalDateTime localDateTime) throws RemoteException {
+    public Match(String id, LocalDateTime localDateTime, DBManager db, EmailManager email) throws RemoteException {
         this.id = id;
         onGoing = false;
         manche = new Manche();
@@ -31,6 +40,8 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         turn = -1;
         firstTurn = true;
         creationTime = localDateTime;
+        dbManager = db;
+        emailmng = email;
     }
 
     public int wheelSpin() throws RemoteException {
@@ -62,6 +73,59 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     }
 
     public void startMatch() throws RemoteException {
+        onGoing = true;
+        try {
+            String idPlayer1 = players.get(0).getNickname();
+            String idPlayer2 = players.get(1).getNickname();
+            String idPlayer3 = players.get(2).getNickname();
+
+            List<PhrasesDTO> phrases = dbManager.get5Phrases(idPlayer1, idPlayer2, idPlayer3);
+
+            if(phrases.size() <= 5){
+                try {
+                    for (Client c : observers) {
+                        c.notifyMatchAbort("Partita annullata: non ci sono abbastanza frasi");
+                    }
+                    for (Player p : players) {
+                        p.getClient().notifyMatchAbort("Partita annullata: non ci sono abbastanza frasi");
+                    }
+                    MatchManager.deleteMatch(id);
+                    boolean bool = dbManager.deleteMatch(id);
+                    if (!bool) {
+                        throw new SQLException();
+                    }
+                    List<UsersDTO> admins = dbManager.getAllAdmin();
+                    String email = "";
+                    String obj = "Mancanza di frasi in DBRdF";
+                    String txt = "Una o piu' partite sono state annullate a causa della mancanza di frasi nel database. Per favore aggiungere nuove frasi attraverso la piattaforma AdminRdf / ServerRdF";
+                    for(UsersDTO admin : admins) {
+                        email = admin.getEmail();
+                        emailmng.sendEmail(email, obj, txt);
+                    }
+                }catch(SQLException|RemoteException e){
+                    ServerImplementation.serverError(null);
+                }
+                //TODO
+            }
+
+
+        }catch(SQLException e) {
+            try {
+                for (Client c : observers) {
+                    c.notifyMatchAbort("Partita annullata: errore di comunicazione con il server");
+                }
+                for (Player p : players) {
+                    p.getClient().notifyMatchAbort("Partita annullata: errore di comunicazione con il server");
+                }
+                MatchManager.deleteMatch(id);
+                boolean bool = dbManager.deleteMatch(id);
+                if (!bool) {
+                    throw new SQLException();
+                }
+            } catch (SQLException | RemoteException ex) {
+                ServerImplementation.serverError(null);
+            }
+        }
     }
 
     /**
@@ -103,6 +167,9 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         else {
             players.add(new Player(c));
             full = false;
+            if(players.size() == 3){
+                startMatch();
+            }
         }
         return full;
     }

@@ -47,4 +47,9 @@ public class ClientImplementation implements Client{
 	public void notifyLeaver(String nickname) throws RemoteException {
 
 	}
+
+	@Override
+	public void notifyMatchAbort(String reason) throws RemoteException {
+
+	}
 }

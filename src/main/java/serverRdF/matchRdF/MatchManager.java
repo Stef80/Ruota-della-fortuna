@@ -3,6 +3,7 @@ package serverRdF.matchRdF;
 import rdFUtil.client.Client;
 import serverRdF.ServerImplementation;
 import serverRdF.dbComm.DBManager;
+import serverRdF.emailRdF.EmailManager;
 
 import java.rmi.RemoteException;
 import java.time.LocalDateTime;
@@ -16,13 +17,15 @@ import java.util.UUID;
  * Permette la creazione e la partecipazione alle partite, le quali sono contenute in una tabella hash accessibile tramite l'apposito getter.
  */
 public class MatchManager {
-    private HashMap<String, Match> matches;
+    private static HashMap<String, Match> matches;
     private static MatchManager matchManager = null;
     private DBManager dbManager;
+    private EmailManager emailmng;
 
-    private MatchManager(DBManager dbmng) {
+    private MatchManager(DBManager dbmng, EmailManager email) {
         dbManager = dbmng;
         matches = new HashMap<String, Match>();
+        emailmng = email;
     }
 
 
@@ -30,9 +33,9 @@ public class MatchManager {
      * @param dbmng //TODO
      * @return il singleton di tipo {@link MatchManager}
      */
-    public static MatchManager createMatchManager(DBManager dbmng) {
+    public static MatchManager createMatchManager(DBManager dbmng, EmailManager email) {
         if (matchManager == null) {
-            matchManager = new MatchManager(dbmng);
+            matchManager = new MatchManager(dbmng, email);
             return matchManager;
         } else
             return matchManager;
@@ -59,7 +62,7 @@ public class MatchManager {
                     System.err.println(ex.getMessage());
                 }
             }
-            match = new Match(id, currentTime);
+            match = new Match(id, currentTime, dbManager, emailmng);
             match.addPlayer(c);
             matches.put(id, match);
             return match;
@@ -126,6 +129,10 @@ public class MatchManager {
             }
         }
         return match;
+    }
+
+    public static void deleteMatch(String idMatch){
+        matches.remove(idMatch);
     }
 
     public HashMap<String, Match> getMatches() {
