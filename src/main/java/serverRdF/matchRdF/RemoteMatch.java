@@ -1,9 +1,11 @@
 package serverRdF.matchRdF;
 
+import rdFUtil.MatchData;
 import rdFUtil.client.Client;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.List;
 
 
 public interface RemoteMatch extends Remote {
@@ -36,4 +38,9 @@ public interface RemoteMatch extends Remote {
     public void askNotify() throws RemoteException;
 
     public String getMatchId() throws RemoteException;
+
+    public MatchData createMatchData() throws  RemoteException;
+
+    public boolean isAviable()throws RemoteException;
+
 }

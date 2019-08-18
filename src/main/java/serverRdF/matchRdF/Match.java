@@ -189,5 +189,10 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         return result;
     }
 
+    @Override
+    public boolean isAviable() throws RemoteException {
+        return onGoing;
+    }
+
     //TODO
 }

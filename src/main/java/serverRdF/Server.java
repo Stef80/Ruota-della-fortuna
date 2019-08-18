@@ -15,10 +15,10 @@ import java.util.ArrayList;
 
 public interface Server extends Remote {
 
-   //ritorna false se la mail esiste già , ture altrimenti.
+   //ritorna true se la mail esiste già , false altrimenti.
     public boolean checkEMail(String email)throws RemoteException;
 
-   //ritorna false se il nick esiste già , true altrimenti.
+   //ritorna true se il nick esiste già , false altrimenti.
     public boolean checkNickName(String name)throws RemoteException;
 
     public OTPHelper signUp(User form, Client c) throws RemoteException;
@@ -51,5 +51,7 @@ public interface Server extends Remote {
 
     public void averageManches(Client c) throws RemoteException;
 
-    public void resetPassword(Client c) throws RemoteException;
+    public void resetPassword(Client c, String mail) throws RemoteException;
+
+    public boolean checkPassword(String password);
 }

@@ -30,13 +30,12 @@ public class RegistrationFormPanel {
 	@FXML
 	TextField eMail;
 	@FXML
+	Button confirmButton;
+	@FXML
 	private PasswordField password;
 	private Server server ;
-	private Registry registry;
 	private Client client ;
 	private User user ;
-	@FXML
-	Button confirmButton;
 
 
 
@@ -51,8 +50,6 @@ public class RegistrationFormPanel {
 	*
 	* */
 	public void confirm() throws IOException, NotBoundException {
-		//acquisisce il riferimento al server
-		server = (Server) registry.lookup("User");
 		//se la mail non esiste visualizza notifica
 		if(!server.checkEMail(eMail.getText())) {
 			Notifications notification = Notifications.create()
@@ -82,7 +79,7 @@ public class RegistrationFormPanel {
 		Parent root = FXMLLoader.load(Thread.currentThread().getClass().getResource("main_pane.fxml"));
 		Scene scene = new Scene(root);
 		Stage primaryStage = new Stage();
-		//scene.getStylesheets().add(getClass().getResource("/sample/resources/sampleScene.css").toExternalForm());
+		scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 		primaryStage.setTitle("Weel of Fortune");
 		primaryStage.setScene(scene);
 		primaryStage.show();

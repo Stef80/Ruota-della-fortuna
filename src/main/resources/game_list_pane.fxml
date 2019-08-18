@@ -48,7 +48,7 @@
             <Label fx:id="label3" text="id3" />
          </children>
       </VBox>
-      <Label fx:id="validateLabel" prefWidth="60.0" text="Label" />
+      <Label fx:id="aviableLabel" prefWidth="60.0" text="Label" />
       <Button fx:id="observeButton" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="60.0" text="observe" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" wrapText="true">
          <HBox.margin>
             <Insets right="20.0" />
