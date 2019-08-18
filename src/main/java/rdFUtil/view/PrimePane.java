@@ -19,6 +19,8 @@ public class PrimePane extends Application {
     private Button registerButton;
     private Server server;
 
+    public PrimePane(){}
+
     public PrimePane(Server server){
         this.server = server;
     }
@@ -32,6 +34,7 @@ public class PrimePane extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+
 
 
 }
