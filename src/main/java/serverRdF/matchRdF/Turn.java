@@ -8,6 +8,10 @@ package serverRdF.matchRdF;
         import java.util.ArrayList;
         import java.util.List;
 
+
+/**
+ * Questa classe contiene tutte le mosse eseguite in un turno
+  */
 public class Turn {
 
     private List<Move> moves;
@@ -18,11 +22,15 @@ public class Turn {
         this.manche = manche;
     }
 
-    //TODO
-
+    /**
+     * Questo metodo si occupa di salvare tutte le mosse eseguite da un giocatore in suo turno alla fine della manche
+     *
+     * @param dbManager riferimento all'oggetto di tipo {@link DBManager} per l'accesso al database
+     * @return <code>true</code> se l'operazione va a buon fine, <code>false</code> altrimenti
+     */
     public boolean saveMoves(DBManager dbManager){
         boolean success = true;
-        for(MovesDTO move : moves){
+        for(Move move : moves){
             try {
                 if(success == true) {
                     success = dbManager.addMove(move);
@@ -36,16 +44,21 @@ public class Turn {
         return success;
     }
 
-    public void addMove(DBManager dbManager, String player, String moveType, int outcome){
-        MovesDTO move = new MovesDTO();
-        try {
-            move.setPlayer(dbManager.getUserByNickname(player));
-        }catch(SQLException e){
-            e.getErrorCode();
-        }
+    /**
+     * Questo metodo aggiunge una mossa appena eseguita all lista.
+     *
+     * @param idPlayer l'id del giocatore che ha eseguito la mossa
+     * @param moveType il tipo di mossa eseguita
+     * @param outcome il risultato della mossa
+     */
+    public void addMove(String idPlayer, String moveType, int outcome){
+        Move move = new Move();
+        move.setIdMatch(manche.getMatch());
+        move.setNumManche(manche.getNumManche());
+        move.setPlayer(idPlayer);
         move.setMoveType(moveType);
-        move.setOutcome(outcome);
-        move.setManche(new ManchesDTO(manche.getNumManche(),));
+        move.setOutCome(outcome);
+
+        moves.add(move);
     }
-    //TODO metodo per svuotare la lista e salvare nel DB
 }

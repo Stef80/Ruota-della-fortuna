@@ -13,12 +13,14 @@ public class Manche {
     private List<PhrasesDTO> phrases;
     private int numManche;
     private DBManager dbManager;
+    private String match;
 
-    public Manche(DBManager dbmng){
+    public Manche(DBManager dbmng, String id){
         turns = new ArrayList<Turn>();
         phrases = new ArrayList<PhrasesDTO>();
         numManche = 0;
         dbManager = dbmng;
+        this.match = id;
     }
 
     public List<Turn> getTurns() {
@@ -43,6 +45,22 @@ public class Manche {
 
     public void setNumManche(int numManche) {
         this.numManche = numManche;
+    }
+
+    public DBManager getDbManager() {
+        return dbManager;
+    }
+
+    public void setDbManager(DBManager dbManager) {
+        this.dbManager = dbManager;
+    }
+
+    public String getMatch() {
+        return match;
+    }
+
+    public void setMatch(String match) {
+        this.match = match;
     }
 
     //TODO metodi per gestione (esempio quando inizia nuova manche o finisce una manche con conseguente salvataggio nel DB)

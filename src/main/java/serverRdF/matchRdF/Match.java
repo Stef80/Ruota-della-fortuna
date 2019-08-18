@@ -34,14 +34,15 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     public Match(String id, LocalDateTime localDateTime, DBManager db, EmailManager email) throws RemoteException {
         this.id = id;
         onGoing = false;
-        manche = new Manche();
+        dbManager = db;
+        emailmng = email;
+        manche = new Manche(dbManager, id);
         players = new ArrayList<Player>();
         observers = new ArrayList<Client>();
         turn = -1;
         firstTurn = true;
         creationTime = localDateTime;
-        dbManager = db;
-        emailmng = email;
+
     }
 
     public int wheelSpin() throws RemoteException {

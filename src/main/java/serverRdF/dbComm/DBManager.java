@@ -1,6 +1,7 @@
 package serverRdF.dbComm;
 
 import rdFUtil.logging.User;
+import serverRdF.matchRdF.Move;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -98,6 +99,11 @@ public class DBManager implements DBManagerInterface{
         return false;
     }
 
+    public List<UsersDTO> getAllAdmin() throws SQLException{
+        //TODO
+        return null;
+    }
+
     /**
      * Questo metodo inizializza l'instanza di PhrasesDAO
      */
@@ -134,13 +140,11 @@ public class DBManager implements DBManagerInterface{
      * Questo metodo inizializza l'instanza di MovesDAO
      */
     private void createMovesDAO(){
-        usersDAO = new UsersDAOImpl(con);
+        movesDAO = new MovesDAOImpl(con);
     }
 
     @Override
-    public boolean addMove(MovesDTO move) throws SQLException{
-
-        //TODO da mofificare perchè così richiede troppe query alla classe TURN stasera lo faccio
+    public boolean addMove(Move move) throws SQLException{
         if(movesDAO==null)
             createMovesDAO();
         return movesDAO.addMove(move);

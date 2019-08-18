@@ -1,6 +1,7 @@
 package serverRdF.dbComm;
 
 import rdFUtil.logging.User;
+import serverRdF.matchRdF.Move;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -119,7 +120,7 @@ public interface DBManagerInterface {
      * @return <code>true</code> se l'inserimento va a buon fine, altrimenti <code>false</code>
      * @throws SQLException
      */
-    boolean addMove(MovesDTO move) throws SQLException;
+    boolean addMove(Move move) throws SQLException;
 
     //TODO tutti i metodi che servono agli altri manager e a Match. ricordarsi di aggiungere man mano i metodi utilizzati nelle altre classi per non perderli.
 }
