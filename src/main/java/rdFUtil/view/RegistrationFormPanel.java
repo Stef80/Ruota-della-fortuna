@@ -1,6 +1,6 @@
 package rdFUtil.view;
 
-import com.jfoenix.controls.JFXButton;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -16,8 +16,6 @@ import rdFUtil.client.Client;
 import rdFUtil.logging.User;
 import serverRdF.Server;
 import java.io.IOException;
-import java.rmi.NotBoundException;
-import java.rmi.registry.Registry;
 
 public class RegistrationFormPanel {
 
@@ -49,7 +47,7 @@ public class RegistrationFormPanel {
 	* visualizza unafinestra di errore altrimenti
 	*
 	* */
-	public void confirm() throws IOException, NotBoundException {
+	public void confirm() throws IOException {
 		//se la mail non esiste visualizza notifica
 		if(!server.checkEMail(eMail.getText())) {
 			Notifications notification = Notifications.create()

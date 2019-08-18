@@ -14,8 +14,6 @@ import rdFUtil.MatchData;
 import rdFUtil.client.Client;
 import serverRdF.Server;
 import serverRdF.matchRdF.RemoteMatch;
-
-import javax.swing.text.html.ImageView;
 import java.io.IOException;
 import java.rmi.RemoteException;
 
@@ -32,10 +30,6 @@ public class GameView extends ListCell<RemoteMatch> {
 	private Button observeButton;
 	@FXML
 	private Button joinButton;
-	@FXML
-	private ImageView weel;
-	@FXML
-	private Button jollyButton;
 
 	private FXMLLoader loader;
 	private Parent pane;
@@ -47,9 +41,6 @@ public class GameView extends ListCell<RemoteMatch> {
 		this.server = server;
 		this.client = client;
 		this.match = match;
-	}
-
-	public GameView() {
 	}
 
 	@Override
@@ -66,7 +57,7 @@ public class GameView extends ListCell<RemoteMatch> {
 				try {
 					pane = loader.load();
 					Scene scene = new Scene(pane);
-					scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+					//scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -84,6 +75,7 @@ public class GameView extends ListCell<RemoteMatch> {
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
+
 			MatchData finalPlayers = players;
 			joinButton.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
@@ -93,7 +85,7 @@ public class GameView extends ListCell<RemoteMatch> {
 						boolean aviable = match.addPlayer(client);
 						setAviableLabel(aviable);
 						if(label2 == null){
-						label2.setText(finalPlayers.getPlayer2());
+							label2.setText(finalPlayers.getPlayer2());
 						}else{
 							label3.setText(finalPlayers.getPlayer3());
 						}

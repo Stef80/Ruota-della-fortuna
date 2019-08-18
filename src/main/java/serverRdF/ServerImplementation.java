@@ -1,11 +1,18 @@
 package serverRdF;
 
+import rdFUtil.MatchData;
 import rdFUtil.client.Client;
+import rdFUtil.logging.Login;
+import rdFUtil.logging.User;
+import serverRdF.matchRdF.RemoteMatch;
+import serverRdF.registrationRdF.OTPHelper;
 
+import java.io.File;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-public class ServerImplementation {
+public class ServerImplementation implements Server{
 
 
 
@@ -25,5 +32,100 @@ public class ServerImplementation {
         } catch (RemoteException ex) {
             System.err.println(ex.getMessage());
         }
+    }
+
+    @Override
+    public boolean checkEMail(String email) throws RemoteException {
+        return false;
+    }
+
+    @Override
+    public boolean checkNickName(String name) throws RemoteException {
+        return false;
+    }
+
+    @Override
+    public OTPHelper signUp(User form, Client c) throws RemoteException {
+        return null;
+    }
+
+    @Override
+    public void signIn(Login form, Client c) throws RemoteException {
+
+    }
+
+    @Override
+    public ArrayList<MatchData> visualizeMatch(Client c) throws RemoteException {
+        return null;
+    }
+
+    @Override
+    public RemoteMatch createMatch(Client c) throws RemoteException {
+        return null;
+    }
+
+    @Override
+    public RemoteMatch joinMatch(Client c, String idMatch) throws RemoteException {
+        return null;
+    }
+
+    @Override
+    public RemoteMatch observeMatch(Client c, String idMatch) throws RemoteException {
+        return null;
+    }
+
+    @Override
+    public void addPhrases(File file, Client c) throws RemoteException {
+
+    }
+
+    @Override
+    public void changeName(String name, Client c) throws RemoteException {
+
+    }
+
+    @Override
+    public void changeSurname(String surname, Client c) throws RemoteException {
+
+    }
+
+    @Override
+    public void changeNickname(String nickname, Client c) throws RemoteException {
+
+    }
+
+    @Override
+    public void changePassword(String password, Client c) throws RemoteException {
+
+    }
+
+    @Override
+    public void checkPlayer(Client c) throws RemoteException {
+
+    }
+
+    @Override
+    public void checkPerPlayer(String nickname, Client c) throws RemoteException {
+
+    }
+
+    @Override
+    public void bestMove(Client c) throws RemoteException {
+
+    }
+
+    @Override
+    public void averageManches(Client c) throws RemoteException {
+
+    }
+
+    @Override
+    public void resetPassword(Client c, String mail) throws RemoteException {
+
+    }
+
+    @Override
+    public boolean checkPassword(String password) {
+        return false;
     }
 }
