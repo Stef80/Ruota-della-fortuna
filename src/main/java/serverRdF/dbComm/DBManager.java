@@ -139,6 +139,8 @@ public class DBManager implements DBManagerInterface{
 
     @Override
     public boolean addMove(MovesDTO move) throws SQLException{
+
+        //TODO da mofificare perchè così richiede troppe query alla classe TURN stasera lo faccio
         if(movesDAO==null)
             createMovesDAO();
         return movesDAO.addMove(move);
