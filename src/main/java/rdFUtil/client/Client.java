@@ -177,10 +177,41 @@ public interface Client extends Remote {
     public void updatePhrase(boolean[] phrase) throws RemoteException;
 
     /**
-     * Una versione piu' semplice di {@link #updatePhrase(boolean[])} per aggiornare il tabellone senza dover utilizzare l'array dell'intera frase
+     * Una versione piu' semplice di {@link #updatePhrase(boolean[])} per aggiornare il tabellone senza dover utilizzare l'array dell'intera frase e in piu' notifica quanti punti ha fatto guadagnare
      *
      * @param letter la lettera chiamata
+     * @param amount il punteggio guadagnato per ogni lettera rivelata
      * @throws RemoteException
      */
-    public void updatePhrase(char letter) throws RemoteException;
+    public void updatePhrase(char letter, int amount) throws RemoteException;
+
+    /**
+     * Notifica al client che il tempo per concludere la mossa e' finito
+     *
+     * @throws RemoteException
+     */
+    public void notifyTimeOut() throws RemoteException;
+
+    /**
+     * Questo metodo visualizza il risulato ottenuto da un giro di ruota
+     *
+     * @param risultato il risultato ottenuto
+     * @throws RemoteException
+     */
+    public void notifyWheelResult(String risultato) throws RemoteException;
+
+    /**
+     * Chiede al giocatore che ha effettuato un errore se vuole usarlo
+     *
+     * @throws RemoteException
+     */
+    public void askForJolly() throws RemoteException;
+
+    /**
+     * Notifica che il giocatore attivo ha commesso un errore, come far scadere il timer o eseguire una mossa illegale
+     *
+     * @param name il nickname del giocatore
+     * @throws RemoteException
+     */
+    public void notifyPlayerError(String name) throws RemoteException;
 }

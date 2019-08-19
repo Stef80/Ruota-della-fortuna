@@ -7,8 +7,22 @@ import java.rmi.RemoteException;
 
 
 public interface RemoteMatch extends Remote {
+
+    /**
+     * Metodo utilizzato dal client per girarare la ruota
+     *
+     * @return Il risultato ottenuto o <code>0</code> se non e' possibile chiamare una consonante (ad esempio ottenendo "PASSA")
+     * @throws RemoteException
+     */
     public int wheelSpin() throws RemoteException;
 
+    /**
+     * Metodo utilizzato dal client per inviare una consonante
+     *
+     * @param letter la consonante scelta
+     * @param amount la quantita' di punti che spettano per ogni lettera rivelata
+     * @throws RemoteException
+     */
     public void giveConsonant(char letter, int amount) throws RemoteException;
 
     public void giveVocal(char letter) throws RemoteException;

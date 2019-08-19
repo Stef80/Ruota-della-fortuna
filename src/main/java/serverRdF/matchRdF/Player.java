@@ -38,11 +38,11 @@ public class Player {
         return numJolly;
     }
 
-    public void addPoints(int score){
+    public void updatePoints(int score){
         points += score;
     }
 
-    public void updateScore(int score){
+    public void updatePartialPoints(int score){
         partialPoints += score;
     }
 

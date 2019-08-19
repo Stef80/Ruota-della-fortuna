@@ -1,18 +1,18 @@
 package serverRdF.matchRdF;
 
 public class Move {
-    private String player;
+    private String idPlayer;
     private String moveType;
     private int outCome;
     private String idMatch;
     private int numManche;
 
     public String getPlayer() {
-        return player;
+        return idPlayer;
     }
 
     public void setPlayer(String player) {
-        this.player = player;
+        this.idPlayer = player;
     }
 
     public String getMoveType() {
@@ -48,7 +48,7 @@ public class Move {
     }
 
     public Move(String player, String moveType, int outCome, String idMatch, int numManche) {
-        this.player = player;
+        this.idPlayer = player;
         this.moveType = moveType;
         this.outCome = outCome;
         this.idMatch = idMatch;

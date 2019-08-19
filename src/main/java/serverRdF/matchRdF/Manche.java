@@ -84,6 +84,7 @@ public class Manche {
         manche.setMatch(new MatchesDTO(match, matchTime));
         try {
             dbManager.addManche(manche);
+            turns.saveMoves(dbManager);
             if(winner != null){
                 dbManager.addMancheWinner(winner.getIdPlayer(), manche, winner.getPartialPoints());
                 setNumManche(numManche+1);
