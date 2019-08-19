@@ -33,7 +33,7 @@ public interface RemoteMatch extends Remote {
 
     public void leaveMatchAsObserver(Client c) throws RemoteException;
 
-    public void askNotify() throws RemoteException;
+    public void askNotify(Client c) throws RemoteException;
 
     public String getMatchId() throws RemoteException;
 

@@ -15,9 +15,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Match extends UnicastRemoteObject implements RemoteMatch {
 
@@ -31,6 +29,8 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     private LocalDateTime creationTime;
     private DBManager dbManager;
     private EmailManager emailmng;
+    //nell'array non sono considerati gli spazi.
+    private boolean[] phraseStatus;
 
 
     public Match(String id, LocalDateTime localDateTime, DBManager db, EmailManager email) throws RemoteException {
@@ -44,7 +44,6 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         turn = -1;
         firstTurn = true;
         creationTime = localDateTime;
-
     }
 
     public int wheelSpin() throws RemoteException {
@@ -151,6 +150,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
             }else {
                 manche.setNumManche(1);
                 PhrasesDTO newPhrase = manche.getCurrentPhrase();
+                resetPhraseStatus(newPhrase.getPhrase());
                 for (Client c : observers) {
                     try {
                         c.notifyMatchStart();
@@ -200,6 +200,22 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         }
     }
 
+    private void resetPhraseStatus(String phrase){
+        StringTokenizer st = new StringTokenizer(phrase);
+        int length = 0;
+
+        while(st.hasMoreTokens()){
+            String s = st.nextToken();
+            for(int j=0; j<s.length(); j++){
+                length++;
+            }
+        }
+        this.phraseStatus = new boolean[length];
+        for(int k=0; k<phraseStatus.length; k++){
+            phraseStatus[k] = false;
+        }
+    }
+
     /**
      * Questo metodo conclude la manche
      *
@@ -229,6 +245,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                return;
            }else {
                PhrasesDTO newPhrase = manche.getCurrentPhrase();
+               resetPhraseStatus(newPhrase.getPhrase());
                for (Client c : observers) {
                    try {
                        c.notifyMancheResult(winner.getNickname());
@@ -392,7 +409,18 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         observers.remove(c);
     }
 
-    public void askNotify() throws RemoteException {
+    public void askNotify(Client c) throws RemoteException {
+        if(onGoing){
+            for(int i=0; i<players.size(); i++){
+                c.notifyPlayerStats(i+1, players.get(i).getNickname(), players.get(i).getPartialPoints(), players.get(i).getPoints());
+                c.setNewPhrase(manche.getCurrentPhrase().getTheme(), manche.getCurrentPhrase().getPhrase());
+                c.updatePhrase(phraseStatus);
+            }
+        }else{
+            for(int i=0; i<players.size(); i++) {
+                c.notifyPlayerStats(i + 1, players.get(i).getNickname(), 0, 0);
+            }
+        }
     }
 
     @Override

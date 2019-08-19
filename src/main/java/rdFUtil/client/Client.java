@@ -154,4 +154,33 @@ public interface Client extends Remote {
      * @throws RemoteException
      */
     public void notifyMatchWin() throws RemoteException;
+
+    /**
+     * Metodo per far visualizzare un giocatore e i suoi punteggi
+     *
+     * @param position e' un numero compreso tra 1 e 3 (1 e' il giocatore piu' a sinistra)
+     * @param name il nickname del giocatore
+     * @param partialPoints il punteggio parziale
+     * @param points il punteggio totale
+     * @throws RemoteException
+     */
+    public void notifyPlayerStats(int position, String name, int partialPoints, int points) throws RemoteException;
+
+    /**
+     * Metodo per visualizzare solo le lettere che sono state chiamate. Per funzionare e' necessario aver richiamato precedentemente il metodo
+     * {@link #setNewPhrase(String, String)} che si occupa di generare il tabellone adatto alla farse
+     *
+     * @param phrase un array di booleani che indica, senza considerare gli spazi, se un carattere nella frase sia stato rivelato o meno.
+     *               Nel primo caso avra' valore <code>true</code>, nel secondo <code>false</code>.
+     * @throws RemoteException
+     */
+    public void updatePhrase(boolean[] phrase) throws RemoteException;
+
+    /**
+     * Una versione piu' semplice di {@link #updatePhrase(boolean[])} per aggiornare il tabellone senza dover utilizzare l'array dell'intera frase
+     *
+     * @param letter la lettera chiamata
+     * @throws RemoteException
+     */
+    public void updatePhrase(char letter) throws RemoteException;
 }
