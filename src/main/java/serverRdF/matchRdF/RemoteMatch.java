@@ -36,4 +36,6 @@ public interface RemoteMatch extends Remote {
     public void askNotify() throws RemoteException;
 
     public String getMatchId() throws RemoteException;
+
+    //TODO REMINDER: alcuni di questi metodi verranno tolti dall'interfaccia in quanto non utilizzati direttamente dal client
 }

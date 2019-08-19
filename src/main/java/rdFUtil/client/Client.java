@@ -113,4 +113,28 @@ public interface Client extends Remote {
      * @throws RemoteException
      */
     public void notifyNewManche(int numManche) throws RemoteException;
+
+    /**
+     * Questo metodo si occupa di aggiornare il tabellone con il nuovo tema e la nuova frase
+     *
+     * @param theme il tema della nuova frase
+     * @param phrase la nuova frase da indovinare
+     * @throws RemoteException
+     */
+    public void setNewPhrase(String theme, String phrase) throws RemoteException;
+
+    /**
+     * Notifica ai clients il nome del giocatore attivo
+     *
+     * @param player Il nickname del giocatore attivo
+     * @throws RemoteException
+     */
+    public void notifyNewTurn(String player) throws RemoteException;
+
+    /**
+     * Attiva i bottoni per poter effettuare le mosse
+     *
+     * @throws RemoteException
+     */
+    public void notifyYourTurn() throws RemoteException;
 }

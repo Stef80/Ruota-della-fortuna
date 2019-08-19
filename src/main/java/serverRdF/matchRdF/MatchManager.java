@@ -131,7 +131,7 @@ public class MatchManager {
         return match;
     }
 
-    public static void deleteMatch(String idMatch){
+    static void deleteMatch(String idMatch){
         matches.remove(idMatch);
     }
 
