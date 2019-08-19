@@ -52,4 +52,24 @@ public class ClientImplementation implements Client{
 	public void notifyMatchAbort(String reason) throws RemoteException {
 
 	}
+
+	@Override
+	public void notifyMatchStart() throws RemoteException {
+
+	}
+
+	@Override
+	public void notifyMancheVictory() throws RemoteException {
+
+	}
+
+	@Override
+	public void notifyMancheResult(String winner) throws RemoteException {
+
+	}
+
+	@Override
+	public void notifyNewManche(int numManche) throws RemoteException {
+
+	}
 }

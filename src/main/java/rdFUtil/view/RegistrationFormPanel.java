@@ -83,7 +83,7 @@ public class RegistrationFormPanel {
 		Scene scene = new Scene(root);
 		Stage primaryStage = new Stage();
 		//scene.getStylesheets().add(getClass().getResource("/sample/resources/sampleScene.css").toExternalForm());
-		primaryStage.setTitle("Weel of Fortune");
+		primaryStage.setTitle("Wheel of Fortune");
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		Stage thisStage = (Stage) confirmButton.getScene().getWindow();

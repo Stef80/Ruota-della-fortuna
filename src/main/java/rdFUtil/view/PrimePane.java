@@ -27,7 +27,7 @@ public class PrimePane extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("main_pane.fxml"));
         Scene scene = new Scene(root);
-        primaryStage.setTitle("Weel of Fortune");
+        primaryStage.setTitle("Wheel of Fortune");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

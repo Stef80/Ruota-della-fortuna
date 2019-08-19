@@ -39,7 +39,7 @@ public class Controller {
 		Stage primaryStage = new Stage();
 		Scene scene = new Scene(root1);
 		//	scene.getStylesheets().add(getClass().getResource("sampleScene.css").toExternalForm());
-		primaryStage.setTitle("Weel of Fortune");
+		primaryStage.setTitle("Wheel of Fortune");
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		Stage oldStage = (Stage) loginButton.getScene().getWindow();
@@ -51,7 +51,7 @@ public class Controller {
 		Stage primaryStage = new Stage();
 		Scene scene = new Scene(root);
 		//	scene.getStylesheets().add(getClass().getResource("sampleScene.css").toExternalForm());
-		primaryStage.setTitle("Weel of Fortune");
+		primaryStage.setTitle("Wheel of Fortune");
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		Stage oldStage = (Stage) registerButton.getScene().getWindow();
@@ -64,7 +64,7 @@ public class Controller {
 		Stage primaryStage = new Stage();
 		Scene scene = new Scene(root1);
 		//	scene.getStylesheets().add(getClass().getResource("sampleScene.css").toExternalForm());
-		primaryStage.setTitle("Weel of Fortune");
+		primaryStage.setTitle("Wheel of Fortune");
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
