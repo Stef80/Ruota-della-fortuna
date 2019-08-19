@@ -33,7 +33,7 @@ public interface Server extends Remote {
 
     public RemoteMatch observeMatch(Client c, String idMatch) throws RemoteException;
 
-    public void addPhrases(File file, Client c) throws RemoteException;
+    public void addPhrases(File file, Client c) throws RemoteException; //TODO forse è meglio fare il passaggio da file a lista di frasi già nel client e passarla per evitare di dover serializzare il file
 
     public void changeName(String name, Client c) throws RemoteException;
 
