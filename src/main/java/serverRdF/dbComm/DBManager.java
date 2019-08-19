@@ -20,6 +20,8 @@ public class DBManager implements DBManagerInterface{
     private MovesDAO movesDAO;
     private ManchesDAO manchesDAO;
     private MancheWinnersDAO mancheWinnersDAO;
+    private MancheJoinersDAO mancheJoinersDAO;
+    private MatchWinnersDAO matchWinnersDAO;
 
     private DBManager() throws SQLException {
         //TODO connessione con database
@@ -176,5 +178,31 @@ public class DBManager implements DBManagerInterface{
         if(mancheWinnersDAO==null)
             createMancheWinnersDAO();
         return mancheWinnersDAO.addMancheWinner(idPlayer,manche,amount);
+    }
+
+    private void createMancheJoinersDAO(){mancheJoinersDAO = new MancheJoinersDAOImpl(con);}
+
+    @Override
+    public boolean addMancheJoiner(String idMatch, int numManche, String userId, boolean observer) {
+        if(mancheJoinersDAO==null)
+            createMancheWinnersDAO();
+        try {
+            return mancheJoinersDAO.addMancheJoiner(idMatch, numManche, userId, observer);
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+
+    private void createMatchWinnersDAO(){matchWinnersDAO = new MatchWinnersDAOImpl(con);}
+
+    @Override
+    public boolean addMatchWinner(String idMatch, String idPlayer, int amount) {
+        if(matchWinnersDAO==null)
+            createMatchWinnersDAO();
+        try {
+            return matchWinnersDAO.addMatchWinner(idMatch, idPlayer, amount);
+        } catch (SQLException e) {
+            return false;
+        }
     }
 }

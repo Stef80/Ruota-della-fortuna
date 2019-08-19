@@ -143,5 +143,25 @@ public interface DBManagerInterface {
      */
     boolean addMancheWinner(String idPlayer, ManchesDTO manche, int amount) throws SQLException;
 
+    /**
+     * Questo metodo collega un utente ad una manche che ha osservato o giocato
+     *
+     * @param idMatch id del match giocato/osservato
+     * @param numManche numero della manche
+     * @param userId id dell'utente
+     * @param observer <code>true</code> se l'utente era un osservatore, <code>false</code> altrimenti
+     * @return <code>true</code> se l'inserimento va a buon fine, altrimenti <code>false</code>
+     */
+    boolean addMancheJoiner(String idMatch, int numManche, String userId, boolean observer);
+
+    /**
+     * Questo metodo aggiunge al database il vincitore di una partita
+     *
+     * @param idMatch id del match vinto
+     * @param idPlayer l'id del vincitore
+     * @param amount il punteggio ottenuto
+     * @return <code>true</code> se l'inserimento va a buon fine, altrimenti <code>false</code>
+     */
+    boolean addMatchWinner(String idMatch, String idPlayer, int amount);
     //TODO tutti i metodi che servono agli altri manager e a Match. ricordarsi di aggiungere man mano i metodi utilizzati nelle altre classi per non perderli.
 }

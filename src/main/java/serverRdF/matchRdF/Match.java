@@ -155,6 +155,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                     try {
                         c.notifyMatchStart();
                         c.setNewPhrase(newPhrase.getTheme(), newPhrase.getPhrase());
+                        dbManager.addMancheJoiner(id, manche.getNumManche(), c.getId(), true);
                     }catch(RemoteException e){
                         leaveMatchAsObserver(c);
                     }
@@ -163,6 +164,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                     try {
                         p.getClient().notifyMatchStart();
                         p.getClient().setNewPhrase(newPhrase.getTheme(), newPhrase.getPhrase());
+                        dbManager.addMancheJoiner(id, manche.getNumManche(), p.getIdPlayer(), false);
                     }catch(RemoteException e){
                         leaveMatchAsPlayer(p);
                     }
@@ -183,7 +185,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                 for (Player p : players) {
                     try {
                         p.getClient().notifyMatchAbort("Partita annullata: errore di comunicazione con il server");
-                    }catch(RemoteException e){
+                    }catch(RemoteException ex){
                         players.remove(p);
                     }
                 }
@@ -232,6 +234,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                        c.notifyMancheResult(winner.getNickname());
                        c.notifyNewManche(manche.getNumManche());
                        c.setNewPhrase(newPhrase.getTheme(), newPhrase.getPhrase());
+                       dbManager.addMancheJoiner(id, manche.getNumManche(), c.getId(), true);
                    }catch(RemoteException e){
                        leaveMatchAsObserver(c);
                    }
@@ -240,6 +243,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                    try {
                        p.getClient().notifyNewManche(manche.getNumManche());
                        p.getClient().setNewPhrase(newPhrase.getTheme(), newPhrase.getPhrase());
+                       dbManager.addMancheJoiner(id, manche.getNumManche(), p.getIdPlayer(), false);
                    }catch(RemoteException e){
                        leaveMatchAsPlayer(p);
                    }
@@ -252,16 +256,46 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     }
 
     /**
+     * Conclude il match
+     *
      * @param isThereAWinner <code>true</code> se il match si è concluso dopo la conclusione della quinta manche, portando ad un vincitore, <code>false</code> altrimenti
      * @throws RemoteException
      */
     public void endMatch(boolean isThereAWinner) throws RemoteException {
         MatchManager.deleteMatch(id);
         if(isThereAWinner){
-            for(Client c : observers){}
-        }else{
+            Player winner = null;
+            int maxPoint = 0;
+            for(Player p : players){
+                if(p.getPoints() > maxPoint){
+                    maxPoint = p.getPoints();
+                    winner = p;
+                }
+            }
 
+            for(Client c : observers){
+                try{
+                    c.notifyEndMatch(winner.getNickname());
+                }catch(RemoteException e){
+                    leaveMatchAsObserver(c);
+                }
+            }
+
+            for(Player p : players){
+                try{
+                    if(p.equals(winner)) {
+                        p.getClient().notifyMatchWin();
+                    }else{
+                        p.getClient().notifyEndMatch(winner.getNickname());
+                    }
+                }catch(RemoteException e){
+                    leaveMatchAsPlayer(p);
+                }
+            }
+
+            dbManager.addMatchWinner(id, winner.getIdPlayer(), maxPoint);
         }
+        UnicastRemoteObject.unexportObject(this, true);
     }
 
     /**
@@ -289,6 +323,9 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
      */
     public void addObserver(Client c) throws RemoteException {
         observers.add(c);
+        if(onGoing){
+            dbManager.addMancheJoiner(id, manche.getNumManche(), c.getId(), true);
+        }
     }
 
     /**

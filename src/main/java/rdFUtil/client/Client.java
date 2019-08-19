@@ -137,4 +137,21 @@ public interface Client extends Remote {
      * @throws RemoteException
      */
     public void notifyYourTurn() throws RemoteException;
+
+
+    /**
+     * Questo metodo notifica la conclusione del match e il nome del vincitore
+     *
+     * @param winner il nickname del vincitore
+     * @throws RemoteException
+     */
+    public void notifyEndMatch(String winner) throws RemoteException;
+
+
+    /**
+     * Notifica al client la vittoria della partita
+     *
+     * @throws RemoteException
+     */
+    public void notifyMatchWin() throws RemoteException;
 }
