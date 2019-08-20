@@ -29,7 +29,7 @@ public class PhraseManager {
     }
 
     public boolean addPhrases(File file) throws Exception{
-        CSVReader reader = new CSVReader(new FileReader("yourfile.csv"), '\t', '\'', 2);
+        CSVReader reader = new CSVReader(new FileReader("yourfile.csv"));
         return false;
     }
     //TODO metodi
