@@ -99,9 +99,20 @@ public class DBManager implements DBManagerInterface{
 
     @Override
     public int checkLogin(String email, String password, boolean admin) throws SQLException {
-        if(usersDAO == null)
-            createUsersDAO();
-        return usersDAO.checkLogin(email,password,admin);
+        UsersDTO user = getUserByEmail(email);
+        if(user == null){
+            return -1;
+        }else{
+            if(user.getPassword().equals(password)){
+                if(user.isAdmin() == admin){
+                    return 0;
+                }else{
+                    return 1;
+                }
+            }else{
+                return -1;
+            }
+        }
     }
 
     public List<UsersDTO> getAllAdmin() throws SQLException{

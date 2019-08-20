@@ -63,10 +63,4 @@ public class UsersDAOImpl implements UsersDAO {
         Statement stmt = con.createStatement();
         return stmt.executeUpdate(queryDelete) > 0;
     }
-
-    @Override
-    public int checkLogin(String email, String password, boolean admin) throws SQLException {
-        //TODO
-        return 0;
-    }
 }
