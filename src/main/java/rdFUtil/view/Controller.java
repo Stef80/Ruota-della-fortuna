@@ -33,6 +33,7 @@ public class Controller {
     private String titleFrame = "Wheel of Fortune";
     private boolean admin;
 
+    //Aggiunto il campo admin che dipende da dove viene avviato
     public Controller(Server server, Client client, boolean admin) {
         this.server = server;
         this.client = client;

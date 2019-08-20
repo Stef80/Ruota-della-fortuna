@@ -16,6 +16,7 @@ public class Main {
         Registry registryClient = LocateRegistry.getRegistry();
         Server server = (Server) registryClient.lookup("server");
 
+        //il terzo argomento dipende da dove viene avviato (se AdminRdF o PlayerRdF)
         new Controller(server, client);
         new ForgottenPasswordPane(server, client);
         new GameView(server);
