@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UsersDAOImpl implements UsersDAO {
     private Connection con;
@@ -62,5 +64,24 @@ public class UsersDAOImpl implements UsersDAO {
         String queryDelete = "DELETE FROM "+UserTable+" WHERE "+UserIdAttribute+" = '"+id+"';";
         Statement stmt = con.createStatement();
         return stmt.executeUpdate(queryDelete) > 0;
+    }
+
+    @Override
+    public List<UsersDTO> getAllAdmin() throws SQLException {
+        List<UsersDTO> list = new ArrayList<>();
+        String queryGet = "SELECT * FROM "+ UserTable + "WHERE "+UserTipoAttribute + " = 1;";
+        Statement stmt = con.createStatement();
+        ResultSet resultSet = stmt.executeQuery(queryGet);
+        if(resultSet == null){
+            return list;
+        }else{
+            while(resultSet.next()){
+                list.add(new UsersDTO(resultSet.getString(UserIdAttribute),resultSet.getBoolean(UserTipoAttribute),
+                        resultSet.getString(UserNameAttribute),resultSet.getString(UserSurnameAttribute), resultSet.getString(UserNicknameAttribute),
+                        resultSet.getString(UserEmailAttribute), resultSet.getString(UserPasswordAttribute)));
+            }
+            resultSet.close();
+            return list;
+        }
     }
 }

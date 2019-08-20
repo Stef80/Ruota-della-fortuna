@@ -1,6 +1,7 @@
 package serverRdF.dbComm;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public interface UsersDAO {
     //TODO aggiungere metodi necessari
@@ -52,4 +53,12 @@ public interface UsersDAO {
      * @throws SQLException
      */
     boolean deleteUser(String id) throws SQLException;
+
+    /**
+     * Questo metodo permette di ottenere la lista contenente tutti gli admin
+     *
+     * @return La lista di utenti registrati come amministratori
+     * @throws SQLException
+     */
+    List<UsersDTO> getAllAdmin() throws SQLException;
 }

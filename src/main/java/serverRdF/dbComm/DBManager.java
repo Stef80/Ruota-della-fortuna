@@ -116,8 +116,10 @@ public class DBManager implements DBManagerInterface{
     }
 
     public List<UsersDTO> getAllAdmin() throws SQLException{
-        //TODO
-        return null;
+        if(usersDAO==null){
+            createUsersDAO();
+        }
+        return usersDAO.getAllAdmin();
     }
 
     /**
