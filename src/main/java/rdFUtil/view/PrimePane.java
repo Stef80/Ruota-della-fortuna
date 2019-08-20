@@ -19,8 +19,6 @@ public class PrimePane extends Application {
     private Button registerButton;
     private Server server;
 
-    public PrimePane(){}
-
     public PrimePane(Server server){
         this.server = server;
     }
@@ -29,19 +27,11 @@ public class PrimePane extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("main_pane.fxml"));
         Scene scene = new Scene(root);
-<<<<<<< HEAD
-        primaryStage.setTitle("Wheel of Fortune");
-=======
         scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         primaryStage.setTitle("Weel of Fortune");
->>>>>>> parent of d8b696f... aggiunta metodi senza argomenti
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> parent of d8b696f... aggiunta metodi senza argomenti
 }
