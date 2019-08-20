@@ -1,18 +1,26 @@
 package serverRdF.emailRdF;
 
+import serverRdF.ServerImplementation;
+
+import javax.mail.MessagingException;
+
 public class EmailManager {
     //TODO metodi e commenti javadoc
     private static EmailManager emailManager = null;
+    private String email;
+    private String password;
 
-    private EmailManager() {
+    private EmailManager(String email, String password) {
+        this.email = email;
+        this.password = password;
     }
 
     /**
      * @return il singleton di tipo {@link EmailManager}
      */
-    public static EmailManager createEmailManager() {
+    public static EmailManager createEmailManager(String email, String password) {
         if (emailManager == null) {
-            emailManager = new EmailManager();
+            emailManager = new EmailManager(email,password);
             return emailManager;
         } else
             return emailManager;
@@ -24,6 +32,11 @@ public class EmailManager {
      * @param txt il corpo del messaggio
      */
     public void sendEmail(String to, String sub, String txt) {
+        try {
+            EmailSender.sendUninsubriaEmail(email,password,to,sub,txt);
+        } catch (MessagingException e) {
+            ServerImplementation.serverError(null);
+        }
     }
 
     /**
