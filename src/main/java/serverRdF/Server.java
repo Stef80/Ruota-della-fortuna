@@ -2,7 +2,6 @@ package serverRdF;
 
 import rdFUtil.MatchData;
 import rdFUtil.client.Client;
-import rdFUtil.logging.CryptPassword;
 import rdFUtil.logging.Login;
 import rdFUtil.logging.User;
 import serverRdF.matchRdF.RemoteMatch;
@@ -14,12 +13,23 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public interface Server extends Remote {
+    /**
+     * Questo metodo controlla se c'e' gia' un utente registrato con la mail fornita
+     *
+     * @param email la mail dell'utente
+     * @return <code>false</code> se la mail esiste gia', <code>true</code> altrimenti
+     * @throws RemoteException
+     */
+    public boolean checkEMail(String email) throws RemoteException;
 
-   //ritorna false se la mail esiste già , ture altrimenti.
-    public boolean checkEMail(String email)throws RemoteException;
-
-   //ritorna false se il nick esiste già , true altrimenti.
-    public boolean checkNickName(String name)throws RemoteException;
+    /**
+     * Questo metodo controlla se c'e' gia' un utente registrato con il nickname fornito
+     *
+     * @param nickname la mail dell'utente
+     * @return <code>false</code> se il nickname esiste gia', <code>true</code> altrimenti
+     * @throws RemoteException
+     */
+    public boolean checkNickname(String nickname) throws RemoteException;
 
     public OTPHelper signUp(User form, Client c, boolean admin) throws RemoteException;
 
