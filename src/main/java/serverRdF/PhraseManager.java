@@ -13,6 +13,10 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+
+/**
+ * Questa classe gestisce l'aggiunta di nuove frasi all'interno del database
+ */
 public class PhraseManager {
     private DBManager dbManager;
     private static PhraseManager phraseManager = null;
