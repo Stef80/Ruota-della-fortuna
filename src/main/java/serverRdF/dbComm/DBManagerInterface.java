@@ -93,7 +93,7 @@ public interface DBManagerInterface {
      * @return <code>true</code> se l'inserimento va a buon fine, altrimenti <code>false</code>
      * @throws SQLException
      */
-    boolean addPhrases(ArrayList<String> phrases, ArrayList<String> themes) throws SQLException;
+    boolean addPhrases(ArrayList<PhrasesDTO> phrases) throws SQLException;
 
     /**
      * Questo metodo fornisce la lista delle frasi e temi presenti nella base di dati

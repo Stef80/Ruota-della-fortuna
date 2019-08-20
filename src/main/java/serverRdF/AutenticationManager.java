@@ -42,7 +42,7 @@ public class AutenticationManager {
      */
     public boolean signIn(Login form, Client c) {
         String email = form.getEmail();
-        String password = form.getPasswordC().toString();
+        String password = form.getPasswordC();
         try {
             boolean bool = dbManager.checkLogin(email, password);
             if (bool) {
