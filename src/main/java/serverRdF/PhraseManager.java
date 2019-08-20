@@ -25,6 +25,10 @@ public class PhraseManager {
         this.dbManager = dbManager;
     }
 
+    /**
+     * @param dbmng il riferimento a {@link DBManager}
+     * @return Il riferimento al singleton di {@link PhraseManager}
+     */
     public static PhraseManager createPhraseManager(DBManager dbmng){
         if(phraseManager == null){
             phraseManager = new PhraseManager(dbmng);
@@ -43,5 +47,4 @@ public class PhraseManager {
         }
         return dbManager.addPhrases(phrases);
     }
-    //TODO metodi
 }
