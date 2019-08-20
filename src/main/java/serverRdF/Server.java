@@ -19,7 +19,7 @@ public interface Server extends Remote {
     public boolean checkEMail(String email)throws RemoteException;
 
    //ritorna false se il nick esiste già , true altrimenti.
-    public boolean checkNickName(String name)throws RemoteException;
+    public boolean checkNickname(String name)throws RemoteException;
 
     public OTPHelper signUp(User form, Client c, boolean admin) throws RemoteException;
 
