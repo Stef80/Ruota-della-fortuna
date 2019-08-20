@@ -9,12 +9,13 @@ import serverRdF.registrationRdF.OTPHelper;
 
 import java.io.File;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class ServerImplementation implements Server{
+public class ServerImplementation extends UnicastRemoteObject implements Server{
 
-
+    public ServerImplementation() throws RemoteException{}
 
     //TODO campi per i vari managers e implementazione metodi dell'interfaccia. estende UnicastRemoteObject e implementa Server
 
@@ -27,10 +28,14 @@ public class ServerImplementation implements Server{
      * Viene richiamato in caso di eccezioni come RemoteException o SQLException
      */
     public static void serverError(Client c){
-        try {
-            c.notifyServerError();
-        } catch (RemoteException ex) {
-            System.err.println(ex.getMessage());
+        if(c == null){
+            System.out.println("Server error");
+        }else {
+            try {
+                c.notifyServerError();
+            } catch (RemoteException ex) {
+                System.err.println(ex.getMessage());
+            }
         }
     }
 
@@ -45,7 +50,7 @@ public class ServerImplementation implements Server{
     }
 
     @Override
-    public OTPHelper signUp(User form, Client c) throws RemoteException {
+    public OTPHelper signUp(User form, Client c, boolean admin) throws RemoteException {
         return null;
     }
 
@@ -120,12 +125,7 @@ public class ServerImplementation implements Server{
     }
 
     @Override
-    public void resetPassword(Client c, String mail) throws RemoteException {
+    public void resetPassword(Client c) throws RemoteException {
 
-    }
-
-    @Override
-    public boolean checkPassword(String password) {
-        return false;
     }
 }
