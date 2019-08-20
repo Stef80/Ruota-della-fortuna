@@ -30,8 +30,9 @@ dependencies {
     compile 'org.postgresql:postgresql:42.2.5'
     // per invio della mail
     compile 'com.sun.mail:javax.mail:1.6.2'
+    //per lettura file csv
     compile 'com.opencsv:opencsv:4.6'
-}
+    }
 
 task runTestClient(type: JavaExec, dependsOn: classes, group: 'test') {
     classpath = sourceSets.main.runtimeClasspath
