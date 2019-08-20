@@ -123,14 +123,10 @@ public class DBManager implements DBManagerInterface{
     }
 
     @Override
-    public boolean addPhrases(ArrayList<String> phrases, ArrayList<String> themes) throws SQLException{
+    public boolean addPhrases(ArrayList<PhrasesDTO> phrases) throws SQLException{
         if(phrasesDAO ==null)
             createPhrasesDAO();
-        ArrayList<PhrasesDTO> pDTO = new ArrayList<>();
-        for(int i=0; i<phrases.size();i++){
-            pDTO.add(new PhrasesDTO(themes.get(i),phrases.get(i)));
-        }
-        return phrasesDAO.addPhrases(pDTO);
+        return phrasesDAO.addPhrases(phrases);
     }
 
     @Override
