@@ -45,7 +45,7 @@ public class ServerImplementation extends UnicastRemoteObject implements Server{
     }
 
     @Override
-    public boolean checkNickName(String name) throws RemoteException {
+    public boolean checkNickname(String name) throws RemoteException {
         return false;
     }
 
