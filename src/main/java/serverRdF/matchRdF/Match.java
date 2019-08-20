@@ -373,7 +373,14 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
             errorInTurn(true,false);
             return;
         }
-        //TODO
+        timer.interrupt();
+        if(solution.equals(manche.getCurrentPhrase())){
+            manche.getTurns().addMove(activePlayer.getIdPlayer(), "soluzione", -1);
+            endManche(activePlayer);
+        }else{
+            manche.getTurns().addMove(activePlayer.getIdPlayer(), "soluzione", 0);
+            errorInTurn(true,true);
+        }
     }
 
     /**
