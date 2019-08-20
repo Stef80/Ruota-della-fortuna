@@ -31,10 +31,12 @@ public class Controller {
     private Server server;
     private Client client;
     private String titleFrame = "Wheel of Fortune";
+    private boolean admin;
 
-    public Controller(Server server, Client client) {
+    public Controller(Server server, Client client, boolean admin) {
         this.server = server;
         this.client = client;
+        this.admin = admin;
     }
 
     /**
@@ -46,7 +48,8 @@ public class Controller {
         String mail = emailText.getText();
         String password = passwordText.getText();
         Login login = new Login(password, mail);
-        if (!server.checkEMail(mail) && server.checkPassword(password)) {
+        boolean bool = server.signIn(login,client,admin);
+        if (!bool) {
             Notifications notification = Notifications.create()
                     .title("Mail Notification")
                     .text("E-mail o password errati \nriprova!")
@@ -54,8 +57,6 @@ public class Controller {
                     .position(Pos.CENTER);
             notification.showError();
         } else {
-            server.signIn(login, client);
-
             Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
             Stage primaryStage = new Stage();
             Scene scene = new Scene(root1);

@@ -55,7 +55,8 @@ public class ServerImplementation extends UnicastRemoteObject implements Server 
     }
 
     @Override
-    public void signIn(Login form, Client c) throws RemoteException {
+    public boolean signIn(Login form, Client c, boolean admin) throws RemoteException {
+        return false;
     }
 
     @Override

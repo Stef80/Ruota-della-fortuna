@@ -40,11 +40,11 @@ public class AutenticationManager {
      *
      * Nel caso in cui ci siano problemi con la connessione al server, il client viene notificato
      */
-    public boolean signIn(Login form, Client c) {
+    public boolean signIn(Login form, Client c, boolean admin) {
         String email = form.getEmail();
         String password = form.getPasswordC();
         try {
-            boolean bool = dbManager.checkLogin(email, password);
+            boolean bool = dbManager.checkLogin(email, password, admin);
             if (bool) {
                 return true;
             } else
