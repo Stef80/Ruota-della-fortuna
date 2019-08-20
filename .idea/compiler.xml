@@ -2,10 +2,14 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
+      <module name="it.uninsubria.RdF.Ruota_della_Fortuna.main" target="1.8" />
+      <module name="it.uninsubria.RdF.Ruota_della_Fortuna.test" target="1.8" />
       <module name="RdF.main" target="1.8" />
       <module name="RdF.test" target="1.8" />
       <module name="Ruota_della_Fortuna.main" target="1.8" />
       <module name="Ruota_della_Fortuna.test" target="1.8" />
+      <module name="RuotaDellaFortuna.Ruota_della_Fortuna.main" target="1.8" />
+      <module name="RuotaDellaFortuna.Ruota_della_Fortuna.test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

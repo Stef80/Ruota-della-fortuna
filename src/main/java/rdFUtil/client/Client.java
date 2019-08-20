@@ -33,6 +33,7 @@ public interface Client extends Remote {
 
     /**
      * Permette di settare il nickname dell'utente loggato nel client
+     *
      * @throws RemoteException
      */
     public void setId() throws RemoteException;
@@ -116,7 +117,7 @@ public interface Client extends Remote {
     /**
      * Questo metodo si occupa di aggiornare il tabellone con il nuovo tema e la nuova frase
      *
-     * @param theme il tema della nuova frase
+     * @param theme  il tema della nuova frase
      * @param phrase la nuova frase da indovinare
      * @throws RemoteException
      */
@@ -157,10 +158,10 @@ public interface Client extends Remote {
     /**
      * Metodo per far visualizzare un giocatore e i suoi punteggi
      *
-     * @param position e' un numero compreso tra <code>0</code> e <code>2</code> (<code>0</code> e' il giocatore piu' a sinistra)
-     * @param name il nickname del giocatore
+     * @param position      e' un numero compreso tra <code>0</code> e <code>2</code> (<code>0</code> e' il giocatore piu' a sinistra)
+     * @param name          il nickname del giocatore
      * @param partialPoints il punteggio parziale
-     * @param points il punteggio totale
+     * @param points        il punteggio totale
      * @throws RemoteException
      */
     public void notifyPlayerStats(int position, String name, int partialPoints, int points) throws RemoteException;
@@ -176,7 +177,8 @@ public interface Client extends Remote {
     public void updatePhrase(boolean[] phrase) throws RemoteException;
 
     /**
-     * Una versione piu' semplice di {@link #updatePhrase(boolean[])} per aggiornare il tabellone senza dover utilizzare l'array dell'intera frase e in piu' notifica quanti punti ha fatto guadagnare
+     * Una versione piu' semplice di {@link #updatePhrase(boolean[])} per aggiornare il tabellone senza dover utilizzare
+     * l'array dell'intera frase e in piu' notifica quanti punti ha fatto guadagnare
      *
      * @param letter la lettera chiamata
      * @param amount il punteggio guadagnato per ogni lettera rivelata

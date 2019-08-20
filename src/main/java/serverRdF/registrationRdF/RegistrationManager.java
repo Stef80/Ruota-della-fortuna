@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.Random;
 
 /**
- * Questa classe gestisce la registrazione dell'utente. I metodi {@link #checkEmail(String)} e {@link #checkNickname(String)} permettono di allegerire i controlli sul metodo principale della classe {@link #signUp(User, Client)}
+ * Questa classe gestisce la registrazione dell'utente. I metodi {@link #checkEmail(String)} e {@link #checkNickname(String)} permettono di allegerire i controlli sul metodo principale della classe {@link #signUp(User, Client, boolean)}
  */
 public class RegistrationManager {
     private DBManager dbManager;
@@ -43,6 +43,7 @@ public class RegistrationManager {
      *
      * @param form contenente i dati necessari alla registrazione
      * @param c    il riferimento al client
+     * @param admin //TODO
      * @return un riferimento all'oggeto remoto {@link OTPHelper} per l'invio del codice da parte del client
      * @throws RemoteException in caso di errori di connesione al server
      */
@@ -78,6 +79,7 @@ public class RegistrationManager {
      *
      * @param email L'indirizzo email da controllare
      * @return <code>true</code> se l'indirizzo email non e' stato gia' utilizzato, <code>false</code> altrimenti
+     * @throws SQLException
      */
     public boolean checkEmail(String email) throws SQLException {
         UsersDTO user = dbManager.getUserByEmail(email);
@@ -91,6 +93,7 @@ public class RegistrationManager {
      *
      * @param nickname il nickname da controllare
      * @return <code>true</code> se il nickname non e' stato gia' utilizzato, <code>false</code> altrimenti
+     * @throws SQLException
      */
     public boolean checkNickname(String nickname) throws SQLException {
         UsersDTO user = dbManager.getUserByNickname(nickname);

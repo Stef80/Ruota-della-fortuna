@@ -19,19 +19,17 @@ public class PrimePane extends Application {
     private Button registerButton;
     private Server server;
 
-    public PrimePane(Server server){
+    public PrimePane(Server server) {
         this.server = server;
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("main_pane.fxml"));
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-        primaryStage.setTitle("Weel of Fortune");
+        primaryStage.setTitle("Wheel of Fortune");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-
-
 }
