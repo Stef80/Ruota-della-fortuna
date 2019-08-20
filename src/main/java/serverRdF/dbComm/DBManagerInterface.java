@@ -77,11 +77,11 @@ public interface DBManagerInterface {
      * @param email la mail dell'utente
      * @param password la password dell'utente
      * @param admin se e' un admin
-     * @return <code>true</code> se i dati sono tutti esatti, <code>false</code> se la mail non esiste, la mail esiste ma la password e' errata o se email e password sono corrette
+     * @return <code>0</code> se i dati sono tutti esatti, <code>-1</code> se la mail non esiste o la mail esiste ma la password e' errata e <code>1</code> se email e password sono corrette
      * ma l'utente non e' un admin quando <code>admin = true</code> o viceversa
      * @throws SQLException
      */
-    boolean checkLogin(String email, String password, boolean admin) throws SQLException;
+    int checkLogin(String email, String password, boolean admin) throws SQLException;
 
     /**
      * Questo metodo si occupa di cercare all'interno del database cinque frasi che i tre concorrenti non hanno mai
