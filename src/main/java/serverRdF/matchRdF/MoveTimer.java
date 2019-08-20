@@ -13,11 +13,17 @@ public class MoveTimer extends Thread {
     private int time;
     private Match match;
     private boolean isThisForJolly;
+    private boolean isThisForSolution;
 
-    public MoveTimer(int time, Match match, boolean jolly){
+    public MoveTimer(int time, Match match, boolean jolly, boolean solution){
         this.time = time;
         this.match = match;
         isThisForJolly = jolly;
+        isThisForSolution = solution;
+    }
+
+    public boolean isThisForSolution() {
+        return isThisForSolution;
     }
 
     public boolean isThisForJolly() {
@@ -50,14 +56,11 @@ public class MoveTimer extends Thread {
                 }
             }
             if (isThisForJolly) {
-                match.errorInTurn(false);
+                match.errorInTurn(false,true);
             }else{
-                match.errorInTurn(true);
+                match.errorInTurn(true,false);
             }
         }catch(InterruptedException e){
-            if(isThisForJolly){
-                match.getManche().getTurns().getLastMove().setOutCome(-1);
-            }
             return;
         }
     }

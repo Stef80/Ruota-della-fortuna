@@ -4,7 +4,6 @@ package rdFUtil.client;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-
 /**
  * Interfaccia dell'oggetto remoto utilizzato da PlayerRdF e AdminRdF per ricevere notifiche dal server
  */
@@ -158,7 +157,7 @@ public interface Client extends Remote {
     /**
      * Metodo per far visualizzare un giocatore e i suoi punteggi
      *
-     * @param position e' un numero compreso tra 1 e 3 (1 e' il giocatore piu' a sinistra)
+     * @param position e' un numero compreso tra <code>0</code> e <code>2</code> (<code>0</code> e' il giocatore piu' a sinistra)
      * @param name il nickname del giocatore
      * @param partialPoints il punteggio parziale
      * @param points il punteggio totale

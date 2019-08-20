@@ -25,11 +25,29 @@ public interface RemoteMatch extends Remote {
      */
     public void giveConsonant(char letter, int amount) throws RemoteException;
 
+    /**
+     * Metodo utilizzato dal client per inviare una vocale
+     *
+     * @param letter la vocale scelta
+     * @throws RemoteException
+     */
     public void giveVocal(char letter) throws RemoteException;
 
+    /**
+     * Metodo per utilizzare un jolly
+     *
+     * @throws RemoteException
+     */
     public void jolly() throws RemoteException;
 
     public void nextTurn() throws RemoteException;
+
+    /**
+     * Permette al client di dichiarare l'intenzione di dare la soluzione e far partire il timer da 10 secondi.
+     *
+     * @throws RemoteException
+     */
+    public void askForSolution() throws RemoteException;
 
     public void giveSolution(String solution) throws RemoteException;
 
