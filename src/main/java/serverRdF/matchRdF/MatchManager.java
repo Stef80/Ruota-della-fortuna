@@ -31,6 +31,7 @@ public class MatchManager {
 
     /**
      * @param dbmng //TODO
+     * @param email //TODO
      * @return il singleton di tipo {@link MatchManager}
      */
     public static MatchManager createMatchManager(DBManager dbmng, EmailManager email) {
@@ -131,7 +132,7 @@ public class MatchManager {
         return match;
     }
 
-    static void deleteMatch(String idMatch){
+    static void deleteMatch(String idMatch) {
         matches.remove(idMatch);
     }
 
