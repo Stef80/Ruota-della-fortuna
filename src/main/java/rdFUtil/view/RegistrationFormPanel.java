@@ -72,14 +72,14 @@ public class RegistrationFormPanel {
                     .position(Pos.CENTER);
             notification.showError();
 
-        } else {
-            String nameStr = name.getText();
-            String surnameStr = surname.getText();
-            String nickStr = nickname.getText();
-            String mailStr = eMail.getText();
-            String passwordStr = password.getText();
-            user = new User(passwordStr, mailStr, nameStr, surnameStr, nickStr);
-            server.signUp(user, client, true);//TODO da modificare per PlayerRdF e AdminRdF
+		}else{
+			String nameStr = name.getText();
+			String surnameStr = surname.getText();
+			String nickStr = nickname.getText();
+			String mailStr = eMail.getText();
+			String passwordStr = password.getText();
+            user = new User(passwordStr,mailStr,nameStr,surnameStr,nickStr);
+			//server.signUp(user,client);//TODO da modificare per PlayerRdF e AdminRdF
 
             Parent root = FXMLLoader.load(Thread.currentThread().getClass().getResource("main_pane.fxml"));
             Scene scene = new Scene(root);
