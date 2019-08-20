@@ -52,4 +52,16 @@ public interface UsersDAO {
      * @throws SQLException
      */
     boolean deleteUser(String id) throws SQLException;
+
+    /**
+     * Questo metodo controlla che la mail inserita e la password di un utente siano corrette e che l'utente sia o meno un admin
+     *
+     * @param email la mail dell'utente
+     * @param password la password dell'utente
+     * @param admin se e' un admin
+     * @return <code>0</code> se i dati sono tutti esatti, <code>-1</code> se la mail non esiste o la mail esiste ma la password e' errata e <code>1</code> se email e password sono corrette
+     * ma l'utente non e' un admin quando <code>admin = true</code> o viceversa
+     * @throws SQLException
+     */
+    int checkLogin(String email, String password, boolean admin) throws SQLException;
 }

@@ -99,8 +99,9 @@ public class DBManager implements DBManagerInterface{
 
     @Override
     public int checkLogin(String email, String password, boolean admin) throws SQLException {
-        //TODO
-        return 0;
+        if(usersDAO == null)
+            createUsersDAO();
+        return usersDAO.checkLogin(email,password,admin);
     }
 
     public List<UsersDTO> getAllAdmin() throws SQLException{
