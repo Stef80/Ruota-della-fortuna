@@ -28,13 +28,7 @@ public class TabPane implements Initializable {
 	private Client client;
 	private Server server;
 
-<<<<<<< HEAD
-	public TabPane(){}
-
-	public TabPane(Server server, Client client){
-=======
 	public TabPane(Server server){
->>>>>>> 2f3d956de427ec6cdfe7a11882507974e68e78a9
 		this.server = server;
 	}
 	public void addMatch(ActionEvent actionEvent) throws RemoteException, NotBoundException {

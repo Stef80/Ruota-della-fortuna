@@ -74,19 +74,7 @@ public class GameView extends ListCell<RemoteMatch> {
 				@Override
 				public void handle(javafx.event.ActionEvent event) {
 					try {
-<<<<<<< HEAD
-						match = server.joinMatch(client, item.getMatchId());
-						boolean aviable = match.addPlayer(client);
-						setAviableLabel(aviable);
-						if((label2.getText()).equals("id2")){
-							label2.setText(finalPlayers.getPlayer2());
-						}else{
-							label3.setText(finalPlayers.getPlayer3());
-						}
-
-=======
 						server.joinMatch(client, item.getMatchId() );
->>>>>>> 2f3d956de427ec6cdfe7a11882507974e68e78a9
 					} catch (RemoteException e) {
 						e.printStackTrace();
 					}

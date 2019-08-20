@@ -24,8 +24,6 @@ public class Controller {
 	private Button registerButton;
 	private Server server;
 
-	public Controller(){}
-
 	public Controller(Server server, Client client) {
 		this.server = server;
 	}
