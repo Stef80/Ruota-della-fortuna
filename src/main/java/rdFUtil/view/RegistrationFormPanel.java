@@ -51,6 +51,9 @@ public class RegistrationFormPanel {
      * Registra il nuovo user verificando che non esista già tramite il confronto
      * tra la mail inserita e quelle già registrate se non esiste la registra
      * visualizza unafinestra di errore altrimenti
+     *
+     * @throws IOException
+     * @throws NotBoundException
      */
     public void confirm() throws IOException, NotBoundException {
         //acquisisce il riferimento al server
@@ -72,14 +75,14 @@ public class RegistrationFormPanel {
                     .position(Pos.CENTER);
             notification.showError();
 
-		}else{
-			String nameStr = name.getText();
-			String surnameStr = surname.getText();
-			String nickStr = nickname.getText();
-			String mailStr = eMail.getText();
-			String passwordStr = password.getText();
-            user = new User(passwordStr,mailStr,nameStr,surnameStr,nickStr);
-			//server.signUp(user,client);//TODO da modificare per PlayerRdF e AdminRdF
+        } else {
+            String nameStr = name.getText();
+            String surnameStr = surname.getText();
+            String nickStr = nickname.getText();
+            String mailStr = eMail.getText();
+            String passwordStr = password.getText();
+            user = new User(passwordStr, mailStr, nameStr, surnameStr, nickStr);
+            //server.signUp(user,client);//TODO da modificare per PlayerRdF e AdminRdF
 
             Parent root = FXMLLoader.load(Thread.currentThread().getClass().getResource("main_pane.fxml"));
             Scene scene = new Scene(root);
