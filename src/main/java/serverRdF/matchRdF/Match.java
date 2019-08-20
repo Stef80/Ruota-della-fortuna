@@ -293,9 +293,6 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
      */
     void errorInTurn(boolean canJollyBeUsed, boolean moveDone) {
         Player activePlayer = players.get(turn);
-        if(!moveDone){
-            manche.getTurns().addMove(activePlayer.getIdPlayer(), "errore", 0);
-        }
         try {
             if (canJollyBeUsed) {
                 notifyError();
@@ -305,11 +302,15 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                 }else{
                     if(moveDone)
                         manche.getTurns().getLastMove().setOutCome(0);
+                    else
+                        manche.getTurns().addMove(activePlayer.getIdPlayer(), "errore", 0);
                     nextTurn();
                 }
             }else{
                 if(moveDone)
                     manche.getTurns().getLastMove().setOutCome(0);
+                else
+                    manche.getTurns().addMove(activePlayer.getIdPlayer(), "errore", 0);
                 nextTurn();
             }
         }catch(RemoteException e){
