@@ -415,13 +415,13 @@
             <VBox prefHeight="60.0" prefWidth="100.0">
                <children>
                   <Label text="immetti qui la soluzione" />
-                  <TextField fx:id="solutionTextField" prefHeight="50.0" />
+                  <TextField prefHeight="50.0" />
                </children>
             </VBox>
             <HBox prefHeight="32.0" spacing="60.0">
                <children>
                   <Button fx:id="jollyButton" maxWidth="60.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="60.0" text="jolly" />
-                  <TextField fx:id="letterTextfield" prefHeight="32.0" prefWidth="60.0" promptText="lettera" />
+                  <TextField prefHeight="32.0" prefWidth="60.0" promptText="lettera" />
                </children>
             </HBox>
             <HBox prefHeight="32.0" spacing="60.0">

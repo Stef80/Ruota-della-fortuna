@@ -1,35 +1,29 @@
 package rdFUtil.view;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+import javafx.geometry.Pos;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 import rdFUtil.client.Client;
 import serverRdF.Server;
 
-import java.rmi.RemoteException;
-
 public class ForgottenPasswordPane {
-	@FXML
-	private Button enterButton;
-	@FXML
-	private TextField mailText;
-	private Server server;
-	private Client client;
+	Server server;
+	Client client;
+
+<<<<<<< HEAD
+	public ForgottenPasswordPane(){}
 
 	public ForgottenPasswordPane(Server server, Client client) {
+=======
+	public ForgottenPasswordPane(Server server,Client client) {
+>>>>>>> 2f3d956de427ec6cdfe7a11882507974e68e78a9
 
 		this.server = server;
 		this.client = client;
 	}
 
-	public void enter() throws RemoteException {
-		String mail = mailText.getText();
-		server.resetPassword(client, mail);
-		Stage oldStage = (Stage) enterButton.getScene().getWindow();
-		oldStage.close();
-
+	public void enter(){
 
 	}
 }

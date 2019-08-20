@@ -1,6 +1,7 @@
 package serverRdF.dbComm;
 
 import rdFUtil.logging.User;
+import serverRdF.matchRdF.Move;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,6 +17,11 @@ public class DBManager implements DBManagerInterface{
     private PhrasesDAO phrasesDAO;
     private MatchesDAO matchesDAO;
     private UsersDAO usersDAO;
+    private MovesDAO movesDAO;
+    private ManchesDAO manchesDAO;
+    private MancheWinnersDAO mancheWinnersDAO;
+    private MancheJoinersDAO mancheJoinersDAO;
+    private MatchWinnersDAO matchWinnersDAO;
 
     private DBManager() throws SQLException {
         //TODO connessione con database
@@ -47,6 +53,10 @@ public class DBManager implements DBManagerInterface{
         return matchesDAO.addMatch(new MatchesDTO(id, time));
     }
 
+    public boolean deleteMatch(String idMatch) throws SQLException{
+        return matchesDAO.deleteMatch(idMatch);
+    }
+
     /**
      * Questo metodo inizializza l'instanza di UsersDAO
      */
@@ -54,6 +64,8 @@ public class DBManager implements DBManagerInterface{
         usersDAO = new UsersDAOImpl(con);
     }
     public boolean addUser(User user, boolean isAdmin) throws SQLException {
+        if(usersDAO==null)
+            createUsersDAO();
         return usersDAO.addUser(new UsersDTO(user.getId(), isAdmin, user.getName(), user.getSurname(), user.getNickname(), user.getEmail(), user.getPasswordC()));
     }
 
@@ -91,6 +103,11 @@ public class DBManager implements DBManagerInterface{
         return false;
     }
 
+    public List<UsersDTO> getAllAdmin() throws SQLException{
+        //TODO
+        return null;
+    }
+
     /**
      * Questo metodo inizializza l'instanza di PhrasesDAO
      */
@@ -121,5 +138,71 @@ public class DBManager implements DBManagerInterface{
         if(phrasesDAO ==null)
             createPhrasesDAO();
        return phrasesDAO.getAllPhrases();
+    }
+
+    /**
+     * Questo metodo inizializza l'instanza di MovesDAO
+     */
+    private void createMovesDAO(){
+        movesDAO = new MovesDAOImpl(con);
+    }
+
+    @Override
+    public boolean addMove(Move move) throws SQLException{
+        if(movesDAO==null)
+            createMovesDAO();
+        return movesDAO.addMove(move);
+    }
+
+    /**
+     * Questo metodo inizializza l'istanza di ManchesDAO
+     */
+    private void createManchesDAO(){
+        manchesDAO = new ManchesDAOImpl(con);
+    }
+
+    @Override
+    public boolean addManche(ManchesDTO manche) throws SQLException{
+        if(manchesDAO==null)
+            createManchesDAO();
+        return manchesDAO.addManche(manche);
+    }
+
+    /**
+     * Questo metodo inizializza l'istanza di MancheWinnersDAO
+     */
+    private void createMancheWinnersDAO(){mancheWinnersDAO = new MancheWinnersDAOImpl(con);}
+
+    @Override
+    public boolean addMancheWinner(String idPlayer, ManchesDTO manche, int amount) throws SQLException{
+        if(mancheWinnersDAO==null)
+            createMancheWinnersDAO();
+        return mancheWinnersDAO.addMancheWinner(idPlayer,manche,amount);
+    }
+
+    private void createMancheJoinersDAO(){mancheJoinersDAO = new MancheJoinersDAOImpl(con);}
+
+    @Override
+    public boolean addMancheJoiner(String idMatch, int numManche, String userId, boolean observer) {
+        if(mancheJoinersDAO==null)
+            createMancheWinnersDAO();
+        try {
+            return mancheJoinersDAO.addMancheJoiner(idMatch, numManche, userId, observer);
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+
+    private void createMatchWinnersDAO(){matchWinnersDAO = new MatchWinnersDAOImpl(con);}
+
+    @Override
+    public boolean addMatchWinner(String idMatch, String idPlayer, int amount) {
+        if(matchWinnersDAO==null)
+            createMatchWinnersDAO();
+        try {
+            return matchWinnersDAO.addMatchWinner(idMatch, idPlayer, amount);
+        } catch (SQLException e) {
+            return false;
+        }
     }
 }
