@@ -17,7 +17,7 @@ public class MatchVisualizer {
     private MatchManager matchManager;
 
     private MatchVisualizer(MatchManager matchmng) {
-        matchManager = matchmng;
+
     }
 
     /**

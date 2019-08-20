@@ -1,7 +1,6 @@
 package serverRdF.dbComm;
 
 import rdFUtil.logging.User;
-import serverRdF.matchRdF.Move;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -56,14 +55,6 @@ public interface DBManagerInterface {
     UsersDTO getUserById(String id) throws SQLException;
 
     /**
-     * Questo metodo ritorna tutti gli admin registrati alla piattaforma
-     *
-     * @return La lista di tutti gli admin registrati
-     * @throws SQLException
-     */
-    List<UsersDTO> getAllAdmin() throws SQLException;
-
-    /**
      * Questo metodo permette di eliminare un utente presente nel database
      * @param id id dell'utente
      * @return <code>true</code> se l'inserimento e' andato a buon fine, altrimenti <code>false</code>
@@ -103,65 +94,5 @@ public interface DBManagerInterface {
      */
     List<PhrasesDTO> getAllPhrases() throws SQLException;
 
-
-    /**
-     * Questo metodo cancella una partita dal database
-     *
-     * @param idMatch id del match da cancellare
-     * @return <code>true</code> se l'eliminazione va a buon fine, <code>false</code> altrimenti
-     * @throws SQLException
-     */
-    boolean deleteMatch(String idMatch) throws SQLException;
-
-    /**
-     * Questo metodo aggiunge nel database una mossa
-     *
-     * @param move la mossa da inserire
-     * @return <code>true</code> se l'inserimento va a buon fine, altrimenti <code>false</code>
-     * @throws SQLException
-     */
-    boolean addMove(Move move) throws SQLException;
-
-
-    /**
-     * Questo metodo aggiunge nel database una manche giocata
-     *
-     * @param manche la manche da inserire
-     * @return <code>true</code> se l'inserimento va a buon fine, altrimenti <code>false</code>
-     * @throws SQLException
-     */
-    boolean addManche(ManchesDTO manche) throws SQLException;
-
-    /**
-     * Questo metodo aggiunge nel database il vincitore di una manche giocata
-     *
-     * @param idPlayer l'id del vincitore
-     * @param manche la manche giocata
-     * @param amount il punteggio ottenuto nella manche
-     * @return <code>true</code> se l'inserimento va a buon fine, altrimenti <code>false</code>
-     * @throws SQLException
-     */
-    boolean addMancheWinner(String idPlayer, ManchesDTO manche, int amount) throws SQLException;
-
-    /**
-     * Questo metodo collega un utente ad una manche che ha osservato o giocato
-     *
-     * @param idMatch id del match giocato/osservato
-     * @param numManche numero della manche
-     * @param userId id dell'utente
-     * @param observer <code>true</code> se l'utente era un osservatore, <code>false</code> altrimenti
-     * @return <code>true</code> se l'inserimento va a buon fine, altrimenti <code>false</code>
-     */
-    boolean addMancheJoiner(String idMatch, int numManche, String userId, boolean observer);
-
-    /**
-     * Questo metodo aggiunge al database il vincitore di una partita
-     *
-     * @param idMatch id del match vinto
-     * @param idPlayer l'id del vincitore
-     * @param amount il punteggio ottenuto
-     * @return <code>true</code> se l'inserimento va a buon fine, altrimenti <code>false</code>
-     */
-    boolean addMatchWinner(String idMatch, String idPlayer, int amount);
     //TODO tutti i metodi che servono agli altri manager e a Match. ricordarsi di aggiungere man mano i metodi utilizzati nelle altre classi per non perderli.
 }

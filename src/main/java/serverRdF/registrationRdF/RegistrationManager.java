@@ -46,13 +46,13 @@ public class RegistrationManager {
      * @return un riferimento all'oggeto remoto {@link OTPHelper} per l'invio del codice da parte del client
      * @throws RemoteException in caso di errori di connesione al server
      */
-    public OTPHelper signUp(User form, Client c, boolean admin) throws RemoteException {
+    public OTPHelper signUp(User form, Client c) throws RemoteException {
         //TODO la parte di invio della email
         String otp = generateOTP();
         String sub = "Conferma della registrazione a Ruota della Fortuna";
         String text = "Prego inserire il codice: " + otp + " per ultimare la registrazione. Il codice deve essere inserito entro 10 minuti pena l'annullamento della registrazione";
         emailManager.sendEmail(form.getEmail(), sub, text);
-        WaitingThread thread = new WaitingThread(c, dbManager, form, admin);
+        WaitingThread thread = new WaitingThread(c, dbManager, form);
         String cryptedOTP = CryptPassword.encrypt(otp);
         OTPHelperImplementation otpHelper = new OTPHelperImplementation(thread, cryptedOTP);
         thread.start();

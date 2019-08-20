@@ -44,7 +44,7 @@ import java.util.Scanner;
             }
 
             public void run() {
-                int tenMininSec = 10000;
+                int tenMininSec = 600000;
                 try {
                     sleep(tenMininSec);
                     System.out.println("NOPE");

@@ -14,6 +14,7 @@ public class PhrasesDAOImpl implements PhrasesDAO {
     }
     @Override
     public List<PhrasesDTO> get5Phrases(String idPlayer1, String idPlayer2, String idPlayer3) throws SQLException {
+        //TODO rendere costanti attributi e tabelle Manches e MatchJoiner
         String query5Phrases = "SELECT * FROM "+PhraseTable+" WHERE "+PhrasePhraseAttribute+" <>" +
                 "(SELECT "+PhrasePhraseAttribute+" FROM Manches M JOIN MatchJoiners MJ ON M.id=MJ.id AND M.number = MJ.number " +
                 "WHERE idPlayer = '"+idPlayer1+"' OR idPlayer = '"+idPlayer2+"' OR idPlayer = '"+idPlayer3+"'" +

@@ -17,12 +17,4 @@ public class MatchesDAOImpl implements MatchesDAO {
         Statement stmt = con.createStatement();
         return stmt.executeUpdate(queryAdd) > 0;
     }
-
-    @Override
-    public boolean deleteMatch(String idMatch) throws SQLException{
-        String queryAdd = "DELETE FROM " + MatchTable +
-                        " WHERE " + MatchIdAttribute + " = " + idMatch;
-        Statement stmt = con.createStatement();
-        return stmt.executeUpdate(queryAdd) > 0;
-    }
 }

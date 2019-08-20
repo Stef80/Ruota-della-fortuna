@@ -17,14 +17,4 @@ public interface MatchesDAO {
      * @throws SQLException
      */
     boolean addMatch(MatchesDTO matchesDTO) throws SQLException;
-
-
-    /**
-     * Questo metodo cancella una partita dal database
-     *
-     * @param idMatch id del match da cancellare
-     * @return <code>true</code> se l'eliminazione va a buon fine, <code>false</code> altrimenti
-     * @throws SQLException
-     */
-    boolean deleteMatch(String idMatch) throws SQLException;
 }

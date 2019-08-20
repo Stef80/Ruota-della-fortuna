@@ -16,13 +16,11 @@ public class WaitingThread extends Thread {
     private Client client;
     private DBManager dbManager;
     private User user;
-    private boolean admin;
 
-    public WaitingThread(Client c, DBManager dbManager, User id, boolean admin) {
+    public WaitingThread(Client c, DBManager dbManager, User id) {
         client = c;
         this.dbManager = dbManager;
         user = id;
-        this.admin = admin;
     }
 
     public void run() {
@@ -37,7 +35,7 @@ public class WaitingThread extends Thread {
         } catch (InterruptedException e) {
             try {
                 client.notifyRegistrationResult(true);
-                boolean bool = dbManager.addUser(user, admin);
+                boolean bool = dbManager.addUser(user, false); //todo da inserire nel costruttore il boolean isAdmin
                 if (!bool) {
                     ServerImplementation.serverError(client);
                 }

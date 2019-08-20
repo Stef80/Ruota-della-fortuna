@@ -15,15 +15,15 @@ import java.util.ArrayList;
 
 public interface Server extends Remote {
 
-   //ritorna false se la mail esiste già , ture altrimenti.
+   //ritorna true se la mail esiste già , false altrimenti.
     public boolean checkEMail(String email)throws RemoteException;
 
-   //ritorna false se il nick esiste già , true altrimenti.
+   //ritorna true se il nick esiste già , false altrimenti.
     public boolean checkNickName(String name)throws RemoteException;
 
-    public OTPHelper signUp(User form, Client c, boolean admin) throws RemoteException;
+    public OTPHelper signUp(User form, Client c) throws RemoteException;
 
-    public void signIn(Login form, Client c) throws RemoteException; //TODO anche signIn dovrà avere il boolean e gestire in modo separato a seconda se il login avviene su PlayerRdF o adminRdF
+    public void signIn(Login form, Client c) throws RemoteException;
 
     public ArrayList<MatchData> visualizeMatch(Client c) throws RemoteException;
 
@@ -51,5 +51,7 @@ public interface Server extends Remote {
 
     public void averageManches(Client c) throws RemoteException;
 
-    public void resetPassword(Client c) throws RemoteException;
+    public void resetPassword(Client c, String mail) throws RemoteException;
+
+    public boolean checkPassword(String password);
 }

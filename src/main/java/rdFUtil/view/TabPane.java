@@ -27,21 +27,30 @@ public class TabPane implements Initializable {
 
 	private Client client;
 	private Server server;
+<<<<<<< HEAD
 
 	public TabPane(Server server){
+=======
+	private RemoteMatch match;
+
+	public TabPane(Server server, Client client){
+>>>>>>> parent of d8b696f... aggiunta metodi senza argomenti
 		this.server = server;
+		this.client = client;
 	}
+
+
+
 	public void addMatch(ActionEvent actionEvent) throws RemoteException, NotBoundException {
-		/*RemoteMatch newMatch = (RemoteMatch) registry.lookup("newGame");
-		newMatch.addPlayer(client);
-		gameObservableList.add(newMatch);*/
+        match = new Match("id",LocalDateTime.now());
+        gameObservableList.add(match);
 	}
 
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		gameList.setItems(gameObservableList);
-		gameList.setCellFactory(e -> new GameView());
+		gameList.setCellFactory(e -> new GameView(server,client,match));
 		/*
 		 * gameList.setCellFactory(new Callback<ListView<Game>, ListCell<Game>>(){
 		 *
