@@ -16,7 +16,6 @@ import rdFUtil.logging.User;
 import serverRdF.Server;
 
 import java.io.IOException;
-import java.rmi.NotBoundException;
 
 public class RegistrationFormPanel {
 
@@ -47,7 +46,6 @@ public class RegistrationFormPanel {
      * visualizza unafinestra di errore altrimenti
      *
      * @throws IOException
-     * @throws NotBoundException
      */
     public void confirm() throws IOException {
         //se la mail non esiste visualizza notifica
