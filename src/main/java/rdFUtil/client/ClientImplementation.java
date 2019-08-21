@@ -46,6 +46,7 @@ public class ClientImplementation implements Client {
 
     @Override
     public void notifyWrongOTP() throws RemoteException {
+
     }
 
     @Override
