@@ -4,9 +4,7 @@ import serverRdF.dbComm.DBManager;
 import serverRdF.dbComm.ManchesDTO;
 import serverRdF.dbComm.MatchesDTO;
 import serverRdF.dbComm.PhrasesDTO;
-import serverRdF.matchRdF.Turn;
 
-import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +21,7 @@ public class Manche {
     private String match;
     private LocalDateTime matchTime;
 
-    public Manche(DBManager dbmng, String id, LocalDateTime time){
+    public Manche(DBManager dbmng, String id, LocalDateTime time) {
         turns = new Turn(this);
         phrases = new ArrayList<PhrasesDTO>();
         numManche = 0;
@@ -72,26 +70,25 @@ public class Manche {
         this.match = match;
     }
 
-    public PhrasesDTO getCurrentPhrase(){
-        return phrases.get(numManche-1);
+    public PhrasesDTO getCurrentPhrase() {
+        return phrases.get(numManche - 1);
     }
 
 
-    public boolean endManche(Player winner){
+    public boolean endManche(Player winner) {
         ManchesDTO manche = new ManchesDTO();
         manche.setNumber(numManche);
         manche.setPhrase(getCurrentPhrase());
         manche.setMatch(new MatchesDTO(match, matchTime));
-        try {
-            dbManager.addManche(manche);
-            turns.saveMoves(dbManager);
-            if(winner != null){
-                dbManager.addMancheWinner(winner.getIdPlayer(), manche, winner.getPartialPoints());
-                setNumManche(numManche+1);
-            }
-            return true;
-        }catch(SQLException e){
-            return false;
+        boolean man = dbManager.addManche(manche);
+        boolean tur = turns.saveMoves(dbManager);
+        if (winner != null) {
+            setNumManche(numManche + 1);
+            return dbManager.addMancheWinner(winner.getIdPlayer(), manche, winner.getPartialPoints());
         }
+        if (man && tur) {
+            return true;
+        } else
+            return false;
     }
 }

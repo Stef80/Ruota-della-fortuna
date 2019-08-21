@@ -6,7 +6,6 @@ import serverRdF.ServerImplementation;
 import serverRdF.dbComm.DBManager;
 
 import java.rmi.RemoteException;
-import java.sql.SQLException;
 
 
 /**

@@ -456,7 +456,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                 turn = rnd.nextInt(3);
                 nextTurn();
             }
-        }catch(SQLException|RemoteException e) {
+        }catch(RemoteException e) {
             try {
                 for (Client c : observers) {
                     try {

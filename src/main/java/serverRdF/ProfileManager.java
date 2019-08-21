@@ -6,7 +6,6 @@ import serverRdF.dbComm.DBManager;
 import serverRdF.dbComm.UsersDTO;
 import serverRdF.emailRdF.EmailManager;
 
-import java.sql.SQLException;
 import java.util.Random;
 
 /**
@@ -36,25 +35,25 @@ public class ProfileManager {
         }
     }
 
-    public boolean changeName(String name, String idUser) throws SQLException {
+    public boolean changeName(String name, String idUser) {
         UsersDTO user = dbManager.getUserById(idUser);
         user.setName(name);
         return dbManager.updateUser(user);
     }
 
-    public boolean changeSurname(String surname, String idUser) throws SQLException {
+    public boolean changeSurname(String surname, String idUser) {
         UsersDTO user = dbManager.getUserById(idUser);
         user.setSurname(surname);
         return dbManager.updateUser(user);
     }
 
-    public boolean changeNickname(String nickname, String idUser) throws SQLException {
+    public boolean changeNickname(String nickname, String idUser) {
         UsersDTO user = dbManager.getUserById(idUser);
         user.setNickname(nickname);
         return dbManager.updateUser(user);
     }
 
-    public boolean changePassword(String password, String idUser) throws SQLException {
+    public boolean changePassword(String password, String idUser){
         UsersDTO user = dbManager.getUserById(idUser);
         user.setPassword(password);
         String email = user.getEmail();

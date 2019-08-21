@@ -14,7 +14,6 @@ import serverRdF.registrationRdF.RegistrationManager;
 import java.io.File;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ServerImplementation extends UnicastRemoteObject implements Server {
@@ -109,41 +108,25 @@ public class ServerImplementation extends UnicastRemoteObject implements Server 
     @Override
     public boolean changeName(String name, Client c) throws RemoteException {
         String idUser = c.getId();
-        try {
-            return profileManager.changeName(name, idUser);
-        } catch (SQLException e) {
-            return false;
-        }
+        return profileManager.changeName(name, idUser);
     }
 
     @Override
     public boolean changeSurname(String surname, Client c) throws RemoteException {
         String idUser = c.getId();
-        try {
-            return profileManager.changeSurname(surname, idUser);
-        } catch (SQLException e) {
-            return false;
-        }
+        return profileManager.changeSurname(surname, idUser);
     }
 
     @Override
     public boolean changeNickname(String nickname, Client c) throws RemoteException {
         String idUser = c.getId();
-        try {
-            return profileManager.changeNickname(nickname, idUser);
-        } catch (SQLException e) {
-            return false;
-        }
+        return profileManager.changeNickname(nickname, idUser);
     }
 
     @Override
     public boolean changePassword(String password, Client c) throws RemoteException {
         String idUser = c.getId();
-        try {
-            return profileManager.changePassword(password, idUser);
-        } catch (SQLException e) {
-            return false;
-        }
+        return profileManager.changePassword(password, idUser);
     }
 
     @Override

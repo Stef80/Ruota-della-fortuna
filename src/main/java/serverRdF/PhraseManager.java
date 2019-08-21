@@ -10,8 +10,6 @@ import serverRdF.registrationRdF.RegistrationManager;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.rmi.RemoteException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 
@@ -39,7 +37,7 @@ public class PhraseManager {
         }
     }
 
-    public boolean addPhrases(File file) throws IOException, SQLException {
+    public boolean addPhrases(File file) throws IOException {
         CSVReader reader = new CSVReader(new FileReader(file.getName()));
         ArrayList<PhrasesDTO> phrases = new ArrayList<>();
         String[] nextLine;

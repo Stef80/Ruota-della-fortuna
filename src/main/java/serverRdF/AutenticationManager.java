@@ -6,7 +6,6 @@ import serverRdF.dbComm.DBManager;
 import serverRdF.dbComm.UsersDTO;
 
 import java.rmi.RemoteException;
-import java.sql.SQLException;
 
 
 /**
@@ -47,10 +46,10 @@ public class AutenticationManager {
     public int signIn(Login form, Client c, boolean admin) throws RemoteException {
         String email = form.getEmail();
         String password = form.getPasswordC();
-        try {
             int result = dbManager.checkLogin(email, password, admin);
-            UsersDTO user = dbManager.getUserByEmail(email);
+
             if (result == 0) {
+                UsersDTO user = dbManager.getUserByEmail(email);
                 c.setNickname(user.getNickname());
                 c.setId(user.getId());
                 c.setName(user.getName());
@@ -58,9 +57,5 @@ public class AutenticationManager {
                 c.setEmail(user.getEmail());
             }
             return result;
-        } catch (SQLException e) {
-            ServerImplementation.serverError(c);
-            return -1;
-        }
     }
 }

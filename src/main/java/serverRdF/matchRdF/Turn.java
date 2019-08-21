@@ -1,10 +1,7 @@
 package serverRdF.matchRdF;
 
         import serverRdF.dbComm.DBManager;
-        import serverRdF.dbComm.ManchesDTO;
-        import serverRdF.dbComm.MovesDTO;
 
-        import java.sql.SQLException;
         import java.util.ArrayList;
         import java.util.List;
 
@@ -31,16 +28,12 @@ public class Turn {
     public boolean saveMoves(DBManager dbManager){
         boolean success = true;
         for(Move move : moves){
-            try {
                 if(success == true) {
                     success = dbManager.addMove(move);
                 }else{
                     dbManager.addMove(move);
                 }
                 moves.remove(move);
-            }catch(SQLException e){
-                success = false;
-            }
         }
         return success;
     }
