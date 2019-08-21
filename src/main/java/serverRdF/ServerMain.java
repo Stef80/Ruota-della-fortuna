@@ -32,7 +32,7 @@ public class ServerMain {
             r = LocateRegistry.createRegistry(PORT);
         }
         r.rebind("SERVER", serverImpl);
-        stampare sulla schermata del server l'hostname' in modo che i client lo possano usare per ricercarlo
+        stampare sulla schermata del server l'hostname' in modo che i client lo possano usare per ricercare il server
          */
     }
 }

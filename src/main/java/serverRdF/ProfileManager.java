@@ -60,4 +60,5 @@ public class ProfileManager {
         emailManager.sendEmail(email,sub,txt);
         return dbManager.updateUser(user);
     }
+    //TODO resetPassword
 }

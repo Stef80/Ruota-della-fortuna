@@ -23,6 +23,7 @@ public class OTPHelperImplementation extends UnicastRemoteObject implements OTPH
         String cryptedOTP = CryptPassword.encrypt(otp);
         if (cryptedOTP.equals(this.otp)) {
             thread.interrupt();
+            UnicastRemoteObject.unexportObject(this,false);
         } else {
             try {
                 c.notifyWrongOTP();

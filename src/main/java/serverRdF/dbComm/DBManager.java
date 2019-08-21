@@ -47,14 +47,24 @@ public class DBManager implements DBManagerInterface{
         matchesDAO = new MatchesDAOImpl(con);
     }
 
-    public boolean addMatch(String id, LocalDateTime time) throws SQLException {
+    public boolean addMatch(String id, LocalDateTime time) {
         if(matchesDAO==null)
             createMatchesDAO();
-        return matchesDAO.addMatch(new MatchesDTO(id, time));
+        try {
+            return matchesDAO.addMatch(new MatchesDTO(id, time));
+        }catch(SQLException e){
+            return false;
+        }
     }
 
-    public boolean deleteMatch(String idMatch) throws SQLException{
-        return matchesDAO.deleteMatch(idMatch);
+    public boolean deleteMatch(String idMatch) {
+        if(matchesDAO == null)
+            createMatchesDAO();
+        try {
+            return matchesDAO.deleteMatch(idMatch);
+        }catch(SQLException e){
+            return false;
+        }
     }
 
     /**
@@ -63,17 +73,25 @@ public class DBManager implements DBManagerInterface{
     private void createUsersDAO(){
         usersDAO = new UsersDAOImpl(con);
     }
-    public boolean addUser(User user, boolean isAdmin) throws SQLException {
+    public boolean addUser(User user, boolean isAdmin) {
         if(usersDAO==null)
             createUsersDAO();
-        return usersDAO.addUser(new UsersDTO(user.getId(), isAdmin, user.getName(), user.getSurname(), user.getNickname(), user.getEmail(), user.getPasswordC()));
+        try {
+            return usersDAO.addUser(new UsersDTO(user.getId(), isAdmin, user.getName(), user.getSurname(), user.getNickname(), user.getEmail(), user.getPasswordC()));
+        }catch(SQLException e){
+            return false;
+        }
     }
 
     @Override
-    public UsersDTO getUserByEmail(String email) throws SQLException {
+    public UsersDTO getUserByEmail(String email) {
         if(usersDAO==null)
             createUsersDAO();
-        return usersDAO.getUserByEmail(email);
+        try {
+            return usersDAO.getUserByEmail(email);
+        }catch(SQLException e){
+            return null;
+        }
     }
 
     @Override

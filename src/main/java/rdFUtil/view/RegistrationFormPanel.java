@@ -72,7 +72,7 @@ public class RegistrationFormPanel {
             String mailStr = eMail.getText();
             String passwordStr = password.getText();
             user = new User(passwordStr, mailStr, nameStr, surnameStr, nickStr);
-//            server.signUp(user,client);//todo da agiungere il boolean dell'admin
+//            OTPHelper otpHelper = server.signUp(user,client);//todo da agiungere il boolean dell'admin
 
             Parent root = FXMLLoader.load(Thread.currentThread().getClass().getResource("main_pane.fxml"));
             Scene scene = new Scene(root);
