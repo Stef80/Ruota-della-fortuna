@@ -398,7 +398,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
 
             List<PhrasesDTO> phrases = dbManager.get5Phrases(idPlayer1, idPlayer2, idPlayer3);
 
-            if(phrases == null){
+            if(phrases == null || phrases.isEmpty()){
                 try {
                     for (Client c : observers) {
                         try {
@@ -777,6 +777,4 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         timer = new MoveTimer(time, this, jolly, solution);
         timer.start();
     }
-
-    //TODO
 }

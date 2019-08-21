@@ -54,6 +54,10 @@ public class ProfileManager {
     public boolean changePassword(String password, String idUser) throws SQLException {
         UsersDTO user = dbManager.getUserById(idUser);
         user.setPassword(password);
+        String email = user.getEmail();
+        String sub = "RdF: modifica della password";
+        String txt = user.getName()+"! \n La informiamo che la sua password e' stata modificata con successo.";
+        emailManager.sendEmail(email,sub,txt);
         return dbManager.updateUser(user);
     }
 }

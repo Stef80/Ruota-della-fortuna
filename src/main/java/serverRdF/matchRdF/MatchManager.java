@@ -30,8 +30,8 @@ public class MatchManager {
 
 
     /**
-     * @param dbmng //TODO
-     * @param email //TODO
+     * @param dbmng il riferimento all'oggetto {@link DBManager}
+     * @param email il riferimento all'oggetto {@link EmailManager}
      * @return il singleton di tipo {@link MatchManager}
      */
     public static MatchManager createMatchManager(DBManager dbmng, EmailManager email) {

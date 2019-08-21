@@ -3,6 +3,7 @@ package serverRdF.emailRdF;
 import serverRdF.ServerImplementation;
 
 import javax.mail.MessagingException;
+import javax.mail.SendFailedException;
 
 public class EmailManager {
     //TODO metodi e commenti javadoc
@@ -40,31 +41,20 @@ public class EmailManager {
     }
 
     /**
-     * @param email //TODO
-     */
-    public void checkSMTPAccount(String email) {
-        //TODO se decidiamo che quando qualcuno nel server accede come admin si controlla in automatico se ha un account insubria registrato e gli si chiede la password,
-        //TODO questo metodo sarebbe utilizzato solo da registerAccount per controllare che la mail non sia già in uso e quindi lo si potrebbe rendere privato.
-        //TODO O toglierlo e lasciare che sia il DB a fare questi controlli, più veloce ma forse con meno controllo
-    }
-
-    /**
      * Questo metdodo permette all'utente di loggarsi
      *
      * @param email    la mail dell'utente
      * @param password la password dell'utente
+     * @return true se l'accesso è avvenuto con successo, false altrimenti
      */
-    public void logIntoAccount(String email, String password) {
-        //TODO
-    }
-
-    /**
-     * Questo metodo permette all'utente di registrarsi
-     *
-     * @param email    la mail dell'utente
-     * @param password la password dell'utente
-     */
-    public void registerAccount(String email, String password) {
-        //TODO
+    public static boolean logIntoAccount(String email, String password) {
+        try{
+            String sub = "RdF: collegamento dell'account riuscito";
+            String txt = "Ora e' possibile inviare emails in automatico dalla piattaforma attraverso questo account.";
+            EmailSender.sendUninsubriaEmail(email,password,email,sub,txt);
+            return true;
+        }catch(MessagingException e){
+            return false;
+        }
     }
 }
