@@ -24,7 +24,7 @@ public class ServerImplementation extends UnicastRemoteObject implements Server 
     public ServerImplementation(DBManager dbmng, EmailManager emailmang) throws RemoteException {
         dbManager = dbmng;
         emailManager = emailmang;
-        profileManager = ProfileManager.createProfileManager(dbManager,emailManager);
+        profileManager = ProfileManager.createProfileManager(dbManager, emailManager);
     }
 
     //TODO campi per i vari managers e implementazione metodi dell'interfaccia.
@@ -150,6 +150,6 @@ public class ServerImplementation extends UnicastRemoteObject implements Server 
     }
 
     @Override
-    public void resetPassword(Client c) throws RemoteException {
+    public void resetPassword(Client c, String mail) throws RemoteException {
     }
 }

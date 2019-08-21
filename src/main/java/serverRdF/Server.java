@@ -61,5 +61,5 @@ public interface Server extends Remote {
 
     public void averageManches(Client c) throws RemoteException;
 
-    public void resetPassword(Client c) throws RemoteException;
+    public void resetPassword(Client c, String mail) throws RemoteException;
 }
