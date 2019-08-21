@@ -65,18 +65,18 @@ public class GameView extends ListCell<RemoteMatch> {
             }
 
             MatchData players = null;
-            try {
-                players = item.createMatchData();
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
-            label1.setText(players.getPlayer1());
-
-            try {
-                setAvailableLabel(item.isAviable());
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
+//            try {//todo da controllare
+//                players = item.createMatchData();
+//            } catch (RemoteException e) {
+//                e.printStackTrace();
+//            }
+//            label1.setText(players.getPlayer1());
+//
+//            try {
+//                setAvailableLabel(item.isAviable());
+//            } catch (RemoteException e) {
+//                e.printStackTrace();
+//            }
 
             MatchData finalPlayers = players;
             joinButton.setOnAction(new EventHandler<ActionEvent>() {
