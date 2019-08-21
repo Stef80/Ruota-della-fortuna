@@ -17,11 +17,13 @@ public class EmailManager {
     }
 
     /**
+     * @param email    //TODO
+     * @param password //TODO
      * @return il singleton di tipo {@link EmailManager}
      */
     public static EmailManager createEmailManager(String email, String password) {
         if (emailManager == null) {
-            emailManager = new EmailManager(email,password);
+            emailManager = new EmailManager(email, password);
             return emailManager;
         } else
             return emailManager;
@@ -34,7 +36,7 @@ public class EmailManager {
      */
     public void sendEmail(String to, String sub, String txt) {
         try {
-            EmailSender.sendUninsubriaEmail(email,password,to,sub,txt);
+            EmailSender.sendUninsubriaEmail(email, password, to, sub, txt);
         } catch (MessagingException e) {
             ServerImplementation.serverError(null);
         }

@@ -16,16 +16,17 @@ public class AutenticationManager {
     private DBManager dbManager;
     private static AutenticationManager autenticationManager;
 
-    private AutenticationManager(DBManager dbmng){
+    private AutenticationManager(DBManager dbmng) {
         dbManager = dbmng;
     }
 
     /**
+     * Questo metodo crea il singleton di {@link AutenticationManager}
      *
      * @param dbManager il riferimento al gestore del db
      * @return autenticationManager, il singleton della classe
      */
-    public static AutenticationManager createAutenticationManager(DBManager dbManager){
+    public static AutenticationManager createAutenticationManager(DBManager dbManager) {
         if (autenticationManager == null) {
             autenticationManager = new AutenticationManager(dbManager);
             return autenticationManager;
@@ -35,12 +36,13 @@ public class AutenticationManager {
 
 
     /**
-     *
-     * @param form contenente i dati necessari all'autenticazione
-     * @param c il riferimento al client
-     * @return true se l'autenticazione è andata a buon fine, false altrimenti
-     *
      * Nel caso in cui ci siano problemi con la connessione al server, il client viene notificato
+     *
+     * @param form  contenente i dati necessari all'autenticazione
+     * @param c     il riferimento al client
+     * @param admin il boolean che indica se l'utente e' admin oppure no
+     * @return 0 se l'autenticazione è andata a buon fine, 1 se l'utente si e' loggato ma non e' sulla piattaforma giusta, -1 altrimenti
+     * @throws RemoteException
      */
     public int signIn(Login form, Client c, boolean admin) throws RemoteException {
         String email = form.getEmail();
@@ -48,7 +50,7 @@ public class AutenticationManager {
         try {
             int result = dbManager.checkLogin(email, password, admin);
             UsersDTO user = dbManager.getUserByEmail(email);
-            if(result == 0){
+            if (result == 0) {
                 c.setNickname(user.getNickname());
                 c.setId(user.getId());
                 c.setName(user.getName());

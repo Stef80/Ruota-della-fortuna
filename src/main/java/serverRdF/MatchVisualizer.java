@@ -22,7 +22,7 @@ public class MatchVisualizer {
 
     /**
      * @param matchmng il riferimento al manager {@link MatchManager}
-     * @return  il singleton di tipo {@link MatchVisualizer}
+     * @return il singleton di tipo {@link MatchVisualizer}
      */
     public static MatchVisualizer createMatchVisualizer(MatchManager matchmng) {
         if (matchVisualizer == null) {

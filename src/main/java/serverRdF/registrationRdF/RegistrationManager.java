@@ -41,9 +41,9 @@ public class RegistrationManager {
     /**
      * Registra l'utente nel database. Nel caso non riesca notifica al client l'errore
      *
-     * @param form contenente i dati necessari alla registrazione
-     * @param c    il riferimento al client
-     * @param admin true se l'utente e' un admin, false altrimenti
+     * @param form  contenente i dati necessari alla registrazione
+     * @param c     il riferimento al client
+     * @param admin <code>true</code> se l'utente e' un admin, <code>false</code> altrimenti
      * @return un riferimento all'oggeto remoto {@link OTPHelper} per l'invio del codice da parte del client
      * @throws RemoteException in caso di errori di connesione al server
      */
