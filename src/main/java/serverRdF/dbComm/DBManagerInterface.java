@@ -181,5 +181,13 @@ public interface DBManagerInterface {
      * @throws SQLException
      */
     boolean updateUser(UsersDTO user) throws SQLException;
+
+    /**
+     * Questo metodo permette di individuare la mossa che ha fatto guadagnare la maggiore quantita' di punti
+     *
+     * @return Un oggetto di tipo {@link UsersDTO}
+     * @throws SQLException
+     */
+    MovesDTO getBestMove();
     //TODO tutti i metodi che servono agli altri manager e a Match. ricordarsi di aggiungere man mano i metodi utilizzati nelle altre classi per non perderli.
 }

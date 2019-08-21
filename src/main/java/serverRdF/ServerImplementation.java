@@ -142,7 +142,7 @@ public class ServerImplementation extends UnicastRemoteObject implements Server 
     }
 
     @Override
-    public void bestMove(Client c) throws RemoteException {
+    public String bestMove() throws RemoteException {
     }
 
     @Override
