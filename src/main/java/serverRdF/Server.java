@@ -57,7 +57,13 @@ public interface Server extends Remote {
 
     public void checkPerPlayer(String nickname, Client c) throws RemoteException;
 
-    public void bestMove(Client c) throws RemoteException;
+    /**
+     * Ritorna la mossa che ha fatto ottenere il maggior numero di punti
+     *
+     * @return La mossa indicando il nickname del giocatore, la frase associata e la consonante chiamata
+     * @throws RemoteException
+     */
+    public String bestMove() throws RemoteException;
 
     public void averageManches(Client c) throws RemoteException;
 

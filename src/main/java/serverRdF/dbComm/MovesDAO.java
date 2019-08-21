@@ -20,4 +20,12 @@ public interface MovesDAO {
      * @throws SQLException
      */
     boolean addMove(Move move) throws SQLException;
+
+    /**
+     * Questo metodo permette di individuare la mossa che ha fatto guadagnare la maggiore quantita' di punti
+     *
+     * @return Un oggetto di tipo {@link UsersDTO}
+     * @throws SQLException
+     */
+    public MovesDTO getBestMove() throws SQLException;
 }

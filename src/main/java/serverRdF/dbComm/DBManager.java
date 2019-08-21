@@ -172,6 +172,17 @@ public class DBManager implements DBManagerInterface{
         return movesDAO.addMove(move);
     }
 
+    @Override
+    public MovesDTO getBestMove() {
+        if(movesDAO==null)
+            createMovesDAO();
+        try {
+            return movesDAO.getBestMove();
+        }catch(SQLException e){
+            return null;
+        }
+    }
+
     /**
      * Questo metodo inizializza l'istanza di ManchesDAO
      */
@@ -223,5 +234,4 @@ public class DBManager implements DBManagerInterface{
             return false;
         }
     }
-
 }
