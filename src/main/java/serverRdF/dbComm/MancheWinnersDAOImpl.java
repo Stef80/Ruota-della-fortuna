@@ -13,7 +13,7 @@ public class MancheWinnersDAOImpl implements MancheWinnersDAO {
 
     public boolean addMancheWinner(String idPlayer, ManchesDTO manche, int amount) throws SQLException{
         String queryAdd = "INSERT INTO "+manchesWinnersTable+"("+manchesWinnersidAttribute+","+manchesWinnersNumberAttribute+","+manchesWinnersidPlayerAttribute+","+manchesWinnersAmountAttribute+") " +
-                "VALUES ('"+manche.getMatch().getId()+"',"+manche.getNumber()+","+idPlayer+","+amount+");";
+                "VALUES ('"+manche.getMatch().getId()+"',"+manche.getNumber()+",'"+idPlayer+"',"+amount+");";
         Statement stmt = con.createStatement();
         return stmt.executeUpdate(queryAdd) > 0;
     }

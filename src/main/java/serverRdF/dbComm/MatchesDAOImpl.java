@@ -13,7 +13,7 @@ public class MatchesDAOImpl implements MatchesDAO {
     @Override
     public boolean addMatch(MatchesDTO matchesDTO) throws SQLException {
         String queryAdd = "INSERT INTO "+MatchTable+"("+MatchIdAttribute+","+MatchDateAttribute+","+MatchTimeAttribute+") " +
-                "VALUES ('"+matchesDTO.getId()+"',"+matchesDTO.getDate()+","+matchesDTO.getTime()+");";
+                "VALUES ('"+matchesDTO.getId()+"','"+matchesDTO.getDate()+"','"+matchesDTO.getTime()+"');";
         Statement stmt = con.createStatement();
         return stmt.executeUpdate(queryAdd) > 0;
     }
@@ -21,7 +21,7 @@ public class MatchesDAOImpl implements MatchesDAO {
     @Override
     public boolean deleteMatch(String idMatch) throws SQLException{
         String queryAdd = "DELETE FROM " + MatchTable +
-                        " WHERE " + MatchIdAttribute + " = " + idMatch;
+                        " WHERE " + MatchIdAttribute + " = '" + idMatch+"'";
         Statement stmt = con.createStatement();
         return stmt.executeUpdate(queryAdd) > 0;
     }

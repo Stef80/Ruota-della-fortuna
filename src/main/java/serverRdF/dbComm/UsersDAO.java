@@ -61,4 +61,12 @@ public interface UsersDAO {
      * @throws SQLException
      */
     List<UsersDTO> getAllAdmin() throws SQLException;
+
+    /**
+     * Questo metodo permette di modificare una riga della tabella Users
+     * @param user riferimento all'utente a cui e' stato modificato un valore
+     * @return <code>true</code> se la modifica e' andata a buon fine, altrimenti <code>false</code>
+     * @throws SQLException
+     */
+    boolean updateUser(UsersDTO user) throws SQLException;
 }

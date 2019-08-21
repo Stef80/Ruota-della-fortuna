@@ -69,7 +69,7 @@ public class UsersDAOImpl implements UsersDAO {
     @Override
     public List<UsersDTO> getAllAdmin() throws SQLException {
         List<UsersDTO> list = new ArrayList<>();
-        String queryGet = "SELECT * FROM "+ UserTable + "WHERE "+UserTipoAttribute + " = 1;";
+        String queryGet = "SELECT * FROM "+ UserTable + " WHERE "+UserTipoAttribute + " = 1;";
         Statement stmt = con.createStatement();
         ResultSet resultSet = stmt.executeQuery(queryGet);
         if(resultSet == null){
@@ -83,5 +83,13 @@ public class UsersDAOImpl implements UsersDAO {
             resultSet.close();
             return list;
         }
+    }
+
+    @Override
+    public boolean updateUser(UsersDTO user) throws SQLException {
+        String queryUpdate = "UPDATE "+UserTable+" SET "+UserNameAttribute+" = '"+user.getName()+"', "+UserSurnameAttribute+" = '"+user.getSurname()+"', "+
+                UserNicknameAttribute+" = '"+user.getNickname()+"', "+UserPasswordAttribute+" = '"+user.getPassword()+"' WHERE "+UserIdAttribute+" = '"+user.getId()+"';";
+        Statement stmt = con.createStatement();
+        return stmt.executeUpdate(queryUpdate) > 0;
     }
 }

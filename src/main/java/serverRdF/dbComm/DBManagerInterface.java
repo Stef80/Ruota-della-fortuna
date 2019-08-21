@@ -99,7 +99,6 @@ public interface DBManagerInterface {
      * Questo metodo permette di aggiungere un insieme di frasi e temi all'interno del database
      *
      * @param phrases lista delle frasi che si vogliono inserire nella base di dati
-     * @param themes  lista dei temi, relativi alle frasi, che si vogliono inserire nella base di dati
      * @return <code>true</code> se l'inserimento va a buon fine, altrimenti <code>false</code>
      * @throws SQLException
      */
@@ -173,5 +172,14 @@ public interface DBManagerInterface {
      * @return <code>true</code> se l'inserimento va a buon fine, altrimenti <code>false</code>
      */
     boolean addMatchWinner(String idMatch, String idPlayer, int amount);
+
+    /**
+     * Questo metodo modifica una riga della tabella Users
+     *
+     * @param user L'utente a cui e' stato modificato un valore (Notare che la chiave primaria non viene mai cambiata)
+     * @return <code>true</code> se la modifica va a buon fine, altrimenti <code>false</code>
+     * @throws SQLException
+     */
+    boolean updateUser(UsersDTO user) throws SQLException;
     //TODO tutti i metodi che servono agli altri manager e a Match. ricordarsi di aggiungere man mano i metodi utilizzati nelle altre classi per non perderli.
 }

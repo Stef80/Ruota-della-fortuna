@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 
@@ -38,7 +39,7 @@ public class PhraseManager {
         }
     }
 
-    public boolean addPhrases(File file) throws Exception{
+    public boolean addPhrases(File file) throws IOException, SQLException {
         CSVReader reader = new CSVReader(new FileReader(file.getName()));
         ArrayList<PhrasesDTO> phrases = new ArrayList<>();
         String[] nextLine;

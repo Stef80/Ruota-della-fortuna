@@ -4,17 +4,29 @@ import rdFUtil.MatchData;
 import rdFUtil.client.Client;
 import rdFUtil.logging.Login;
 import rdFUtil.logging.User;
+import serverRdF.dbComm.DBManager;
+import serverRdF.dbComm.DBManagerInterface;
+import serverRdF.emailRdF.EmailManager;
 import serverRdF.matchRdF.RemoteMatch;
 import serverRdF.registrationRdF.OTPHelper;
+import sun.java2d.cmm.Profile;
 
 import java.io.File;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ServerImplementation extends UnicastRemoteObject implements Server {
+    private DBManager dbManager;
+    private EmailManager emailManager;
+    private ProfileManager profileManager;
 
-    public ServerImplementation() throws RemoteException {
+
+    public ServerImplementation(DBManager dbmng, EmailManager emailmang) throws RemoteException {
+        dbManager = dbmng;
+        emailManager = emailmang;
+        profileManager = ProfileManager.createProfileManager(dbManager,emailManager);
     }
 
     //TODO campi per i vari managers e implementazione metodi dell'interfaccia. estende UnicastRemoteObject e implementa Server
@@ -85,6 +97,12 @@ public class ServerImplementation extends UnicastRemoteObject implements Server 
 
     @Override
     public void changeName(String name, Client c) throws RemoteException {
+        String idUser = c.getId();
+        try {
+            profileManager.changeName(name, idUser);
+        } catch (SQLException e) {
+            serverError(c);
+        }
     }
 
     @Override

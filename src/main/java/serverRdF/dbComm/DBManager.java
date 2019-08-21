@@ -90,6 +90,14 @@ public class DBManager implements DBManagerInterface{
         return usersDAO.getUserById(id);
     }
 
+
+    @Override
+    public boolean updateUser(UsersDTO user) throws SQLException {
+        if(usersDAO==null)
+            createUsersDAO();
+        return usersDAO.updateUser(user);
+    }
+
     @Override
     public boolean deleteUser(String id) throws SQLException {
         if(usersDAO==null)
@@ -215,4 +223,5 @@ public class DBManager implements DBManagerInterface{
             return false;
         }
     }
+
 }
