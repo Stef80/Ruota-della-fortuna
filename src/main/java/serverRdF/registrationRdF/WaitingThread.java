@@ -41,7 +41,7 @@ public class WaitingThread extends Thread {
                 if (!bool) {
                     ServerImplementation.serverError(client);
                 }
-            } catch (RemoteException | SQLException exc) {
+            } catch (RemoteException exc) {
                 ServerImplementation.serverError(client);
             }
         }
