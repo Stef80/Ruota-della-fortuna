@@ -43,12 +43,11 @@ public class RegistrationManager {
      *
      * @param form contenente i dati necessari alla registrazione
      * @param c    il riferimento al client
-     * @param admin //TODO
+     * @param admin true se l'utente e' un admin, false altrimenti
      * @return un riferimento all'oggeto remoto {@link OTPHelper} per l'invio del codice da parte del client
      * @throws RemoteException in caso di errori di connesione al server
      */
     public OTPHelper signUp(User form, Client c, boolean admin) throws RemoteException {
-        //TODO la parte di invio della email
         String otp = generateOTP();
         String sub = "Conferma della registrazione a Ruota della Fortuna";
         String text = "Prego inserire il codice: " + otp + " per ultimare la registrazione. Il codice deve essere inserito entro 10 minuti pena l'annullamento della registrazione";

@@ -777,6 +777,4 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         timer = new MoveTimer(time, this, jolly, solution);
         timer.start();
     }
-
-    //TODO
 }

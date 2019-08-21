@@ -33,7 +33,7 @@ public interface Server extends Remote {
 
     public OTPHelper signUp(User form, Client c, boolean admin) throws RemoteException;
 
-    public int signIn(Login form, Client c, boolean admin) throws RemoteException; //TODO anche signIn dovrà avere il boolean e gestire in modo separato a seconda se il login avviene su PlayerRdF o adminRdF
+    public int signIn(Login form, Client c, boolean admin) throws RemoteException;
 
     public ArrayList<MatchData> visualizeMatch(Client c) throws RemoteException;
 
