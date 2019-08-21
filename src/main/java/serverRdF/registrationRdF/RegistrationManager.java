@@ -80,7 +80,7 @@ public class RegistrationManager {
      * @return <code>true</code> se l'indirizzo email non e' stato gia' utilizzato, <code>false</code> altrimenti
      * @throws SQLException
      */
-    public boolean checkEmail(String email) throws SQLException {
+    public boolean checkEmail(String email) {
         UsersDTO user = dbManager.getUserByEmail(email);
         if (user != null) {
             return false;

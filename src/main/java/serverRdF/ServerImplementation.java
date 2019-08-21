@@ -64,7 +64,7 @@ public class ServerImplementation extends UnicastRemoteObject implements Server 
 
     @Override
     public boolean checkEMail(String email) throws RemoteException {
-        return false;
+        return registrationManager.checkEmail(email);
     }
 
     @Override

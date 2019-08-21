@@ -1,5 +1,6 @@
 package serverRdF.dbComm;
 
+import org.postgresql.core.SqlCommand;
 import rdFUtil.logging.User;
 import serverRdF.matchRdF.Move;
 
@@ -95,17 +96,25 @@ public class DBManager implements DBManagerInterface{
     }
 
     @Override
-    public UsersDTO getUserByNickname(String nickname) throws SQLException {
+    public UsersDTO getUserByNickname(String nickname) {
         if(usersDAO==null)
             createUsersDAO();
-        return usersDAO.getUserByNickname(nickname);
+        try {
+            return usersDAO.getUserByNickname(nickname);
+        }catch (SQLException e){
+            return null;
+        }
     }
 
     @Override
-    public UsersDTO getUserById(String id) throws SQLException {
+    public UsersDTO getUserById(String id) {
         if(usersDAO==null)
             createUsersDAO();
-        return usersDAO.getUserById(id);
+        try {
+            return usersDAO.getUserById(id);
+        }catch (SQLException e){
+            return null;
+        }
     }
 
 
@@ -121,14 +130,18 @@ public class DBManager implements DBManagerInterface{
     }
 
     @Override
-    public boolean deleteUser(String id) throws SQLException {
+    public boolean deleteUser(String id) {
         if(usersDAO==null)
             createUsersDAO();
-        return usersDAO.deleteUser(id);
+        try {
+            return usersDAO.deleteUser(id);
+        }catch (SQLException e){
+            return false;
+        }
     }
 
     @Override
-    public int checkLogin(String email, String password, boolean admin) throws SQLException {
+    public int checkLogin(String email, String password, boolean admin) {
         UsersDTO user = getUserByEmail(email);
         if(user == null){
             return -1;
@@ -145,11 +158,15 @@ public class DBManager implements DBManagerInterface{
         }
     }
 
-    public List<UsersDTO> getAllAdmin() throws SQLException{
+    public List<UsersDTO> getAllAdmin() {
         if(usersDAO==null){
             createUsersDAO();
         }
-        return usersDAO.getAllAdmin();
+        try {
+            return usersDAO.getAllAdmin();
+        }catch (SQLException e){
+            return null;
+        }
     }
 
     /**
@@ -160,24 +177,36 @@ public class DBManager implements DBManagerInterface{
     }
 
     @Override
-    public List<PhrasesDTO> get5Phrases(String idPlayer1, String idPlayer2, String idPlayer3) throws SQLException{
+    public List<PhrasesDTO> get5Phrases(String idPlayer1, String idPlayer2, String idPlayer3) {
         if(phrasesDAO ==null)
             createPhrasesDAO();
-       return phrasesDAO.get5Phrases(idPlayer1,idPlayer2,idPlayer3);
+        try {
+            return phrasesDAO.get5Phrases(idPlayer1, idPlayer2, idPlayer3);
+        }catch (SQLException e){
+            return null;
+        }
     }
 
     @Override
-    public boolean addPhrases(ArrayList<PhrasesDTO> phrases) throws SQLException{
+    public boolean addPhrases(ArrayList<PhrasesDTO> phrases) {
         if(phrasesDAO ==null)
             createPhrasesDAO();
-        return phrasesDAO.addPhrases(phrases);
+        try {
+            return phrasesDAO.addPhrases(phrases);
+        }catch (SQLException e){
+            return false;
+        }
     }
 
     @Override
-    public List<PhrasesDTO> getAllPhrases() throws SQLException{
+    public List<PhrasesDTO> getAllPhrases() {
         if(phrasesDAO ==null)
             createPhrasesDAO();
-       return phrasesDAO.getAllPhrases();
+        try {
+            return phrasesDAO.getAllPhrases();
+        }catch (SQLException e){
+            return null;
+        }
     }
 
     /**
@@ -188,10 +217,14 @@ public class DBManager implements DBManagerInterface{
     }
 
     @Override
-    public boolean addMove(Move move) throws SQLException{
+    public boolean addMove(Move move) {
         if(movesDAO==null)
             createMovesDAO();
-        return movesDAO.addMove(move);
+        try {
+            return movesDAO.addMove(move);
+        }catch (SQLException e){
+            return false;
+        }
     }
 
     @Override
@@ -213,10 +246,14 @@ public class DBManager implements DBManagerInterface{
     }
 
     @Override
-    public boolean addManche(ManchesDTO manche) throws SQLException{
+    public boolean addManche(ManchesDTO manche) {
         if(manchesDAO==null)
             createManchesDAO();
-        return manchesDAO.addManche(manche);
+        try {
+            return manchesDAO.addManche(manche);
+        }catch (SQLException e){
+            return false;
+        }
     }
 
     /**
@@ -225,10 +262,14 @@ public class DBManager implements DBManagerInterface{
     private void createMancheWinnersDAO(){mancheWinnersDAO = new MancheWinnersDAOImpl(con);}
 
     @Override
-    public boolean addMancheWinner(String idPlayer, ManchesDTO manche, int amount) throws SQLException{
+    public boolean addMancheWinner(String idPlayer, ManchesDTO manche, int amount) {
         if(mancheWinnersDAO==null)
             createMancheWinnersDAO();
-        return mancheWinnersDAO.addMancheWinner(idPlayer,manche,amount);
+        try {
+            return mancheWinnersDAO.addMancheWinner(idPlayer, manche, amount);
+        }catch (SQLException e){
+            return false;
+        }
     }
 
     private void createMancheJoinersDAO(){mancheJoinersDAO = new MancheJoinersDAOImpl(con);}
