@@ -38,7 +38,6 @@ public class TabPane implements Initializable {
 
     public void addMatch(ActionEvent actionEvent) throws RemoteException, NotBoundException {
         server.createMatch(client);
-//		match = new Match("id",LocalDateTime.now());//todo da aggiungere DBManager e EmailManager
         FXMLLoader loader = new FXMLLoader(getClass().getResource("gameWindowPane.fxml"));
         Parent root = null;
         try {
