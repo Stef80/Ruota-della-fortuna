@@ -70,22 +70,22 @@ public class GameView extends ListCell<MatchData> {
             label1.setText(item.getPlayer1());
             setAviableLabel(!item.isOnGoing());
 
-               joinButton.setOnAction(new EventHandler<ActionEvent>() {
-                   @Override
-                   public void handle(ActionEvent event) {
-                       try {
-                           match = server.joinMatch(client, item.getIdMatch());
-                       } catch (RemoteException e) {
-                           e.printStackTrace();
-                       }
-                       if (match == null) {
-                           Notifications notification = Notifications.create()
-                                                                .title("")
-                                                                .text("E-mail o password errati \nriprova!")
-                                                                .hideAfter(Duration.seconds(3))
-                                                                .position(Pos.CENTER);
-                           notification.showError();
-                       }
+            joinButton.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    try {
+                        match = server.joinMatch(client, item.getIdMatch());
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
+                    if (match == null) {
+                        Notifications notification = Notifications.create()
+                                .title("")
+                                .text("E-mail o password errati \nriprova!")
+                                .hideAfter(Duration.seconds(3))
+                                .position(Pos.CENTER);
+                        notification.showError();
+                    }
 
                     setAviableLabel(!item.isOnGoing());
                     if ((label2.getText()).equals("id2")) {
