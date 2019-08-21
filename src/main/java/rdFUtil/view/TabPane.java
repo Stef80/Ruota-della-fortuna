@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
+import rdFUtil.MatchData;
 import rdFUtil.client.Client;
 import serverRdF.Server;
 import serverRdF.matchRdF.RemoteMatch;
@@ -18,9 +19,9 @@ import java.util.ResourceBundle;
 public class TabPane implements Initializable {
 
     @FXML
-    private ListView<RemoteMatch> gameList;
+    private ListView<MatchData> gameList;
 
-    private ObservableList<RemoteMatch> gameObservableList = FXCollections.observableArrayList();
+    private ObservableList<MatchData> gameObservableList = FXCollections.observableArrayList();
     private Client client;
     private Server server;
     private RemoteMatch match;
@@ -31,8 +32,9 @@ public class TabPane implements Initializable {
     }
 
     public void addMatch(ActionEvent actionEvent) throws RemoteException, NotBoundException {
+        server.createMatch(client);
 //		match = new Match("id",LocalDateTime.now());//todo da aggiungere DBManager e EmailManager
-        gameObservableList.add(match);
+
     }
 
 
