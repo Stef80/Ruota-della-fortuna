@@ -14,11 +14,26 @@ public class ClientImplementation implements Client {
     }
 
     @Override
-    public void setNickname() throws RemoteException {
+    public void setNickname(String nickname) throws RemoteException {
     }
 
     @Override
-    public void setId() throws RemoteException {
+    public void setId(String id) throws RemoteException {
+    }
+
+    @Override
+    public void setName(String name) throws RemoteException {
+
+    }
+
+    @Override
+    public void setSurname(String surname) throws RemoteException {
+
+    }
+
+    @Override
+    public void setEmail(String email) throws RemoteException {
+
     }
 
     @Override

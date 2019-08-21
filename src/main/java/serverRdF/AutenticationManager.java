@@ -3,7 +3,9 @@ package serverRdF;
 import rdFUtil.client.Client;
 import rdFUtil.logging.Login;
 import serverRdF.dbComm.DBManager;
+import serverRdF.dbComm.UsersDTO;
 
+import java.rmi.RemoteException;
 import java.sql.SQLException;
 
 
@@ -40,11 +42,20 @@ public class AutenticationManager {
      *
      * Nel caso in cui ci siano problemi con la connessione al server, il client viene notificato
      */
-    public int signIn(Login form, Client c, boolean admin) {
+    public int signIn(Login form, Client c, boolean admin) throws RemoteException {
         String email = form.getEmail();
         String password = form.getPasswordC();
         try {
-            return dbManager.checkLogin(email, password, admin);
+            int result = dbManager.checkLogin(email, password, admin);
+            UsersDTO user = dbManager.getUserByEmail(email);
+            if(result == 0){
+                c.setNickname(user.getNickname());
+                c.setId(user.getId());
+                c.setName(user.getName());
+                c.setSurname(user.getSurname());
+                c.setEmail(user.getEmail());
+            }
+            return result;
         } catch (SQLException e) {
             ServerImplementation.serverError(c);
             return -1;

@@ -92,10 +92,14 @@ public class DBManager implements DBManagerInterface{
 
 
     @Override
-    public boolean updateUser(UsersDTO user) throws SQLException {
+    public boolean updateUser(UsersDTO user) {
         if(usersDAO==null)
             createUsersDAO();
-        return usersDAO.updateUser(user);
+        try {
+            return usersDAO.updateUser(user);
+        }catch(SQLException e){
+            return false;
+        }
     }
 
     @Override
