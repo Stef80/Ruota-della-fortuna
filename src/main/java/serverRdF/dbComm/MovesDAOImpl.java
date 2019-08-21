@@ -40,4 +40,16 @@ public class MovesDAOImpl implements MovesDAO {
             return result;
         }
     }
+
+    @Override
+    public int getAverageMovesPerManche(int numManche) throws SQLException{
+        if(numManche == 0) {
+            return -1;
+        }else{
+            String queryGet = "SELECT COUNT(*)";
+            //TODO
+        }
+
+        return -1;
+    }
 }

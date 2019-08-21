@@ -238,6 +238,20 @@ public class DBManager implements DBManagerInterface{
         }
     }
 
+    @Override
+    public int getAverageMovesPerManche() {
+        if(movesDAO == null)
+            createMovesDAO();
+        if(mancheWinnersDAO == null)
+            createMancheWinnersDAO();
+        try{
+            int n = mancheWinnersDAO.getNumWinnedManches();
+            return movesDAO.getAverageMovesPerManche(n);
+        }catch (SQLException e){
+            return -1;
+        }
+    }
+
     /**
      * Questo metodo inizializza l'istanza di ManchesDAO
      */

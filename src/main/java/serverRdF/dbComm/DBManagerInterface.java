@@ -178,5 +178,7 @@ public interface DBManagerInterface {
      * @return Un oggetto di tipo {@link UsersDTO}
      */
     MovesDTO getBestMove();
+
+    int getAverageMovesPerManche();
     //TODO tutti i metodi che servono agli altri manager e a Match. ricordarsi di aggiungere man mano i metodi utilizzati nelle altre classi per non perderli.
 }

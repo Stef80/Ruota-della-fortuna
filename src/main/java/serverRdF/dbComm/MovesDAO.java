@@ -28,4 +28,6 @@ public interface MovesDAO {
      * @throws SQLException
      */
     public MovesDTO getBestMove() throws SQLException;
+
+    public int getAverageMovesPerManche(int numManche) throws SQLException;
 }

@@ -1,6 +1,7 @@
 package serverRdF.dbComm;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -16,5 +17,12 @@ public class MancheWinnersDAOImpl implements MancheWinnersDAO {
                 "VALUES ('"+manche.getMatch().getId()+"',"+manche.getNumber()+",'"+idPlayer+"',"+amount+");";
         Statement stmt = con.createStatement();
         return stmt.executeUpdate(queryAdd) > 0;
+    }
+
+    public int getNumWinnedManches() throws SQLException{
+        String queryGet = "SELECT COUNT(*) AS count FROM "+manchesWinnersTable;
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(queryGet);
+        return rs.getInt("count");
     }
 }
