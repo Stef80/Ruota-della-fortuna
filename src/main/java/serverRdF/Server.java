@@ -96,5 +96,5 @@ public interface Server extends Remote {
      * @return <code>true</code> se il reset avviene con successo, <code>false</code> se l'indirizzo email non esiste nel database
      * @throws RemoteException
      */
-    public boolean resetPassword(String mail) throws RemoteException;
+    public boolean resetPassword(Client c,String mail) throws RemoteException;
 }

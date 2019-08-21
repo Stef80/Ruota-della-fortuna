@@ -150,7 +150,7 @@ public class ServerImplementation extends UnicastRemoteObject implements Server 
     }
 
     @Override
-    public boolean resetPassword(String mail) throws RemoteException {
+    public boolean resetPassword(Client c,String mail) throws RemoteException {
         return profileManager.resetPassword(mail);
     }
 }
