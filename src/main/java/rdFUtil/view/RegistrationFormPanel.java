@@ -14,6 +14,7 @@ import org.controlsfx.control.Notifications;
 import rdFUtil.client.Client;
 import rdFUtil.logging.User;
 import serverRdF.Server;
+import serverRdF.registrationRdF.OTPHelper;
 
 import java.io.IOException;
 
@@ -72,9 +73,9 @@ public class RegistrationFormPanel {
             String mailStr = eMail.getText();
             String passwordStr = password.getText();
             user = new User(passwordStr, mailStr, nameStr, surnameStr, nickStr);
-//            OTPHelper otpHelper = server.signUp(user,client);//todo da agiungere il boolean dell'admin
-
-            Parent root = FXMLLoader.load(Thread.currentThread().getClass().getResource("main_pane.fxml"));
+            OTPHelper otpHelper = server.signUp(user,client,true);//todo modificare l'import di OTPHelper
+             new OTPRegistrationPane(server,client,otpHelper);
+            Parent root = FXMLLoader.load(Thread.currentThread().getClass().getResource("OTP_registration_pane.fxml"));
             Scene scene = new Scene(root);
             Stage primaryStage = new Stage();
             scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
