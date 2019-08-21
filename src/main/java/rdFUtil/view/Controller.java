@@ -49,15 +49,15 @@ public class Controller {
         String mail = emailText.getText();
         String password = passwordText.getText();
         Login login = new Login(password, mail);
-        int result = server.signIn(login,client,admin);
-        if (result<0) {
+        int result = server.signIn(login, client, admin);
+        if (result < 0) {
             Notifications notification = Notifications.create()
                     .title("Mail Notification")
                     .text("E-mail o password errati \nriprova!")
                     .hideAfter(Duration.seconds(3))
                     .position(Pos.CENTER);
             notification.showError();
-        } else if(result == 0){
+        } else if (result == 0) {
             Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
             Stage primaryStage = new Stage();
             Scene scene = new Scene(root1);
@@ -67,7 +67,7 @@ public class Controller {
             primaryStage.show();
             Stage oldStage = (Stage) loginButton.getScene().getWindow();
             oldStage.hide();
-        }else if(result > 0){
+        } else {
             Notifications notification = Notifications.create()
                     .title("Mail Notification")
                     .text("Si sta provando ad accedere alla piattaforma dal client sbagliato \nriprova!")
