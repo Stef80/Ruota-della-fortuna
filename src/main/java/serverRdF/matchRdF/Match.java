@@ -484,7 +484,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     }
 
     private void resetPhraseStatus(String phrase){
-        StringTokenizer st = new StringTokenizer(phrase);
+        StringTokenizer st = new StringTokenizer(phrase," ',!?.:;\"/()\\^<>-+*");
         int length = 0;
 
         while(st.hasMoreTokens()){
@@ -707,7 +707,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
             Player p = null;
             for(int i=0; i<players.size(); i++){
                 p = players.get(i);
-                c.notifyPlayerStats(i+1, p.getNickname(), p.getPartialPoints(), p.getPoints());
+                c.notifyPlayerStats(i, p.getNickname(), p.getPartialPoints(), p.getPoints());
                 c.setNewPhrase(manche.getCurrentPhrase().getTheme(), manche.getCurrentPhrase().getPhrase());
                 c.updatePhrase(phraseStatus);
             }

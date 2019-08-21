@@ -29,14 +29,20 @@ public interface Client extends Remote {
      *
      * @throws RemoteException
      */
-    public void setNickname() throws RemoteException;
+    public void setNickname(String nickname) throws RemoteException;
 
     /**
      * Permette di settare il nickname dell'utente loggato nel client
      *
      * @throws RemoteException
      */
-    public void setId() throws RemoteException;
+    public void setId(String id) throws RemoteException;
+
+    public void setName(String name) throws RemoteException;
+
+    public void setSurname(String surname) throws RemoteException;
+
+    public void setEmail(String email) throws RemoteException;
 
     /**
      * Notifica al client che c'e' stato un problema di connessione al server da parte del client o al database da parte del server
