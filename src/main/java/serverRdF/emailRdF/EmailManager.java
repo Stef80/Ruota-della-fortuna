@@ -3,6 +3,7 @@ package serverRdF.emailRdF;
 import serverRdF.ServerImplementation;
 
 import javax.mail.MessagingException;
+import javax.mail.SendFailedException;
 
 public class EmailManager {
     //TODO metodi e commenti javadoc
@@ -44,8 +45,16 @@ public class EmailManager {
      *
      * @param email    la mail dell'utente
      * @param password la password dell'utente
+     * @return true se l'accesso è avvenuto con successo, false altrimenti
      */
-    public boolean logIntoAccount(String email, String password) {
-        
+    public static boolean logIntoAccount(String email, String password) {
+        try{
+            String sub = "RdF: collegamento dell'account riuscito";
+            String txt = "Ora e' possibile inviare emails in automatico dalla piattaforma attraverso questo account.";
+            EmailSender.sendUninsubriaEmail(email,password,email,sub,txt);
+            return true;
+        }catch(MessagingException e){
+            return false;
+        }
     }
 }
