@@ -143,6 +143,7 @@ public class ServerImplementation extends UnicastRemoteObject implements Server 
 
     @Override
     public String bestMove() throws RemoteException {
+        return null;
     }
 
     @Override
