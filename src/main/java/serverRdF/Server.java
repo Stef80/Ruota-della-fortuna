@@ -53,19 +53,41 @@ public interface Server extends Remote {
 
     public boolean changePassword(String password, Client c) throws RemoteException;
 
-    public void checkPlayer(Client c) throws RemoteException;
+    /**
+     * Permette di ottenere i nomi dei concorrenti che possiedono dei record della piattaforma
+     *
+     * @return una stringa contenente, divisi da spazi, i nickname dei giocatori che: detengono il punteggio piu' alto per manche, detengono il punteggio piu' alto per partita,
+     * che ha giocato piu' manche in assoluto, con la media di punti acquisiti per manche piu' alta, che ha ceduto il turno piu' volte a causa di errori, che ha perso tutto il maggior numero di volte
+     * @throws RemoteException
+     */
+    public String checkPlayer() throws RemoteException;
 
-    public void checkPerPlayer(String nickname, Client c) throws RemoteException;
+    /**
+     * Metodo utilizzato per ottenere le statistiche riguardanti il singolo utente
+     *
+     * @param nickname il nickname dell'utente
+     * @return una stringa contenente, divisi da spazi: numero manche giocate, numero partite giocate, numero manche osservate, numero match osservati,
+     * numero manche vinte, numero match vinti, punteggio medio vinto per partita, numero medio di volte che ha dovuto cedere il turno di gioco, numero medio di volte che ha perso tutto
+     * per manche, numero medio di volte che ha perso tutto per match
+     * @throws RemoteException
+     */
+    public String checkPerPlayer(String nickname) throws RemoteException;
 
     /**
      * Ritorna la mossa che ha fatto ottenere il maggior numero di punti
      *
-     * @return La mossa indicando il nickname del giocatore, la consonante chiamata e la frase associata
+     * @return Una stringa contenente, divisi da spazi: il nickname del giocatore, la consonante chiamata e la frase associata
      * @throws RemoteException
      */
     public String bestMove() throws RemoteException;
 
-    public void averageManches(Client c) throws RemoteException;
+    /**
+     * Metodo che permette di ottenere il numero medio di mosse necessarie a indovinare una frase misteriosa
+     *
+     * @return il numero medio di mosse
+     * @throws RemoteException
+     */
+    public int averageManches() throws RemoteException;
 
     /**
      * Permette il reset della password. Viene inviata una mail all'inidirizzo indicato con la nuova password

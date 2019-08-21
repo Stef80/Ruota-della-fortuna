@@ -6,8 +6,10 @@ import rdFUtil.logging.Login;
 import rdFUtil.logging.User;
 import serverRdF.dbComm.DBManager;
 import serverRdF.emailRdF.EmailManager;
+import serverRdF.matchRdF.MatchManager;
 import serverRdF.matchRdF.RemoteMatch;
 import serverRdF.registrationRdF.OTPHelper;
+import serverRdF.registrationRdF.RegistrationManager;
 
 import java.io.File;
 import java.rmi.RemoteException;
@@ -19,15 +21,26 @@ public class ServerImplementation extends UnicastRemoteObject implements Server 
     private DBManager dbManager;
     private EmailManager emailManager;
     private ProfileManager profileManager;
-
+    private PhraseManager phraseManager;
+    private MonitoringManager monitoringManager;
+    private MatchVisualizer matchVisualizer;
+    private MatchManager matchManager;
+    private AutenticationManager autenticationManager;
+    private RegistrationManager registrationManager;
 
     public ServerImplementation(DBManager dbmng, EmailManager emailmang) throws RemoteException {
         dbManager = dbmng;
         emailManager = emailmang;
         profileManager = ProfileManager.createProfileManager(dbManager, emailManager);
+        phraseManager = PhraseManager.createPhraseManager(dbManager);
+        monitoringManager = MonitoringManager.createMonitoringManager(dbManager);
+        matchManager = MatchManager.createMatchManager(dbManager,emailManager);
+        matchVisualizer = MatchVisualizer.createMatchVisualizer(matchManager);
+        autenticationManager = AutenticationManager.createAutenticationManager(dbManager);
+        registrationManager = RegistrationManager.createRegistrationManager(dbManager, emailManager);
     }
 
-    //TODO campi per i vari managers e implementazione metodi dell'interfaccia.
+    //TODO implementazione metodi dell'interfaccia.
 
 
     /**
@@ -134,11 +147,13 @@ public class ServerImplementation extends UnicastRemoteObject implements Server 
     }
 
     @Override
-    public void checkPlayer(Client c) throws RemoteException {
+    public String checkPlayer() throws RemoteException {
+        return null;
     }
 
     @Override
-    public void checkPerPlayer(String nickname, Client c) throws RemoteException {
+    public String checkPerPlayer(String nickname) throws RemoteException {
+        return null;
     }
 
     @Override
@@ -147,7 +162,8 @@ public class ServerImplementation extends UnicastRemoteObject implements Server 
     }
 
     @Override
-    public void averageManches(Client c) throws RemoteException {
+    public int averageManches() throws RemoteException {
+        return 0;
     }
 
     @Override

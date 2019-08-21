@@ -14,4 +14,6 @@
 *
 * QUANDO BISOGNA GESTIRE UNA ECCEZIONE RemoteExcepton/SQLException (CHE MANDERA' AL CLIENT UNA NOTIFICA PER DIRE DELL'ERRORE SERVER), UTILIZZARE IL METODO STATICO "ServerImplementation.serverError(Client c)".
 * E' GIA' IMPLEMENTATO NELLA CLASSE
+*
+* REMINDER METODI SYNCHRONIZED (tutti i metodi di modifica dei vari DAO e altri metodi in giro)
 **/
