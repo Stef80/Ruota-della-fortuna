@@ -73,7 +73,6 @@ public class GameView extends ListCell<MatchData> {
                joinButton.setOnAction(new EventHandler<ActionEvent>() {
                    @Override
                    public void handle(ActionEvent event) {
-
                        try {
                            match = server.joinMatch(client, item.getIdMatch());
                        } catch (RemoteException e) {
