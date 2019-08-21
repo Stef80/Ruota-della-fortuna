@@ -1,10 +1,13 @@
 package serverRdF;
 
+import rdFUtil.client.Client;
+import rdFUtil.logging.CryptPassword;
 import serverRdF.dbComm.DBManager;
 import serverRdF.dbComm.UsersDTO;
 import serverRdF.emailRdF.EmailManager;
 
 import java.sql.SQLException;
+import java.util.Random;
 
 /**
  * Questa classe si occupa della modifica dei dati di uno specifico utente
@@ -60,5 +63,39 @@ public class ProfileManager {
         emailManager.sendEmail(email,sub,txt);
         return dbManager.updateUser(user);
     }
-    //TODO resetPassword
+
+    public boolean resetPassword(String email){
+        UsersDTO user = dbManager.getUserByEmail(email);
+        if(user != null) {
+            String password = generateRandomPassword();
+            String sub = "RdF: reset della password";
+            String txt = user.getName()+"!\nLa password del suo account e' stata resettata con successo. Usa questa password per accedere: " + password +".\nLe consigliamo di modificarla al piu' presto";
+            emailManager.sendEmail(email,sub,txt);
+            user.setPassword(CryptPassword.encrypt(password));
+            dbManager.updateUser(user);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    private static String generateRandomPassword(){
+        Random rnd = new Random();
+        String result = "P";
+        for(int i=0; i<8; i++) {
+            int chars = rnd.nextInt(3);
+            switch (chars) {
+                case 0:
+                    result += rnd.nextInt(10);
+                    break;
+                case 1:
+                    result += (char)(rnd.nextInt(26) + 65);
+                    break;
+                case 2:
+                    result += (char)(rnd.nextInt(26) + 97);
+                    break;
+            }
+        }
+        return result;
+    }
 }

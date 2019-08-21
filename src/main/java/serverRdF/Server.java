@@ -67,5 +67,12 @@ public interface Server extends Remote {
 
     public void averageManches(Client c) throws RemoteException;
 
-    public void resetPassword(Client c, String mail) throws RemoteException;
+    /**
+     * Permette il reset della password. Viene inviata una mail all'inidirizzo indicato con la nuova password
+     *
+     * @param mail l'indirizzo email dell'account da resettare
+     * @return <code>true</code> se il reset avviene con successo, <code>false</code> se l'indirizzo email non esiste nel database
+     * @throws RemoteException
+     */
+    public boolean resetPassword(String mail) throws RemoteException;
 }
