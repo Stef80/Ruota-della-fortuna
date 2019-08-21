@@ -25,7 +25,7 @@ public class ForgottenPasswordPane {
 
 	public void enter() throws RemoteException {
 		String mail = mailText.getText();
-		server.resetPassword(mail);
+		server.resetPassword(client, mail);
 		Stage oldStage = (Stage) enterButton.getScene().getWindow();
 		oldStage.close();
 	}
