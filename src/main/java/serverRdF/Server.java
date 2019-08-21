@@ -60,7 +60,7 @@ public interface Server extends Remote {
     /**
      * Ritorna la mossa che ha fatto ottenere il maggior numero di punti
      *
-     * @return La mossa indicando il nickname del giocatore, la frase associata e la consonante chiamata
+     * @return La mossa indicando il nickname del giocatore, la consonante chiamata e la frase associata
      * @throws RemoteException
      */
     public String bestMove() throws RemoteException;
