@@ -26,8 +26,9 @@ public class MonitoringManager {
 
     public String getBestMove(){
         MovesDTO bestMove = dbManager.getBestMove();
-        String result = "La mossa che ha permesso di ottenere la maggiore quantita' di punti e' la chiamata della lettera '"+bestMove.getMoveType()+"', eseguita da" +
-                " "+bestMove.getPlayer().getNickname()+" per la frase '"+bestMove.getManche().getPhrase().getPhrase()+"', che ha permesso di ottenere "+bestMove.getOutcome()+" punti.";
+        //String result = "La mossa che ha permesso di ottenere la maggiore quantita' di punti e' la chiamata della lettera '"+bestMove.getMoveType()+"', eseguita da" +
+        //        " "+bestMove.getPlayer().getNickname()+" per la frase '"+bestMove.getManche().getPhrase().getPhrase()+"', che ha permesso di ottenere "+bestMove.getOutcome()+" punti.";
+        String result = ""+ bestMove.getPlayer().getNickname() +" " +bestMove.getMoveType() +" "+ bestMove.getManche().getPhrase().getPhrase();
         return result;
     }
     //TODO metodi

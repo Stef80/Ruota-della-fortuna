@@ -94,5 +94,4 @@ public class Manche {
             return false;
         }
     }
-    //TODO metodi per gestione (esempio quando inizia nuova manche o finisce una manche con conseguente salvataggio nel DB)
 }

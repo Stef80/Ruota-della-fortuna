@@ -4,13 +4,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ListView;
+import javafx.stage.Stage;
 import rdFUtil.MatchData;
 import rdFUtil.client.Client;
 import serverRdF.Server;
 import serverRdF.matchRdF.RemoteMatch;
 
+import java.io.IOException;
 import java.net.URL;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -33,7 +38,19 @@ public class TabPane implements Initializable {
 
     public void addMatch(ActionEvent actionEvent) throws RemoteException, NotBoundException {
         server.createMatch(client);
-//		match = new Match("id",LocalDateTime.now());//todo da aggiungere DBManager e EmailManager
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("gameWindowPane.fxml"));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        GamePlayerController game = loader.getController();
+        game.hideButton();
+        Stage primaryStage = new Stage();
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.show();
 
     }
 
@@ -50,6 +67,7 @@ public class TabPane implements Initializable {
 //            }
 //        });
     }
+
 }
 
 
