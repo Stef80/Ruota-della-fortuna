@@ -29,7 +29,7 @@ public class ServerImplementation extends UnicastRemoteObject implements Server 
         profileManager = ProfileManager.createProfileManager(dbManager,emailManager);
     }
 
-    //TODO campi per i vari managers e implementazione metodi dell'interfaccia. estende UnicastRemoteObject e implementa Server
+    //TODO campi per i vari managers e implementazione metodi dell'interfaccia.
 
 
     /**
@@ -96,25 +96,43 @@ public class ServerImplementation extends UnicastRemoteObject implements Server 
     }
 
     @Override
-    public void changeName(String name, Client c) throws RemoteException {
+    public boolean changeName(String name, Client c) throws RemoteException {
         String idUser = c.getId();
         try {
-            profileManager.changeName(name, idUser);
+            return profileManager.changeName(name, idUser);
         } catch (SQLException e) {
-            serverError(c);
+            return false;
         }
     }
 
     @Override
-    public void changeSurname(String surname, Client c) throws RemoteException {
+    public boolean changeSurname(String surname, Client c) throws RemoteException {
+        String idUser = c.getId();
+        try {
+            return profileManager.changeSurname(surname, idUser);
+        } catch (SQLException e) {
+            return false;
+        }
     }
 
     @Override
-    public void changeNickname(String nickname, Client c) throws RemoteException {
+    public boolean changeNickname(String nickname, Client c) throws RemoteException {
+        String idUser = c.getId();
+        try {
+            return profileManager.changeNickname(nickname, idUser);
+        } catch (SQLException e) {
+            return false;
+        }
     }
 
     @Override
-    public void changePassword(String password, Client c) throws RemoteException {
+    public boolean changePassword(String password, Client c) throws RemoteException {
+        String idUser = c.getId();
+        try {
+            return profileManager.changePassword(password, idUser);
+        } catch (SQLException e) {
+            return false;
+        }
     }
 
     @Override

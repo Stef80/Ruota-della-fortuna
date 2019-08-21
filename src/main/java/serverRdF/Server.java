@@ -45,13 +45,13 @@ public interface Server extends Remote {
 
     public void addPhrases(File file, Client c) throws RemoteException;
 
-    public void changeName(String name, Client c) throws RemoteException;
+    public boolean changeName(String name, Client c) throws RemoteException;
 
-    public void changeSurname(String surname, Client c) throws RemoteException;
+    public boolean changeSurname(String surname, Client c) throws RemoteException;
 
-    public void changeNickname(String nickname, Client c) throws RemoteException;
+    public boolean changeNickname(String nickname, Client c) throws RemoteException;
 
-    public void changePassword(String password, Client c) throws RemoteException;
+    public boolean changePassword(String password, Client c) throws RemoteException;
 
     public void checkPlayer(Client c) throws RemoteException;
 
