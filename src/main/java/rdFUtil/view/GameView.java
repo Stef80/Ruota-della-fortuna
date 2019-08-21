@@ -4,12 +4,15 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 import rdFUtil.MatchData;
 import rdFUtil.client.Client;
 import serverRdF.Server;
@@ -18,7 +21,7 @@ import serverRdF.matchRdF.RemoteMatch;
 import java.io.IOException;
 import java.rmi.RemoteException;
 
-public class GameView extends ListCell<RemoteMatch> {
+public class GameView extends ListCell<MatchData> {
     @FXML
     private Label label1;
     @FXML
@@ -45,7 +48,7 @@ public class GameView extends ListCell<RemoteMatch> {
     }
 
     @Override
-    protected void updateItem(RemoteMatch item, boolean empty) {
+    protected void updateItem(MatchData item, boolean empty) {
         super.updateItem(item, empty);
 
         if (empty || item == null) {
@@ -64,86 +67,85 @@ public class GameView extends ListCell<RemoteMatch> {
                 }
             }
 
-            MatchData players = null;
-//            try {//todo da controllare
-//                players = item.createMatchData();
-//            } catch (RemoteException e) {
-//                e.printStackTrace();
-//            }
-//            label1.setText(players.getPlayer1());
-//
-//            try {
-//                setAvailableLabel(item.isAviable());
-//            } catch (RemoteException e) {
-//                e.printStackTrace();
-//            }
+           label1.setText(item.getPlayer1());
+            setAviableLabel(!item.isOnGoing());
 
-            MatchData finalPlayers = players;
-            joinButton.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    try {
-                        server.joinMatch(client, item.getMatchId());
-                        match = server.joinMatch(client, item.getMatchId());
-                        boolean available = match.addPlayer(client);
-                        setAvailableLabel(available);
-                        if (label2 == null) {
-                            label2.setText(finalPlayers.getPlayer2());
-                        } else {
-                            label3.setText(finalPlayers.getPlayer3());
-                        }
-                    } catch (RemoteException e) {
-                        e.printStackTrace();
-                    }
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("gameWindowPane.fxml"));
-                    Parent root = null;
-                    try {
-                        root = loader.load();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    GamePlayerController game = loader.getController();
-                    game.hideButton();
-                    Stage primaryStage = new Stage();
-                    Scene scene = new Scene(root);
-                    primaryStage.setScene(scene);
-                    primaryStage.show();
-                }
-            });
-            observeButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
-                @Override
-                public void handle(javafx.event.ActionEvent event) {
-                    try {
-                        match.addObserver(client);
-                    } catch (RemoteException e) {
-                        e.printStackTrace();
-                    }
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("gameWindowPane.fxml"));
-                    Parent root = null;
-                    try {
-                        root = loader.load();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-					GamePlayerController game = loader.getController();
-					game.hideAll();
-                    Stage primaryStage = new Stage();
-                    Scene scene = new Scene(root);
-                    primaryStage.setScene(scene);
-                    primaryStage.show();
-                }
-            });
+               joinButton.setOnAction(new EventHandler<ActionEvent>() {
+                   @Override
+                   public void handle(ActionEvent event) {
 
+                       try {
+                           match = server.joinMatch(client, item.getIdMatch());
+                       } catch (RemoteException e) {
+                           e.printStackTrace();
+                       }
+                       if (match == null) {
+                           Notifications notification = Notifications.create()
+                                                                .title("")
+                                                                .text("E-mail o password errati \nriprova!")
+                                                                .hideAfter(Duration.seconds(3))
+                                                                .position(Pos.CENTER);
+                           notification.showError();
+                       }
+
+                       setAviableLabel(!item.isOnGoing());
+                       if ((label2.getText()).equals("id2")) {
+                           label2.setText(item.getPlayer2());
+                       } else {
+                           label3.setText(item.getPlayer3());
+                       }
+
+                       FXMLLoader loader = new FXMLLoader(getClass().getResource("gameWindowPane.fxml"));
+                       Parent root = null;
+                       try {
+                           root = loader.load();
+                       } catch (IOException e) {
+                           e.printStackTrace();
+                       }
+                       GamePlayerController game = loader.getController();
+                       game.hideButton();
+                       Stage primaryStage = new Stage();
+                       Scene scene = new Scene(root);
+                       primaryStage.setScene(scene);
+                       primaryStage.show();
+                   }
+               });
+               observeButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
+                   @Override
+                   public void handle(javafx.event.ActionEvent event) {
+                       try {
+                           match.addObserver(client);
+                       } catch (RemoteException e) {
+                           e.printStackTrace();
+                       }
+                       FXMLLoader loader = new FXMLLoader(getClass().getResource("gameWindowPane.fxml"));
+                       Parent root = null;
+                       try {
+                           root = loader.load();
+                       } catch (IOException e) {
+                           e.printStackTrace();
+                       }
+                       GamePlayerController game = loader.getController();
+                       game.hideAll();
+                       Stage primaryStage = new Stage();
+                       Scene scene = new Scene(root);
+                       primaryStage.setScene(scene);
+                       primaryStage.show();
+                   }
+               });
+           }
             setGraphic(pane);
+
+
+    }
+
+    private void setAviableLabel(boolean aviable) {
+            if (aviable) {
+                availableLabel.setText("available");
+            } else {
+                availableLabel.setText(null);
+                joinButton.setDisable(true);
+            }
         }
 
     }
-	private void setAvailableLabel(boolean available) {
-		if (available) {
-			availableLabel.setText("available");
-		} else {
-			availableLabel.setText(null);
-			joinButton.setDisable(true);
-		}
-	}
-}
