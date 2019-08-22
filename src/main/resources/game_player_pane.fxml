@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="822.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rdFUtil.view.GamePlayerController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="822.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rdFUtil.view.GamePlayerController">
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
    </padding>
@@ -422,10 +422,9 @@
             </HBox>
             <VBox prefWidth="100.0">
                <children>
-                  <HBox alignment="CENTER_LEFT" prefWidth="200.0" spacing="10.0">
+                  <HBox alignment="CENTER_LEFT" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="solutionTextField" prefHeight="50.0" promptText="Inserisci la soluzione" />
-                        <Button fx:id="confirmSolutionButton" mnemonicParsing="false" text="invia" />
+                        <TextField fx:id="solutionTextField" onAction="#confirmSolution" prefHeight="50.0" prefWidth="200.0" promptText="Inserisci la soluzione" />
                      </children>
                   </HBox>
                </children>
@@ -433,13 +432,13 @@
             <HBox prefHeight="32.0" spacing="60.0">
                <children>
                   <Button fx:id="jollyButton" mnemonicParsing="false" prefHeight="32.0" prefWidth="60.0" text="jolly" />
-                  <TextField fx:id="letterTextfield" prefHeight="32.0" prefWidth="60.0" promptText="lettera" />
+                  <TextField fx:id="letterTextfield" onAction="#onEnter" prefHeight="32.0" prefWidth="60.0" promptText="lettera" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="32.0" spacing="60.0">
                <children>
                   <Button fx:id="vowelButton" mnemonicParsing="false" prefHeight="32.0" prefWidth="60.0" text="vocale" />
-                  <Button fx:id="turnButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 100;" text="Gira" />
+                  <Button fx:id="spinButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 100;" text="Gira" />
                </children>
             </HBox>
             <HBox prefHeight="32.0" spacing="60.0">

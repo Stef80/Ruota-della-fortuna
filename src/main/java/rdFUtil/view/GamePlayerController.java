@@ -23,7 +23,7 @@ public class GamePlayerController{
     @FXML
     private Button vowelButton;
     @FXML
-    private Button turnButton;
+    private Button spinButton;
     @FXML
     private Button solutionButton;
     @FXML
@@ -62,10 +62,6 @@ public class GamePlayerController{
     private Label jolly2Label;
     @FXML
     private Label jolly3Label;
-
-
-
-
     @FXML
     private VBox player1Box;
     @FXML
@@ -90,7 +86,7 @@ public class GamePlayerController{
     public void hideAll() {
         jollyButton.setVisible(false);
         vowelButton.setVisible(false);
-        turnButton.setVisible(false);
+        spinButton.setVisible(false);
         solutionButton.setVisible(false);
         solutionTextField.setDisable(true);
         letterTextField.setDisable(true);
@@ -98,7 +94,7 @@ public class GamePlayerController{
     public void disableAll(){
         jollyButton.setDisable(true);
         vowelButton.setDisable(true);
-        turnButton.setDisable(true);
+        spinButton.setDisable(true);
         solutionButton.setDisable(true);
         solutionTextField.setDisable(true);
         letterTextField.setDisable(true);
@@ -107,7 +103,7 @@ public class GamePlayerController{
     public void activeAll(){
         jollyButton.setDisable(false);
         vowelButton.setDisable(false);
-        turnButton.setDisable(false);
+        spinButton.setDisable(false);
         solutionButton.setDisable(false);
         letterTextField.setDisable(false);
     }
@@ -137,6 +133,7 @@ public class GamePlayerController{
         solutionTextField.setDisable(false);
         runCountdown(10);
     }
+    @FXML
     public void confirmSolution() throws RemoteException {
         String solution =solutionTextField.getText();
         match.giveSolution(solution);
@@ -154,6 +151,23 @@ public class GamePlayerController{
     public void wheelResult(String result){
         resultLabel.setText(result);
     }
+     @FXML
+     public void onEnter() throws RemoteException {
+        String letter =  letterTextField.getText();
+        if(spinButton.isPressed()){
+           match.giveConsonant(letter,wheelResult);
+        }else if(vowelButton.isPressed()){
+            match.giveVocal(letter);
+        }
+     }
+     public void giveVocal(){
+        match.askForVocal();
+        runCountdown(5);
+     }
+
+     public void giveJolly() throws RemoteException {
+        match.jolly();
+     }
 
     public void setTurn(String nickName) throws RemoteException {
         if(nickName.equals(player1Label.getText())){
@@ -184,7 +198,23 @@ public class GamePlayerController{
     public void notifyPlayerStats(int pos, String nickname, int partial, int total, int numJolly){
         switch(pos){
             case 0:
-
+                player1Label.setText(nickname);
+                partial1Label.setText(String.valueOf(partial));
+                total1Label.setText(String.valueOf(total));
+                jolly1Label.setText(String.valueOf(numJolly));
+                break;
+            case 1:
+                player2Label.setText(nickname);
+                partial2Label.setText(String.valueOf(partial));
+                total2Label.setText(String.valueOf(total));
+                jolly2Label.setText(String.valueOf(numJolly));
+                break;
+            case 2:
+                player3Label.setText(nickname);
+                partial3Label.setText(String.valueOf(partial));
+                total3Label.setText(String.valueOf(total));
+                jolly3Label.setText(String.valueOf(numJolly));
+                break;
         }
     }
 
