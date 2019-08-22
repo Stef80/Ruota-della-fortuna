@@ -31,7 +31,7 @@ public class MonitoringManager {
     }
 
     public int averageMovesPerManches(){
-        return dbManager.get
+        return dbManager.getAverageMovesPerManche();
     }
     //TODO metodi
 }

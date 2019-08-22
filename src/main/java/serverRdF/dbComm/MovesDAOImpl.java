@@ -15,8 +15,8 @@ public class MovesDAOImpl implements MovesDAO {
     }
 
     public boolean addMove(Move move) throws SQLException{
-        String queryAdd = "INSERT INTO " + MovesTable + "(" + MovesIdPlayerAttribute + "," + MovesMoveTypeAttribute + "," + MovesOutcomeAttribute + "," + MovesIdMatchAttribute + "," + MovesMancheNumberAttribute + ") " +
-                            "VALUES ('" + move.getPlayer() + "','" + move.getMoveType() + "'," + move.getOutCome() + ",'" + move.getIdMatch() + "'," + move.getNumManche() + ")";
+        String queryAdd = "INSERT INTO " + MovesTable + "(" + MovesIdPlayerAttribute + "," + MovesMoveTypeAttribute + "," + MovesOutcomeAttribute + "," + MovesIdMatchAttribute + "," + MovesMancheNumberAttribute + ","+MovesMoveIdAttribute+") " +
+                            "VALUES ('" + move.getPlayer() + "','" + move.getMoveType() + "'," + move.getOutCome() + ",'" + move.getIdMatch() + "'," + move.getNumManche() + ",'"+ move.getMoveId()+"')";
         Statement stmt = con.createStatement();
         return stmt.executeUpdate(queryAdd) > 0;
     }
@@ -46,10 +46,11 @@ public class MovesDAOImpl implements MovesDAO {
         if(numManche == 0) {
             return -1;
         }else{
-            String queryGet = "SELECT COUNT(*)";
-            //TODO
+            String queryGet = "SELECT COUNT(*) AS count FROM "+MovesTable+" MT JOIN "+ManchesDAO.ManchesTable+" MAN ON MT.idMatch = MAN.id AND MT.number = MAN.number JOIN "+MancheWinnersDAO.manchesWinnersTable+" " +
+                    "MW ON MAN.id = MW.id AND MAN.number = MW.number";
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(queryGet);
+            return (rs.getInt("count")/numManche);
         }
-
-        return -1;
     }
 }

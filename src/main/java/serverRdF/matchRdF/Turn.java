@@ -4,6 +4,7 @@ package serverRdF.matchRdF;
 
         import java.util.ArrayList;
         import java.util.List;
+        import java.util.UUID;
 
 
 /**
@@ -52,6 +53,7 @@ public class Turn {
         move.setPlayer(idPlayer);
         move.setMoveType(moveType);
         move.setOutCome(outcome);
+        move.setMoveId(UUID.randomUUID().toString());
 
         moves.add(move);
     }

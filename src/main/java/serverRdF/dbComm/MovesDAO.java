@@ -11,6 +11,7 @@ public interface MovesDAO {
     String MovesOutcomeAttribute = "outcome";
     String MovesIdMatchAttribute  = "idMatch";
     String MovesMancheNumberAttribute = "number";
+    String MovesMoveIdAttribute = "moveId";
 
     /**
      * Questo metodo aggiunge nel database una mossa
