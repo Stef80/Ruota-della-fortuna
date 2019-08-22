@@ -12,6 +12,7 @@ public class MancheWinnersDAOImpl implements MancheWinnersDAO {
         con = c;
     }
 
+    @Override
     public boolean addMancheWinner(String idPlayer, ManchesDTO manche, int amount) throws SQLException{
         String queryAdd = "INSERT INTO "+manchesWinnersTable+"("+manchesWinnersidAttribute+","+manchesWinnersNumberAttribute+","+manchesWinnersidPlayerAttribute+","+manchesWinnersAmountAttribute+") " +
                 "VALUES ('"+manche.getMatch().getId()+"',"+manche.getNumber()+",'"+idPlayer+"',"+amount+");";
@@ -19,8 +20,17 @@ public class MancheWinnersDAOImpl implements MancheWinnersDAO {
         return stmt.executeUpdate(queryAdd) > 0;
     }
 
+    @Override
     public int getNumWinnedManches() throws SQLException{
         String queryGet = "SELECT COUNT(*) AS count FROM "+manchesWinnersTable;
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(queryGet);
+        return rs.getInt("count");
+    }
+
+    @Override
+    public int getMancheWonByUser(String id) throws SQLException {
+        String queryGet = "SELECT COUNT(*) AS count FROM "+manchesWinnersTable+" WHERE "+manchesWinnersidPlayerAttribute+" = '"+id+"';";
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(queryGet);
         return rs.getInt("count");

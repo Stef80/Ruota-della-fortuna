@@ -10,4 +10,8 @@ public interface MancheJoinersDAO {
     String mancheJoinersObserverAttribute = "observer";
 
     boolean addMancheJoiner(String idMatch, int numManche, String idPlayer, boolean observer) throws SQLException;
+
+    int getManchePlayedByUser(String id) throws SQLException;
+
+    int getMatchesPlayedByUser(String id) throws SQLException;
 }

@@ -15,4 +15,12 @@ public class MatchWinnersDAOImpl implements MatchWinnersDAO {
         Statement stmt = con.createStatement();
         return stmt.executeUpdate(queryAdd) > 0;
     }
+
+    @Override
+    public int getWonMatchesByUser(String id) throws SQLException{
+        String queryGet = "SELECT COUNT(*) AS count FROM "+matchWinnersTable+" WHERE "+matchWinnersidPlayerAttribute+" = '"+id+"';";
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(queryGet);
+        return rs.getInt("count");
+    }
 }

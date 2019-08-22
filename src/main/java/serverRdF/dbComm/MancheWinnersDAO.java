@@ -12,4 +12,6 @@ public interface MancheWinnersDAO {
     boolean addMancheWinner(String idPlayer, ManchesDTO manche, int amount) throws SQLException;
 
     int getNumWinnedManches() throws SQLException;
+
+    int getMancheWonByUser(String id) throws SQLException;
 }

@@ -185,5 +185,13 @@ public interface DBManagerInterface {
      * @return il numero medio di mosse eseguite per indovinare una frase misteriosa
      */
     int getAverageMovesPerManche();
+
+    int getWonManchesByUser(String id);
+
+    int getManchePlayedByUser(String id);
+
+    int getMatchesPlayedByUser(String id);
+
+    int getWonMatchesByUser(String id);
     //TODO tutti i metodi che servono agli altri manager e a Match. ricordarsi di aggiungere man mano i metodi utilizzati nelle altre classi per non perderli.
 }

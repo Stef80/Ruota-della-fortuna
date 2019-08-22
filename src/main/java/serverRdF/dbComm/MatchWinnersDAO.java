@@ -9,4 +9,6 @@ public interface MatchWinnersDAO {
     String matchWinnersAmountAttribute = "amount";
 
     boolean addMatchWinner(String idMatch, String idPlayer, int amount) throws SQLException;
+
+    int getWonMatchesByUser(String id) throws SQLException;
 }

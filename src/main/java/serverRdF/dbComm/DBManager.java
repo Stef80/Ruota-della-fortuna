@@ -286,16 +286,49 @@ public class DBManager implements DBManagerInterface{
         }
     }
 
+    @Override
+    public int getWonManchesByUser(String id) {
+        if(mancheWinnersDAO==null)
+            createMancheWinnersDAO();
+        try{
+            return mancheWinnersDAO.getMancheWonByUser(id);
+        }catch (SQLException e){
+            return 0;
+        }
+    }
+
     private void createMancheJoinersDAO(){mancheJoinersDAO = new MancheJoinersDAOImpl(con);}
 
     @Override
     public boolean addMancheJoiner(String idMatch, int numManche, String userId, boolean observer) {
         if(mancheJoinersDAO==null)
-            createMancheWinnersDAO();
+            createMancheJoinersDAO();
         try {
             return mancheJoinersDAO.addMancheJoiner(idMatch, numManche, userId, observer);
         } catch (SQLException e) {
             return false;
+        }
+    }
+
+    @Override
+    public int getManchePlayedByUser(String id) {
+        if(mancheJoinersDAO == null)
+            createMancheJoinersDAO();
+        try{
+            return mancheJoinersDAO.getManchePlayedByUser(id);
+        }catch (SQLException e){
+            return 0;
+        }
+    }
+
+    @Override
+    public int getMatchesPlayedByUser(String id) {
+        if(mancheJoinersDAO == null)
+            createMancheJoinersDAO();
+        try{
+            return mancheJoinersDAO.getMatchesPlayedByUser(id);
+        }catch (SQLException e){
+            return 0;
         }
     }
 
@@ -309,6 +342,17 @@ public class DBManager implements DBManagerInterface{
             return matchWinnersDAO.addMatchWinner(idMatch, idPlayer, amount);
         } catch (SQLException e) {
             return false;
+        }
+    }
+
+    @Override
+    public int getWonMatchesByUser(String id) {
+        if(matchWinnersDAO == null)
+            createMatchWinnersDAO();
+        try{
+            return matchWinnersDAO.getWonMatchesByUser(id);
+        }catch (SQLException e){
+            return 0;
         }
     }
 }
