@@ -412,22 +412,21 @@
                   </Label>
                </children>
             </HBox>
-            <VBox prefHeight="60.0" prefWidth="100.0">
+            <VBox prefWidth="100.0">
                <children>
-                  <Label text="immetti qui la soluzione" />
-                  <TextField fx:id="solutionTextField" prefHeight="50.0" />
+                  <TextField fx:id="solutionTextField" prefHeight="50.0" promptText="Inserisci la soluzione" />
                </children>
             </VBox>
             <HBox prefHeight="32.0" spacing="60.0">
                <children>
-                  <Button fx:id="jollyButton" maxWidth="60.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="60.0" text="jolly" />
+                  <Button fx:id="jollyButton" mnemonicParsing="false" prefHeight="32.0" prefWidth="60.0" text="jolly" />
                   <TextField fx:id="letterTextfield" prefHeight="32.0" prefWidth="60.0" promptText="lettera" />
                </children>
             </HBox>
-            <HBox prefHeight="32.0" spacing="60.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="32.0" spacing="60.0">
                <children>
                   <Button fx:id="vowelButton" mnemonicParsing="false" prefHeight="32.0" prefWidth="60.0" text="vocale" />
-                  <Button fx:id="turnButton" mnemonicParsing="false" prefHeight="32.0" prefWidth="60.0" text="Gira" />
+                  <Button fx:id="turnButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 100;" text="Gira" />
                </children>
             </HBox>
             <HBox prefHeight="32.0" spacing="60.0">

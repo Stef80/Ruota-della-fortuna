@@ -9,26 +9,30 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" spacing="10.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rdFUtil.view.OTPRegistrationPane">
-   <children>
-      <Label text="The Wheel of Fortune">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label text="immetti il codice qui " />
-      <HBox alignment="CENTER">
-         <children>
-            <TextField fx:id="otpTextField" prefHeight="25.0" prefWidth="201.0" />
-            <Region minWidth="10.0" />
-            <Button fx:id="comfirmButton" mnemonicParsing="false" onAction="#enter" text="Enter" />
-         </children>
-      </HBox>
-      <Label text="Label">
-         <VBox.margin>
-            <Insets top="20.0" />
-         </VBox.margin>
-      </Label>
-   </children>
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+      spacing="10.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="rdFUtil.view.OTPRegistrationPane">
+    <children>
+        <Label text="La Ruota della Fortuna">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Label>
+        <HBox alignment="CENTER">
+            <children>
+                <TextField fx:id="otpTextField" prefHeight="25.0" prefWidth="201.0"
+                           promptText="Inserisci il codice qui"/>
+                <Region minWidth="10.0"/>
+                <Button fx:id="comfirmButton" mnemonicParsing="false" onAction="#enter" text="Invio"/>
+            </children>
+        </HBox>
+        <Label text="Timer">
+            <VBox.margin>
+                <Insets/>
+            </VBox.margin>
+        </Label>
+    </children>
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
 </VBox>

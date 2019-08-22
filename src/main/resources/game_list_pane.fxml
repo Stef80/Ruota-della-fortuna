@@ -8,59 +8,62 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" smooth="false">
-         <HBox.margin>
-            <Insets />
-         </HBox.margin>
-         <image>
-            <Image url="@ruota_fortuna.png" />
-         </image>
-      </ImageView>
-      <VBox alignment="TOP_CENTER" prefWidth="60.0">
-         <children>
-            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@male_avatar-512.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="label1" text="id1" />
-         </children>
-      </VBox>
-      <VBox alignment="TOP_CENTER" prefWidth="60.0">
-         <children>
-            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@male_avatar-512.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="label2" text="id2" />
-         </children>
-      </VBox>
-      <VBox alignment="TOP_CENTER" prefWidth="60.0">
-         <children>
-            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@male_avatar-512.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="label3" text="id3" />
-         </children>
-      </VBox>
-      <Label fx:id="aviableLabel" prefWidth="60.0" text="Label" />
-      <Button fx:id="observeButton" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="60.0" text="observe" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" wrapText="true">
-         <HBox.margin>
-            <Insets right="20.0" />
-         </HBox.margin>
-      </Button>
-      <Button fx:id="joinButton" alignment="CENTER" contentDisplay="CENTER" depthTest="ENABLE" mnemonicParsing="false" prefHeight="32.0" prefWidth="60.0" text="join" textAlignment="CENTER">
-         <HBox.margin>
-            <Insets right="5.0" />
-         </HBox.margin>
-      </Button>
-   </children>
-   <padding>
-      <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
-   </padding>
+<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+      spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" smooth="false">
+            <HBox.margin>
+                <Insets/>
+            </HBox.margin>
+            <image>
+                <Image url="@ruota_fortuna.png"/>
+            </image>
+        </ImageView>
+        <VBox alignment="TOP_CENTER" prefWidth="60.0">
+            <children>
+                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@male_avatar-512.png"/>
+                    </image>
+                </ImageView>
+                <Label fx:id="label1" text="id1"/>
+            </children>
+        </VBox>
+        <VBox alignment="TOP_CENTER" prefWidth="60.0">
+            <children>
+                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@male_avatar-512.png"/>
+                    </image>
+                </ImageView>
+                <Label fx:id="label2" text="id2"/>
+            </children>
+        </VBox>
+        <VBox alignment="TOP_CENTER" prefWidth="60.0">
+            <children>
+                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@male_avatar-512.png"/>
+                    </image>
+                </ImageView>
+                <Label fx:id="label3" text="id3"/>
+            </children>
+        </VBox>
+        <Label fx:id="aviableLabel" prefWidth="60.0" text="Label"/>
+        <Button fx:id="observeButton" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="60.0"
+                text="observe" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" wrapText="true">
+            <HBox.margin>
+                <Insets right="20.0"/>
+            </HBox.margin>
+        </Button>
+        <Button fx:id="joinButton" alignment="CENTER" contentDisplay="CENTER" depthTest="ENABLE" mnemonicParsing="false"
+                prefHeight="32.0" prefWidth="60.0" text="join" textAlignment="CENTER">
+            <HBox.margin>
+                <Insets right="5.0"/>
+            </HBox.margin>
+        </Button>
+    </children>
+    <padding>
+        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0"/>
+    </padding>
 </HBox>

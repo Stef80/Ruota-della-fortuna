@@ -10,46 +10,48 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox spacing="6.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rdFUtil.view.RegistrationFormPanel">
+<VBox spacing="6.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="rdFUtil.view.RegistrationFormPanel">
     <children>
-        <Label layoutX="69.0" layoutY="46.0" text="La Ruota della Fortuna" AnchorPane.bottomAnchor="427.0" AnchorPane.leftAnchor="69.0" AnchorPane.rightAnchor="69.0">
+        <Label layoutX="69.0" layoutY="46.0" text="La Ruota della Fortuna" AnchorPane.bottomAnchor="427.0"
+               AnchorPane.leftAnchor="69.0" AnchorPane.rightAnchor="69.0">
             <font>
-                <Font size="18.0" />
+                <Font size="18.0"/>
             </font>
         </Label>
         <HBox alignment="TOP_RIGHT" spacing="4.0">
             <children>
-                <Label text="Nome" />
-                <TextField fx:id="nameTextField" />
+                <Label text="Nome"/>
+                <TextField fx:id="nameTextField"/>
             </children>
         </HBox>
         <HBox alignment="TOP_RIGHT" spacing="4.0">
             <children>
-                <Label text="Cognome" />
-                <TextField fx:id="surnameTextField" />
+                <Label text="Cognome"/>
+                <TextField fx:id="surnameTextField"/>
             </children>
         </HBox>
         <HBox alignment="TOP_RIGHT" spacing="4.0">
             <children>
-                <Label text="Nickname" />
-                <TextField fx:id="nicknameTextField" />
+                <Label text="Nickname"/>
+                <TextField fx:id="nicknameTextField"/>
             </children>
         </HBox>
         <HBox alignment="TOP_RIGHT" spacing="4.0">
             <children>
-                <Label text="E-mail" />
-                <TextField fx:id="mailTextField" />
+                <Label text="E-mail"/>
+                <TextField fx:id="mailTextField"/>
             </children>
         </HBox>
         <HBox alignment="TOP_RIGHT" spacing="4.0">
             <children>
-                <Label text="Password" />
-                <PasswordField fx:id="passwordTextField" />
+                <Label text="Password"/>
+                <PasswordField fx:id="passwordTextField"/>
             </children>
         </HBox>
-        <Button fx:id="confirmButton" layoutX="100.0" layoutY="411.0" onAction="#confirm" text="Conferma" />
+        <Button fx:id="confirmButton" layoutX="100.0" layoutY="411.0" onAction="#confirm" text="Conferma"/>
     </children>
     <padding>
-        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0"/>
     </padding>
 </VBox>
