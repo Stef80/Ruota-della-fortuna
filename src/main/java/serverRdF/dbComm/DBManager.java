@@ -332,6 +332,28 @@ public class DBManager implements DBManagerInterface{
         }
     }
 
+    @Override
+    public int getObservedManchesByUser(String id) {
+        if(mancheJoinersDAO == null)
+            createMancheJoinersDAO();
+        try{
+            return mancheJoinersDAO.getObservedManches(id);
+        }catch (SQLException e){
+            return 0;
+        }
+    }
+
+    @Override
+    public int getObservedMatchesByUser(String id) {
+        if(mancheJoinersDAO == null)
+            createMancheJoinersDAO();
+        try{
+            return mancheJoinersDAO.getObservedMatches(id);
+        }catch (SQLException e){
+            return 0;
+        }
+    }
+
     private void createMatchWinnersDAO(){matchWinnersDAO = new MatchWinnersDAOImpl(con);}
 
     @Override
@@ -351,6 +373,22 @@ public class DBManager implements DBManagerInterface{
             createMatchWinnersDAO();
         try{
             return matchWinnersDAO.getWonMatchesByUser(id);
+        }catch (SQLException e){
+            return 0;
+        }
+    }
+
+    @Override
+    public int getAveragePointsWonByUser(String id) {
+        if(matchWinnersDAO == null)
+            createMatchWinnersDAO();
+        try{
+            int matchesWon = matchWinnersDAO.getWonMatchesByUser(id);
+            if(matchesWon > 0){
+                int totalPoints = matchWinnersDAO.getTotalPointsByUser(id);
+                return (totalPoints/matchesWon);
+            }else
+                return 0;
         }catch (SQLException e){
             return 0;
         }

@@ -32,4 +32,20 @@ public class MancheJoinersDAOImpl implements MancheJoinersDAO {
         ResultSet rs = stmt.executeQuery(queryGet);
         return rs.getInt("count");
     }
+
+    @Override
+    public int getObservedManches(String id) throws SQLException {
+        String queryGet = "SELECT COUNT(*) AS count FROM "+mancheJoinersTable+" WHERE "+mancheJoinersIdPlayerAttribute+" = '"+id+"' AND "+mancheJoinersObserverAttribute+" = 1;";
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(queryGet);
+        return rs.getInt("count");
+    }
+
+    @Override
+    public int getObservedMatches(String id) throws SQLException {
+        String queryGet = "SELECT COUNT(*) AS count FROM "+mancheJoinersTable+" WHERE "+mancheJoinersIdPlayerAttribute+" = '"+id+"' AND "+mancheJoinersObserverAttribute+" = 1 GROUP BY "+mancheJoinersIdMatchAttribute+";";
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(queryGet);
+        return rs.getInt("count");
+    }
 }

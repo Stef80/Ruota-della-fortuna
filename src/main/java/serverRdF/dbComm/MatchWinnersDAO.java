@@ -11,4 +11,6 @@ public interface MatchWinnersDAO {
     boolean addMatchWinner(String idMatch, String idPlayer, int amount) throws SQLException;
 
     int getWonMatchesByUser(String id) throws SQLException;
+
+    int getTotalPointsByUser(String id) throws SQLException;
 }

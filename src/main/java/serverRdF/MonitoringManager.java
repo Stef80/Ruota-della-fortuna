@@ -48,7 +48,7 @@ public class MonitoringManager {
             int numMatchWon = dbManager.getWonMatchesByUser(idUser);
             int numMancheObserved = dbManager.getObservedManchesByUser(idUser);
             int numMatchObserved = dbManager.getObservedMatchesByUser(idUser);
-            int averageScore = dbManager.getAverageWonPointsByUser(idUser);
+            int averageScore = dbManager.getAveragePointsWonByUser(idUser);
             int averagePassedTurnPerManche = dbManager.getAveragePassedTurnPerMancheByUser(idUser);
             int averagePassedTurnPerMatch = dbManager.getAveragePassedTurnPerMatchByUser(idUser);
             int averageLossPerManche = dbManager.getAverageLossPerMancheByUser(idUser);

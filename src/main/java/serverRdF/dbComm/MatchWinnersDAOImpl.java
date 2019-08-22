@@ -1,5 +1,6 @@
 package serverRdF.dbComm;
 
+import javax.swing.plaf.nimbus.State;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,5 +23,17 @@ public class MatchWinnersDAOImpl implements MatchWinnersDAO {
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(queryGet);
         return rs.getInt("count");
+    }
+
+    @Override
+    public int getTotalPointsByUser(String id) throws SQLException {
+        String queryTot = "SELECT * FROM "+matchWinnersTable+" WHERE "+matchWinnersidPlayerAttribute+ " = '"+id+"';";
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(queryTot);
+        int result = 0;
+        while(rs.next()){
+            result += rs.getInt(matchWinnersAmountAttribute);
+        }
+        return result;
     }
 }

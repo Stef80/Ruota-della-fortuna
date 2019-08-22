@@ -14,4 +14,8 @@ public interface MancheJoinersDAO {
     int getManchePlayedByUser(String id) throws SQLException;
 
     int getMatchesPlayedByUser(String id) throws SQLException;
+
+    int getObservedManches(String id) throws SQLException;
+
+    int getObservedMatches(String id) throws SQLException;
 }
