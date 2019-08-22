@@ -50,48 +50,49 @@ public class RegistrationFormPanel {
      */
     public void confirm() throws IOException {
         //se la mail non esiste visualizza notifica
-        if (!server.checkEMail(eMail.getText())) {
-            Notifications notification = Notifications.create()
-                    .title("Mail Notification")
-                    .text("E-mail già presente \nimmettere nuova mail")
-                    .hideAfter(Duration.seconds(3))
-                    .position(Pos.CENTER);
-            notification.showError();
-            //se esiste nickName visualizza notifica
-        } else if (!server.checkNickname(nickname.getText())) {
-            Notifications notification = Notifications.create()
-                    .title("Mail Notification")
-                    .text("NickName già presente \nimmettere un nuovo nickname")
-                    .hideAfter(Duration.seconds(3))
-                    .position(Pos.CENTER);
-            notification.showError();
+        if (!(name.getText().equals("") || surname.getText().equals("") || nickname.getText().equals("") || eMail.getText().equals("") || password.getText().equals(""))) {
+            if (!server.checkEMail(eMail.getText())) {
+                Notifications notification = Notifications.create()
+                        .title("Mail Notification")
+                        .text("E-mail già presente \nimmettere nuova mail")
+                        .hideAfter(Duration.seconds(3))
+                        .position(Pos.CENTER);
+                notification.showError();
+                //se esiste nickName visualizza notifica
+            } else if (!server.checkNickname(nickname.getText())) {
+                Notifications notification = Notifications.create()
+                        .title("Mail Notification")
+                        .text("NickName già presente \nimmettere un nuovo nickname")
+                        .hideAfter(Duration.seconds(3))
+                        .position(Pos.CENTER);
+                notification.showError();
 
+            } else {
+                String nameStr = name.getText();
+                String surnameStr = surname.getText();
+                String nickStr = nickname.getText();
+                String mailStr = eMail.getText();
+                String passwordStr = password.getText();
+                user = new User(passwordStr, mailStr, nameStr, surnameStr, nickStr);
+                OTPHelper otpHelper = server.signUp(user, client, true);//todo modificare l'import di OTPHelper
+                new OTPRegistrationPane(server, client, otpHelper);
+                Parent root = FXMLLoader.load(Thread.currentThread().getClass().getResource("OTP_registration_pane.fxml"));
+                Scene scene = new Scene(root);
+                Stage primaryStage = new Stage();
+                scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+                primaryStage.setTitle("Wheel of Fortune");
+                primaryStage.setScene(scene);
+                primaryStage.show();
+                Stage thisStage = (Stage) confirmButton.getScene().getWindow();
+                thisStage.close();
+            }
         } else {
-            String nameStr = name.getText();
-            String surnameStr = surname.getText();
-            String nickStr = nickname.getText();
-            String mailStr = eMail.getText();
-            String passwordStr = password.getText();
-
-            user = new User(passwordStr, mailStr, nameStr, surnameStr, nickStr);
-
-            OTPHelper otpHelper = server.signUp(user,client,true);//todo modificare l'import di OTPHelper
-             new OTPRegistrationPane(server,client,otpHelper);
-
-            FXMLLoader loader = new FXMLLoader(Thread.currentThread().getClass().getResource("OTP_registration_pane.fxml"));
-            Parent root = loader.load();
-
-            OTPRegistrationPane controller = loader.getController();
-            controller.runCountdown();
-
-            Scene scene = new Scene(root);
-            Stage primaryStage = new Stage();
-            scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-            primaryStage.setTitle("Wheel of Fortune");
-            primaryStage.setScene(scene);
-            primaryStage.show();
-            Stage thisStage = (Stage) confirmButton.getScene().getWindow();
-            thisStage.close();
+            Notifications notification = Notifications.create()
+                    .title("Registration Notification")
+                    .text("Errore:\nTutti i campi sono obbligatori")
+                    .hideAfter(Duration.seconds(3))
+                    .position(Pos.CENTER);
+            notification.showError();
         }
     }
 }
