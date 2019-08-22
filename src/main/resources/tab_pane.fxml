@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -35,22 +36,22 @@
         </Tab>
         <Tab closable="false" text="Statistiche utente">
             <content>
-                <HBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/8.0.171"
+                <VBox alignment="CENTER" spacing="2.0" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/8.0.171"
                       xmlns:fx="http://javafx.com/fxml/1">
                     <children>
-                        <VBox alignment="CENTER" spacing="2.0" HBox.hgrow="ALWAYS">
+                        <Label alignment="CENTER" text="Statistiche Utente" textAlignment="CENTER" VBox.vgrow="ALWAYS">
+                            <font>
+                                <Font name="System Bold" size="14.0"/>
+                            </font>
+                        </Label>
+                        <Separator VBox.vgrow="ALWAYS"/>
+                        <HBox VBox.vgrow="ALWAYS">
                             <children>
-                                <Label alignment="CENTER" text="Statistiche Utente" textAlignment="CENTER"
-                                       VBox.vgrow="ALWAYS">
-                                    <font>
-                                        <Font name="System Bold" size="14.0"/>
-                                    </font>
-                                </Label>
-                                <Separator VBox.vgrow="ALWAYS"/>
-                                <HBox VBox.vgrow="ALWAYS">
-                                    <children>
-                                        <VBox alignment="TOP_CENTER" spacing="8.0" HBox.hgrow="ALWAYS">
+                                <ScrollPane HBox.hgrow="ALWAYS">
+                                    <content>
+                                        <VBox alignment="CENTER" spacing="4.0">
                                             <children>
+                                                <Region minWidth="300.0" VBox.vgrow="ALWAYS"/>
                                                 <Label text="Numero Manche" VBox.vgrow="ALWAYS">
                                                     <font>
                                                         <Font name="System Bold" size="12.0"/>
@@ -70,7 +71,9 @@
                                                         <Label text="Label" HBox.hgrow="ALWAYS"/>
                                                     </children>
                                                 </HBox>
+                                                <Region VBox.vgrow="ALWAYS"/>
                                                 <Separator VBox.vgrow="ALWAYS"/>
+                                                <Region VBox.vgrow="ALWAYS"/>
                                                 <Label text="Numero Partite" VBox.vgrow="ALWAYS">
                                                     <font>
                                                         <Font name="System Bold" size="12.0"/>
@@ -90,7 +93,9 @@
                                                         <Label text="Label"/>
                                                     </children>
                                                 </HBox>
+                                                <Region VBox.vgrow="ALWAYS"/>
                                                 <Separator VBox.vgrow="ALWAYS"/>
+                                                <Region VBox.vgrow="ALWAYS"/>
                                                 <Label text="Numero Vittorie" VBox.vgrow="ALWAYS">
                                                     <font>
                                                         <Font name="System Bold" size="12.0"/>
@@ -110,18 +115,34 @@
                                                         <Label text="Label"/>
                                                     </children>
                                                 </HBox>
+                                                <Region VBox.vgrow="ALWAYS"/>
                                                 <Separator VBox.vgrow="ALWAYS"/>
+                                                <Region VBox.vgrow="ALWAYS"/>
                                                 <Label text="Punteggio medio vinto" VBox.vgrow="ALWAYS">
                                                     <font>
                                                         <Font name="System Bold" size="12.0"/>
                                                     </font>
                                                 </Label>
                                                 <Label text="Label" VBox.vgrow="ALWAYS"/>
+                                                <Region VBox.vgrow="ALWAYS"/>
                                             </children>
+                                            <padding>
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
+                                            </padding>
                                         </VBox>
-                                        <Separator orientation="VERTICAL"/>
-                                        <VBox alignment="TOP_CENTER" spacing="8.0" HBox.hgrow="ALWAYS">
+                                    </content>
+                                    <padding>
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
+                                    </padding>
+                                    <HBox.margin>
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
+                                    </HBox.margin>
+                                </ScrollPane>
+                                <ScrollPane HBox.hgrow="ALWAYS">
+                                    <content>
+                                        <VBox alignment="TOP_CENTER" spacing="4.0">
                                             <children>
+                                                <Region minWidth="300.0" VBox.vgrow="ALWAYS"/>
                                                 <Label text="Media turni ceduti" VBox.vgrow="ALWAYS">
                                                     <font>
                                                         <Font name="System Bold" size="12.0"/>
@@ -141,8 +162,14 @@
                                                         <Label text="Label"/>
                                                     </children>
                                                 </HBox>
+                                                <Region VBox.vgrow="ALWAYS"/>
                                                 <Separator VBox.vgrow="ALWAYS"/>
-                                                <Label text="Media &quot;Perde Tutto&quot;" VBox.vgrow="ALWAYS"/>
+                                                <Region VBox.vgrow="ALWAYS"/>
+                                                <Label text="Media &quot;Perde Tutto&quot;" VBox.vgrow="ALWAYS">
+                                                    <font>
+                                                        <Font name="System Bold" size="12.0"/>
+                                                    </font>
+                                                </Label>
                                                 <HBox VBox.vgrow="ALWAYS">
                                                     <children>
                                                         <Label text="osservate"/>
@@ -157,24 +184,33 @@
                                                         <Label text="Label"/>
                                                     </children>
                                                 </HBox>
+                                                <Region VBox.vgrow="ALWAYS"/>
                                             </children>
+                                            <padding>
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
+                                            </padding>
                                         </VBox>
-                                    </children>
-                                </HBox>
-                                <Separator/>
+                                    </content>
+                                    <padding>
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
+                                    </padding>
+                                    <HBox.margin>
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
+                                    </HBox.margin>
+                                </ScrollPane>
                             </children>
-                        </VBox>
-
+                        </HBox>
+                        <Separator/>
                     </children>
                     <padding>
                         <Insets bottom="4.0" left="4.0" right="4.0" top="4.0"/>
                     </padding>
-                </HBox>
+                </VBox>
             </content>
         </Tab>
         <Tab closable="false" text="Statistiche globali">
             <content>
-                <VBox alignment="TOP_CENTER" spacing="2.0" HBox.hgrow="ALWAYS">
+                <VBox alignment="TOP_CENTER" spacing="2.0">
                     <children>
                         <Label alignment="CENTER" text="Statistiche globali" textAlignment="CENTER" VBox.vgrow="ALWAYS">
                             <font>
@@ -184,101 +220,121 @@
                         <Separator VBox.vgrow="ALWAYS"/>
                         <HBox VBox.vgrow="ALWAYS">
                             <children>
-                                <VBox alignment="CENTER" spacing="4.0" HBox.hgrow="ALWAYS">
-                                    <children>
-                                        <Region minWidth="300.0" VBox.vgrow="ALWAYS"/>
-                                        <Label text="Primato di punteggio" VBox.vgrow="ALWAYS">
-                                            <font>
-                                                <Font name="System Bold" size="12.0"/>
-                                            </font>
-                                        </Label>
-                                        <HBox VBox.vgrow="ALWAYS">
+                                <ScrollPane HBox.hgrow="ALWAYS">
+                                    <content>
+                                        <VBox alignment="CENTER" spacing="4.0">
                                             <children>
-                                                <Label text="per manche"/>
-                                                <Region HBox.hgrow="ALWAYS"/>
-                                                <Label text="Label"/>
+                                                <Region minWidth="300.0" VBox.vgrow="ALWAYS"/>
+                                                <Label text="Primato di punteggio" VBox.vgrow="ALWAYS">
+                                                    <font>
+                                                        <Font name="System Bold" size="12.0"/>
+                                                    </font>
+                                                </Label>
+                                                <HBox VBox.vgrow="ALWAYS">
+                                                    <children>
+                                                        <Label text="per manche"/>
+                                                        <Region HBox.hgrow="ALWAYS"/>
+                                                        <Label text="Label"/>
+                                                    </children>
+                                                </HBox>
+                                                <HBox VBox.vgrow="ALWAYS">
+                                                    <children>
+                                                        <Label text="per partita"/>
+                                                        <Region HBox.hgrow="ALWAYS"/>
+                                                        <Label text="Label"/>
+                                                    </children>
+                                                </HBox>
+                                                <Region VBox.vgrow="ALWAYS"/>
+                                                <Separator VBox.vgrow="ALWAYS"/>
+                                                <Region VBox.vgrow="ALWAYS"/>
+                                                <Label text="Giocato più manche" VBox.vgrow="ALWAYS">
+                                                    <font>
+                                                        <Font name="System Bold" size="12.0"/>
+                                                    </font>
+                                                </Label>
+                                                <Label text="Label" VBox.vgrow="ALWAYS"/>
+                                                <Region VBox.vgrow="ALWAYS"/>
+                                                <Separator VBox.vgrow="ALWAYS"/>
+                                                <Region VBox.vgrow="ALWAYS"/>
+                                                <Label text="Media di punti per manche" VBox.vgrow="ALWAYS">
+                                                    <font>
+                                                        <Font name="System Bold" size="12.0"/>
+                                                    </font>
+                                                </Label>
+                                                <Label text="Label" VBox.vgrow="ALWAYS"/>
+                                                <Region VBox.vgrow="ALWAYS"/>
+                                                <Separator VBox.vgrow="ALWAYS"/>
+                                                <Region VBox.vgrow="ALWAYS"/>
+                                                <Label text="Maggior numero di volte che ha ceduto il turno"
+                                                       VBox.vgrow="ALWAYS">
+                                                    <font>
+                                                        <Font name="System Bold" size="12.0"/>
+                                                    </font>
+                                                </Label>
+                                                <Label text="Label" VBox.vgrow="ALWAYS"/>
+                                                <Region VBox.vgrow="ALWAYS"/>
                                             </children>
-                                        </HBox>
-                                        <HBox VBox.vgrow="ALWAYS">
+                                            <padding>
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
+                                            </padding>
+                                        </VBox>
+                                    </content>
+                                    <HBox.margin>
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
+                                    </HBox.margin>
+                                    <padding>
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
+                                    </padding>
+                                </ScrollPane>
+                                <ScrollPane HBox.hgrow="ALWAYS">
+                                    <content>
+                                        <VBox alignment="CENTER" spacing="4.0">
                                             <children>
-                                                <Label text="per partita"/>
-                                                <Region HBox.hgrow="ALWAYS"/>
-                                                <Label text="Label"/>
+                                                <Region minWidth="300.0" VBox.vgrow="ALWAYS"/>
+                                                <Label text="Maggior numero di &quot;Perde Tutto&quot;"
+                                                       VBox.vgrow="ALWAYS">
+                                                    <font>
+                                                        <Font name="System Bold" size="12.0"/>
+                                                    </font>
+                                                </Label>
+                                                <Label text="Label" VBox.vgrow="ALWAYS"/>
+                                                <Region VBox.vgrow="ALWAYS"/>
+                                                <Separator VBox.vgrow="ALWAYS"/>
+                                                <Region VBox.vgrow="ALWAYS"/>
+                                                <Label alignment="CENTER" text="Miglior chiamata consonante"
+                                                       textAlignment="CENTER" VBox.vgrow="ALWAYS">
+                                                    <font>
+                                                        <Font name="System Bold" size="12.0"/>
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="nickBestCallLabel" text="Label" VBox.vgrow="ALWAYS"/>
+                                                <Label text="Label" VBox.vgrow="ALWAYS"/>
+                                                <Label text="Label" VBox.vgrow="ALWAYS"/>
+                                                <Region VBox.vgrow="ALWAYS"/>
+                                                <Separator VBox.vgrow="ALWAYS"/>
+                                                <Region VBox.vgrow="ALWAYS"/>
+                                                <Label alignment="CENTER" text="Media mosse per soluzione "
+                                                       textAlignment="CENTER" VBox.vgrow="ALWAYS">
+                                                    <font>
+                                                        <Font name="System Bold" size="12.0"/>
+                                                    </font>
+                                                </Label>
+                                                <Label text="Label" textAlignment="CENTER" VBox.vgrow="ALWAYS"/>
+                                                <Label text="Label" textAlignment="CENTER" VBox.vgrow="ALWAYS"/>
+                                                <Region VBox.vgrow="ALWAYS"/>
                                             </children>
-                                        </HBox>
-                                        <Region VBox.vgrow="ALWAYS"/>
-                                        <Separator VBox.vgrow="ALWAYS"/>
-                                        <Region VBox.vgrow="ALWAYS"/>
-                                        <Label text="Giocato più manche" VBox.vgrow="ALWAYS">
-                                            <font>
-                                                <Font name="System Bold" size="12.0"/>
-                                            </font>
-                                        </Label>
-                                        <Label text="Label" VBox.vgrow="ALWAYS"/>
-                                        <Region VBox.vgrow="ALWAYS"/>
-                                        <Separator VBox.vgrow="ALWAYS"/>
-                                        <Region VBox.vgrow="ALWAYS"/>
-                                        <Label text="Media di punti per manche" VBox.vgrow="ALWAYS">
-                                            <font>
-                                                <Font name="System Bold" size="12.0"/>
-                                            </font>
-                                        </Label>
-                                        <Label text="Label" VBox.vgrow="ALWAYS"/>
-                                        <Region VBox.vgrow="ALWAYS"/>
-                                        <Separator VBox.vgrow="ALWAYS"/>
-                                        <Region VBox.vgrow="ALWAYS"/>
-                                        <Label text="Maggior numero di volte che ha ceduto il turno"
-                                               VBox.vgrow="ALWAYS">
-                                            <font>
-                                                <Font name="System Bold" size="12.0"/>
-                                            </font>
-                                        </Label>
-                                        <Label text="Label" VBox.vgrow="ALWAYS"/>
-                                        <Region VBox.vgrow="ALWAYS"/>
-                                    </children>
+                                            <padding>
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
+                                            </padding>
+                                        </VBox>
+                                    </content>
+                                    <HBox.margin>
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
+                                    </HBox.margin>
                                     <padding>
-                                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0"/>
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                     </padding>
-                                </VBox>
-                                <Separator orientation="VERTICAL" prefHeight="200.0"/>
-                                <VBox alignment="CENTER" spacing="4.0" HBox.hgrow="ALWAYS">
-                                    <children>
-                                        <Region minWidth="300.0" VBox.vgrow="ALWAYS"/>
-                                        <Label text="Maggior numero di &quot;Perde Tutto&quot;" VBox.vgrow="ALWAYS">
-                                            <font>
-                                                <Font name="System Bold" size="12.0"/>
-                                            </font>
-                                        </Label>
-                                        <Label text="Label" VBox.vgrow="ALWAYS"/>
-                                        <Region VBox.vgrow="ALWAYS"/>
-                                        <Separator VBox.vgrow="ALWAYS"/>
-                                        <Region VBox.vgrow="ALWAYS"/>
-                                        <Label alignment="CENTER" text="Miglior chiamata consonante"
-                                               textAlignment="CENTER" VBox.vgrow="ALWAYS">
-                                            <font>
-                                                <Font name="System Bold" size="12.0"/>
-                                            </font>
-                                        </Label>
-                                        <Label fx:id="nickBestCallLabel" text="Label" VBox.vgrow="ALWAYS"/>
-                                        <Label text="Label" VBox.vgrow="ALWAYS"/>
-                                        <Label text="Label" VBox.vgrow="ALWAYS"/>
-                                        <Region VBox.vgrow="ALWAYS"/>
-                                        <Separator VBox.vgrow="ALWAYS"/>
-                                        <Region VBox.vgrow="ALWAYS"/>
-                                        <Label alignment="CENTER" text="Media mosse per soluzione "
-                                               textAlignment="CENTER" VBox.vgrow="ALWAYS">
-                                            <font>
-                                                <Font name="System Bold" size="12.0"/>
-                                            </font>
-                                        </Label>
-                                        <Label text="Label" textAlignment="CENTER" VBox.vgrow="ALWAYS"/>
-                                        <Label text="Label" textAlignment="CENTER" VBox.vgrow="ALWAYS"/>
-                                        <Region VBox.vgrow="ALWAYS"/>
-                                    </children>
-                                    <padding>
-                                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0"/>
-                                    </padding>
-                                </VBox>
+                                </ScrollPane>
                             </children>
                         </HBox>
                         <Separator VBox.vgrow="ALWAYS"/>
