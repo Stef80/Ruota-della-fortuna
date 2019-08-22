@@ -308,7 +308,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="175.0" prefWidth="180.0" spacing="15.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefWidth="190.0" spacing="5.0">
+                        <HBox fx:id="player1Box" alignment="CENTER_LEFT" prefWidth="190.0" spacing="5.0">
                            <children>
                               <Label alignment="CENTER" contentDisplay="TOP" graphicTextGap="6.0" prefHeight="80.0" text="player1" textAlignment="CENTER" />
                               <VBox alignment="CENTER" prefWidth="70.0" spacing="5.0">
@@ -324,6 +324,7 @@
                                     <Insets top="15.0" />
                                  </padding>
                               </VBox>
+                              <Label text="J:0" />
                            </children>
                            <padding>
                               <Insets left="5.0" />
@@ -335,7 +336,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="180.0" spacing="15.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefWidth="190.0" spacing="5.0">
+                        <HBox fx:id="player2Box" alignment="CENTER_LEFT" prefWidth="190.0" spacing="5.0">
                            <children>
                               <Label alignment="CENTER" contentDisplay="TOP" graphicTextGap="6.0" prefHeight="80.0" text="player2" textAlignment="CENTER" />
                               <VBox alignment="CENTER" prefWidth="70.0" spacing="5.0">
@@ -345,12 +346,13 @@
                                           <Image url="@male_avatar-512.png" />
                                        </image>
                                     </ImageView>
-                                    <Label alignment="TOP_CENTER" contentDisplay="TOP" graphicTextGap="6.0" prefWidth="70.0" text="nik1" textAlignment="CENTER" />
+                                    <Label alignment="TOP_CENTER" contentDisplay="TOP" graphicTextGap="6.0" prefWidth="70.0" text="nik2" textAlignment="CENTER" />
                                  </children>
                                  <padding>
                                     <Insets top="15.0" />
                                  </padding>
                               </VBox>
+                              <Label text="J:0" />
                            </children>
                            <padding>
                               <Insets left="5.0" />
@@ -362,7 +364,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="180.0" spacing="15.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefWidth="190.0" spacing="5.0">
+                        <HBox fx:id="player3box" alignment="CENTER_LEFT" prefWidth="190.0" spacing="5.0">
                            <children>
                               <Label alignment="CENTER" contentDisplay="TOP" graphicTextGap="6.0" prefHeight="80.0" text="player3" textAlignment="CENTER" />
                               <VBox alignment="CENTER" prefWidth="70.0" spacing="5.0">
@@ -372,12 +374,13 @@
                                           <Image url="@male_avatar-512.png" />
                                        </image>
                                     </ImageView>
-                                    <Label alignment="TOP_CENTER" contentDisplay="TOP" graphicTextGap="6.0" prefWidth="70.0" text="nik1" textAlignment="CENTER" />
+                                    <Label alignment="TOP_CENTER" contentDisplay="TOP" graphicTextGap="6.0" prefWidth="70.0" text="nik3" textAlignment="CENTER" />
                                  </children>
                                  <padding>
                                     <Insets top="15.0" />
                                  </padding>
                               </VBox>
+                              <Label text="J:0" />
                            </children>
                            <padding>
                               <Insets left="5.0" />
@@ -401,7 +404,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label text="5">
+                  <Label fx:id="timerLabel" text="5">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -410,7 +413,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0">
                <children>
-                  <Label text="Label">
+                  <Label fx:id="wheelResultLabel" text="Label">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -419,7 +422,12 @@
             </HBox>
             <VBox prefWidth="100.0">
                <children>
-                  <TextField fx:id="solutionTextField" prefHeight="50.0" promptText="Inserisci la soluzione" />
+                  <HBox alignment="CENTER_LEFT" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <TextField fx:id="solutionTextField" prefHeight="50.0" promptText="Inserisci la soluzione" />
+                        <Button mnemonicParsing="false" text="invia" />
+                     </children>
+                  </HBox>
                </children>
             </VBox>
             <HBox prefHeight="32.0" spacing="60.0">
@@ -442,7 +450,7 @@
             </HBox>
          </children>
          <padding>
-            <Insets bottom="15.0" left="25.0" right="25.0" />
+            <Insets bottom="15.0" left="25.0" right="15.0" />
          </padding>
       </VBox>
    </children>

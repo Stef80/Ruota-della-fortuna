@@ -84,7 +84,6 @@ public class GamePlayerController{
         vowelButton.setDisable(false);
         turnButton.setDisable(false);
         solutionButton.setDisable(false);
-        solutionTextField.setDisable(false);
         letterTextField.setDisable(false);
     }
 
@@ -108,7 +107,15 @@ public class GamePlayerController{
         exitButton.setVisible(false);
     }
 
-
+    public void giveSolution() throws RemoteException {
+        match.askForSolution();
+        solutionTextField.setDisable(false);
+        runCountdown(10);
+    }
+    public void confirmSolution() throws RemoteException {
+        String solution =solutionTextField.getText();
+        match.giveSolution(solution);
+    }
 
     public void wheelSpin(){
         try {
@@ -142,6 +149,11 @@ public class GamePlayerController{
          if(!nickName.equals(client.getNickname())){
            disableAll();
          }
+         runCountdown(5);
     }
+
+
+
+
 
 }
