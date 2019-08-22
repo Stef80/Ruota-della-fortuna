@@ -170,7 +170,7 @@ public interface Client extends Remote {
      * @param points        il punteggio totale
      * @throws RemoteException
      */
-    public void notifyPlayerStats(int position, String name, int partialPoints, int points, int numJolly) throws RemoteException;
+    public void notifyPlayerStats(int position, String name, int partialPoints, int points) throws RemoteException;
 
     /**
      * Metodo per visualizzare solo le lettere che sono state chiamate. Per funzionare e' necessario aver richiamato precedentemente il metodo

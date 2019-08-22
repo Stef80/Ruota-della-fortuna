@@ -144,15 +144,4 @@ public class GamePlayerController{
          }
     }
 
-    public void yourTurn(){
-        activeAll();
-    }
-
-    public void notifyPlayerStats(int pos, String nickname, int partial, int total, int numJolly){
-        switch(pos){
-            case 0:
-
-        }
-    }
-
 }
