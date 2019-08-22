@@ -6,11 +6,15 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 import rdFUtil.client.Client;
 import serverRdF.Server;
 import serverRdF.matchRdF.RemoteMatch;
@@ -68,7 +72,8 @@ public class GamePlayerController{
     private VBox player2Box;
     @FXML
     private VBox player3Box;
-
+    @FXML
+    private GridPane phraseGridpane;
 
     private Timeline timeline;
     private int timeSeconds;
@@ -81,7 +86,23 @@ public class GamePlayerController{
         this.client = client;
     }
 
+    public void createTableOfPhrase(){
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 15 ; j++) {
+                StackPane slotPane = new StackPane();
+                Label letterLabel = new Label();
+                letterLabel.setVisible(false);
+                slotPane.getChildren().add(letterLabel);
+                slotPane.setStyle(" -fx-background-color: #eefcf9;\n" +
+                                          "    -fx-border-color: #08FBE1;\n" +
+                                          "    -fx-border-radius: 3px;\n" +
+                                          "    -fx-background-radius: 3px;\n" +
+                                          "    -fx-border-width: 2px;");
+                phraseGridpane.add(slotPane,j,i);
+            }
 
+        }
+    }
 
     public void hideAll() {
         jollyButton.setVisible(false);
@@ -124,9 +145,6 @@ public class GamePlayerController{
         timeline.playFromStart();
     }
 
-        public void hideButton() {
-        exitButton.setVisible(false);
-    }
 
     public void giveSolution() throws RemoteException {
         match.askForSolution();
@@ -160,7 +178,7 @@ public class GamePlayerController{
             match.giveVocal(letter);
         }
      }
-     public void giveVocal(){
+     public void giveVocal() throws RemoteException {
         match.askForVocal();
         runCountdown(5);
      }
@@ -219,5 +237,47 @@ public class GamePlayerController{
     }
 
     // todo  chiamata scelta vocale , chiamata soluzione , giocata jolly , chiamata lettera
+      public void vocalcallnotify(String nickname , String letter){
+        String message = nickname+ " ha chiamato la vocale " + letter ;
+          Notifications notification = Notifications.create()
+                                               .title("Mosse")
+                                               .text(message)
+                                               .hideAfter(Duration.seconds(3))
+                                               .position(Pos.BASELINE_CENTER);
+          notification.showInformation();
+      }
+
+      public void callSolutionNotify(String nickname){
+        String message = nickname + " da la soluzione ";
+          Notifications notification = Notifications.create()
+                                               .title("Mosse")
+                                               .text(message)
+                                               .hideAfter(Duration.seconds(3))
+                                               .position(Pos.BASELINE_CENTER);
+          notification.showInformation();
+
+      }
+      public void jollyNotify(String nickname){
+          String message = nickname + " ha giocato il jolly";
+          Notifications notification = Notifications.create()
+                                               .title("Mosse")
+                                               .text(message)
+                                               .hideAfter(Duration.seconds(3))
+                                               .position(Pos.BASELINE_CENTER);
+          notification.showInformation();
+
+      }
+
+    public void callLetterNotify(String nickname , String letter){
+        String message = nickname + " ha scelto la lettera " + letter;
+        Notifications notification = Notifications.create()
+                                             .title("Mosse")
+                                             .text(message)
+                                             .hideAfter(Duration.seconds(3))
+                                             .position(Pos.BASELINE_CENTER);
+        notification.showInformation();
+
+    }
+
 
 }

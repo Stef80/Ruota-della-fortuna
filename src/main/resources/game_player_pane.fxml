@@ -306,9 +306,9 @@
                         <Insets bottom="5.0" />
                      </padding>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="175.0" prefWidth="180.0" spacing="15.0">
+                  <VBox fx:id="player1Box" alignment="CENTER" prefHeight="175.0" prefWidth="180.0" spacing="15.0">
                      <children>
-                        <HBox fx:id="player1Box" alignment="CENTER_LEFT" prefWidth="190.0" spacing="5.0">
+                        <HBox alignment="CENTER_LEFT" prefWidth="190.0" spacing="5.0">
                            <children>
                               <Label alignment="CENTER" contentDisplay="TOP" graphicTextGap="6.0" prefHeight="80.0" text="player1" textAlignment="CENTER" />
                               <VBox alignment="CENTER" prefWidth="70.0" spacing="5.0">
@@ -334,9 +334,9 @@
                         <Label fx:id="total1Label" prefHeight="50.0" text="Label" />
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="180.0" spacing="15.0">
+                  <VBox fx:id="player2Box" alignment="CENTER" prefHeight="200.0" prefWidth="180.0" spacing="15.0">
                      <children>
-                        <HBox fx:id="player2Box" alignment="CENTER_LEFT" prefWidth="190.0" spacing="5.0">
+                        <HBox alignment="CENTER_LEFT" prefWidth="190.0" spacing="5.0">
                            <children>
                               <Label alignment="CENTER" contentDisplay="TOP" graphicTextGap="6.0" prefHeight="80.0" text="player2" textAlignment="CENTER" />
                               <VBox alignment="CENTER" prefWidth="70.0" spacing="5.0">
@@ -362,9 +362,9 @@
                         <Label fx:id="total2Label" prefHeight="60.0" text="Label" />
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="180.0" spacing="15.0">
+                  <VBox fx:id="player3Box" alignment="CENTER" prefHeight="200.0" prefWidth="180.0" spacing="15.0">
                      <children>
-                        <HBox fx:id="player3Box" alignment="CENTER_LEFT" prefWidth="190.0" spacing="5.0">
+                        <HBox  alignment="CENTER_LEFT" prefWidth="190.0" spacing="5.0">
                            <children>
                               <Label alignment="CENTER" contentDisplay="TOP" graphicTextGap="6.0" prefHeight="80.0" text="player3" textAlignment="CENTER" />
                               <VBox alignment="CENTER" prefWidth="70.0" spacing="5.0">
@@ -424,7 +424,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="solutionTextField" onAction="#confirmSolution" prefHeight="50.0" prefWidth="200.0" promptText="Inserisci la soluzione" />
+                        <TextField fx:id="solutionTextField" onAction="#confirmSolution" prefHeight="50.0" prefWidth="207.0" promptText="Inserisci la soluzione" />
                      </children>
                   </HBox>
                </children>
@@ -437,13 +437,13 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="32.0" spacing="60.0">
                <children>
-                  <Button fx:id="vowelButton" mnemonicParsing="false" prefHeight="32.0" prefWidth="60.0" text="vocale" />
-                  <Button fx:id="spinButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 100;" text="Gira" />
+                  <Button fx:id="vowelButton" mnemonicParsing="false" onAction="#giveVocal" prefHeight="32.0" prefWidth="60.0" text="vocale" />
+                  <Button fx:id="spinButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#wheelSpin" prefHeight="60.0" prefWidth="60.0" style="-fx-background-radius: 100;" text="Gira" />
                </children>
             </HBox>
             <HBox prefHeight="32.0" spacing="60.0">
                <children>
-                  <Button fx:id="solutionButton" mnemonicParsing="false" prefHeight="32.0" prefWidth="60.0" text="Sol" />
+                  <Button fx:id="solutionButton" mnemonicParsing="false" onAction="#giveSolution" prefHeight="32.0" prefWidth="60.0" text="Sol" />
                   <Button fx:id="exitButton" mnemonicParsing="false" prefHeight="32.0" prefWidth="60.0" text="Esci" />
                </children>
             </HBox>

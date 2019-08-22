@@ -102,7 +102,6 @@ public class GameView extends ListCell<MatchData> {
                         e.printStackTrace();
                     }
                     GamePlayerController game = loader.getController();
-                    game.hideButton();
                     Stage primaryStage = new Stage();
                     Scene scene = new Scene(root);
                     primaryStage.setScene(scene);
