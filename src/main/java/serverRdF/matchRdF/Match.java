@@ -354,8 +354,8 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         for(Player p : players){
             try {
                 if (p.equals(activePlayer)) {
-                    p.getClient().notifyYourTurn();
                     p.getClient().notifyNewTurn(p.getNickname());
+                    p.getClient().notifyYourTurn();
                     startTimer(5000, false, false);
                 } else {
                     p.getClient().notifyNewTurn(activePlayer.getNickname());
