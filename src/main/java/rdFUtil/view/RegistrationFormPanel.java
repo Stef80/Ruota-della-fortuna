@@ -21,13 +21,13 @@ import java.io.IOException;
 public class RegistrationFormPanel {
 
     @FXML
-    private TextField name;
+    private TextField nameTextField;
     @FXML
-    private TextField surname;
+    private TextField surnameTextField;
     @FXML
-    private TextField nickname;
+    private TextField nicknameTextField;
     @FXML
-    TextField eMail;
+    TextField emailTextField;
     @FXML
     Button confirmButton;
     @FXML
@@ -50,8 +50,8 @@ public class RegistrationFormPanel {
      */
     public void confirm() throws IOException {
         //se la mail non esiste visualizza notifica
-        if (!(name.getText().equals("") || surname.getText().equals("") || nickname.getText().equals("") || eMail.getText().equals("") || password.getText().equals(""))) {
-            if (!server.checkEMail(eMail.getText())) {
+        if (!(nameTextField.getText().equals("") || surnameTextField.getText().equals("") || nicknameTextField.getText().equals("") || emailTextField.getText().equals("") || password.getText().equals(""))) {
+            if (!server.checkEMail(emailTextField.getText())) {
                 Notifications notification = Notifications.create()
                         .title("Mail Notification")
                         .text("E-mail già presente \nimmettere nuova mail")
@@ -59,7 +59,7 @@ public class RegistrationFormPanel {
                         .position(Pos.CENTER);
                 notification.showError();
                 //se esiste nickName visualizza notifica
-            } else if (!server.checkNickname(nickname.getText())) {
+            } else if (!server.checkNickname(nicknameTextField.getText())) {
                 Notifications notification = Notifications.create()
                         .title("Mail Notification")
                         .text("NickName già presente \nimmettere un nuovo nickname")
@@ -68,10 +68,10 @@ public class RegistrationFormPanel {
                 notification.showError();
 
             } else {
-                String nameStr = name.getText();
-                String surnameStr = surname.getText();
-                String nickStr = nickname.getText();
-                String mailStr = eMail.getText();
+                String nameStr = nameTextField.getText();
+                String surnameStr = surnameTextField.getText();
+                String nickStr = nicknameTextField.getText();
+                String mailStr = emailTextField.getText();
                 String passwordStr = password.getText();
                 user = new User(passwordStr, mailStr, nameStr, surnameStr, nickStr);
                 OTPHelper otpHelper = server.signUp(user, client, true);//todo modificare l'import di OTPHelper
