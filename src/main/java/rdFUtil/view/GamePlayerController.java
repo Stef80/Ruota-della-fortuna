@@ -29,6 +29,8 @@ public class GamePlayerController{
     @FXML
     private Button exitButton;
     @FXML
+    private Button confirmSolutionButton;
+    @FXML
     private TextField solutionTextField;
     @FXML
     private TextField letterTextField;
@@ -43,11 +45,34 @@ public class GamePlayerController{
     @FXML
     private Label player3Label;
     @FXML
+    private Label partial1Label;
+    @FXML
+    private Label partial2Label;
+    @FXML
+    private Label partial3Label;
+    @FXML
+    private Label total1Label;
+    @FXML
+    private Label total2Label;
+    @FXML
+    private Label total3Label;
+    @FXML
+    private Label jolly1Label;
+    @FXML
+    private Label jolly2Label;
+    @FXML
+    private Label jolly3Label;
+
+
+
+
+    @FXML
     private VBox player1Box;
     @FXML
     private VBox player2Box;
     @FXML
     private VBox player3Box;
+
 
     private Timeline timeline;
     private int timeSeconds;

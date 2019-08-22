@@ -364,7 +364,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="180.0" spacing="15.0">
                      <children>
-                        <HBox fx:id="player3box" alignment="CENTER_LEFT" prefWidth="190.0" spacing="5.0">
+                        <HBox fx:id="player3Box" alignment="CENTER_LEFT" prefWidth="190.0" spacing="5.0">
                            <children>
                               <Label alignment="CENTER" contentDisplay="TOP" graphicTextGap="6.0" prefHeight="80.0" text="player3" textAlignment="CENTER" />
                               <VBox alignment="CENTER" prefWidth="70.0" spacing="5.0">
