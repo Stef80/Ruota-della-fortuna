@@ -21,7 +21,7 @@
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
    </padding>
    <children>
-      <VBox prefHeight="400.0" prefWidth="406.0">
+      <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="406.0" spacing="4.0">
          <children>
             <GridPane fx:id="lettersTable" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="550.0">
                <columnConstraints>
@@ -289,6 +289,11 @@
                   <Insets right="10.0" />
                </opaqueInsets>
             </GridPane>
+            <Label fx:id="phraseThemeLabel" text="Label">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
             <Separator prefHeight="10.0" prefWidth="200.0" />
             <HBox alignment="CENTER" prefHeight="185.0" prefWidth="550.0" spacing="20.0">
                <children>
