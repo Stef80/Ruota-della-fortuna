@@ -152,11 +152,6 @@ public class GamePlayerController{
          runCountdown(5);
     }
 
-<<<<<<< HEAD
-
-
-
-=======
     public void yourTurn(){
         activeAll();
     }
@@ -167,6 +162,5 @@ public class GamePlayerController{
 
         }
     }
->>>>>>> 56dce9805ae87126a40128bd56de5358564b837a
 
 }
