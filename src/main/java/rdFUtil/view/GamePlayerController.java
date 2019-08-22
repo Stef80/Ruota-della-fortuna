@@ -152,8 +152,21 @@ public class GamePlayerController{
          runCountdown(5);
     }
 
+<<<<<<< HEAD
 
 
 
+=======
+    public void yourTurn(){
+        activeAll();
+    }
+
+    public void notifyPlayerStats(int pos, String nickname, int partial, int total, int numJolly){
+        switch(pos){
+            case 0:
+
+        }
+    }
+>>>>>>> 56dce9805ae87126a40128bd56de5358564b837a
 
 }
