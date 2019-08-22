@@ -30,6 +30,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     //nell'array non sono considerati gli spazi o i caratteri speciali.
     private boolean[] phraseStatus;
     private MoveTimer timer = null;
+    private boolean spinnedWheel = false;
 
     public Match(String id, LocalDateTime localDateTime, DBManager db, EmailManager email) throws RemoteException {
         this.id = id;
@@ -48,7 +49,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     public int wheelSpin() throws RemoteException {
         Player activePlayer = players.get(turn);
 
-        if(timer.isThisForJolly() || timer.isThisForSolution()){
+        if(timer.isThisForJolly() || timer.isThisForSolution() || timer.isThisForVocal()){
             errorInTurn(false,false);
             return 0;
         }else {
@@ -58,6 +59,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
             for(int i=0; i<1000000000; i++){
                 j = j*5;
             }
+            spinnedWheel = true;
             Random rnd = new Random();
             int result = rnd.nextInt(24);
         /*
@@ -85,7 +87,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                     return 0;
                 case 2: case 3: case 4: case 5: case 6:
                     wheelResult("400");
-                    startTimer(5000, false,false);
+                    startTimer(5000, false,false,false);
                     return 400;
                 case 7: case 8:
                     wheelResult("PERDE");
@@ -94,23 +96,23 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                     return 0;
                 case 9: case 10: case 11: case 12:
                     wheelResult("500");
-                    startTimer(5000, false,false);
+                    startTimer(5000, false,false,false);
                     return 500;
                 case 13: case 14: case 15: case 16: case 17: case 18:
                     wheelResult("300");
-                    startTimer(5000, false,false);
+                    startTimer(5000, false,false, false);
                     return 300;
                 case 19: case 20: case 21:
                     wheelResult("600");
-                    startTimer(5000, false,false);
+                    startTimer(5000, false,false, false);
                     return 600;
                 case 22:
                     wheelResult("1000");
-                    startTimer(5000, false,false);
+                    startTimer(5000, false,false, false);
                     return 1000;
                 case 23:
                     wheelResult("700");
-                    startTimer(5000, false,false);
+                    startTimer(5000, false,false, false);
                     return 700;
                 default:
                     return 0;
@@ -163,7 +165,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         Player activePlayer = players.get(turn);
         char vocal = letter.charAt(0);
         boolean isVocal = (vocal == 'A' || vocal == 'E' || vocal == 'I' || vocal == 'O' || vocal == 'U');
-        if(firstTurn || amount==0 || timer.isThisForJolly() || timer.isThisForSolution() || letter.length()>1 || isVocal){
+        if(firstTurn || !spinnedWheel || amount==0 || timer.isThisForJolly() || timer.isThisForSolution() || letter.length()>1 || isVocal || timer.isThisForVocal()){
             timer.interrupt();
             errorInTurn(true,false);
             return;
@@ -226,12 +228,23 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         }
     }
 
+
+    @Override
+    public void askForVocal() throws RemoteException {
+        if(firstTurn || timer.isThisForJolly() || players.get(turn).getPartialPoints()<1000){
+            timer.interrupt();
+            errorInTurn(true,false);
+            return;
+        }
+        startTimer(10000, false, false, true);
+    }
+
     @Override
     public void giveVocal(String letter) throws RemoteException {
         Player activePlayer = players.get(turn);
         char vocal = letter.charAt(0);
         boolean isVocal = (vocal == 'A' || vocal == 'E' || vocal == 'I' || vocal == 'O' || vocal == 'U');
-        if(firstTurn || activePlayer.getPartialPoints()<1000 || timer.isThisForJolly() || timer.isThisForSolution() || letter.length()>1 || !isVocal){
+        if(firstTurn || timer.isThisForJolly() || timer.isThisForSolution() || letter.length()>1 || !isVocal || !timer.isThisForVocal()){
             timer.interrupt();
             errorInTurn(true,false);
             return;
@@ -256,22 +269,22 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                 }
             }
         }
+        for(Client c : observers){
+            try{
+                c.notifyPlayerStats(turn, activePlayer.getNickname(), activePlayer.getPartialPoints(), activePlayer.getPoints());
+            }catch (RemoteException e){
+                leaveMatchAsObserver(c);
+            }
+        }
+        for(Player p : players){
+            try{
+                p.getClient().notifyPlayerStats(turn, activePlayer.getNickname(), activePlayer.getPartialPoints(), activePlayer.getPoints());
+            }catch (RemoteException e){
+                leaveMatchAsPlayer(p);
+            }
+        }
         if(counter > 0){
             manche.getTurns().addMove(activePlayer.getIdPlayer(), ""+letter, -1);
-            for(Client c : observers){
-                try{
-                    c.notifyPlayerStats(turn, activePlayer.getNickname(), activePlayer.getPartialPoints(), activePlayer.getPoints());
-                }catch (RemoteException e){
-                    leaveMatchAsObserver(c);
-                }
-            }
-            for(Player p : players){
-                try{
-                    p.getClient().notifyPlayerStats(turn, activePlayer.getNickname(), activePlayer.getPartialPoints(), activePlayer.getPoints());
-                }catch (RemoteException e){
-                    leaveMatchAsPlayer(p);
-                }
-            }
             startTurn(turn);
         }else{
             manche.getTurns().addMove(activePlayer.getIdPlayer(), ""+letter, 0);
@@ -283,7 +296,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     @Override
     public void jolly() throws RemoteException {
         Player activePlayer = players.get(turn);
-        if(!timer.isThisForJolly() || timer.isThisForSolution()){
+        if(!timer.isThisForJolly() || timer.isThisForSolution() || timer.isThisForVocal()){
             timer.interrupt();
             errorInTurn(true, false);
             return;
@@ -307,7 +320,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                 notifyError();
                 if (players.get(turn).getNumJolly() > 0) {
                     players.get(turn).getClient().askForJolly();
-                    startTimer(5000, true, false);
+                    startTimer(5000, true, false, false);
                 }else{
                     if(moveDone)
                         manche.getTurns().getLastMove().setOutCome(0);
@@ -344,6 +357,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
 
     private void startTurn(int turn) throws RemoteException{
         Player activePlayer = players.get(turn);
+        spinnedWheel = false;
         for(Client c : observers){
             try {
                 c.notifyNewTurn(activePlayer.getNickname());
@@ -356,7 +370,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                 if (p.equals(activePlayer)) {
                     p.getClient().notifyNewTurn(p.getNickname());
                     p.getClient().notifyYourTurn();
-                    startTimer(5000, false, false);
+                    startTimer(5000, false, false, false);
                 } else {
                     p.getClient().notifyNewTurn(activePlayer.getNickname());
                 }
@@ -372,12 +386,12 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
             errorInTurn(true,false);
             return;
         }
-        startTimer(10000, false, true);
+        startTimer(10000, false, true, false);
     }
 
     public void giveSolution(String solution) throws RemoteException {
         Player activePlayer = players.get(turn);
-        if(firstTurn || timer.isThisForJolly() || !timer.isThisForSolution()){
+        if(firstTurn || timer.isThisForJolly() || !timer.isThisForSolution() || timer.isThisForVocal()){
             timer.interrupt();
             errorInTurn(true,false);
             return;
@@ -782,8 +796,8 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         return turn;
     }
 
-    private void startTimer(int time, boolean jolly, boolean solution){
-        timer = new MoveTimer(time, this, jolly, solution);
+    private void startTimer(int time, boolean jolly, boolean solution, boolean vocal){
+        timer = new MoveTimer(time, this, jolly, solution, vocal);
         timer.start();
     }
 }
