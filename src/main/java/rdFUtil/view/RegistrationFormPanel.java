@@ -72,10 +72,18 @@ public class RegistrationFormPanel {
             String nickStr = nickname.getText();
             String mailStr = eMail.getText();
             String passwordStr = password.getText();
+
             user = new User(passwordStr, mailStr, nameStr, surnameStr, nickStr);
+
             OTPHelper otpHelper = server.signUp(user,client,true);//todo modificare l'import di OTPHelper
              new OTPRegistrationPane(server,client,otpHelper);
-            Parent root = FXMLLoader.load(Thread.currentThread().getClass().getResource("OTP_registration_pane.fxml"));
+
+            FXMLLoader loader = new FXMLLoader(Thread.currentThread().getClass().getResource("OTP_registration_pane.fxml"));
+            Parent root = loader.load();
+
+            OTPRegistrationPane controller = loader.getController();
+            controller.runCountdown();
+
             Scene scene = new Scene(root);
             Stage primaryStage = new Stage();
             scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
