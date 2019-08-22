@@ -207,14 +207,14 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
             players.get(turn).updatePartialPoints(result);
             for(Client c : observers){
                 try{
-                    c.notifyPlayerStats(turn, activePlayer.getNickname(), activePlayer.getPartialPoints(), activePlayer.getPoints());
+                    c.notifyPlayerStats(turn, activePlayer.getNickname(), activePlayer.getPartialPoints(), activePlayer.getPoints(),activePlayer.getNumJolly());
                 }catch (RemoteException e){
                     leaveMatchAsObserver(c);
                 }
             }
             for(Player p : players){
                 try{
-                    p.getClient().notifyPlayerStats(turn, activePlayer.getNickname(), activePlayer.getPartialPoints(), activePlayer.getPoints());
+                    p.getClient().notifyPlayerStats(turn, activePlayer.getNickname(), activePlayer.getPartialPoints(), activePlayer.getPoints(), activePlayer.getNumJolly());
                 }catch (RemoteException e){
                     leaveMatchAsPlayer(p);
                 }
@@ -260,14 +260,14 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
             manche.getTurns().addMove(activePlayer.getIdPlayer(), ""+letter, -1);
             for(Client c : observers){
                 try{
-                    c.notifyPlayerStats(turn, activePlayer.getNickname(), activePlayer.getPartialPoints(), activePlayer.getPoints());
+                    c.notifyPlayerStats(turn, activePlayer.getNickname(), activePlayer.getPartialPoints(), activePlayer.getPoints(), activePlayer.getNumJolly());
                 }catch (RemoteException e){
                     leaveMatchAsObserver(c);
                 }
             }
             for(Player p : players){
                 try{
-                    p.getClient().notifyPlayerStats(turn, activePlayer.getNickname(), activePlayer.getPartialPoints(), activePlayer.getPoints());
+                    p.getClient().notifyPlayerStats(turn, activePlayer.getNickname(), activePlayer.getPartialPoints(), activePlayer.getPoints(), activePlayer.getNumJolly());
                 }catch (RemoteException e){
                     leaveMatchAsPlayer(p);
                 }
@@ -354,8 +354,8 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         for(Player p : players){
             try {
                 if (p.equals(activePlayer)) {
-                    p.getClient().notifyYourTurn();
                     p.getClient().notifyNewTurn(p.getNickname());
+                    p.getClient().notifyYourTurn();
                     startTimer(5000, false, false);
                 } else {
                     p.getClient().notifyNewTurn(activePlayer.getNickname());
@@ -546,7 +546,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                        Player p = null;
                        for(int i=0; i<3; i++) {
                            p = players.get(i);
-                           c.notifyPlayerStats(i, p.getNickname(), 0, p.getPoints());
+                           c.notifyPlayerStats(i, p.getNickname(), 0, p.getPoints(), p.getNumJolly());
                        }
                        dbManager.addMancheJoiner(id, manche.getNumManche(), c.getId(), true);
                    }catch(RemoteException e){
@@ -560,7 +560,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                        Player pl = null;
                        for(int i=0; i<3; i++) {
                            pl = players.get(i);
-                           p.getClient().notifyPlayerStats(i, pl.getNickname(), 0, pl.getPoints());
+                           p.getClient().notifyPlayerStats(i, pl.getNickname(), 0, pl.getPoints(), pl.getNumJolly());
                        }
                        dbManager.addMancheJoiner(id, manche.getNumManche(), p.getIdPlayer(), false);
                    }catch(RemoteException e){
@@ -716,13 +716,13 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
             Player p = null;
             for(int i=0; i<players.size(); i++){
                 p = players.get(i);
-                c.notifyPlayerStats(i, p.getNickname(), p.getPartialPoints(), p.getPoints());
+                c.notifyPlayerStats(i, p.getNickname(), p.getPartialPoints(), p.getPoints(), p.getNumJolly());
                 c.setNewPhrase(manche.getCurrentPhrase().getTheme(), manche.getCurrentPhrase().getPhrase());
                 c.updatePhrase(phraseStatus);
             }
         }else{
             for(int i=0; i<players.size(); i++) {
-                c.notifyPlayerStats(i + 1, players.get(i).getNickname(), 0, 0);
+                c.notifyPlayerStats(i + 1, players.get(i).getNickname(), 0, 0, players.get(i).getNumJolly());
             }
         }
     }
