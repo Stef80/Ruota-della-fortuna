@@ -31,9 +31,6 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     private boolean[] phraseStatus;
     private MoveTimer timer = null;
 
-
-    //TODO GIVE LETTERs
-
     public Match(String id, LocalDateTime localDateTime, DBManager db, EmailManager email) throws RemoteException {
         this.id = id;
         onGoing = false;
@@ -194,8 +191,10 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
             String ss = st.nextToken();
             for(int i=0; i<ss.length(); i++){
                 if(ss.charAt(i) == letter.charAt(0)){
-                    phraseStatus[j] = true;
-                    counter++;
+                    if(phraseStatus[j] == false) {
+                        phraseStatus[j] = true;
+                        counter++;
+                    }
                     j++;
                 }else{
                     j++;
@@ -247,8 +246,10 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
             String ss = st.nextToken();
             for(int i=0; i<ss.length(); i++){
                 if(ss.charAt(i) == letter.charAt(0)){
-                    phraseStatus[j] = true;
-                    counter++;
+                    if(phraseStatus[j] == false) {
+                        phraseStatus[j] = true;
+                        counter++;
+                    }
                     j++;
                 }else{
                     j++;
