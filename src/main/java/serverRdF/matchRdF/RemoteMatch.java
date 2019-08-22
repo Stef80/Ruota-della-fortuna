@@ -69,5 +69,7 @@ public interface RemoteMatch extends Remote {
 
     public String getMatchId() throws RemoteException;
 
+    public void askForVocal() throws RemoteException;
+
     //TODO REMINDER: alcuni di questi metodi verranno tolti dall'interfaccia in quanto non utilizzati direttamente dal client
 }

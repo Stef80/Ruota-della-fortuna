@@ -155,7 +155,7 @@ public interface Client extends Remote {
 
 
     /**
-     * Notifica al client la vittoria della partita
+     * Notifica al client che ha vinto la partita
      *
      * @throws RemoteException
      */

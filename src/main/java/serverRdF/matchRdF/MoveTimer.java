@@ -14,12 +14,14 @@ public class MoveTimer extends Thread {
     private Match match;
     private boolean isThisForJolly;
     private boolean isThisForSolution;
+    private boolean isThisForVocal;
 
-    public MoveTimer(int time, Match match, boolean jolly, boolean solution){
+    public MoveTimer(int time, Match match, boolean jolly, boolean solution, boolean vocal){
         this.time = time;
         this.match = match;
         isThisForJolly = jolly;
         isThisForSolution = solution;
+        isThisForVocal = vocal;
     }
 
     public boolean isThisForSolution() {
@@ -28,6 +30,10 @@ public class MoveTimer extends Thread {
 
     public boolean isThisForJolly() {
         return isThisForJolly;
+    }
+
+    public boolean isThisForVocal() {
+        return isThisForVocal;
     }
 
     public void run(){
