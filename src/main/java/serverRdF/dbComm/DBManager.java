@@ -252,6 +252,74 @@ public class DBManager implements DBManagerInterface{
         }
     }
 
+    @Override
+    public int getAveragePassedTurnPerMancheByUser(String id) {
+        if(movesDAO == null)
+            createMovesDAO();
+        if(mancheJoinersDAO == null)
+            createMancheJoinersDAO();
+        try{
+            int totalMoves = movesDAO.getAllPassedTurnByUser(id);
+            int totManches = mancheJoinersDAO.getManchePlayedByUser(id);
+            if(totManches == 0)
+                return 0;
+            return totalMoves/totManches;
+        }catch (SQLException e){
+            return 0;
+        }
+    }
+
+    @Override
+    public int getAveragePassedTurnPerMatchByUser(String id) {
+        if(movesDAO == null)
+            createMovesDAO();
+        if(mancheJoinersDAO == null)
+            createMancheJoinersDAO();
+        try{
+            int totalMoves = movesDAO.getAllPassedTurnByUser(id);
+            int totMatches = mancheJoinersDAO.getMatchesPlayedByUser(id);
+            if(totMatches == 0)
+                return 0;
+            return totalMoves/totMatches;
+        }catch (SQLException e){
+            return 0;
+        }
+    }
+
+    @Override
+    public int getAverageLossPerMancheByUser(String id) {
+        if(movesDAO == null)
+            createMovesDAO();
+        if(mancheJoinersDAO == null)
+            createMancheJoinersDAO();
+        try{
+            int totalMoves = movesDAO.getAllLossesByUser(id);
+            int totManches = mancheJoinersDAO.getManchePlayedByUser(id);
+            if(totManches == 0)
+                return 0;
+            return totalMoves/totManches;
+        }catch (SQLException e){
+            return 0;
+        }
+    }
+
+    @Override
+    public int getAverageLossPerMatchByUser(String id) {
+        if(movesDAO == null)
+            createMovesDAO();
+        if(mancheJoinersDAO == null)
+            createMancheJoinersDAO();
+        try{
+            int totalMoves = movesDAO.getAllLossesByUser(id);
+            int totMatches = mancheJoinersDAO.getMatchesPlayedByUser(id);
+            if(totMatches == 0)
+                return 0;
+            return totalMoves/totMatches;
+        }catch (SQLException e){
+            return 0;
+        }
+    }
+
     /**
      * Questo metodo inizializza l'istanza di ManchesDAO
      */

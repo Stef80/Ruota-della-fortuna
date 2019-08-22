@@ -36,4 +36,8 @@ public interface MovesDAO {
      * @return il numero medio di mosse eseguite per indovinare una frase misteriosa
      */
     public int getAverageMovesPerManche(int numManche) throws SQLException;
+
+    int getAllPassedTurnByUser(String id) throws SQLException;
+
+    int getAllLossesByUser(String id) throws SQLException;
 }

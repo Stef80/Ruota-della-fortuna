@@ -54,4 +54,20 @@ public class MovesDAOImpl implements MovesDAO {
             return result;
         }
     }
+
+    @Override
+    public int getAllPassedTurnByUser(String id) throws SQLException {
+        String queryGet ="SELECT COUNT(*) AS count FROM "+MovesTable+ " WHERE "+MovesIdPlayerAttribute +" = '"+id+"' AND "+MovesOutcomeAttribute+" = 0;";
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(queryGet);
+        return rs.getInt("count");
+    }
+
+    @Override
+    public int getAllLossesByUser(String id) throws SQLException {
+        String queryGet ="SELECT COUNT(*) AS count FROM "+MovesTable+ " WHERE "+MovesIdPlayerAttribute +" = '"+id+"' AND "+MovesMoveTypeAttribute+" = 'perde';";
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(queryGet);
+        return rs.getInt("count");
+    }
 }

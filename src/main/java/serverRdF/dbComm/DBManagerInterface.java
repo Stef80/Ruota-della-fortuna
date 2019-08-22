@@ -199,5 +199,13 @@ public interface DBManagerInterface {
     int getObservedMatchesByUser(String id);
 
     int getAveragePointsWonByUser(String id);
+
+    int getAveragePassedTurnPerMancheByUser(String id);
+
+    int getAveragePassedTurnPerMatchByUser(String id);
+
+    int getAverageLossPerMancheByUser(String id);
+
+    int getAverageLossPerMatchByUser(String id);
     //TODO tutti i metodi che servono agli altri manager e a Match. ricordarsi di aggiungere man mano i metodi utilizzati nelle altre classi per non perderli.
 }
