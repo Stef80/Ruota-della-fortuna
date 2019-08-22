@@ -21,6 +21,6 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="confirmButton" layoutX="100.0" layoutY="411.0" onAction="#confirm" prefHeight="32.0" prefWidth="80.0" ripplerFill="#2251dc" text="Conferma" />
+      <Button fx:id="confirmButton" layoutX="100.0" layoutY="411.0" onAction="#confirm" prefHeight="32.0" prefWidth="80.0" text="Conferma" />
    </children>
 </AnchorPane>
