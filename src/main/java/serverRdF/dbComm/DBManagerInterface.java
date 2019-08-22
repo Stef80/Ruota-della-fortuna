@@ -179,6 +179,11 @@ public interface DBManagerInterface {
      */
     MovesDTO getBestMove();
 
+    /**
+     * Questo metodo permette di individuare il numero medio di mosse eseguite per indovinare una frase misteriosa
+     *
+     * @return il numero medio di mosse eseguite per indovinare una frase misteriosa
+     */
     int getAverageMovesPerManche();
     //TODO tutti i metodi che servono agli altri manager e a Match. ricordarsi di aggiungere man mano i metodi utilizzati nelle altre classi per non perderli.
 }

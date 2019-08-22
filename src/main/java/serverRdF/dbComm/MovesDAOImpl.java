@@ -50,7 +50,8 @@ public class MovesDAOImpl implements MovesDAO {
                     "MW ON MAN.id = MW.id AND MAN.number = MW.number";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(queryGet);
-            return (rs.getInt("count")/numManche);
+            int result = (rs.getInt("count")/numManche);
+            return result;
         }
     }
 }

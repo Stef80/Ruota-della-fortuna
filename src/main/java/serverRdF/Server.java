@@ -60,15 +60,15 @@ public interface Server extends Remote {
      * che ha giocato piu' manche in assoluto, con la media di punti acquisiti per manche piu' alta, che ha ceduto il turno piu' volte a causa di errori, che ha perso tutto il maggior numero di volte
      * @throws RemoteException
      */
-    public String checkPlayer() throws RemoteException;
+    public String checkRecordPlayer() throws RemoteException;
 
     /**
      * Metodo utilizzato per ottenere le statistiche riguardanti il singolo utente
      *
      * @param nickname il nickname dell'utente
      * @return una stringa contenente, divisi da spazi: numero manche giocate, numero partite giocate, numero manche osservate, numero match osservati,
-     * numero manche vinte, numero match vinti, punteggio medio vinto per partita, numero medio di volte che ha dovuto cedere il turno di gioco, numero medio di volte che ha perso tutto
-     * per manche, numero medio di volte che ha perso tutto per match
+     * numero manche vinte, numero match vinti, punteggio medio vinto per partita, numero medio di volte che ha dovuto cedere il turno di gioco per manche, numero medio di volte che ha dovuto cedere il turno di gioco per manche,
+     * numero medio di volte che ha perso tutto per manche, numero medio di volte che ha perso tutto per match
      * @throws RemoteException
      */
     public String checkPerPlayer(String nickname) throws RemoteException;

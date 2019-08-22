@@ -130,23 +130,23 @@ public class ServerImplementation extends UnicastRemoteObject implements Server 
     }
 
     @Override
-    public String checkPlayer() throws RemoteException {
-        return null;
+    public String checkRecordPlayer() throws RemoteException {
+        return monitoringManager.bestStatsUsers();
     }
 
     @Override
     public String checkPerPlayer(String nickname) throws RemoteException {
-        return null;
+        return monitoringManager.perPlayerStats(nickname);
     }
 
     @Override
     public String bestMove() throws RemoteException {
-        return null;
+        return monitoringManager.getBestMove();
     }
 
     @Override
     public int averageManches() throws RemoteException {
-        return 0;
+        return monitoringManager.averageMovesPerManches();
     }
 
     @Override
