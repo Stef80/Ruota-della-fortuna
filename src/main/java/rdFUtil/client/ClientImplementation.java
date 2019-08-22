@@ -106,7 +106,7 @@ public class ClientImplementation implements Client {
     }
 
     @Override
-    public void updatePhrase(char letter, int amount) throws RemoteException {
+    public void updatePhrase(String letter, int amount) throws RemoteException {
     }
 
     @Override

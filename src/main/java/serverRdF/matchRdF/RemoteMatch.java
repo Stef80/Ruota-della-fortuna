@@ -23,7 +23,7 @@ public interface RemoteMatch extends Remote {
      * @param amount la quantita' di punti che spettano per ogni lettera rivelata
      * @throws RemoteException
      */
-    public void giveConsonant(char letter, int amount) throws RemoteException;
+    public void giveConsonant(String letter, int amount) throws RemoteException;
 
     /**
      * Metodo utilizzato dal client per inviare una vocale
@@ -31,7 +31,7 @@ public interface RemoteMatch extends Remote {
      * @param letter la vocale scelta
      * @throws RemoteException
      */
-    public void giveVocal(char letter) throws RemoteException;
+    public void giveVocal(String letter) throws RemoteException;
 
     /**
      * Metodo per utilizzare un jolly

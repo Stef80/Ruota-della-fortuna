@@ -162,9 +162,9 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     }
 
     @Override
-    public void giveConsonant(char letter, int amount) throws RemoteException {
+    public void giveConsonant(String letter, int amount) throws RemoteException {
         Player activePlayer = players.get(turn);
-        if(firstTurn || amount==0 || timer.isThisForJolly() || timer.isThisForSolution()){
+        if(firstTurn || amount==0 || timer.isThisForJolly() || timer.isThisForSolution() || letter.length()>1){
             timer.interrupt();
             errorInTurn(true,false);
             return;
@@ -191,7 +191,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         while(st.hasMoreTokens()){
             String ss = st.nextToken();
             for(int i=0; i<ss.length(); i++){
-                if(ss.charAt(i) == letter){
+                if(ss.charAt(i) == letter.charAt(0)){
                     phraseStatus[j] = true;
                     counter++;
                     j++;
@@ -226,9 +226,9 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     }
 
     @Override
-    public void giveVocal(char letter) throws RemoteException {
+    public void giveVocal(String letter) throws RemoteException {
         Player activePlayer = players.get(turn);
-        if(firstTurn || activePlayer.getPartialPoints()<1000 || timer.isThisForJolly() || timer.isThisForSolution()){
+        if(firstTurn || activePlayer.getPartialPoints()<1000 || timer.isThisForJolly() || timer.isThisForSolution() || letter.length()>1){
             timer.interrupt();
             errorInTurn(true,false);
             return;
@@ -242,7 +242,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         while(st.hasMoreTokens()){
             String ss = st.nextToken();
             for(int i=0; i<ss.length(); i++){
-                if(ss.charAt(i) == letter){
+                if(ss.charAt(i) == letter.charAt(0)){
                     phraseStatus[j] = true;
                     counter++;
                     j++;

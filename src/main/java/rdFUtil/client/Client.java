@@ -190,7 +190,7 @@ public interface Client extends Remote {
      * @param amount il punteggio guadagnato per ogni lettera rivelata
      * @throws RemoteException
      */
-    public void updatePhrase(char letter, int amount) throws RemoteException;
+    public void updatePhrase(String letter, int amount) throws RemoteException;
 
     /**
      * Notifica al client che il tempo per concludere la mossa e' finito
