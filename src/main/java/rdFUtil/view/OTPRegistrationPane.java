@@ -19,10 +19,9 @@ import org.controlsfx.control.Notifications;
 import rdFUtil.client.Client;
 import serverRdF.Server;
 import serverRdF.registrationRdF.OTPHelper;
-import serverRdF.registrationRdF.WaitingThread;
-
 import java.io.IOException;
 import java.rmi.RemoteException;
+
 
 public class OTPRegistrationPane {
 	@FXML
