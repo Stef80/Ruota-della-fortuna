@@ -28,19 +28,9 @@ public class WaitingThread extends Thread {
         int tenMininSec = 600000;
         try {
             sleep(tenMininSec);
-            try {
-                client.notifyRegistrationResult(false);
-            } catch (RemoteException exc) {
-                ServerImplementation.serverError(client);
-            }
         } catch (InterruptedException e) {
-            try {
-                client.notifyRegistrationResult(true);
-                boolean bool = dbManager.addUser(user, admin);
-                if (!bool) {
-                    ServerImplementation.serverError(client);
-                }
-            } catch (RemoteException exc) {
+            boolean bool = dbManager.addUser(user, admin);
+            if (!bool) {
                 ServerImplementation.serverError(client);
             }
         }

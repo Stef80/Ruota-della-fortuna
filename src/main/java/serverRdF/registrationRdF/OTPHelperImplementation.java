@@ -19,17 +19,19 @@ public class OTPHelperImplementation extends UnicastRemoteObject implements OTPH
         thread = t;
     }
 
-    public void checkOTP(String otp, Client c) throws RemoteException {
+    public boolean checkOTP(String otp, Client c) throws RemoteException {
         String cryptedOTP = CryptPassword.encrypt(otp);
         if (cryptedOTP.equals(this.otp)) {
             thread.interrupt();
             UnicastRemoteObject.unexportObject(this,false);
+            return true;
         } else {
             try {
                 c.notifyWrongOTP();
             } catch (RemoteException e) {
                 ServerImplementation.serverError(c);
             }
+            return false;
         }
     }
 }
