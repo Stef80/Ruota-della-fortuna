@@ -84,6 +84,7 @@ public class Controller {
         scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         primaryStage.setTitle(titleFrame);
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
         primaryStage.show();
         Stage oldStage = (Stage) registerButton.getScene().getWindow();
         oldStage.close();
