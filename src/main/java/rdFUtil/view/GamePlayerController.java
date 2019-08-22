@@ -218,4 +218,6 @@ public class GamePlayerController{
         }
     }
 
+    // todo  chiamata scelta vocale , chiamata soluzione , giocata jolly , chiamata lettera
+
 }
