@@ -2,14 +2,12 @@ package serverRdF.matchRdF;
 
 import rdFUtil.MatchData;
 import rdFUtil.client.Client;
-import serverRdF.Server;
 import serverRdF.ServerImplementation;
 import serverRdF.dbComm.DBManager;
 import serverRdF.dbComm.PhrasesDTO;
 import serverRdF.dbComm.UsersDTO;
 import serverRdF.emailRdF.EmailManager;
 
-import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
@@ -29,10 +27,12 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     private LocalDateTime creationTime;
     private DBManager dbManager;
     private EmailManager emailmng;
-    //nell'array non sono considerati gli spazi.
+    //nell'array non sono considerati gli spazi o i caratteri speciali.
     private boolean[] phraseStatus;
     private MoveTimer timer = null;
 
+
+    //TODO GIVE LETTERs
 
     public Match(String id, LocalDateTime localDateTime, DBManager db, EmailManager email) throws RemoteException {
         this.id = id;
