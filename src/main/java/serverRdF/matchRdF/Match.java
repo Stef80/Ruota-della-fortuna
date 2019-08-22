@@ -164,7 +164,9 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     @Override
     public void giveConsonant(String letter, int amount) throws RemoteException {
         Player activePlayer = players.get(turn);
-        if(firstTurn || amount==0 || timer.isThisForJolly() || timer.isThisForSolution() || letter.length()>1){
+        char vocal = letter.charAt(0);
+        boolean isVocal = (vocal == 'A' || vocal == 'E' || vocal == 'I' || vocal == 'O' || vocal == 'U');
+        if(firstTurn || amount==0 || timer.isThisForJolly() || timer.isThisForSolution() || letter.length()>1 || isVocal){
             timer.interrupt();
             errorInTurn(true,false);
             return;
@@ -185,7 +187,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
             }
         }
         String phrase = manche.getCurrentPhrase().getPhrase();
-        StringTokenizer st = new StringTokenizer(phrase);
+        StringTokenizer st = new StringTokenizer(phrase, " ',!?.:;\"/()\\^<>-+*");
         int j = 0;
         int counter = 0;
         while(st.hasMoreTokens()){
@@ -228,7 +230,9 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     @Override
     public void giveVocal(String letter) throws RemoteException {
         Player activePlayer = players.get(turn);
-        if(firstTurn || activePlayer.getPartialPoints()<1000 || timer.isThisForJolly() || timer.isThisForSolution() || letter.length()>1){
+        char vocal = letter.charAt(0);
+        boolean isVocal = (vocal == 'A' || vocal == 'E' || vocal == 'I' || vocal == 'O' || vocal == 'U');
+        if(firstTurn || activePlayer.getPartialPoints()<1000 || timer.isThisForJolly() || timer.isThisForSolution() || letter.length()>1 || !isVocal){
             timer.interrupt();
             errorInTurn(true,false);
             return;
@@ -236,7 +240,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         timer.interrupt();
         activePlayer.updatePartialPoints(-1000);
         String phrase = manche.getCurrentPhrase().getPhrase();
-        StringTokenizer st = new StringTokenizer(phrase);
+        StringTokenizer st = new StringTokenizer(phrase," ',!?.:;\"/()\\^<>-+*");
         int j = 0;
         int counter = 0;
         while(st.hasMoreTokens()){
