@@ -108,6 +108,10 @@ public class GamePlayerController{
         }
     }
 
+    public void setNewPhrase(String theme, String phrase){
+
+    }
+
     public void hideAll() {
         jollyButton.setVisible(false);
         vowelButton.setVisible(false);
