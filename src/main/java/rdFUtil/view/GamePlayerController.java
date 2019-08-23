@@ -74,21 +74,19 @@ public class GamePlayerController{
     private VBox player3Box;
     @FXML
     private GridPane phraseGridpane;
-
+    private static boolean isObserver;
     private Timeline timeline;
     private int timeSeconds;
     private int wheelResult;
-    private RemoteMatch match;
+    private static RemoteMatch match;
     private Client client;
 
     public GamePlayerController(){
 
     }
 
-    public GamePlayerController(RemoteMatch match, Client client){
-        this.match = match;
+    public GamePlayerController( Client client){
         this.client = client;
-        createTableOfPhrase();
     }
 
     public void createTableOfPhrase(){
@@ -285,5 +283,11 @@ public class GamePlayerController{
 
     }
 
+    public static void setMatch(RemoteMatch match){
+    	this.match = match;
+	}
 
+	public void setObserver(boolean isObserver){
+    	this.isObserver = isObserver;
+	}
 }

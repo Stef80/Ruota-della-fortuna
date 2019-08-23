@@ -16,6 +16,7 @@ import org.controlsfx.control.Notifications;
 import rdFUtil.MatchData;
 import rdFUtil.client.Client;
 import serverRdF.Server;
+import serverRdF.matchRdF.Match;
 import serverRdF.matchRdF.RemoteMatch;
 
 import java.io.IOException;
@@ -38,14 +39,15 @@ public class GameView extends ListCell<MatchData> {
     private Parent pane;
     private Server server;
     private Client client;
+    private MatchData matchData;
     private RemoteMatch match;
 
     public GameView(){}
 
-    public GameView(Server server, Client client, RemoteMatch match) {
+    public GameView(Server server, Client client,MatchData matchData) {
         this.server = server;
         this.client = client;
-        this.match = match;
+        this.matchData = matchData;
     }
 
     @Override
@@ -68,6 +70,8 @@ public class GameView extends ListCell<MatchData> {
             }
 
             label1.setText(item.getPlayer1());
+			label2.setText(item.getPlayer2());
+			label3.setText(item.getPlayer3());
             setAviableLabel(!item.isOnGoing());
 
             joinButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -86,14 +90,6 @@ public class GameView extends ListCell<MatchData> {
                                 .position(Pos.CENTER);
                         notification.showError();
                     }
-
-                    setAviableLabel(!item.isOnGoing());
-                    if ((label2.getText()).equals("id2")) {
-                        label2.setText(item.getPlayer2());
-                    } else {
-                        label3.setText(item.getPlayer3());
-                    }
-
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("gameWindowPane.fxml"));
                     Parent root = null;
                     try {

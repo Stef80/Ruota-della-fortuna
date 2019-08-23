@@ -13,12 +13,14 @@ import javafx.stage.Stage;
 import rdFUtil.MatchData;
 import rdFUtil.client.Client;
 import serverRdF.Server;
+import serverRdF.matchRdF.Match;
 import serverRdF.matchRdF.RemoteMatch;
 
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class TabPane implements Initializable {
@@ -31,6 +33,7 @@ public class TabPane implements Initializable {
     private Server server;
     private RemoteMatch match;
 
+
     public TabPane(){}
 
     public TabPane(Server server, Client client) {
@@ -39,7 +42,8 @@ public class TabPane implements Initializable {
     }
 
     public void addMatch(ActionEvent actionEvent) throws RemoteException, NotBoundException {
-        match = server.createMatch(client);
+    	match = server.createMatch(client);
+
         FXMLLoader loader = new FXMLLoader(Thread.currentThread().getContextClassLoader().getResource("game_player_pane.fxml"));
         Parent root = null;
         try {
@@ -59,8 +63,18 @@ public class TabPane implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        gameList.setItems(gameObservableList);
-        gameList.setCellFactory(e -> new GameView(server, client, match));
+		ArrayList<MatchData> list = null;
+		try {
+			list = server.visualizeMatch(client);
+			gameList.setItems(gameObservableList);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		for (MatchData matchData: list){
+			gameList.setCellFactory(e -> new GameView(server, client, matchData));
+		}
+
+
 
 //        gameList.setCellFactory(new Callback<ListView<Game>, ListCell<Game>>() {
 //            @Override

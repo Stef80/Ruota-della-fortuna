@@ -1,8 +1,13 @@
 package rdFUtil.client;
 
+import rdFUtil.view.GamePlayerController;
+
 import java.rmi.RemoteException;
 
 public class ClientImplementation implements Client {
+
+    private GamePlayerController game;
+
     @Override
     public String getNickname() throws RemoteException {
         return null;
@@ -124,4 +129,9 @@ public class ClientImplementation implements Client {
     @Override
     public void notifyPlayerError(String name) throws RemoteException {
     }
+
+    public void setGameController(GamePlayerController game){
+        this.game = game;
+    }
+
 }
