@@ -74,6 +74,8 @@ public class GamePlayerController{
     private VBox player3Box;
     @FXML
     private GridPane phraseGridpane;
+    @FXML
+    private Label phraseThemeLabel;
     private static boolean isObserver;
     private Timeline timeline;
     private int timeSeconds;
@@ -109,7 +111,20 @@ public class GamePlayerController{
     }
 
     public void setNewPhrase(String theme, String phrase){
+        phraseThemeLabel.setText(theme);
+        int column = 0;
+        int row = 0;
+        char car;
+        for(int i=0; i<phrase.length(); i++){
+            car = phrase.charAt(i);
+            // ()^<>-+*
+            if(car != ' ' || car != ',' || car != '\'' || car != '.' || car != ':' || car != ';' || car != '?' || car != '!' || car != '"' || car != '/' || car != '\\' || car != '(' || car != ')'
+                    || car != '^' || car != '<' || car != '>' || car != '-' || car != '+' || car != '*'){
 
+            }else{
+
+            }
+        }
     }
 
     public void hideAll() {

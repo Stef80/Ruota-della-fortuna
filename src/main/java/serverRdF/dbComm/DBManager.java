@@ -174,7 +174,17 @@ public class DBManager implements DBManagerInterface{
         }
     }
 
-
+    @Override
+    public List<UsersDTO> getAllAdmin() {
+        if(usersDAO==null){
+            createUsersDAO();
+        }
+        try {
+            return usersDAO.getAllAdmin();
+        }catch (SQLException e){
+            return null;
+        }
+    }
 
     @Override
     public UsersDTO getBestUserForManche() {

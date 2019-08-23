@@ -92,7 +92,7 @@ public class GameView extends ListCell<MatchData> {
                                 .position(Pos.CENTER);
                         notification.showError();
                     }
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("gameWindowPane.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("Game_player_Pane.fxml"));
                     Parent root = null;
                     try {
                         root = loader.load();
@@ -116,7 +116,7 @@ public class GameView extends ListCell<MatchData> {
                     } catch (RemoteException e) {
                         e.printStackTrace();
                     }
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("gameWindowPane.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("game_player_pane.fxml"));
                     Parent root = null;
                     try {
                         root = loader.load();

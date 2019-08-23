@@ -59,6 +59,8 @@ public interface DBManagerInterface {
      *
      * @return La lista di tutti gli admin registrati
      */
+    List<UsersDTO> getAllAdmin();
+
     boolean getAnyAdmin();
 
     /**
