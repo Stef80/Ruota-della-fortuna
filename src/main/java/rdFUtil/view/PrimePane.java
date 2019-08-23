@@ -13,6 +13,10 @@ public class PrimePane extends Application {
     public static final boolean ISADMIN = false;
     public PrimePane(){}
 
+    public static void main(String[] args) throws Exception {
+        Application.launch(args);
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("wellcome_pane.fxml"));
