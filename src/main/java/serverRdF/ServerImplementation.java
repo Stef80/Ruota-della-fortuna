@@ -94,7 +94,7 @@ public class ServerImplementation extends UnicastRemoteObject implements Server 
 
     @Override
     public RemoteMatch joinMatch(Client c, String idMatch) throws RemoteException {
-        return null;
+            return null;
     }
 
     @Override

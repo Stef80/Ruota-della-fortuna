@@ -82,17 +82,19 @@ public class GamePlayerController{
     private Client client;
 
     public GamePlayerController(){
-        createTableOfPhrase();
+
     }
 
     public GamePlayerController(RemoteMatch match, Client client){
         this.match = match;
         this.client = client;
+        createTableOfPhrase();
     }
 
     public void createTableOfPhrase(){
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 15 ; j++) {
+
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 14 ; j++) {
                 StackPane slotPane = new StackPane();
                 Label letterLabel = new Label();
                 letterLabel.setVisible(false);
