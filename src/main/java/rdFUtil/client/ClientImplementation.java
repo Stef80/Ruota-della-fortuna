@@ -134,4 +134,23 @@ public class ClientImplementation implements Client {
         this.game = game;
     }
 
+    @Override
+    public void notifyTryForSolution(String name) throws RemoteException {
+
+    }
+
+    @Override
+    public void notifyTryVocal(String name) throws RemoteException {
+
+    }
+
+    @Override
+    public void notifyJollyUsed(String name) throws RemoteException {
+
+    }
+
+    @Override
+    public void notifyLetterCall(String name, String letter) throws RemoteException {
+
+    }
 }

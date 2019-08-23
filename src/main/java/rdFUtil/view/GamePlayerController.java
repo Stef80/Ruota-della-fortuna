@@ -241,8 +241,8 @@ public class GamePlayerController{
     }
 
     // todo  chiamata scelta vocale , chiamata soluzione , giocata jolly , chiamata lettera
-      public void vocalcallnotify(String nickname , String letter){
-        String message = nickname+ " ha chiamato la vocale " + letter ;
+      public void vocalcallnotify(String nickname){
+        String message = nickname+ " ha chiamato la vocale";
           Notifications notification = Notifications.create()
                                                .title("Mosse")
                                                .text(message)
