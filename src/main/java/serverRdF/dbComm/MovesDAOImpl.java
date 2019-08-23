@@ -26,19 +26,18 @@ public class MovesDAOImpl implements MovesDAO {
                 "JOIN "+PhrasesDAO.PhraseTable+" PT ON MT.phrase = PT.phrase WHERE U.outcome = (SELECT MAX("+MovesOutcomeAttribute+") FROM "+MovesTable+");";
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(queryGet);
-        if(rs == null) {
-            return null;
-        }else{
+        if(rs.next()) {
             MovesDTO result = new MovesDTO();
             UsersDTO user = new UsersDTO();
-                user.setNickname(rs.getString(UsersDAO.UserNicknameAttribute));
-            PhrasesDTO phrase = new PhrasesDTO(rs.getString(PhrasesDAO.PhraseThemeAttribute),rs.getString(PhrasesDAO.PhrasePhraseAttribute));
-            result.setManche(new ManchesDTO(rs.getInt(MovesMancheNumberAttribute),null,phrase));
+            user.setNickname(rs.getString(UsersDAO.UserNicknameAttribute));
+            PhrasesDTO phrase = new PhrasesDTO(rs.getString(PhrasesDAO.PhraseThemeAttribute), rs.getString(PhrasesDAO.PhrasePhraseAttribute));
+            result.setManche(new ManchesDTO(rs.getInt(MovesMancheNumberAttribute), null, phrase));
             result.setPlayer(user);
             result.setMoveType(rs.getString(MovesMoveTypeAttribute));
             result.setOutcome(rs.getInt(MovesOutcomeAttribute));
             return result;
-        }
+        }else
+            return null;
     }
 
     @Override
@@ -50,8 +49,12 @@ public class MovesDAOImpl implements MovesDAO {
                     "MW ON MAN.id = MW.id AND MAN.number = MW.number";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(queryGet);
-            int result = (rs.getInt("count")/numManche);
-            return result;
+            if(rs.next()) {
+                int result = (rs.getInt("count") / numManche);
+                return result;
+            }else{
+                return 0;
+            }
         }
     }
 
@@ -60,7 +63,10 @@ public class MovesDAOImpl implements MovesDAO {
         String queryGet ="SELECT COUNT(*) AS count FROM "+MovesTable+ " WHERE "+MovesIdPlayerAttribute +" = '"+id+"' AND "+MovesOutcomeAttribute+" = 0;";
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(queryGet);
-        return rs.getInt("count");
+        if(rs.next()) {
+            return rs.getInt("count");
+        }else
+            return 0;
     }
 
     @Override
@@ -68,6 +74,9 @@ public class MovesDAOImpl implements MovesDAO {
         String queryGet ="SELECT COUNT(*) AS count FROM "+MovesTable+ " WHERE "+MovesIdPlayerAttribute +" = '"+id+"' AND "+MovesMoveTypeAttribute+" = 'perde';";
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(queryGet);
-        return rs.getInt("count");
+        if(rs.next()) {
+            return rs.getInt("count");
+        }else
+            return 0;
     }
 }

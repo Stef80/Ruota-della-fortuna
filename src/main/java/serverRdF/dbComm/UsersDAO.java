@@ -69,4 +69,10 @@ public interface UsersDAO {
      * @throws SQLException
      */
     boolean updateUser(UsersDTO user) throws SQLException;
+
+    UsersDTO getBestPlayerByManche() throws SQLException;
+
+    UsersDTO getBestPlayerByMatch() throws SQLException;
+
+    UsersDTO getUserForMoreManchesPlayed() throws SQLException;
 }

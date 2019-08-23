@@ -22,7 +22,10 @@ public class MatchWinnersDAOImpl implements MatchWinnersDAO {
         String queryGet = "SELECT COUNT(*) AS count FROM "+matchWinnersTable+" WHERE "+matchWinnersidPlayerAttribute+" = '"+id+"';";
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(queryGet);
-        return rs.getInt("count");
+        if(rs.next()) {
+            return rs.getInt("count");
+        }else
+            return 0;
     }
 
     @Override

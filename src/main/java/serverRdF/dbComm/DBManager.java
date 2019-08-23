@@ -169,6 +169,39 @@ public class DBManager implements DBManagerInterface{
         }
     }
 
+    @Override
+    public UsersDTO getBestUserForManche() {
+        if(usersDAO==null)
+            createUsersDAO();
+        try{
+            return usersDAO.getBestPlayerByManche();
+        }catch (SQLException e){
+            return null;
+        }
+    }
+
+    @Override
+    public UsersDTO getBestUserForMatch() {
+        if(usersDAO == null)
+            createUsersDAO();
+        try{
+            return usersDAO.getBestPlayerByMatch();
+        }catch (SQLException e){
+            return null;
+        }
+    }
+
+    @Override
+    public UsersDTO getUserForMoreManchesPlayed() {
+        if(usersDAO == null)
+            createUsersDAO();
+        try{
+            return usersDAO.getUserForMoreManchesPlayed();
+        }catch (SQLException e){
+            return null;
+        }
+    }
+
     /**
      * Questo metodo inizializza l'instanza di PhrasesDAO
      */

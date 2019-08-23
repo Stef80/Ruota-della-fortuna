@@ -25,7 +25,10 @@ public class MancheWinnersDAOImpl implements MancheWinnersDAO {
         String queryGet = "SELECT COUNT(*) AS count FROM "+manchesWinnersTable;
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(queryGet);
-        return rs.getInt("count");
+        if(rs.next()) {
+            return rs.getInt("count");
+        }else
+            return 0;
     }
 
     @Override
@@ -33,6 +36,9 @@ public class MancheWinnersDAOImpl implements MancheWinnersDAO {
         String queryGet = "SELECT COUNT(*) AS count FROM "+manchesWinnersTable+" WHERE "+manchesWinnersidPlayerAttribute+" = '"+id+"';";
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(queryGet);
-        return rs.getInt("count");
+        if(rs.next()) {
+            return rs.getInt("count");
+        }else
+            return 0;
     }
 }

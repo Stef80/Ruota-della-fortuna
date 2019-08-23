@@ -92,4 +92,58 @@ public class UsersDAOImpl implements UsersDAO {
         Statement stmt = con.createStatement();
         return stmt.executeUpdate(queryUpdate) > 0;
     }
+
+    @Override
+    public UsersDTO getBestPlayerByManche() throws SQLException {
+        String queryBest = "SELECT * FROM " + UserTable + " U JOIN "+MancheWinnersDAO.manchesWinnersTable +" MW ON U.id = MW.idPlayer WHERE "+MancheWinnersDAO.manchesWinnersAmountAttribute+" =" +
+                " (SELECT MAX(amount) FROM "+MancheWinnersDAO.manchesWinnersTable+");";
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(queryBest);
+        if(rs.next()) {
+            UsersDTO user = new UsersDTO();
+            user.setNickname(rs.getString(UserNicknameAttribute));
+            user.setName(rs.getString(UserNameAttribute));
+            user.setId(rs.getString(UserIdAttribute));
+            user.setSurname(UserSurnameAttribute);
+            user.setEmail(UserEmailAttribute);
+            return user;
+        }else
+            return null;
+    }
+
+    @Override
+    public UsersDTO getBestPlayerByMatch() throws SQLException {
+        String queryBest = "SELECT * FROM " + UserTable + " U JOIN "+MatchWinnersDAO.matchWinnersTable +" MW ON U.id = MW.idPlayer WHERE "+MatchWinnersDAO.matchWinnersAmountAttribute+" =" +
+                " (SELECT MAX(amount) FROM "+MatchWinnersDAO.matchWinnersTable+");";
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(queryBest);
+        if(rs.next()) {
+            UsersDTO user = new UsersDTO();
+            user.setNickname(rs.getString(UserNicknameAttribute));
+            user.setName(rs.getString(UserNameAttribute));
+            user.setId(rs.getString(UserIdAttribute));
+            user.setSurname(UserSurnameAttribute);
+            user.setEmail(UserEmailAttribute);
+            return user;
+        }else
+            return null;
+    }
+
+    @Override
+    public UsersDTO getUserForMoreManchesPlayed() throws SQLException {
+        String queryBest = "SELECT * FROM " +
+                "( SELECT COUNT(id) AS count, * FROM " + UserTable + " U JOIN " + MancheJoinersDAO.mancheJoinersTable +" MJ ON U.id = MJ.idPlayer GROUP BY MJ.idPlayer ORDER BY COUNT(*) desc);";
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(queryBest);
+        if(rs.next()) {
+            UsersDTO user = new UsersDTO();
+            user.setNickname(rs.getString(UserNicknameAttribute));
+            user.setName(rs.getString(UserNameAttribute));
+            user.setId(rs.getString(UserIdAttribute));
+            user.setSurname(UserSurnameAttribute);
+            user.setEmail(UserEmailAttribute);
+            return user;
+        }else
+            return null;
+    }
 }

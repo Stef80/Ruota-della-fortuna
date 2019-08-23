@@ -22,7 +22,10 @@ public class MancheJoinersDAOImpl implements MancheJoinersDAO {
         String queryGet = "SELECT COUNT(*) AS count FROM "+mancheJoinersTable+" WHERE "+mancheJoinersIdPlayerAttribute+" = '"+id+"' AND "+mancheJoinersObserverAttribute+" = 0;";
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(queryGet);
-        return rs.getInt("count");
+        if(rs.next()) {
+            return rs.getInt("count");
+        }else
+            return 0;
     }
 
     @Override
@@ -30,7 +33,10 @@ public class MancheJoinersDAOImpl implements MancheJoinersDAO {
         String queryGet = "SELECT COUNT(*) AS count FROM "+mancheJoinersTable+" WHERE "+mancheJoinersIdPlayerAttribute+" = '"+id+"' AND "+mancheJoinersObserverAttribute+" = 0 GROUP BY "+mancheJoinersIdMatchAttribute+";";
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(queryGet);
-        return rs.getInt("count");
+        if(rs.next()) {
+            return rs.getInt("count");
+        }else
+            return 0;
     }
 
     @Override
@@ -38,7 +44,10 @@ public class MancheJoinersDAOImpl implements MancheJoinersDAO {
         String queryGet = "SELECT COUNT(*) AS count FROM "+mancheJoinersTable+" WHERE "+mancheJoinersIdPlayerAttribute+" = '"+id+"' AND "+mancheJoinersObserverAttribute+" = 1;";
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(queryGet);
-        return rs.getInt("count");
+        if(rs.next()) {
+            return rs.getInt("count");
+        }else
+            return 0;
     }
 
     @Override
@@ -46,6 +55,9 @@ public class MancheJoinersDAOImpl implements MancheJoinersDAO {
         String queryGet = "SELECT COUNT(*) AS count FROM "+mancheJoinersTable+" WHERE "+mancheJoinersIdPlayerAttribute+" = '"+id+"' AND "+mancheJoinersObserverAttribute+" = 1 GROUP BY "+mancheJoinersIdMatchAttribute+";";
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(queryGet);
-        return rs.getInt("count");
+        if(rs.next()) {
+            return rs.getInt("count");
+        }else
+            return 0;
     }
 }
