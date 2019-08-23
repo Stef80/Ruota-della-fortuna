@@ -35,12 +35,14 @@ public class RegistrationFormPanel {
     private Server server;
     private Client client;
     private User user;
+    private boolean admin;
 
     public RegistrationFormPanel(){}
 
-    public RegistrationFormPanel(Server server, Client client) {
+    public RegistrationFormPanel(Server server, Client client, boolean admin) {
         this.server = server;
         this.client = client;
+        this.admin = admin;
     }
 
     /**

@@ -5,34 +5,19 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import rdFUtil.client.Client;
-import serverRdF.Server;
+
+
 
 public class PrimePane extends Application {
-    @FXML
-    private Label label;
-    @FXML
-    private Button loginButton;
-    @FXML
-    private Button registerButton;
-    private Server server;
-    private Client client;
-
+    public static final boolean ISADMIN = false;
     public PrimePane(){}
-
-    public PrimePane(Server server, Client client) {
-        this.client = client;
-        this.server = server;
-    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("main_pane.fxml"));
+        Parent root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("wellcome_pane.fxml"));
         Scene scene = new Scene(root);
-      //  scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         primaryStage.setTitle("Wheel of Fortune");
         primaryStage.setScene(scene);
         primaryStage.show();
