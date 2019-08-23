@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface UsersDAO {
-    //TODO aggiungere metodi necessari
     String UserTable = "Users";
     String UserIdAttribute = "id";
     String UserTipoAttribute = "tipo";
@@ -75,4 +74,10 @@ public interface UsersDAO {
     UsersDTO getBestPlayerByMatch() throws SQLException;
 
     UsersDTO getUserForMoreManchesPlayed() throws SQLException;
+
+    UsersDTO getUserForBestMancheAverage() throws SQLException;
+
+    UsersDTO getUserForMostLostTurn() throws SQLException;
+
+    UsersDTO getUserForMostLosses() throws SQLException;
 }

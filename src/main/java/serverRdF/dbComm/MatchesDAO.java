@@ -3,7 +3,6 @@ package serverRdF.dbComm;
 import java.sql.SQLException;
 
 public interface MatchesDAO {
-    //TODO aggiungere metodi necessari
     String MatchTable = "Matches";
     String MatchIdAttribute = "id";
     String MatchDateAttribute = "date";

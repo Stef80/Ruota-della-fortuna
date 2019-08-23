@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface PhrasesDAO {
-    //TODO aggiungere metodi necessari
     String PhraseTable = "Phrases";
     String PhrasePhraseAttribute = "phrase";
     String PhraseThemeAttribute = "theme";

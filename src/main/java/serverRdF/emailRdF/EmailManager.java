@@ -3,10 +3,8 @@ package serverRdF.emailRdF;
 import serverRdF.ServerImplementation;
 
 import javax.mail.MessagingException;
-import javax.mail.SendFailedException;
 
 public class EmailManager {
-    //TODO metodi e commenti javadoc
     private static EmailManager emailManager = null;
     private String email;
     private String password;
@@ -17,8 +15,11 @@ public class EmailManager {
     }
 
     /**
-     * @param email    //TODO
-     * @param password //TODO
+     * Ritorna, eventualmente inizializzando, un oggetto di tipo {@link EmailManager}. Se non e' stato ancora inizializzato, costruira' il singleton
+     * utilizzando le credenziali di un account insubria che permettranno l'invio di mail automatiche
+     *
+     * @param email    l'indirizzo email dell'account insubria
+     * @param password la password dell'account insubria
      * @return il singleton di tipo {@link EmailManager}
      */
     public static EmailManager createEmailManager(String email, String password) {

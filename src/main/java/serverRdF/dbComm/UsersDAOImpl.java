@@ -131,17 +131,61 @@ public class UsersDAOImpl implements UsersDAO {
 
     @Override
     public UsersDTO getUserForMoreManchesPlayed() throws SQLException {
-        String queryBest = "SELECT * FROM " +
-                "( SELECT COUNT(id) AS count, * FROM " + UserTable + " U JOIN " + MancheJoinersDAO.mancheJoinersTable +" MJ ON U.id = MJ.idPlayer GROUP BY MJ.idPlayer ORDER BY COUNT(*) desc);";
+        String queryBest = "SELECT "+UserNicknameAttribute+", COUNT("+UserIdAttribute+") AS count FROM " +UserTable+" U JOIN "+MancheJoinersDAO.mancheJoinersTable+" MJ ON U.id = MJ.idPlayer GROUP BY " +
+                ""+UserIdAttribute+" ORDER BY count desc";
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(queryBest);
         if(rs.next()) {
             UsersDTO user = new UsersDTO();
             user.setNickname(rs.getString(UserNicknameAttribute));
-            user.setName(rs.getString(UserNameAttribute));
-            user.setId(rs.getString(UserIdAttribute));
-            user.setSurname(UserSurnameAttribute);
-            user.setEmail(UserEmailAttribute);
+            return user;
+        }else
+            return null;
+    }
+
+    @Override
+    public UsersDTO getUserForBestMancheAverage() throws SQLException {
+        String queryBest = "SELECT "+UserNicknameAttribute+", AVG("+MancheWinnersDAO.manchesWinnersAmountAttribute+") AS avg FROM " +UserTable+" U JOIN "+MancheWinnersDAO.manchesWinnersTable+" MW ON U.id = MW.idPlayer GROUP BY " +
+                ""+UserIdAttribute+" ORDER BY avg desc";
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(queryBest);
+        if(rs.next()) {
+            UsersDTO user = new UsersDTO();
+            user.setNickname(rs.getString(UserNicknameAttribute));
+            return user;
+        }else
+            return null;
+    }
+
+    public UsersDTO getUserForMostLostTurn() throws SQLException{
+        String queryBest = "SELECT "+UserNicknameAttribute+", COUNT("+UserIdAttribute+") AS count FROM " +UserTable+" U " +
+                "JOIN "+MancheJoinersDAO.mancheJoinersTable+" MW ON U.id = MW.idPlayer " +
+                "JOIN "+ManchesDAO.ManchesTable+" MT ON MT.number = MW.number AND MT.id = MW.id " +
+                "JOIN " + MovesDAO.MovesTable + " M ON M.number = MT.number AND MT.id = M.idMatch " +
+                "WHERE M." + MovesDAO.MovesOutcomeAttribute + " = 0 AND M."+ MovesDAO.MovesMoveTypeAttribute + "<> 'perde' AND M."+ MovesDAO.MovesMoveTypeAttribute + "<> 'passa' " +
+                "GROUP BY " +UserIdAttribute +" ORDER BY count desc";
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(queryBest);
+        if(rs.next()) {
+            UsersDTO user = new UsersDTO();
+            user.setNickname(rs.getString(UserNicknameAttribute));
+            return user;
+        }else
+            return null;
+    }
+
+    public UsersDTO getUserForMostLosses() throws SQLException{
+        String queryBest = "SELECT "+UserNicknameAttribute+", COUNT("+UserIdAttribute+") AS count FROM " +UserTable+" U " +
+                "JOIN "+MancheJoinersDAO.mancheJoinersTable+" MW ON U.id = MW.idPlayer " +
+                "JOIN "+ManchesDAO.ManchesTable+" MT ON MT.number = MW.number AND MT.id = MW.id " +
+                "JOIN " + MovesDAO.MovesTable + " M ON M.number = MT.number AND MT.id = M.idMatch" +
+                "WHERE M."+ MovesDAO.MovesMoveTypeAttribute + " = 'perde' " +
+                "GROUP BY " +UserIdAttribute +" ORDER BY count desc";
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(queryBest);
+        if(rs.next()) {
+            UsersDTO user = new UsersDTO();
+            user.setNickname(rs.getString(UserNicknameAttribute));
             return user;
         }else
             return null;

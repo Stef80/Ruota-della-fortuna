@@ -103,5 +103,4 @@ public class MonitoringManager {
 
         return result;
     }
-    //TODO metodi nel database
 }

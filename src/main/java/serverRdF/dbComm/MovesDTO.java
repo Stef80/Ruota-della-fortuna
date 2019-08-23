@@ -1,9 +1,6 @@
 package serverRdF.dbComm;
 
 public class MovesDTO {
-
-    //TODO REMINDER: mettere nella documentazione dello schema ER che la chiave primaria di Moves sara' un id chiamato "moveId" (varchar) che è l'id univoco di ogni mossa
-
     private UsersDTO player;
     private String moveType;
     private int outcome;

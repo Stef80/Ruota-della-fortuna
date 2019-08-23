@@ -158,6 +158,7 @@ public class DBManager implements DBManagerInterface{
         }
     }
 
+    @Override
     public List<UsersDTO> getAllAdmin() {
         if(usersDAO==null){
             createUsersDAO();
@@ -168,6 +169,8 @@ public class DBManager implements DBManagerInterface{
             return null;
         }
     }
+
+
 
     @Override
     public UsersDTO getBestUserForManche() {
@@ -197,6 +200,39 @@ public class DBManager implements DBManagerInterface{
             createUsersDAO();
         try{
             return usersDAO.getUserForMoreManchesPlayed();
+        }catch (SQLException e){
+            return null;
+        }
+    }
+
+    @Override
+    public UsersDTO getUserForBestMancheAverage() {
+        if(usersDAO == null)
+            createUsersDAO();
+        try{
+            return usersDAO.getUserForBestMancheAverage();
+        }catch (SQLException e){
+            return null;
+        }
+    }
+
+    @Override
+    public UsersDTO getUserForMostLostTurn() {
+        if(usersDAO == null)
+            createUsersDAO();
+        try{
+            return usersDAO.getUserForMostLostTurn();
+        }catch (SQLException e){
+            return null;
+        }
+    }
+
+    @Override
+    public UsersDTO getUserForMostLosses() {
+        if(usersDAO == null)
+            createUsersDAO();
+        try{
+            return usersDAO.getUserForMostLosses();
         }catch (SQLException e){
             return null;
         }
