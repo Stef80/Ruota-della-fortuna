@@ -31,15 +31,15 @@ public class Controller {
     private Server server;
     private Client client;
     private String titleFrame = "Wheel of Fortune";
-    private boolean admin;
+    private static boolean admin;
 
     public Controller(){}
 
     //Aggiunto il campo admin che dipende da dove viene avviato
-    public Controller(Server server, Client client, boolean admin) {
+    public Controller(Server server, Client client, boolean isAdmin) {
         this.server = server;
         this.client = client;
-        this.admin = admin;
+        admin = isAdmin;
     }
 
     /**
@@ -102,5 +102,9 @@ public class Controller {
         primaryStage.setTitle(titleFrame);
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    public static void setAdmin(boolean isAdmin){
+        admin = isAdmin;
     }
 }

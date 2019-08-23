@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="6.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="6.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label text="La Ruota della Fortuna">
          <font>
@@ -19,7 +19,7 @@
       </Label>
       <HBox alignment="TOP_RIGHT" spacing="4.0">
          <children>
-            <Label text="Utente" />
+            <Label text="E-mail" />
             <TextField fx:id="userTextField" />
          </children>
       </HBox>
@@ -29,13 +29,7 @@
             <PasswordField fx:id="passwordTextField" />
          </children>
       </HBox>
-      <HBox alignment="TOP_RIGHT" spacing="4.0">
-         <children>
-            <Label text="Hostname" />
-            <TextField fx:id="hostnameTextField" />
-         </children>
-      </HBox>
-      <Button fx:id="confirmButton" mnemonicParsing="false" onAction="#login" text="Invia" />
+      <Button fx:id="confirmButton" mnemonicParsing="false" onAction="#loginManager" text="Invia" />
    </children>
    <padding>
       <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
