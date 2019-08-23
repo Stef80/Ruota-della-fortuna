@@ -27,7 +27,7 @@ public class RegistrationFormPanel {
     @FXML
     private TextField nicknameTextField;
     @FXML
-    TextField emailTextField;
+    private TextField emailTextField;
     @FXML
     Button confirmButton;
     @FXML
@@ -35,6 +35,8 @@ public class RegistrationFormPanel {
     private Server server;
     private Client client;
     private User user;
+
+    public RegistrationFormPanel(){}
 
     public RegistrationFormPanel(Server server, Client client) {
         this.server = server;

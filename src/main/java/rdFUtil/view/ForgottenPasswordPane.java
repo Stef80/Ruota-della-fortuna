@@ -17,6 +17,8 @@ public class ForgottenPasswordPane {
 	private Server server;
 	private Client client;
 
+	public ForgottenPasswordPane(){}
+
 	public ForgottenPasswordPane(Server server,Client client) {
 
 		this.server = server;

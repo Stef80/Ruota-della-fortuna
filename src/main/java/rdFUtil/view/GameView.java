@@ -34,12 +34,13 @@ public class GameView extends ListCell<MatchData> {
     private Button observeButton;
     @FXML
     private Button joinButton;
-
     private FXMLLoader loader;
     private Parent pane;
     private Server server;
     private Client client;
     private RemoteMatch match;
+
+    public GameView(){}
 
     public GameView(Server server, Client client, RemoteMatch match) {
         this.server = server;
@@ -50,7 +51,6 @@ public class GameView extends ListCell<MatchData> {
     @Override
     protected void updateItem(MatchData item, boolean empty) {
         super.updateItem(item, empty);
-
         if (empty || item == null) {
             setText(null);
             setGraphic(null);
@@ -81,7 +81,7 @@ public class GameView extends ListCell<MatchData> {
                     if (match == null) {
                         Notifications notification = Notifications.create()
                                 .title("")
-                                .text("E-mail o password errati \nriprova!")
+                                .text("")
                                 .hideAfter(Duration.seconds(3))
                                 .position(Pos.CENTER);
                         notification.showError();

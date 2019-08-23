@@ -37,6 +37,8 @@ public class OTPRegistrationPane {
     private Client client;
     private OTPHelper otp;
 
+    public OTPRegistrationPane(){}
+
     public OTPRegistrationPane(Server server, Client client, OTPHelper otp) {
         this.server = server;
         this.client = client;

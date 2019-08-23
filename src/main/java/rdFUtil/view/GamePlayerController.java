@@ -81,6 +81,10 @@ public class GamePlayerController{
     private RemoteMatch match;
     private Client client;
 
+    public GamePlayerController(){
+        createTableOfPhrase();
+    }
+
     public GamePlayerController(RemoteMatch match, Client client){
         this.match = match;
         this.client = client;

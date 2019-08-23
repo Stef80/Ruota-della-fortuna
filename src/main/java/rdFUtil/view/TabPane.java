@@ -31,14 +31,16 @@ public class TabPane implements Initializable {
     private Server server;
     private RemoteMatch match;
 
+    public TabPane(){}
+
     public TabPane(Server server, Client client) {
         this.server = server;
         this.client = client;
     }
 
     public void addMatch(ActionEvent actionEvent) throws RemoteException, NotBoundException {
-        server.createMatch(client);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("gameWindowPane.fxml"));
+       // match = server.createMatch(client);
+        FXMLLoader loader = new FXMLLoader(Thread.currentThread().getContextClassLoader().getResource("game_player_pane.fxml"));
         Parent root = null;
         try {
             root = loader.load();

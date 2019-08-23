@@ -6,6 +6,7 @@ import rdFUtil.logging.Login;
 import rdFUtil.logging.User;
 import serverRdF.dbComm.DBManager;
 import serverRdF.emailRdF.EmailManager;
+import serverRdF.matchRdF.Match;
 import serverRdF.matchRdF.MatchManager;
 import serverRdF.matchRdF.RemoteMatch;
 import serverRdF.registrationRdF.OTPHelper;
@@ -88,7 +89,7 @@ public class ServerImplementation extends UnicastRemoteObject implements Server 
 
     @Override
     public RemoteMatch createMatch(Client c) throws RemoteException {
-        return null;
+        return new Match();
     }
 
     @Override

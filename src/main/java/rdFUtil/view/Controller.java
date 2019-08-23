@@ -19,9 +19,9 @@ import java.io.IOException;
 
 public class Controller {
     @FXML
-    private TextField emailText;
+    private TextField emailTextField;
     @FXML
-    private PasswordField passwordText;
+    private PasswordField passwordTextField;
     @FXML
     private Button loginButton;
     @FXML
@@ -32,6 +32,8 @@ public class Controller {
     private Client client;
     private String titleFrame = "Wheel of Fortune";
     private boolean admin;
+
+    public Controller(){}
 
     //Aggiunto il campo admin che dipende da dove viene avviato
     public Controller(Server server, Client client, boolean admin) {
@@ -46,10 +48,11 @@ public class Controller {
      * @throws IOException
      */
     public void login() throws IOException {
-        String mail = emailText.getText();
-        String password = passwordText.getText();
+        String mail = emailTextField.getText();
+        String password = passwordTextField.getText();
         Login login = new Login(password, mail);
-        int result = server.signIn(login, client, admin);
+      //  int result = server.signIn(login, client, admin);
+        int result= 0;
         if (result < 0) {
             Notifications notification = Notifications.create()
                     .title("Mail Notification")
@@ -61,7 +64,7 @@ public class Controller {
             Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
             Stage primaryStage = new Stage();
             Scene scene = new Scene(root1);
-            scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+         //   scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
             primaryStage.setTitle(titleFrame);
             primaryStage.setScene(scene);
             primaryStage.show();
@@ -81,7 +84,7 @@ public class Controller {
         Parent root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("registration_form_pane.fxml"));
         Stage primaryStage = new Stage();
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+       // scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         primaryStage.setTitle(titleFrame);
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
@@ -95,7 +98,7 @@ public class Controller {
         Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("forgotten_password_pane.fxml"));
         Stage primaryStage = new Stage();
         Scene scene = new Scene(root1);
-        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+       // scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         primaryStage.setTitle(titleFrame);
         primaryStage.setScene(scene);
         primaryStage.show();

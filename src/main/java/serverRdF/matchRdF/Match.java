@@ -32,6 +32,10 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     private MoveTimer timer = null;
     private boolean spinnedWheel = false;
 
+    public Match() throws RemoteException {
+
+    }
+
     public Match(String id, LocalDateTime localDateTime, DBManager db, EmailManager email) throws RemoteException {
         this.id = id;
         onGoing = false;
@@ -746,10 +750,6 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     public String getMatchId() throws RemoteException {
         return id;
     }
-
-    public Match() throws RemoteException {
-    }
-
     /**
      * @return un oggetto di tipo MatchData contenente tutte le informazioni del match necessarie a MatchVisualizer
      */
