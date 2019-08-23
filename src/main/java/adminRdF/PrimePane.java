@@ -1,4 +1,4 @@
-package rdFUtil.view;
+package adminRdF;
 
 import javafx.application.Application;
 import javafx.fxml.FXML;
@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 
 public class PrimePane extends Application {
-    public static final boolean ISADMIN = false;
+    public static final boolean ISADMIN = true;
     public PrimePane(){}
 
     public static void main(String[] args) throws Exception {

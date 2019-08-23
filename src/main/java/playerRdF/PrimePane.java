@@ -1,4 +1,4 @@
-package rdFUtil.view;
+package playerRdF;
 
 import javafx.application.Application;
 import javafx.fxml.FXML;
