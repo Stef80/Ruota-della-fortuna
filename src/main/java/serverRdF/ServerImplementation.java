@@ -6,13 +6,13 @@ import rdFUtil.logging.Login;
 import rdFUtil.logging.User;
 import serverRdF.dbComm.DBManager;
 import serverRdF.emailRdF.EmailManager;
-import serverRdF.matchRdF.Match;
 import serverRdF.matchRdF.MatchManager;
 import serverRdF.matchRdF.RemoteMatch;
 import serverRdF.registrationRdF.OTPHelper;
 import serverRdF.registrationRdF.RegistrationManager;
 
 import java.io.File;
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -40,9 +40,6 @@ public class ServerImplementation extends UnicastRemoteObject implements Server 
         registrationManager = RegistrationManager.createRegistrationManager(dbManager, emailManager);
     }
 
-    //TODO implementazione metodi dell'interfaccia.
-
-
     /**
      * Questo metodo si occupa di gestire la notifica al client nel caso di errori con la connessione al server o al database.
      * <p>
@@ -69,41 +66,46 @@ public class ServerImplementation extends UnicastRemoteObject implements Server 
 
     @Override
     public boolean checkNickname(String nickname) throws RemoteException {
-        return false;
+        return registrationManager.checkNickname(nickname);
     }
 
     @Override
     public OTPHelper signUp(User form, Client c, boolean admin) throws RemoteException {
-        return null;
+        return registrationManager.signUp(form,c,admin);
     }
 
     @Override
     public int signIn(Login form, Client c, boolean admin) throws RemoteException {
-        return 0;
+        return autenticationManager.signIn(form,c,admin);
     }
 
     @Override
     public ArrayList<MatchData> visualizeMatch(Client c) throws RemoteException {
-        return null;
+        return matchVisualizer.visualizeMatch();
     }
 
     @Override
     public RemoteMatch createMatch(Client c) throws RemoteException {
-        return null;
+        return matchManager.createMatch(c);
     }
 
     @Override
     public RemoteMatch joinMatch(Client c, String idMatch) throws RemoteException {
-            return null;
+            return matchManager.joinMatch(c,idMatch);
     }
 
     @Override
     public RemoteMatch observeMatch(Client c, String idMatch) throws RemoteException {
-        return null;
+        return matchManager.observeMatch(c,idMatch);
     }
 
     @Override
     public void addPhrases(File file, Client c) throws RemoteException {
+        try {
+            phraseManager.addPhrases(file);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
     @Override

@@ -7,6 +7,11 @@ import java.rmi.RemoteException;
 public class ClientImplementation implements Client {
 
     private GamePlayerController game;
+    private String id;
+    private String nickname;
+    private String name;
+    private String surname;
+    private String email;
 
     @Override
     public String getNickname() throws RemoteException {
@@ -20,25 +25,27 @@ public class ClientImplementation implements Client {
 
     @Override
     public void setNickname(String nickname) throws RemoteException {
+        this.nickname = nickname;
     }
 
     @Override
     public void setId(String id) throws RemoteException {
+        this.id = id;
     }
 
     @Override
     public void setName(String name) throws RemoteException {
-
+        this.name = name;
     }
 
     @Override
     public void setSurname(String surname) throws RemoteException {
-
+        this.surname = surname;
     }
 
     @Override
     public void setEmail(String email) throws RemoteException {
-
+        this.email = email;
     }
 
     @Override

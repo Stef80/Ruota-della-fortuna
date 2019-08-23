@@ -24,18 +24,18 @@ public class DBManager implements DBManagerInterface{
     private MancheJoinersDAO mancheJoinersDAO;
     private MatchWinnersDAO matchWinnersDAO;
 
-    private DBManager() throws SQLException {
+    private DBManager(String url, String userID, String password) throws SQLException {
         //TODO connessione con database
-        con = DriverManager.getConnection("DB","userID", "password");
+        con = DriverManager.getConnection(url,userID, password);
     }
 
     /**
      * @return dbManager il singleton di tipo DBManager
      * @throws SQLException
      */
-    public static DBManager createDBManager() throws SQLException {
+    public static DBManager createDBManager(String url, String userID, String password) throws SQLException {
         if (dbManager == null) {
-            dbManager = new DBManager();
+            dbManager = new DBManager(url,userID, password);
             return dbManager;
         } else
             return dbManager;

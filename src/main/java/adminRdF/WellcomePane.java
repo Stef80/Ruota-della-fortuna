@@ -1,4 +1,4 @@
-package rdFUtil.view;
+package adminRdF;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +12,7 @@ import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import rdFUtil.client.Client;
 import rdFUtil.client.ClientImplementation;
+import rdFUtil.view.*;
 import serverRdF.Server;
 import java.io.IOException;
 import java.rmi.NotBoundException;
