@@ -92,7 +92,11 @@ public class GameView extends ListCell<MatchData> {
                                 .position(Pos.CENTER);
                         notification.showError();
                     }
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("Game_player_Pane.fxml"));
+<<<<<<< HEAD
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("game_player_Pane.fxml"));
+=======
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("game_player_pane.fxml"));
+>>>>>>> 9e92c04d8da6be9ae450345842a7d2512bcff307
                     Parent root = null;
                     try {
                         root = loader.load();
