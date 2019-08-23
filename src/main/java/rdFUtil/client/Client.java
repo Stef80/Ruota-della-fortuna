@@ -221,4 +221,12 @@ public interface Client extends Remote {
      * @throws RemoteException
      */
     public void notifyPlayerError(String name) throws RemoteException;
+
+    public void notifyTryForSolution(String name) throws RemoteException;
+
+    public void notifyTryVocal(String name) throws RemoteException;
+
+    public void notifyJollyUsed(String name) throws RemoteException;
+
+    public void notifyLetterCall(String name, String letter) throws RemoteException;
 }
