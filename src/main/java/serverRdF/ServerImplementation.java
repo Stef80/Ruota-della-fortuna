@@ -89,7 +89,7 @@ public class ServerImplementation extends UnicastRemoteObject implements Server 
 
     @Override
     public RemoteMatch createMatch(Client c) throws RemoteException {
-        return new Match();
+        return null;
     }
 
     @Override

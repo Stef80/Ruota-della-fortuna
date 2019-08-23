@@ -248,7 +248,7 @@ public class GamePlayerController{
           Notifications notification = Notifications.create()
                                                .title("Mosse")
                                                .text(message)
-                                               .hideAfter(Duration.seconds(3))
+                                               .hideAfter(Duration.seconds(2))
                                                .position(Pos.BASELINE_CENTER);
           notification.showInformation();
       }
@@ -258,7 +258,7 @@ public class GamePlayerController{
           Notifications notification = Notifications.create()
                                                .title("Mosse")
                                                .text(message)
-                                               .hideAfter(Duration.seconds(3))
+                                               .hideAfter(Duration.seconds(2))
                                                .position(Pos.BASELINE_CENTER);
           notification.showInformation();
 
@@ -268,7 +268,7 @@ public class GamePlayerController{
           Notifications notification = Notifications.create()
                                                .title("Mosse")
                                                .text(message)
-                                               .hideAfter(Duration.seconds(3))
+                                               .hideAfter(Duration.seconds(2))
                                                .position(Pos.BASELINE_CENTER);
           notification.showInformation();
 
@@ -279,7 +279,7 @@ public class GamePlayerController{
         Notifications notification = Notifications.create()
                                              .title("Mosse")
                                              .text(message)
-                                             .hideAfter(Duration.seconds(3))
+                                             .hideAfter(Duration.seconds(2))
                                              .position(Pos.BASELINE_CENTER);
         notification.showInformation();
 
