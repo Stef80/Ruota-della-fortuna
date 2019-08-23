@@ -59,7 +59,7 @@ public interface DBManagerInterface {
      *
      * @return La lista di tutti gli admin registrati
      */
-    List<UsersDTO> getAllAdmin();
+    boolean getAnyAdmin();
 
     /**
      * Questo metodo permette di eliminare un utente presente nel database

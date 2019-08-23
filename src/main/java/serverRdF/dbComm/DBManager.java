@@ -159,14 +159,18 @@ public class DBManager implements DBManagerInterface{
     }
 
     @Override
-    public List<UsersDTO> getAllAdmin() {
+    public boolean getAnyAdmin() {
         if(usersDAO==null){
             createUsersDAO();
         }
         try {
-            return usersDAO.getAllAdmin();
+            List<UsersDTO> list = usersDAO.getAllAdmin();
+            if(list == null || list.isEmpty()){
+                return false;
+            }else
+                return true;
         }catch (SQLException e){
-            return null;
+            return false;
         }
     }
 
