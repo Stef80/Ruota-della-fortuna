@@ -14,6 +14,7 @@ import org.controlsfx.control.Notifications;
 import rdFUtil.client.Client;
 import rdFUtil.logging.Login;
 import serverRdF.Server;
+import serverRdF.view.HostView;
 
 import java.io.IOException;
 
@@ -32,6 +33,7 @@ public class Controller {
     private Client client;
     private String titleFrame = "Wheel of Fortune";
     private static boolean admin;
+    private static boolean isServer= false;
 
     public Controller(){}
 
@@ -52,31 +54,47 @@ public class Controller {
         String password = passwordTextField.getText();
         Login login = new Login(password, mail);
       //  int result = server.signIn(login, client, admin);
-        int result= 0;
-        if (result < 0) {
-            Notifications notification = Notifications.create()
-                    .title("Mail Notification")
-                    .text("E-mail o password errati \nriprova!")
-                    .hideAfter(Duration.seconds(3))
-                    .position(Pos.CENTER);
-            notification.showError();
-        } else if (result == 0) {
-            Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
+        if(!isServer) {
+            int result = 0;
+            if (result < 0) {
+                Notifications notification = Notifications.create()
+                                                     .title("Mail Notification")
+                                                     .text("E-mail o password errati \nriprova!")
+                                                     .hideAfter(Duration.seconds(3))
+                                                     .position(Pos.CENTER);
+                notification.showError();
+            } else if (result == 0) {
+                Parent root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
+                Stage primaryStage = new Stage();
+                Scene scene = new Scene(root);
+                //   scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+                primaryStage.setTitle(titleFrame);
+                primaryStage.setScene(scene);
+                primaryStage.show();
+                Stage oldStage = (Stage) loginButton.getScene().getWindow();
+                oldStage.hide();
+            } else {
+                Notifications notification = Notifications.create()
+                                                     .title("Mail Notification")
+                                                     .text("Si sta provando ad accedere alla piattaforma dal client sbagliato \nriprova!")
+                                                     .hideAfter(Duration.seconds(3))
+                                                     .position(Pos.CENTER);
+                notification.showError();
+            }
+        }else{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("host_view.fxml"));
+            Parent root = null;
+            try {
+                root = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            HostView hostname = loader.getController();
+            hostname.takeAddress();
             Stage primaryStage = new Stage();
-            Scene scene = new Scene(root1);
-         //   scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-            primaryStage.setTitle(titleFrame);
+            Scene scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.show();
-            Stage oldStage = (Stage) loginButton.getScene().getWindow();
-            oldStage.hide();
-        } else {
-            Notifications notification = Notifications.create()
-                    .title("Mail Notification")
-                    .text("Si sta provando ad accedere alla piattaforma dal client sbagliato \nriprova!")
-                    .hideAfter(Duration.seconds(3))
-                    .position(Pos.CENTER);
-            notification.showError();
         }
     }
 
@@ -106,5 +124,8 @@ public class Controller {
 
     public static void setAdmin(boolean isAdmin){
         admin = isAdmin;
+    }
+    public static void setIsServer(boolean isS){
+        isServer =isS;
     }
 }

@@ -36,6 +36,7 @@ public class InsubriaLoginPane {
 		EmailManager emailManager = EmailManager.createEmailManager(user,password);
 		if(dbManager.getAnyAdmin()){
 			Controller.setAdmin(true);
+			Controller.setIsServer(true);
 			Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("main_pane.fxml"));
 			Stage primaryStage = new Stage();
 			Scene scene = new Scene(root1);
