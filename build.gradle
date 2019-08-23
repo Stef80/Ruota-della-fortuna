@@ -34,19 +34,14 @@ dependencies {
     compile 'com.opencsv:opencsv:4.6'
     }
 
-task runTestClient(type: JavaExec, dependsOn: classes, group: 'test') {
+task runTestPlayer(type: JavaExec, dependsOn: classes, group: 'test') {
     classpath = sourceSets.main.runtimeClasspath
-    main = 'PROVATEST.MainC'
+    main = 'playerRdF.PrimePane'
 }
 
-task runTestServer(type: JavaExec, dependsOn: classes, group: 'test') {
+task runTestAdmin(type: JavaExec, dependsOn: classes, group: 'test') {
     classpath = sourceSets.main.runtimeClasspath
-    main = 'PROVATEST.MainS'
-}
-
-task runTestEmail(type: JavaExec, dependsOn: classes, group: 'test') {
-    classpath = sourceSets.main.runtimeClasspath
-    main = 'serverRdF.emailRdF.EmailSender'
+    main = 'adminRdF.PrimePane'
 }
 
 //jar {
@@ -66,7 +61,7 @@ task createJar(type: Jar, group: 'test') {
     manifest {
         attributes 'Implementation-Title': 'RdF',
                 'Implementation-Version': archiveVersion.get(),
-                'Main-Class': 'Finestra' // TODO - da impostare il nome del main
+                'Main-Class': '' // TODO - da impostare il nome del main
     }
     from {
         configurations.compile.collect {
