@@ -283,11 +283,11 @@ public class GamePlayerController{
 
     }
 
-    public static void setMatch(RemoteMatch match){
-    	this.match = match;
+    public static void setMatch(RemoteMatch matc){
+    	match = matc;
 	}
 
-	public void setObserver(boolean isObserver){
-    	this.isObserver = isObserver;
+	public void setObserver(boolean observer){
+        isObserver = observer;
 	}
 }
