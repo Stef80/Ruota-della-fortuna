@@ -79,6 +79,8 @@ public class GameView extends ListCell<MatchData> {
                 public void handle(ActionEvent event) {
                     try {
                         match = server.joinMatch(client, item.getIdMatch());
+                        GamePlayerController.setMatch(match);
+                        GamePlayerController.setObserver(false);
                     } catch (RemoteException e) {
                         e.printStackTrace();
                     }
@@ -109,6 +111,8 @@ public class GameView extends ListCell<MatchData> {
                 public void handle(javafx.event.ActionEvent event) {
                     try {
                         match.addObserver(client);
+                        GamePlayerController.setMatch(match);
+                        GamePlayerController.setObserver(true);
                     } catch (RemoteException e) {
                         e.printStackTrace();
                     }

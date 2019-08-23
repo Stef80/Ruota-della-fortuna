@@ -287,7 +287,7 @@ public class GamePlayerController{
     	match = matc;
 	}
 
-	public void setObserver(boolean observer){
+	public static void setObserver(boolean observer){
         isObserver = observer;
 	}
 }

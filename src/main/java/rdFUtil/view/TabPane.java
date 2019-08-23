@@ -43,6 +43,8 @@ public class TabPane implements Initializable {
 
     public void addMatch(ActionEvent actionEvent) throws RemoteException, NotBoundException {
     	match = server.createMatch(client);
+        GamePlayerController.setMatch(match);
+        GamePlayerController.setObserver(false);
 
         FXMLLoader loader = new FXMLLoader(Thread.currentThread().getContextClassLoader().getResource("game_player_pane.fxml"));
         Parent root = null;
