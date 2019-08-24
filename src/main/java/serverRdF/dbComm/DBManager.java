@@ -50,7 +50,7 @@ public class DBManager implements DBManagerInterface{
         matchesDAO = new MatchesDAOImpl(con);
     }
 
-    public boolean addMatch(String id, LocalDateTime time) {
+    public synchronized boolean addMatch(String id, LocalDateTime time) {
         if(matchesDAO==null)
             createMatchesDAO();
         try {
@@ -60,7 +60,7 @@ public class DBManager implements DBManagerInterface{
         }
     }
 
-    public boolean deleteMatch(String idMatch) {
+    public synchronized boolean deleteMatch(String idMatch) {
         if(matchesDAO == null)
             createMatchesDAO();
         try {
@@ -73,7 +73,7 @@ public class DBManager implements DBManagerInterface{
     /**
      * Questo metodo inizializza l'instanza di UsersDAO
      */
-    private void createUsersDAO(){
+    private synchronized void createUsersDAO(){
         usersDAO = new UsersDAOImpl(con);
     }
     public boolean addUser(User user, boolean isAdmin) {
@@ -121,7 +121,7 @@ public class DBManager implements DBManagerInterface{
 
 
     @Override
-    public boolean updateUser(UsersDTO user) {
+    public synchronized boolean updateUser(UsersDTO user) {
         if(usersDAO==null)
             createUsersDAO();
         try {
@@ -132,7 +132,7 @@ public class DBManager implements DBManagerInterface{
     }
 
     @Override
-    public boolean deleteUser(String id) {
+    public synchronized boolean deleteUser(String id) {
         if(usersDAO==null)
             createUsersDAO();
         try {
@@ -273,7 +273,7 @@ public class DBManager implements DBManagerInterface{
     }
 
     @Override
-    public boolean addPhrases(ArrayList<PhrasesDTO> phrases) {
+    public synchronized boolean addPhrases(ArrayList<PhrasesDTO> phrases) {
         if(phrasesDAO ==null)
             createPhrasesDAO();
         try {
@@ -302,7 +302,7 @@ public class DBManager implements DBManagerInterface{
     }
 
     @Override
-    public boolean addMove(Move move) {
+    public synchronized boolean addMove(Move move) {
         if(movesDAO==null)
             createMovesDAO();
         try {
@@ -413,7 +413,7 @@ public class DBManager implements DBManagerInterface{
     }
 
     @Override
-    public boolean addManche(ManchesDTO manche) {
+    public synchronized boolean addManche(ManchesDTO manche) {
         if(manchesDAO==null)
             createManchesDAO();
         try {
@@ -429,7 +429,7 @@ public class DBManager implements DBManagerInterface{
     private void createMancheWinnersDAO(){mancheWinnersDAO = new MancheWinnersDAOImpl(con);}
 
     @Override
-    public boolean addMancheWinner(String idPlayer, ManchesDTO manche, int amount) {
+    public synchronized boolean addMancheWinner(String idPlayer, ManchesDTO manche, int amount) {
         if(mancheWinnersDAO==null)
             createMancheWinnersDAO();
         try {
@@ -453,7 +453,7 @@ public class DBManager implements DBManagerInterface{
     private void createMancheJoinersDAO(){mancheJoinersDAO = new MancheJoinersDAOImpl(con);}
 
     @Override
-    public boolean addMancheJoiner(String idMatch, int numManche, String userId, boolean observer) {
+    public synchronized boolean addMancheJoiner(String idMatch, int numManche, String userId, boolean observer) {
         if(mancheJoinersDAO==null)
             createMancheJoinersDAO();
         try {
@@ -510,7 +510,7 @@ public class DBManager implements DBManagerInterface{
     private void createMatchWinnersDAO(){matchWinnersDAO = new MatchWinnersDAOImpl(con);}
 
     @Override
-    public boolean addMatchWinner(String idMatch, String idPlayer, int amount) {
+    public synchronized boolean addMatchWinner(String idMatch, String idPlayer, int amount) {
         if(matchWinnersDAO==null)
             createMatchWinnersDAO();
         try {
