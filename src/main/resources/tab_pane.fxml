@@ -25,12 +25,21 @@
                     <children>
                         <ListView fx:id="gameList" editable="true" fixedCellSize="0.0" />
                         <Region prefHeight="2.0" />
-                        <HBox prefHeight="23.0" prefWidth="626.0">
+                        <HBox alignment="CENTER" prefHeight="23.0" prefWidth="626.0" spacing="20.0">
                             <children>
-                                <Button fx:id="createMatchButton" mnemonicParsing="false" onAction="#addMatch" text="create match" />
-                                <Region prefHeight="200.0" prefWidth="190.0" />
+                                <Button fx:id="createMatchButton" mnemonicParsing="false" onAction="#addMatch" text="create match">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin></Button>
+                                <Region prefWidth="430.0">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin></Region>
                                 <Button fx:id="refreshButton" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
                             </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
                         </HBox>
                     </children>
                     <padding>
