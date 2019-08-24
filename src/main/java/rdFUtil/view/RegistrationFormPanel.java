@@ -48,7 +48,7 @@ public class RegistrationFormPanel {
     /**
      * Registra il nuovo user verificando che non esista già tramite il confronto
      * tra la mail inserita e quelle già registrate se non esiste la registra
-     * visualizza unafinestra di errore altrimenti
+     * visualizza una finestra di errore altrimenti
      *
      * @throws IOException
      */

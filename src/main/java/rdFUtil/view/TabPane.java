@@ -79,6 +79,7 @@ public class TabPane implements Initializable {
     private Client client;
     private Server server;
     private RemoteMatch match;
+    private MatchData matchData;
 
 
     public TabPane(){}
@@ -89,9 +90,9 @@ public class TabPane implements Initializable {
     }
 
     public void addMatch(ActionEvent actionEvent) throws RemoteException, NotBoundException {
-    	match = server.createMatch(client);
-        GamePlayerController.setMatch(match);
-        GamePlayerController.setObserver(false);
+//    	match = server.createMatch(client);
+//        GamePlayerController.setMatch(match);
+//        GamePlayerController.setObserver(false);
 
         FXMLLoader loader = new FXMLLoader(Thread.currentThread().getContextClassLoader().getResource("game_player_pane.fxml"));
         Parent root = null;
@@ -114,22 +115,27 @@ public class TabPane implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-		ArrayList<MatchData> list = null;
-		try {
-			list = server.visualizeMatch(client);
-			gameList.setItems(gameObservableList);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		for (MatchData matchData: list){
-			gameList.setCellFactory(e -> new GameView(server, client, matchData));
-		}
+    	gameList.setItems(gameObservableList);
+		gameList.setCellFactory(e -> new GameView(server, client, matchData));
+//		ArrayList<MatchData> list = new ArrayList<>();
+//		try {
+//			list = server.visualizeMatch(client);
+//			gameObservableList.addAll(list);
+//			gameList.setItems(gameObservableList);
+//		} catch (RemoteException e) {
+//			e.printStackTrace();
+//		}
+//		for (MatchData matchData: list){
+//			gameList.setCellFactory(e -> new GameView(server, client, matchData));
+//		}
 
     }
-
+    @FXML
 	public void setUserStat() throws RemoteException {
     	String userStat = server.checkPerPlayer(client.getNickname());
+
     	if(!userStat.equals(null)) {
+
 			StringTokenizer stasts = new StringTokenizer(userStat, " ");
 			numberManchesPlayedLabel.setText(stasts.nextToken());
 			numberMatchesplayedLabel.setText(stasts.nextToken());
@@ -157,25 +163,33 @@ public class TabPane implements Initializable {
 		}
 
 	}
-//
+
 //todo chiedere quale dei due prima
 // numero medio di volte che ha dovuto cedere il turno di gioco per manche,
 //	numero medio di volte che ha dovuto cedere il turno di gioco per manche,
-
+   @FXML
    public void setGlobalStats() throws RemoteException {
     	String recordStatStr = server.checkRecordPlayer();
+
+    	int avSolManches = server.averageManches();
+
+	    String strBestMove = server.bestMove();
+
+	    StringTokenizer bestMove = new StringTokenizer(strBestMove, " ");
     	StringTokenizer recordStat = new StringTokenizer(recordStatStr," ");
+
     	bestPointsWonMancheLabel.setText(recordStat.nextToken());
     	bestPointsWonMatchLabel.setText(recordStat.nextToken());
     	mostManchePlayedLabel.setText(recordStat.nextToken());
     	averagePointPerMancheLabel.setText(recordStat.nextToken());
     	mostTimeLostTurnLabel.setText(recordStat.nextToken());
     	mostTimeLostAllLabel.setText(recordStat.nextToken());
-    	String strBestMove = server.bestMove();
-    	StringTokenizer bestMove = new StringTokenizer(strBestMove, " ");
+
     	nickBestCallLabel.setText(bestMove.nextToken());
     	letterCalledLabel.setText(bestMove.nextToken());
     	phraseAsociatedLabel.setText(bestMove.nextToken());
+
+    	averageMovesTillSolutionLabel.setText(String.valueOf(avSolManches));
    }
 }
 

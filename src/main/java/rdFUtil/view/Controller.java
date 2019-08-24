@@ -55,9 +55,9 @@ public class Controller {
         String mail = emailTextField.getText();
         String password = passwordTextField.getText();
         Login login = new Login(password, mail);
-        int result = server.signIn(login, client, admin);
+       // int result = server.signIn(login, client, admin);
         if(!isServer) {
-            //int result = 0;
+            int result = 0;
             if (result < 0) {
                 Notifications notification = Notifications.create()
                                                      .title("Mail Notification")
@@ -66,11 +66,16 @@ public class Controller {
                                                      .position(Pos.CENTER);
                 notification.showError();
             } else if (result == 0) {
-                FXMLLoader loader = new FXMLLoader(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
-                Parent root = loader.load();
-                TabPane tabPane = loader.getController();
-                tabPane.setGlobalStats();
-                tabPane.setUserStat();
+              //  FXMLLoader loader = new FXMLLoader(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
+                Parent root= FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
+//                try {
+//                    root = loader.load();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                TabPane tabPane = loader.getController();
+//                tabPane.setGlobalStats();
+//                tabPane.setUserStat();
                 Stage primaryStage = new Stage();
                 Scene scene = new Scene(root);
                 //   scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());

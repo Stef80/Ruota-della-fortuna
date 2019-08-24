@@ -43,9 +43,9 @@ public class WellcomePane {
             new RegistrationFormPanel(server,client,PrimePane.ISADMIN);
             new TabPane(server,client);
             client.setGameController(game);
-			Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("main_pane.fxml"));
+			Parent root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("main_pane.fxml"));
 			Stage primaryStage = new Stage();
-			Scene scene = new Scene(root1);
+			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 			primaryStage.setTitle("Wheel of Fortune");
 			primaryStage.setScene(scene);

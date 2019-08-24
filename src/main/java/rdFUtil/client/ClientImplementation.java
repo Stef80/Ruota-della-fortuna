@@ -148,7 +148,7 @@ public class ClientImplementation implements Client {
 
     @Override
     public void notifyTryVocal(String name) throws RemoteException {
-        game.vocalcallnotify(name);
+        game.vocalCallNotify(name);
     }
 
     @Override

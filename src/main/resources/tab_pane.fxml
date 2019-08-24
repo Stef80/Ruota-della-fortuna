@@ -17,9 +17,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<TabPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rdFUtil.view.TabPane">
+<TabPane stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rdFUtil.view.TabPane">
     <tabs>
-        <Tab closable="false" text="Partite">
+        <Tab fx:id="gameListTab" closable="false" text="Partite">
             <content>
                 <VBox>
                     <children>
@@ -33,7 +33,7 @@
                 </VBox>
             </content>
         </Tab>
-        <Tab closable="false" text="Statistiche utente">
+        <Tab fx:id="userStatisticsTab" closable="false" onSelectionChanged="#setUserStat" text="Statistiche utente">
             <content>
                 <VBox alignment="CENTER" spacing="2.0" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
                     <children>
@@ -206,7 +206,7 @@
                 </VBox>
             </content>
         </Tab>
-        <Tab closable="false" text="Statistiche globali">
+        <Tab fx:id="globalStatisticsTab" closable="false" onSelectionChanged="#setGlobalStat" text="Statistiche globali">
             <content>
                 <VBox alignment="TOP_CENTER" spacing="2.0">
                     <children>
@@ -220,7 +220,7 @@
                             <children>
                                 <ScrollPane HBox.hgrow="ALWAYS">
                                     <content>
-                                        <VBox alignment="CENTER" spacing="4.0">
+                                        <VBox alignment="CENTER" spacing="4.0" stylesheets="@style.css">
                                             <children>
                                                 <Region minWidth="300.0" VBox.vgrow="ALWAYS" />
                                                 <Label text="Primato di punteggio" VBox.vgrow="ALWAYS">
@@ -283,7 +283,7 @@
                                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                     </padding>
                                 </ScrollPane>
-                                <ScrollPane HBox.hgrow="ALWAYS">
+                                <ScrollPane stylesheets="@style.css" HBox.hgrow="ALWAYS">
                                     <content>
                                         <VBox alignment="CENTER" spacing="4.0">
                                             <children>
@@ -313,7 +313,7 @@
                                                         <Font name="System Bold" size="12.0" />
                                                     </font>
                                                 </Label>
-                                                <Label fx:id="averageMovesTillSolutionLabel" text="Label" textAlignment="CENTER" VBox.vgrow="ALWAYS" />
+                                                <Label fx:id="averageMovesTillSolutionLabel" stylesheets="@style.css" text="Label" textAlignment="CENTER" VBox.vgrow="ALWAYS" />
                                                 <Label text="Label" textAlignment="CENTER" VBox.vgrow="ALWAYS" />
                                                 <Region VBox.vgrow="ALWAYS" />
                                             </children>
@@ -339,7 +339,7 @@
                 </VBox>
             </content>
         </Tab>
-        <Tab closable="false" text="Profilo">
+        <Tab fx:id="profileTab" closable="false" text="Profilo">
             <content>
                 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="634.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
                     <children>
@@ -354,7 +354,7 @@
                         <Label prefWidth="80.0" text="label" />
                         <Region prefWidth="30.0" />
                                 <TextField prefWidth="170.0" text="immetti qui nuovo nik" />
-                                <Button mnemonicParsing="false" text="modifica" />
+                                <Button fx:id="nickNameModifierButton" mnemonicParsing="false" text="modifica" />
                             </children>
                             <VBox.margin>
                                 <Insets />

@@ -346,7 +346,7 @@ public class GamePlayerController {
 
     public void setTurn(String nickName) throws RemoteException {
         if (nickName.equals(player1Label.getText())) {
-            player1Box.setStyle("");
+            player1Box.setStyle("-fx-border-color = ");
             player2Box.setStyle("");
             player3Box.setStyle("");
         } else if (nickName.equals(player2Label.getText())) {
@@ -391,7 +391,7 @@ public class GamePlayerController {
         }
     }
 
-    public void vocalcallnotify(String nickname) {
+    public void vocalCallNotify(String nickname) {
         String message = nickname + " ha chiamato la vocale";
         Notifications notification = Notifications.create()
                 .title("Mosse")
@@ -456,7 +456,6 @@ public class GamePlayerController {
             Parent root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
             Stage primaryStage = new Stage();
             Scene scene = new Scene(root);
-            //   scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
             primaryStage.setTitle("Wheel of Fortune");
             primaryStage.setScene(scene);
             primaryStage.show();
