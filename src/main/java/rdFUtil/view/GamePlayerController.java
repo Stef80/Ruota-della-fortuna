@@ -124,7 +124,15 @@ public class GamePlayerController {
             for (int j = 0; j < 14; j++) {
                 node = (StackPane) getNodeByRowColumnIndex(i, j);
                 label = (Label) node.getChildren().get(0);
-                if (label.getText().equals(letter) && !label.getText().equals("")) {
+                String let = label.getText();
+                if (let.equals(letter) && !let.equals("")) {
+                    label.setVisible(true);
+                    node.setStyle(" -fx-background-color: #d6e2e0;\n" +
+                            "    -fx-border-color: #08FBE1;\n" +
+                            "    -fx-border-radius: 3px;\n" +
+                            "    -fx-background-radius: 3px;\n" +
+                            "    -fx-border-width: 2px;");
+                }else if((let.equals("È") && letter.equals("E")) || (let.equals("Ì") && letter.equals("I")) || (let.equals("À") && letter.equals("A")) || (let.equals("Ò") && letter.equals("O")) || (let.equals("Ù") && letter.equals("U"))) {
                     label.setVisible(true);
                     node.setStyle(" -fx-background-color: #d6e2e0;\n" +
                             "    -fx-border-color: #08FBE1;\n" +
