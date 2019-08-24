@@ -107,7 +107,7 @@ public class ClientImplementation implements Client {
 
     @Override
     public void notifyNewTurn(String player) throws RemoteException {
-        game.notifyNewTurn( player);
+        game.setTurn(player);
     }
 
     @Override
