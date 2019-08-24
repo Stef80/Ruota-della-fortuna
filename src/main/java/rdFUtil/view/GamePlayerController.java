@@ -476,7 +476,7 @@ public class GamePlayerController {
             primaryStage.setScene(scene);
             primaryStage.show();
             Stage oldStage = (Stage) exitButton.getScene().getWindow();
-            oldStage.hide();
+            oldStage.close();
         }
     }
 

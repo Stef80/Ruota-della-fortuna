@@ -9,7 +9,7 @@ import serverRdF.emailRdF.EmailManager;
 import java.util.Random;
 
 /**
- * Questa classe si occupa della modifica dei dati di uno specifico utente
+ * Questa classe si occupa della modifica dei dati di uno specifico utente.
  */
 public class ProfileManager {
     private DBManager dbManager;
@@ -23,7 +23,7 @@ public class ProfileManager {
 
     /**
      * @param dbmng        il riferimento a {@link DBManager}
-     * @param emailManager //TODO
+     * @param emailManager il riferimento a {@link EmailManager}
      * @return Il riferimento al singleton di {@link ProfileManager}
      */
     public static ProfileManager createProfileManager(DBManager dbmng, EmailManager emailManager) {

@@ -17,6 +17,10 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+/**
+ * Implementazione dell'interfaccia remota Server.
+ *
+ */
 public class ServerImplementation extends UnicastRemoteObject implements Server {
     private DBManager dbManager;
     private EmailManager emailManager;

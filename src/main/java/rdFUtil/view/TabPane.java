@@ -17,6 +17,7 @@ import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import rdFUtil.MatchData;
 import rdFUtil.client.Client;
+import rdFUtil.logging.CryptPassword;
 import serverRdF.Server;
 import serverRdF.matchRdF.RemoteMatch;
 
@@ -166,6 +167,15 @@ public class TabPane implements Initializable {
 												 .position(Pos.BASELINE_CENTER);
 			notification.showError();
 		}
+
+		try {
+			nicknameLabel.setText(client.getNickname());
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		nameLabel.setText(client.getName());
+		surnameLabel.setText(client.getSurname());
+		emailLabel.setText(client.getEmail());
 	}
 
     private void disableTab(){
@@ -281,6 +291,105 @@ public class TabPane implements Initializable {
 
 	}
 
+	public void changeName() throws RemoteException{
+    	String name = nameTextField.getText();
+    	if(!name.equals("")) {
+			boolean bool = server.changeName(name, client);
+			if (bool) {
+				nameLabel.setText(name);
+				Notifications notification = Notifications.create()
+						.title("Successo")
+						.text("Il nome e' stato modificato con successo")
+						.hideAfter(Duration.seconds(2))
+						.position(Pos.BASELINE_CENTER);
+				notification.showInformation();
+			} else {
+				Notifications notification = Notifications.create()
+						.title("Notifica Errore")
+						.text("Non e' stato possibile modificare il nome")
+						.hideAfter(Duration.seconds(2))
+						.position(Pos.BASELINE_CENTER);
+				notification.showError();
+			}
+		}else{
+
+		}
+	}
+
+	public void changeSurname() throws RemoteException{
+		String surname = surnameTextField.getText();
+		if(surname.equals("")) {
+			boolean bool = server.changeSurname(surname, client);
+			if (bool) {
+				surnameLabel.setText(surname);
+				Notifications notification = Notifications.create()
+						.title("Successo")
+						.text("Il cognome e' stato modificato con successo")
+						.hideAfter(Duration.seconds(2))
+						.position(Pos.BASELINE_CENTER);
+				notification.showInformation();
+			} else {
+				Notifications notification = Notifications.create()
+						.title("Notifica Errore")
+						.text("Non e' stato possibile modificare il cognome")
+						.hideAfter(Duration.seconds(2))
+						.position(Pos.BASELINE_CENTER);
+				notification.showError();
+			}
+		}else{
+
+		}
+	}
+
+	public void changeNickname() throws RemoteException{
+		String nickname = nicknameTextField.getText();
+		if(nickname.equals("")) {
+			boolean bool = server.changeNickname(nickname, client);
+			if (bool) {
+				nicknameLabel.setText(nickname);
+				Notifications notification = Notifications.create()
+						.title("Successo")
+						.text("Il nickname e' stato modificato con successo")
+						.hideAfter(Duration.seconds(2))
+						.position(Pos.BASELINE_CENTER);
+				notification.showInformation();
+			} else {
+				Notifications notification = Notifications.create()
+						.title("Notifica Errore")
+						.text("Non e' stato possibile modificare il nickname oppure e' gia' in uso")
+						.hideAfter(Duration.seconds(2))
+						.position(Pos.BASELINE_CENTER);
+				notification.showError();
+			}
+		}else{
+
+		}
+	}
+
+	public void changePassword() throws RemoteException{
+		String password = passwordField.getText();
+		if(password.equals("")) {
+			password = CryptPassword.encrypt(password);
+			boolean bool = server.changePassword(password, client);
+			if (bool) {
+				Notifications notification = Notifications.create()
+						.title("Successo")
+						.text("La password e' stata modificata con successo")
+						.hideAfter(Duration.seconds(2))
+						.position(Pos.BASELINE_CENTER);
+				notification.showInformation();
+			} else {
+				Notifications notification = Notifications.create()
+						.title("Notifica Errore")
+						.text("Non e' stato possibile modificare la password")
+						.hideAfter(Duration.seconds(2))
+						.position(Pos.BASELINE_CENTER);
+				notification.showError();
+			}
+		}else{
+
+		}
+	}
 
 	public void setClient(Client client) {
 		this.client = client;

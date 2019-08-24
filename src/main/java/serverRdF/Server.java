@@ -12,6 +12,9 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+/**
+ * Interfaccia remota per il server che funge da façade per tutte le funzionailta' utili al client.
+ */
 public interface Server extends Remote {
     /**
      * Questo metodo controlla se c'e' gia' un utente registrato con la mail fornita
