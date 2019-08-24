@@ -17,197 +17,202 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<TabPane stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rdFUtil.view.TabPane">
+<TabPane stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
+         fx:controller="rdFUtil.view.TabPane">
     <tabs>
         <Tab fx:id="gameListTab" closable="false" text="Partite">
             <content>
                 <VBox>
                     <children>
-                        <ListView fx:id="gameList" editable="true" fixedCellSize="0.0" />
-                        <Region prefHeight="2.0" />
-                  <HBox prefHeight="23.0" prefWidth="626.0">
-                     <children>
-                              <Button fx:id="createMatchButton" mnemonicParsing="false" onAction="#addMatch" text="create match" />
-                        <Region prefHeight="200.0" prefWidth="190.0" />
-                        <Button fx:id="refreshButton" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
-                     </children>
-                  </HBox>
+                        <ListView fx:id="gameList" editable="true" fixedCellSize="0.0"/>
+                        <Region prefHeight="2.0"/>
+                        <HBox prefHeight="23.0" prefWidth="626.0">
+                            <children>
+                                <Button fx:id="createMatchButton" mnemonicParsing="false" onAction="#addMatch"
+                                        text="create match"/>
+                                <Region prefHeight="200.0" prefWidth="190.0"/>
+                                <Button fx:id="refreshButton" mnemonicParsing="false" onAction="#refresh"
+                                        text="Refresh"/>
+                            </children>
+                        </HBox>
                     </children>
                     <padding>
-                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0"/>
                     </padding>
                 </VBox>
             </content>
         </Tab>
         <Tab fx:id="userStatisticsTab" closable="false" text="Statistiche utente">
             <content>
-                <VBox alignment="CENTER" spacing="2.0" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+                <VBox alignment="CENTER" spacing="2.0" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/8.0.171"
+                      xmlns:fx="http://javafx.com/fxml/1">
                     <children>
                         <Label alignment="CENTER" text="Statistiche Utente" textAlignment="CENTER" VBox.vgrow="ALWAYS">
                             <font>
-                                <Font name="System Bold" size="14.0" />
+                                <Font name="System Bold" size="14.0"/>
                             </font>
                         </Label>
-                        <Separator VBox.vgrow="ALWAYS" />
+                        <Separator VBox.vgrow="ALWAYS"/>
                         <HBox VBox.vgrow="ALWAYS">
                             <children>
                                 <ScrollPane HBox.hgrow="ALWAYS">
                                     <content>
                                         <VBox alignment="CENTER" spacing="4.0">
                                             <children>
-                                                <Region minWidth="300.0" VBox.vgrow="ALWAYS" />
+                                                <Region minWidth="300.0" VBox.vgrow="ALWAYS"/>
                                                 <Label text="Numero Manche" VBox.vgrow="ALWAYS">
                                                     <font>
-                                                        <Font name="System Bold" size="12.0" />
+                                                        <Font name="System Bold" size="12.0"/>
                                                     </font>
                                                 </Label>
                                                 <HBox VBox.vgrow="ALWAYS">
                                                     <children>
-                                                        <Label text="giocate   " />
-                                                        <Region HBox.hgrow="ALWAYS" />
-                                                        <Label fx:id="numberManchesPlayedLabel" text="Label" />
+                                                        <Label text="giocate   "/>
+                                                        <Region HBox.hgrow="ALWAYS"/>
+                                                        <Label fx:id="numberManchesPlayedLabel" text="Label"/>
                                                     </children>
                                                 </HBox>
                                                 <HBox VBox.vgrow="ALWAYS">
                                                     <children>
-                                                        <Label text="osservate" HBox.hgrow="ALWAYS" />
-                                                        <Region HBox.hgrow="ALWAYS" />
-                                                        <Label fx:id="numberManchesObservedLabel" text="Label" HBox.hgrow="ALWAYS" />
+                                                        <Label text="osservate" HBox.hgrow="ALWAYS"/>
+                                                        <Region HBox.hgrow="ALWAYS"/>
+                                                        <Label fx:id="numberManchesObservedLabel" text="Label"
+                                                               HBox.hgrow="ALWAYS"/>
                                                     </children>
                                                 </HBox>
-                                                <Region VBox.vgrow="ALWAYS" />
-                                                <Separator VBox.vgrow="ALWAYS" />
-                                                <Region VBox.vgrow="ALWAYS" />
+                                                <Region VBox.vgrow="ALWAYS"/>
+                                                <Separator VBox.vgrow="ALWAYS"/>
+                                                <Region VBox.vgrow="ALWAYS"/>
                                                 <Label text="Numero Partite" VBox.vgrow="ALWAYS">
                                                     <font>
-                                                        <Font name="System Bold" size="12.0" />
+                                                        <Font name="System Bold" size="12.0"/>
                                                     </font>
                                                 </Label>
                                                 <HBox VBox.vgrow="ALWAYS">
                                                     <children>
-                                                        <Label text="giocate" />
-                                                        <Region HBox.hgrow="ALWAYS" />
-                                                        <Label fx:id="numberMatchesplayedLabel" text="Label" />
+                                                        <Label text="giocate"/>
+                                                        <Region HBox.hgrow="ALWAYS"/>
+                                                        <Label fx:id="numberMatchesplayedLabel" text="Label"/>
                                                     </children>
                                                 </HBox>
                                                 <HBox VBox.vgrow="ALWAYS">
                                                     <children>
-                                                        <Label text="osservate" />
-                                                        <Region HBox.hgrow="ALWAYS" />
-                                                        <Label fx:id="numberMatchesObservedLabel" text="Label" />
+                                                        <Label text="osservate"/>
+                                                        <Region HBox.hgrow="ALWAYS"/>
+                                                        <Label fx:id="numberMatchesObservedLabel" text="Label"/>
                                                     </children>
                                                 </HBox>
-                                                <Region VBox.vgrow="ALWAYS" />
-                                                <Separator VBox.vgrow="ALWAYS" />
-                                                <Region VBox.vgrow="ALWAYS" />
+                                                <Region VBox.vgrow="ALWAYS"/>
+                                                <Separator VBox.vgrow="ALWAYS"/>
+                                                <Region VBox.vgrow="ALWAYS"/>
                                                 <Label text="Numero Vittorie" VBox.vgrow="ALWAYS">
                                                     <font>
-                                                        <Font name="System Bold" size="12.0" />
+                                                        <Font name="System Bold" size="12.0"/>
                                                     </font>
                                                 </Label>
                                                 <HBox VBox.vgrow="ALWAYS">
                                                     <children>
-                                                        <Label text="partite" />
-                                                        <Region HBox.hgrow="ALWAYS" />
-                                                        <Label fx:id="numberOfMatchesWonLabel" text="Label" />
+                                                        <Label text="partite"/>
+                                                        <Region HBox.hgrow="ALWAYS"/>
+                                                        <Label fx:id="numberOfMatchesWonLabel" text="Label"/>
                                                     </children>
                                                 </HBox>
                                                 <HBox VBox.vgrow="ALWAYS">
                                                     <children>
-                                                        <Label text="manche" />
-                                                        <Region HBox.hgrow="ALWAYS" />
-                                                        <Label fx:id="numberOfManchesWonLabel" text="Label" />
+                                                        <Label text="manche"/>
+                                                        <Region HBox.hgrow="ALWAYS"/>
+                                                        <Label fx:id="numberOfManchesWonLabel" text="Label"/>
                                                     </children>
                                                 </HBox>
-                                                <Region VBox.vgrow="ALWAYS" />
-                                                <Separator VBox.vgrow="ALWAYS" />
-                                                <Region VBox.vgrow="ALWAYS" />
+                                                <Region VBox.vgrow="ALWAYS"/>
+                                                <Separator VBox.vgrow="ALWAYS"/>
+                                                <Region VBox.vgrow="ALWAYS"/>
                                                 <Label text="Punteggio medio vinto" VBox.vgrow="ALWAYS">
                                                     <font>
-                                                        <Font name="System Bold" size="12.0" />
+                                                        <Font name="System Bold" size="12.0"/>
                                                     </font>
                                                 </Label>
-                                                <Label fx:id="averagePointsWonLabel" text="Label" VBox.vgrow="ALWAYS" />
-                                                <Region VBox.vgrow="ALWAYS" />
+                                                <Label fx:id="averagePointsWonLabel" text="Label" VBox.vgrow="ALWAYS"/>
+                                                <Region VBox.vgrow="ALWAYS"/>
                                             </children>
                                             <padding>
-                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                             </padding>
                                         </VBox>
                                     </content>
                                     <padding>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                     </padding>
                                     <HBox.margin>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                     </HBox.margin>
                                 </ScrollPane>
                                 <ScrollPane HBox.hgrow="ALWAYS">
                                     <content>
                                         <VBox alignment="TOP_CENTER" spacing="4.0">
                                             <children>
-                                                <Region minWidth="300.0" VBox.vgrow="ALWAYS" />
+                                                <Region minWidth="300.0" VBox.vgrow="ALWAYS"/>
                                                 <Label text="Media turni ceduti" VBox.vgrow="ALWAYS">
                                                     <font>
-                                                        <Font name="System Bold" size="12.0" />
+                                                        <Font name="System Bold" size="12.0"/>
                                                     </font>
                                                 </Label>
                                                 <HBox VBox.vgrow="ALWAYS">
                                                     <children>
-                                                        <Label text="partite" />
-                                                        <Region HBox.hgrow="ALWAYS" />
-                                                        <Label fx:id="averageTurnLostPerMatchLabel" text="Label" />
+                                                        <Label text="partite"/>
+                                                        <Region HBox.hgrow="ALWAYS"/>
+                                                        <Label fx:id="averageTurnLostPerMatchLabel" text="Label"/>
                                                     </children>
                                                 </HBox>
                                                 <HBox VBox.vgrow="ALWAYS">
                                                     <children>
-                                                        <Label text="manche" />
-                                                        <Region HBox.hgrow="ALWAYS" />
-                                                        <Label fx:id="averageTurnLostPerMancheLabel" text="Label" />
+                                                        <Label text="manche"/>
+                                                        <Region HBox.hgrow="ALWAYS"/>
+                                                        <Label fx:id="averageTurnLostPerMancheLabel" text="Label"/>
                                                     </children>
                                                 </HBox>
-                                                <Region VBox.vgrow="ALWAYS" />
-                                                <Separator VBox.vgrow="ALWAYS" />
-                                                <Region VBox.vgrow="ALWAYS" />
+                                                <Region VBox.vgrow="ALWAYS"/>
+                                                <Separator VBox.vgrow="ALWAYS"/>
+                                                <Region VBox.vgrow="ALWAYS"/>
                                                 <Label text="Media &quot;Perde Tutto&quot;" VBox.vgrow="ALWAYS">
                                                     <font>
-                                                        <Font name="System Bold" size="12.0" />
+                                                        <Font name="System Bold" size="12.0"/>
                                                     </font>
                                                 </Label>
                                                 <HBox VBox.vgrow="ALWAYS">
                                                     <children>
-                                                        <Label text="partite" />
-                                                        <Region HBox.hgrow="ALWAYS" />
-                                                        <Label fx:id="averageLostAllPerMatchLabel" text="Label" />
+                                                        <Label text="partite"/>
+                                                        <Region HBox.hgrow="ALWAYS"/>
+                                                        <Label fx:id="averageLostAllPerMatchLabel" text="Label"/>
                                                     </children>
                                                 </HBox>
                                                 <HBox VBox.vgrow="ALWAYS">
                                                     <children>
-                                                        <Label text="manche" />
-                                                        <Region HBox.hgrow="ALWAYS" />
-                                                        <Label fx:id="averageLostAllPerMancheLabel" text="Label" />
+                                                        <Label text="manche"/>
+                                                        <Region HBox.hgrow="ALWAYS"/>
+                                                        <Label fx:id="averageLostAllPerMancheLabel" text="Label"/>
                                                     </children>
                                                 </HBox>
-                                                <Region VBox.vgrow="ALWAYS" />
+                                                <Region VBox.vgrow="ALWAYS"/>
                                             </children>
                                             <padding>
-                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                             </padding>
                                         </VBox>
                                     </content>
                                     <padding>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                     </padding>
                                     <HBox.margin>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                     </HBox.margin>
                                 </ScrollPane>
                             </children>
                         </HBox>
-                        <Separator />
+                        <Separator/>
                     </children>
                     <padding>
-                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0"/>
                     </padding>
                 </VBox>
             </content>
@@ -218,203 +223,215 @@
                     <children>
                         <Label alignment="CENTER" text="Statistiche globali" textAlignment="CENTER" VBox.vgrow="ALWAYS">
                             <font>
-                                <Font name="System Bold" size="14.0" />
+                                <Font name="System Bold" size="14.0"/>
                             </font>
                         </Label>
-                        <Separator VBox.vgrow="ALWAYS" />
+                        <Separator VBox.vgrow="ALWAYS"/>
                         <HBox VBox.vgrow="ALWAYS">
                             <children>
                                 <ScrollPane HBox.hgrow="ALWAYS">
                                     <content>
                                         <VBox alignment="CENTER" spacing="4.0" stylesheets="@style.css">
                                             <children>
-                                                <Region minWidth="300.0" VBox.vgrow="ALWAYS" />
+                                                <Region minWidth="300.0" VBox.vgrow="ALWAYS"/>
                                                 <Label text="Primato di punteggio" VBox.vgrow="ALWAYS">
                                                     <font>
-                                                        <Font name="System Bold" size="12.0" />
+                                                        <Font name="System Bold" size="12.0"/>
                                                     </font>
                                                 </Label>
                                                 <HBox VBox.vgrow="ALWAYS">
                                                     <children>
-                                                        <Label text="manche" />
-                                                        <Region HBox.hgrow="ALWAYS" />
-                                                        <Label fx:id="bestPointsWonMancheLabel" text="Label" />
+                                                        <Label text="manche"/>
+                                                        <Region HBox.hgrow="ALWAYS"/>
+                                                        <Label fx:id="bestPointsWonMancheLabel" text="Label"/>
                                                     </children>
                                                 </HBox>
                                                 <HBox VBox.vgrow="ALWAYS">
                                                     <children>
-                                                        <Label text="partita" />
-                                                        <Region HBox.hgrow="ALWAYS" />
-                                                        <Label fx:id="bestPointsWonMatchLabel" text="Label" />
+                                                        <Label text="partita"/>
+                                                        <Region HBox.hgrow="ALWAYS"/>
+                                                        <Label fx:id="bestPointsWonMatchLabel" text="Label"/>
                                                     </children>
                                                 </HBox>
-                                                <Region VBox.vgrow="ALWAYS" />
-                                                <Separator VBox.vgrow="ALWAYS" />
-                                                <Region VBox.vgrow="ALWAYS" />
+                                                <Region VBox.vgrow="ALWAYS"/>
+                                                <Separator VBox.vgrow="ALWAYS"/>
+                                                <Region VBox.vgrow="ALWAYS"/>
                                                 <Label text="Giocato più manche" VBox.vgrow="ALWAYS">
                                                     <font>
-                                                        <Font name="System Bold" size="12.0" />
+                                                        <Font name="System Bold" size="12.0"/>
                                                     </font>
                                                 </Label>
-                                                <Label fx:id="mostManchePlayedLabel" text="Label" VBox.vgrow="ALWAYS" />
-                                                <Region VBox.vgrow="ALWAYS" />
-                                                <Separator VBox.vgrow="ALWAYS" />
-                                                <Region VBox.vgrow="ALWAYS" />
+                                                <Label fx:id="mostManchePlayedLabel" text="Label" VBox.vgrow="ALWAYS"/>
+                                                <Region VBox.vgrow="ALWAYS"/>
+                                                <Separator VBox.vgrow="ALWAYS"/>
+                                                <Region VBox.vgrow="ALWAYS"/>
                                                 <Label text="Media di punti per manche" VBox.vgrow="ALWAYS">
                                                     <font>
-                                                        <Font name="System Bold" size="12.0" />
+                                                        <Font name="System Bold" size="12.0"/>
                                                     </font>
                                                 </Label>
-                                                <Label fx:id="averagePointPerMancheLabel" text="Label" VBox.vgrow="ALWAYS" />
-                                                <Region VBox.vgrow="ALWAYS" />
-                                                <Separator VBox.vgrow="ALWAYS" />
-                                                <Region VBox.vgrow="ALWAYS" />
-                                                <Label text="Maggior numero di volte che ha ceduto il turno" VBox.vgrow="ALWAYS">
+                                                <Label fx:id="averagePointPerMancheLabel" text="Label"
+                                                       VBox.vgrow="ALWAYS"/>
+                                                <Region VBox.vgrow="ALWAYS"/>
+                                                <Separator VBox.vgrow="ALWAYS"/>
+                                                <Region VBox.vgrow="ALWAYS"/>
+                                                <Label text="Maggior numero di volte che ha ceduto il turno"
+                                                       VBox.vgrow="ALWAYS">
                                                     <font>
-                                                        <Font name="System Bold" size="12.0" />
+                                                        <Font name="System Bold" size="12.0"/>
                                                     </font>
                                                 </Label>
-                                                <Label fx:id="mostTimeLostTurnLabel" text="Label" VBox.vgrow="ALWAYS" />
-                                                <Region VBox.vgrow="ALWAYS" />
+                                                <Label fx:id="mostTimeLostTurnLabel" text="Label" VBox.vgrow="ALWAYS"/>
+                                                <Region VBox.vgrow="ALWAYS"/>
                                             </children>
                                             <padding>
-                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                             </padding>
                                         </VBox>
                                     </content>
                                     <HBox.margin>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                     </HBox.margin>
                                     <padding>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                     </padding>
                                 </ScrollPane>
                                 <ScrollPane stylesheets="@style.css" HBox.hgrow="ALWAYS">
                                     <content>
                                         <VBox alignment="CENTER" spacing="4.0">
                                             <children>
-                                                <Region minWidth="300.0" VBox.vgrow="ALWAYS" />
-                                                <Label text="Maggior numero di &quot;Perde Tutto&quot;" VBox.vgrow="ALWAYS">
+                                                <Region minWidth="300.0" VBox.vgrow="ALWAYS"/>
+                                                <Label text="Maggior numero di &quot;Perde Tutto&quot;"
+                                                       VBox.vgrow="ALWAYS">
                                                     <font>
-                                                        <Font name="System Bold" size="12.0" />
+                                                        <Font name="System Bold" size="12.0"/>
                                                     </font>
                                                 </Label>
-                                                <Label fx:id="mostTimeLostAllLabel" text="Label" VBox.vgrow="ALWAYS" />
-                                                <Region VBox.vgrow="ALWAYS" />
-                                                <Separator VBox.vgrow="ALWAYS" />
-                                                <Region VBox.vgrow="ALWAYS" />
-                                                <Label alignment="CENTER" text="Miglior chiamata consonante" textAlignment="CENTER" VBox.vgrow="ALWAYS">
+                                                <Label fx:id="mostTimeLostAllLabel" text="Label" VBox.vgrow="ALWAYS"/>
+                                                <Region VBox.vgrow="ALWAYS"/>
+                                                <Separator VBox.vgrow="ALWAYS"/>
+                                                <Region VBox.vgrow="ALWAYS"/>
+                                                <Label alignment="CENTER" text="Miglior chiamata consonante"
+                                                       textAlignment="CENTER" VBox.vgrow="ALWAYS">
                                                     <font>
-                                                        <Font name="System Bold" size="12.0" />
+                                                        <Font name="System Bold" size="12.0"/>
                                                     </font>
                                                 </Label>
-                                                <Label fx:id="nickBestCallLabel" text="Label" VBox.vgrow="ALWAYS" />
-                                                <Label fx:id="phraseAsociatedLabel" text="Label" VBox.vgrow="ALWAYS" />
-                                                <Label fx:id="letterCalledLabel" text="Label" VBox.vgrow="ALWAYS" />
-                                                <Region VBox.vgrow="ALWAYS" />
-                                                <Separator VBox.vgrow="ALWAYS" />
-                                                <Region VBox.vgrow="ALWAYS" />
-                                                <Label alignment="CENTER" text="Media mosse per soluzione " textAlignment="CENTER" VBox.vgrow="ALWAYS">
+                                                <Label fx:id="nickBestCallLabel" text="Label" VBox.vgrow="ALWAYS"/>
+                                                <Label fx:id="phraseAsociatedLabel" text="Label" VBox.vgrow="ALWAYS"/>
+                                                <Label fx:id="letterCalledLabel" text="Label" VBox.vgrow="ALWAYS"/>
+                                                <Region VBox.vgrow="ALWAYS"/>
+                                                <Separator VBox.vgrow="ALWAYS"/>
+                                                <Region VBox.vgrow="ALWAYS"/>
+                                                <Label alignment="CENTER" text="Media mosse per soluzione "
+                                                       textAlignment="CENTER" VBox.vgrow="ALWAYS">
                                                     <font>
-                                                        <Font name="System Bold" size="12.0" />
+                                                        <Font name="System Bold" size="12.0"/>
                                                     </font>
                                                 </Label>
-                                                <Label fx:id="averageMovesTillSolutionLabel" stylesheets="@style.css" text="Label" textAlignment="CENTER" VBox.vgrow="ALWAYS" />
-                                                <Label text="Label" textAlignment="CENTER" VBox.vgrow="ALWAYS" />
-                                                <Region VBox.vgrow="ALWAYS" />
+                                                <Label fx:id="averageMovesTillSolutionLabel" stylesheets="@style.css"
+                                                       text="Label" textAlignment="CENTER" VBox.vgrow="ALWAYS"/>
+                                                <Label text="Label" textAlignment="CENTER" VBox.vgrow="ALWAYS"/>
+                                                <Region VBox.vgrow="ALWAYS"/>
                                             </children>
                                             <padding>
-                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                             </padding>
                                         </VBox>
                                     </content>
                                     <HBox.margin>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                     </HBox.margin>
                                     <padding>
-                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
                                     </padding>
                                 </ScrollPane>
                             </children>
                         </HBox>
-                        <Separator VBox.vgrow="ALWAYS" />
+                        <Separator VBox.vgrow="ALWAYS"/>
                     </children>
                     <padding>
-                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0"/>
                     </padding>
                 </VBox>
             </content>
         </Tab>
         <Tab fx:id="profileTab" closable="false" text="Profilo">
             <content>
-                <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="634.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+                <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                      prefHeight="260.0" prefWidth="634.0" xmlns="http://javafx.com/javafx/8.0.171"
+                      xmlns:fx="http://javafx.com/fxml/1">
                     <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="400.0" spacing="20.0">
                             <children>
                                 <ImageView fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@male_avatar-512.png" />
+                                        <Image url="@male_avatar-512.png"/>
                                     </image>
                                 </ImageView>
-                                <Label text="nickName  " />
-                        <Label fx:id="nicknameLabel" prefWidth="80.0" text="label" />
-                        <Region prefWidth="30.0" />
-                                <TextField fx:id="nicknameTextField" prefWidth="170.0" text="immetti qui nuovo nik" />
-                                <Button fx:id="nickNameModifierButton" mnemonicParsing="false" text="modifica" />
+                                <Label text="nickName  "/>
+                                <Label fx:id="nicknameLabel" prefWidth="80.0" text="label"/>
+                                <Region prefWidth="30.0"/>
+                                <TextField fx:id="nicknameTextField" prefWidth="170.0" text="immetti qui nuovo nik"/>
+                                <Button fx:id="nickNameModifierButton" mnemonicParsing="false" text="modifica"/>
                             </children>
                             <VBox.margin>
-                                <Insets />
+                                <Insets/>
                             </VBox.margin>
                             <padding>
-                                <Insets left="10.0" />
+                                <Insets left="10.0"/>
                             </padding>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" spacing="20.0">
                             <children>
-                        <Region prefWidth="50.0" />
-                                <Label prefWidth="60.0" text="Nome     " />
-                        <Label fx:id="nameLabel" prefWidth="80.0" text="Label" />
-                        <Region prefWidth="30.0" />
-                        <TextField fx:id="nameTextField" prefWidth="170.0" text="immetti qui nuovo nome" />
-                        <Button mnemonicParsing="false" text="modifica" />
+                                <Region prefWidth="50.0"/>
+                                <Label prefWidth="60.0" text="Nome     "/>
+                                <Label fx:id="nameLabel" prefWidth="80.0" text="Label"/>
+                                <Region prefWidth="30.0"/>
+                                <TextField fx:id="nameTextField" prefWidth="170.0" text="immetti qui nuovo nome"/>
+                                <Button mnemonicParsing="false" text="modifica"/>
                             </children>
                             <opaqueInsets>
-                                <Insets />
+                                <Insets/>
                             </opaqueInsets>
                         </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="60.0" spacing="20.0">
-                     <children>
-                        <Region prefWidth="50.0" />
-                        <Label prefWidth="60.0" text="Cognome" />
-                        <Label fx:id="surnameLabel" prefWidth="80.0" text="Label" />
-                        <Region prefWidth="30.0" />
-                        <TextField fx:id="surnameTextField" prefHeight="25.0" prefWidth="170.0" text="immetti qui nuovo cognome" />
-                        <Button mnemonicParsing="false" text="modifica" />
-                     </children>
-                  </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="400.0" spacing="20.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="60.0" spacing="20.0">
                             <children>
-                        <Region prefWidth="50.0" />
-                                <Label prefWidth="100.0" text="Indirizzo mail" />
-                                <Label fx:id="emailLabel" prefWidth="100.0" text="Label" />
+                                <Region prefWidth="50.0"/>
+                                <Label prefWidth="60.0" text="Cognome"/>
+                                <Label fx:id="surnameLabel" prefWidth="80.0" text="Label"/>
+                                <Region prefWidth="30.0"/>
+                                <TextField fx:id="surnameTextField" prefHeight="25.0" prefWidth="170.0"
+                                           text="immetti qui nuovo cognome"/>
+                                <Button mnemonicParsing="false" text="modifica"/>
                             </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="400.0" spacing="20.0">
                             <children>
-                        <Region prefWidth="50.0" />
-                                <Label text="Password   " />
-                        <Region prefWidth="60.0" />
-                        <Region layoutX="160.0" layoutY="10.0" prefWidth="50.0" />
-                                <PasswordField fx:id="passwordField" alignment="CENTER" prefWidth="170.0" text="immeti qui nuova password" />
-                                <Button mnemonicParsing="false" text="modifica" />
+                                <Region prefWidth="50.0"/>
+                                <Label prefWidth="100.0" text="Indirizzo mail"/>
+                                <Label fx:id="emailLabel" prefWidth="100.0" text="Label"/>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="400.0" spacing="20.0">
+                            <children>
+                                <Region prefWidth="50.0"/>
+                                <Label text="Password   "/>
+                                <Region prefWidth="60.0"/>
+                                <Region layoutX="160.0" layoutY="10.0" prefWidth="50.0"/>
+                                <PasswordField fx:id="passwordField" alignment="CENTER" prefWidth="170.0"
+                                               text="immeti qui nuova password"/>
+                                <Button mnemonicParsing="false" text="modifica"/>
                             </children>
                         </HBox>
                     </children>
                     <HBox.margin>
-                        <Insets top="15.0" />
+                        <Insets top="15.0"/>
                     </HBox.margin>
                 </VBox>
             </content>
+        </Tab>
+        <Tab fx:id="phraseAdder" closable="false" text="Aggiungi frasi">
         </Tab>
     </tabs>
 </TabPane>
