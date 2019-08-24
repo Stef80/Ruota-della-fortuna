@@ -151,7 +151,18 @@ public class TabPane implements Initializable {
 //			gameList.setCellFactory(e -> new GameView(server, client, matchData));
 //		}
 		disableTab();
+		try {
+			setUserStat();
+          //  setGlobalStats(); todo da provare con database attivo
+		} catch (RemoteException e) {
+			Notifications notification = Notifications.create()
+												 .title("Notifica erorre")
+												 .text("statistiche non caricate")
+												 .hideAfter(Duration.seconds(2))
+												 .position(Pos.BASELINE_CENTER);
+			notification.showError();
 		}
+	}
 
     public void disableTab(){
 		if(!this.isAdmin){
@@ -164,7 +175,7 @@ public class TabPane implements Initializable {
 	public void setUserStat() throws RemoteException {
     //	String userStat = server.checkPerPlayer(client.getNickname());
 		String userStat = "";
-    	if(!userStat.equals(null)) {
+    	if(!userStat.equals("")) {
 
 			StringTokenizer stasts = new StringTokenizer(userStat, " ");
 			numberManchesPlayedLabel.setText(stasts.nextToken());
