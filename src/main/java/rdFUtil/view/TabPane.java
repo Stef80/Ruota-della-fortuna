@@ -9,6 +9,8 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ListView;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -98,6 +100,8 @@ public class TabPane implements Initializable {
 	private TextField filePhraseTextField;
 	@FXML
 	private Tab phraseAdder;
+	@FXML
+	private javafx.scene.control.TabPane tabs;
 
 
     private ObservableList<MatchData> gameObservableList = FXCollections.observableArrayList();
@@ -153,9 +157,10 @@ public class TabPane implements Initializable {
 		disableTab();
 		}
 
-    public void disableTab(){
+    private void disableTab(){
 		if(!this.isAdmin){
 			phraseAdder.setDisable(true);
+			tabs.getTabs().remove(phraseAdder);
 		}else {
 			phraseAdder.setDisable(false);
 		}
