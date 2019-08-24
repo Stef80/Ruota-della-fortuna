@@ -1,6 +1,5 @@
 package serverRdF.dbComm;
 
-import org.postgresql.core.SqlCommand;
 import rdFUtil.logging.User;
 import serverRdF.matchRdF.Move;
 
@@ -30,6 +29,9 @@ public class DBManager implements DBManagerInterface{
     }
 
     /**
+     * @param url //todo
+     * @param userID //todo
+     * @param password //todo
      * @return dbManager il singleton di tipo DBManager
      * @throws SQLException
      */
