@@ -33,6 +33,11 @@ public class WaitingThread extends Thread {
             if (!bool) {
                 ServerImplementation.serverError(client);
             }
+            try {
+                client.notifyRegistrationResult(true);
+            } catch (RemoteException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 }

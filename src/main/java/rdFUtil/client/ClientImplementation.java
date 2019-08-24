@@ -115,6 +115,7 @@ public class ClientImplementation implements Client {
 
     @Override
     public void updatePhrase(boolean[] phrase) throws RemoteException {
+
     }
 
     @Override
