@@ -126,7 +126,7 @@ public class GamePlayerController {
             for (int j = 0; j < 14; j++) {
                 node = (StackPane) getNodeByRowColumnIndex(i, j);
                 label = (Label) node.getChildren().get(0);
-                if (label.getText().equals(letter)) {
+                if (label.getText().equals(letter) && !label.getText().equals("")) {
                     label.setVisible(true);
                     node.setStyle(" -fx-background-color: #d6e2e0;\n" +
                             "    -fx-border-color: #08FBE1;\n" +
