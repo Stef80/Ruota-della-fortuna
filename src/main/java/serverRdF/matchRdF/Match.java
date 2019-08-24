@@ -866,8 +866,10 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                     leaveMatchAsObserver(client);
                 }
             }
-        endManche(null);
-        endMatch(false);
+            if(onGoing) {
+                endManche(null);
+                endMatch(false);
+            }
     }
 
     void leaveMatchAsPlayer(Player player) throws RemoteException {
@@ -899,8 +901,10 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                 leaveMatchAsObserver(client);
             }
         }
-        endManche(null);
-        endMatch(false);
+        if(onGoing) {
+            endManche(null);
+            endMatch(false);
+        }
     }
 
     /**
