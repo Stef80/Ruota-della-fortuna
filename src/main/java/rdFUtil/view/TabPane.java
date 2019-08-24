@@ -6,10 +6,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 import rdFUtil.MatchData;
 import rdFUtil.client.Client;
 import serverRdF.Server;
@@ -208,6 +211,16 @@ public class TabPane implements Initializable {
 
     	averageMovesTillSolutionLabel.setText(String.valueOf(avSolManches));
    }
+
+	public void notifyTooManyPlayers() {
+		Notifications notification = Notifications.create()
+											 .title("Giocatori")
+											 .text("Troppi giocatori")
+											 .hideAfter(Duration.seconds(2))
+											 .position(Pos.BASELINE_CENTER);
+		notification.showInformation();
+
+	}
 }
 
 // * @return una stringa contenente, divisi da spazi, i nickname dei giocatori che:
