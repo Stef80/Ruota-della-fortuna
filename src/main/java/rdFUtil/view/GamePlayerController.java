@@ -535,4 +535,61 @@ public class GamePlayerController {
                                              .position(Pos.BASELINE_CENTER);
         notification.showInformation();
     }
+
+
+    public void notifyYourTurn() {
+        Notifications notification = Notifications.create()
+                                             .title("Notifica di partita")
+                                             .text("E' IL TUO TURNO")
+                                             .hideAfter(Duration.seconds(2))
+                                             .position(Pos.BASELINE_CENTER);
+        notification.showInformation();
+    }
+
+    public void notifyEndMatch(String winner) {
+        String message = winner + "\nha vinto la partita ";
+        Notifications notification = Notifications.create()
+                                             .title("Notifica di partita")
+                                             .text(message)
+                                             .hideAfter(Duration.seconds(2))
+                                             .position(Pos.BASELINE_CENTER);
+        notification.showInformation();
+    }
+
+    public void notifyMatchWin() {
+        Notifications notification = Notifications.create()
+                                             .title("Notifica di partita")
+                                             .text("HAI VINTO!!!")
+                                             .hideAfter(Duration.seconds(2))
+                                             .position(Pos.BASELINE_CENTER);
+        notification.showInformation();
+    }
+
+    public void notiTimeOut() {
+        Notifications notification = Notifications.create()
+                                             .title("Notifica di partita")
+                                             .text("Tempo scduto ")
+                                             .hideAfter(Duration.seconds(2))
+                                             .position(Pos.BASELINE_CENTER);
+        notification.showInformation();
+    }
+
+    public void askForJolly() {
+        Notifications notification = Notifications.create()
+                                             .title("Notifica di partita")
+                                             .text("vuoi usare il jolly")
+                                             .hideAfter(Duration.seconds(2))
+                                             .position(Pos.BASELINE_CENTER);
+        notification.showInformation();
+    }
+
+    public void notifyPlayerError(String name) {
+        String message = name + "\nha sbagliato";
+        Notifications notification = Notifications.create()
+                                             .title("Notifica di partita")
+                                             .text(message)
+                                             .hideAfter(Duration.seconds(2))
+                                             .position(Pos.BASELINE_CENTER);
+        notification.showInformation();
+    }
 }
