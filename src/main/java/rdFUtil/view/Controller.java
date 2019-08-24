@@ -29,8 +29,8 @@ public class Controller {
     private Button resetButton;
     @FXML
     private Button registerButton;
-    private Server server;
-    private Client client;
+    private static Server server;
+    private static Client client;
     private String titleFrame = "Wheel of Fortune";
     private static boolean admin;
     private static boolean isServer= false;
@@ -136,5 +136,11 @@ public class Controller {
 
     public static void setIsServer(boolean isS){
         isServer =isS;
+    }
+
+    public static void setArgs(TabPane tb){
+        tb.setClient(client);
+        tb.setServer(server);
+        tb.setAdmin(admin);
     }
 }
