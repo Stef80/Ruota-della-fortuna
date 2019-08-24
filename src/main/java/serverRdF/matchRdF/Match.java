@@ -223,14 +223,14 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         notifyLetterCall(letter);
         for(Client c : observers){
             try{
-                c.updatePhrase(letter,amount);
+                c.updatePhrase(letter);
             }catch(RemoteException e){
                 leaveMatchAsObserver(c);
             }
         }
         for(Player p : players){
             try{
-                p.getClient().updatePhrase(letter,amount);
+                p.getClient().updatePhrase(letter);
             }catch (RemoteException e){
                 leaveMatchAsPlayer(p);
             }
@@ -344,6 +344,20 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         }
         timer.interrupt();
         notifyLetterCall(letter);
+        for(Client c : observers){
+            try{
+                c.updatePhrase(letter);
+            }catch(RemoteException e){
+                leaveMatchAsObserver(c);
+            }
+        }
+        for(Player p : players){
+            try{
+                p.getClient().updatePhrase(letter);
+            }catch (RemoteException e){
+                leaveMatchAsPlayer(p);
+            }
+        }
         activePlayer.updatePartialPoints(-1000);
         String phrase = manche.getCurrentPhrase().getPhrase();
         StringTokenizer st = new StringTokenizer(phrase," ',!?.:;\"/()\\^<>-+*");

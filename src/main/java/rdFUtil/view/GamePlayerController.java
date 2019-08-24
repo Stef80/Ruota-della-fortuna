@@ -1,25 +1,34 @@
 package rdFUtil.view;
 
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import rdFUtil.client.Client;
 import serverRdF.Server;
 import serverRdF.matchRdF.RemoteMatch;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
+import java.util.StringTokenizer;
 
 public class GamePlayerController{
     @FXML
@@ -37,7 +46,7 @@ public class GamePlayerController{
     @FXML
     private TextField solutionTextField;
     @FXML
-    private TextField letterTextField;
+    private TextField letterTextfield;
     @FXML
     private Label resultLabel;
     @FXML
@@ -93,7 +102,7 @@ public class GamePlayerController{
 
     public void createTableOfPhrase(){
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 14 ; j++) {
                 StackPane slotPane = new StackPane();
                 Label letterLabel = new Label();
@@ -108,6 +117,25 @@ public class GamePlayerController{
             }
 
         }
+        setNewPhrase("ssx","Ciao, il mio nome è Michele Rovagnati!");
+    }
+
+    public void updatePhrase(String letter){
+        StackPane node;
+        for(int i=0; i<5; i++){
+            for(int j=0; j<14; j++){
+                node = (StackPane)getNodeByRowColumnIndex(i,j);
+                Label label = (Label)node.getChildren().get(0);
+                if(label.getText().equals(letter)){
+                    label.setVisible(true);
+                    node.setStyle(" -fx-background-color: #d6e2e0;\n" +
+                            "    -fx-border-color: #08FBE1;\n" +
+                            "    -fx-border-radius: 3px;\n" +
+                            "    -fx-background-radius: 3px;\n" +
+                            "    -fx-border-width: 2px;");
+                }
+            }
+        }
     }
 
     public void setNewPhrase(String theme, String phrase){
@@ -115,17 +143,76 @@ public class GamePlayerController{
         int column = 0;
         int row = 0;
         char car;
+        StackPane node;
+        phrase = phrase.toUpperCase();
+        StringTokenizer st = new StringTokenizer(phrase," ',!?.:;\"/()\\^<>-+*");
+        String s = st.nextToken();
+        int pointer = 0;
         for(int i=0; i<phrase.length(); i++){
             car = phrase.charAt(i);
-            // ()^<>-+*
-            if(car != ' ' || car != ',' || car != '\'' || car != '.' || car != ':' || car != ';' || car != '?' || car != '!' || car != '"' || car != '/' || car != '\\' || car != '(' || car != ')'
-                    || car != '^' || car != '<' || car != '>' || car != '-' || car != '+' || car != '*'){
-
+            if(car != ' ' && car != ',' && car != '\'' && car != '.' && car != ':' && car != ';' && car != '?' && car != '!' && car != '"' && car != '/' && car != '\\' && car != '(' && car != ')'
+                    && car != '^' && car != '<' && car != '>' && car != '-' && car != '+' && car != '*'){
+                if(pointer == s.length()-1){
+                    if(st.hasMoreTokens()) {
+                        s = st.nextToken();
+                        pointer = -1;
+                    }
+                }else if(pointer == 0){
+                    if(s.length() > (14-column)){
+                        column = 0;
+                        row++;
+                    }
+                }
+                node = (StackPane)getNodeByRowColumnIndex(row,column);
+                Label label = (Label)node.getChildren().get(0);
+                label.setText(""+car);
+                node.setStyle(" -fx-background-color: #bbbebd;\n" +
+                        "    -fx-border-color: #08FBE1;\n" +
+                        "    -fx-border-radius: 3px;\n" +
+                        "    -fx-background-radius: 3px;\n" +
+                        "    -fx-border-width: 2px;");
+                pointer++;
+                if(column<13){
+                    column++;
+                }else{
+                    column = 0;
+                    row++;
+                }
             }else{
+                if(!(car == ' ' && column == 0)) {
+                    node = (StackPane) getNodeByRowColumnIndex(row, column);
+                    Label label = (Label) node.getChildren().get(0);
+                    label.setText("" + car);
+                    if (i < phrase.length() - 1 && phrase.charAt(i + 1) == ' ')
+                        i++;
+                    label.setVisible(true);
+                    if (column < 13) {
+                        column++;
+                    } else {
+                        column = 0;
+                        row++;
+                    }
+                }else{
 
+                }
             }
         }
     }
+
+    private Node getNodeByRowColumnIndex (final int row, final int column) {
+        Node result = null;
+        ObservableList<Node> childrens = phraseGridpane.getChildren();
+
+        for (Node node : childrens) {
+            if(phraseGridpane.getRowIndex(node) == row && phraseGridpane.getColumnIndex(node) == column) {
+                result = node;
+                break;
+            }
+        }
+
+        return result;
+    }
+
 
     public void hideAll() {
         jollyButton.setVisible(false);
@@ -133,7 +220,7 @@ public class GamePlayerController{
         spinButton.setVisible(false);
         solutionButton.setVisible(false);
         solutionTextField.setDisable(true);
-        letterTextField.setDisable(true);
+        letterTextfield.setDisable(true);
     }
     public void disableAll(){
         jollyButton.setDisable(true);
@@ -141,7 +228,7 @@ public class GamePlayerController{
         spinButton.setDisable(true);
         solutionButton.setDisable(true);
         solutionTextField.setDisable(true);
-        letterTextField.setDisable(true);
+        letterTextfield.setDisable(true);
     }
 
     public void activeAll(){
@@ -149,7 +236,7 @@ public class GamePlayerController{
         vowelButton.setDisable(false);
         spinButton.setDisable(false);
         solutionButton.setDisable(false);
-        letterTextField.setDisable(false);
+        letterTextfield.setDisable(false);
     }
 
     public void runCountdown(int seconds) {
@@ -194,8 +281,8 @@ public class GamePlayerController{
     }
      @FXML
      public void onEnter() throws RemoteException {
-        String letter =  letterTextField.getText();
-        if(spinButton.isPressed()){
+        String letter =  letterTextfield.getText();
+     if(spinButton.isPressed()){
            match.giveConsonant(letter,wheelResult);
         }else if(vowelButton.isPressed()){
             match.giveVocal(letter);
@@ -259,7 +346,6 @@ public class GamePlayerController{
         }
     }
 
-    // todo  chiamata scelta vocale , chiamata soluzione , giocata jolly , chiamata lettera
       public void vocalcallnotify(String nickname){
         String message = nickname+ " ha chiamato la vocale";
           Notifications notification = Notifications.create()
@@ -309,4 +395,27 @@ public class GamePlayerController{
 	public static void setObserver(boolean observer){
         isObserver = observer;
 	}
+
+	public void exitMatch(ActionEvent actionEvent) throws IOException {
+        try {
+            if (isObserver) {
+                match.leaveMatchAsObserver(client);
+            }else{
+                match.leaveMatchAsPlayer(client);
+            }
+        }catch (RemoteException e){
+            e.printStackTrace();
+        }finally{
+            match = null;
+            Parent root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
+            Stage primaryStage = new Stage();
+            Scene scene = new Scene(root);
+            //   scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+            primaryStage.setTitle("Wheel of Fortune");
+            primaryStage.setScene(scene);
+            primaryStage.show();
+            Stage oldStage = (Stage) exitButton.getScene().getWindow();
+            oldStage.hide();
+        }
+    }
 }
