@@ -59,14 +59,14 @@
                                                     <children>
                                                         <Label text="giocate   " />
                                                         <Region HBox.hgrow="ALWAYS" />
-                                                        <Label text="Label" />
+                                                        <Label fx:id="numberManchesPlayedLabel" text="Label" />
                                                     </children>
                                                 </HBox>
                                                 <HBox VBox.vgrow="ALWAYS">
                                                     <children>
                                                         <Label text="osservate" HBox.hgrow="ALWAYS" />
                                                         <Region HBox.hgrow="ALWAYS" />
-                                                        <Label text="Label" HBox.hgrow="ALWAYS" />
+                                                        <Label fx:id="numberManchesObservedLabel" text="Label" HBox.hgrow="ALWAYS" />
                                                     </children>
                                                 </HBox>
                                                 <Region VBox.vgrow="ALWAYS" />
@@ -81,14 +81,14 @@
                                                     <children>
                                                         <Label text="giocate" />
                                                         <Region HBox.hgrow="ALWAYS" />
-                                                        <Label text="Label" />
+                                                        <Label fx:id="numberMatchesplayedLabel" text="Label" />
                                                     </children>
                                                 </HBox>
                                                 <HBox VBox.vgrow="ALWAYS">
                                                     <children>
                                                         <Label text="osservate" />
                                                         <Region HBox.hgrow="ALWAYS" />
-                                                        <Label text="Label" />
+                                                        <Label fx:id="numberMatchesObservedLabel" text="Label" />
                                                     </children>
                                                 </HBox>
                                                 <Region VBox.vgrow="ALWAYS" />
@@ -103,14 +103,14 @@
                                                     <children>
                                                         <Label text="partite" />
                                                         <Region HBox.hgrow="ALWAYS" />
-                                                        <Label text="Label" />
+                                                        <Label fx:id="numberOfMatchesWonLabel" text="Label" />
                                                     </children>
                                                 </HBox>
                                                 <HBox VBox.vgrow="ALWAYS">
                                                     <children>
                                                         <Label text="manche" />
                                                         <Region HBox.hgrow="ALWAYS" />
-                                                        <Label text="Label" />
+                                                        <Label fx:id="numberOfManchesWonLabel" text="Label" />
                                                     </children>
                                                 </HBox>
                                                 <Region VBox.vgrow="ALWAYS" />
@@ -121,7 +121,7 @@
                                                         <Font name="System Bold" size="12.0" />
                                                     </font>
                                                 </Label>
-                                                <Label text="Label" VBox.vgrow="ALWAYS" />
+                                                <Label fx:id="averagePointsWonLabel" text="Label" VBox.vgrow="ALWAYS" />
                                                 <Region VBox.vgrow="ALWAYS" />
                                             </children>
                                             <padding>
@@ -150,14 +150,14 @@
                                                     <children>
                                                         <Label text="partite" />
                                                         <Region HBox.hgrow="ALWAYS" />
-                                                        <Label text="Label" />
+                                                        <Label fx:id="averageTurnLostPerMatchLabel" text="Label" />
                                                     </children>
                                                 </HBox>
                                                 <HBox VBox.vgrow="ALWAYS">
                                                     <children>
                                                         <Label text="manche" />
                                                         <Region HBox.hgrow="ALWAYS" />
-                                                        <Label text="Label" />
+                                                        <Label fx:id="averageTurnLostPerMancheLabel" text="Label" />
                                                     </children>
                                                 </HBox>
                                                 <Region VBox.vgrow="ALWAYS" />
@@ -170,16 +170,16 @@
                                                 </Label>
                                                 <HBox VBox.vgrow="ALWAYS">
                                                     <children>
-                                                        <Label text="osservate" />
+                                                        <Label text="partite" />
                                                         <Region HBox.hgrow="ALWAYS" />
-                                                        <Label text="Label" />
+                                                        <Label fx:id="averageLostAllPerMatchLabel" text="Label" />
                                                     </children>
                                                 </HBox>
                                                 <HBox VBox.vgrow="ALWAYS">
                                                     <children>
-                                                        <Label text="osservate" />
+                                                        <Label text="manche" />
                                                         <Region HBox.hgrow="ALWAYS" />
-                                                        <Label text="Label" />
+                                                        <Label fx:id="averageLostAllPerMancheLabel" text="Label" />
                                                     </children>
                                                 </HBox>
                                                 <Region VBox.vgrow="ALWAYS" />
@@ -230,16 +230,16 @@
                                                 </Label>
                                                 <HBox VBox.vgrow="ALWAYS">
                                                     <children>
-                                                        <Label text="per manche" />
+                                                        <Label text="manche" />
                                                         <Region HBox.hgrow="ALWAYS" />
-                                                        <Label text="Label" />
+                                                        <Label fx:id="bestPointsWonMancheLabel" text="Label" />
                                                     </children>
                                                 </HBox>
                                                 <HBox VBox.vgrow="ALWAYS">
                                                     <children>
-                                                        <Label text="per partita" />
+                                                        <Label text="partita" />
                                                         <Region HBox.hgrow="ALWAYS" />
-                                                        <Label text="Label" />
+                                                        <Label fx:id="bestPointsWonMatchLabel" text="Label" />
                                                     </children>
                                                 </HBox>
                                                 <Region VBox.vgrow="ALWAYS" />
@@ -250,7 +250,7 @@
                                                         <Font name="System Bold" size="12.0" />
                                                     </font>
                                                 </Label>
-                                                <Label text="Label" VBox.vgrow="ALWAYS" />
+                                                <Label fx:id="mostManchePlayedLabel" text="Label" VBox.vgrow="ALWAYS" />
                                                 <Region VBox.vgrow="ALWAYS" />
                                                 <Separator VBox.vgrow="ALWAYS" />
                                                 <Region VBox.vgrow="ALWAYS" />
@@ -259,7 +259,7 @@
                                                         <Font name="System Bold" size="12.0" />
                                                     </font>
                                                 </Label>
-                                                <Label text="Label" VBox.vgrow="ALWAYS" />
+                                                <Label fx:id="averagePointPerMancheLabel" text="Label" VBox.vgrow="ALWAYS" />
                                                 <Region VBox.vgrow="ALWAYS" />
                                                 <Separator VBox.vgrow="ALWAYS" />
                                                 <Region VBox.vgrow="ALWAYS" />
@@ -268,7 +268,7 @@
                                                         <Font name="System Bold" size="12.0" />
                                                     </font>
                                                 </Label>
-                                                <Label text="Label" VBox.vgrow="ALWAYS" />
+                                                <Label fx:id="mostTimeLostTurnLabel" text="Label" VBox.vgrow="ALWAYS" />
                                                 <Region VBox.vgrow="ALWAYS" />
                                             </children>
                                             <padding>
@@ -293,7 +293,7 @@
                                                         <Font name="System Bold" size="12.0" />
                                                     </font>
                                                 </Label>
-                                                <Label text="Label" VBox.vgrow="ALWAYS" />
+                                                <Label fx:id="mostTimeLostAllLabel" text="Label" VBox.vgrow="ALWAYS" />
                                                 <Region VBox.vgrow="ALWAYS" />
                                                 <Separator VBox.vgrow="ALWAYS" />
                                                 <Region VBox.vgrow="ALWAYS" />
@@ -303,8 +303,8 @@
                                                     </font>
                                                 </Label>
                                                 <Label fx:id="nickBestCallLabel" text="Label" VBox.vgrow="ALWAYS" />
-                                                <Label text="Label" VBox.vgrow="ALWAYS" />
-                                                <Label text="Label" VBox.vgrow="ALWAYS" />
+                                                <Label fx:id="phraseAsociatedLabel" text="Label" VBox.vgrow="ALWAYS" />
+                                                <Label fx:id="letterCalledLabel" text="Label" VBox.vgrow="ALWAYS" />
                                                 <Region VBox.vgrow="ALWAYS" />
                                                 <Separator VBox.vgrow="ALWAYS" />
                                                 <Region VBox.vgrow="ALWAYS" />
@@ -313,7 +313,7 @@
                                                         <Font name="System Bold" size="12.0" />
                                                     </font>
                                                 </Label>
-                                                <Label text="Label" textAlignment="CENTER" VBox.vgrow="ALWAYS" />
+                                                <Label fx:id="averageMovesTillSolutionLabel" text="Label" textAlignment="CENTER" VBox.vgrow="ALWAYS" />
                                                 <Label text="Label" textAlignment="CENTER" VBox.vgrow="ALWAYS" />
                                                 <Region VBox.vgrow="ALWAYS" />
                                             </children>

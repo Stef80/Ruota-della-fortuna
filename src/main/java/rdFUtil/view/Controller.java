@@ -46,6 +46,8 @@ public class Controller {
 
     /**
      * Legge le credenziali ed effettua il login aprendo la finestra principale.
+     * se il login avviene dal server mostra l'hostname del server che deve essere utilizzato
+     * per la connessione.
      *
      * @throws IOException
      */
@@ -64,7 +66,11 @@ public class Controller {
                                                      .position(Pos.CENTER);
                 notification.showError();
             } else if (result == 0) {
-                Parent root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
+                FXMLLoader loader = new FXMLLoader(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
+                Parent root = loader.load();
+                TabPane tabPane = loader.getController();
+                tabPane.setGlobalStats();
+                tabPane.setUserStat();
                 Stage primaryStage = new Stage();
                 Scene scene = new Scene(root);
                 //   scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
@@ -82,7 +88,7 @@ public class Controller {
                 notification.showError();
             }
         }else{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("host_view.fxml"));
+            FXMLLoader loader = new FXMLLoader(Thread.currentThread().getContextClassLoader().getResource("host_view.fxml"));
             Parent root = null;
             try {
                 root = loader.load();
@@ -95,6 +101,8 @@ public class Controller {
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.show();
+            Stage oldStage = (Stage) loginButton.getScene().getWindow();
+            oldStage.hide();
         }
     }
 

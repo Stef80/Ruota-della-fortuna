@@ -1,6 +1,5 @@
 package rdFUtil.view;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -23,7 +22,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import rdFUtil.client.Client;
-import serverRdF.Server;
 import serverRdF.matchRdF.RemoteMatch;
 
 import java.io.IOException;
@@ -46,7 +44,7 @@ public class GamePlayerController {
     @FXML
     private TextField solutionTextField;
     @FXML
-    private TextField letterTextfield;
+    private TextField letterTextField;
     @FXML
     private Label resultLabel;
     @FXML
@@ -82,7 +80,7 @@ public class GamePlayerController {
     @FXML
     private VBox player3Box;
     @FXML
-    private GridPane phraseGridpane;
+    private GridPane phraseGridPane;
     @FXML
     private Label phraseThemeLabel;
     private static boolean isObserver;
@@ -113,7 +111,7 @@ public class GamePlayerController {
                         "    -fx-border-radius: 3px;\n" +
                         "    -fx-background-radius: 3px;\n" +
                         "    -fx-border-width: 2px;");
-                phraseGridpane.add(slotPane, j, i);
+                phraseGridPane.add(slotPane, j, i);
             }
 
         }
@@ -246,10 +244,10 @@ public class GamePlayerController {
 
     private Node getNodeByRowColumnIndex(final int row, final int column) {
         Node result = null;
-        ObservableList<Node> childrens = phraseGridpane.getChildren();
+        ObservableList<Node> childrens = phraseGridPane.getChildren();
 
         for (Node node : childrens) {
-            if (phraseGridpane.getRowIndex(node) == row && phraseGridpane.getColumnIndex(node) == column) {
+            if (phraseGridPane.getRowIndex(node) == row && phraseGridPane.getColumnIndex(node) == column) {
                 result = node;
                 break;
             }
@@ -265,7 +263,7 @@ public class GamePlayerController {
         spinButton.setVisible(false);
         solutionButton.setVisible(false);
         solutionTextField.setDisable(true);
-        letterTextfield.setDisable(true);
+        letterTextField.setDisable(true);
     }
 
     public void disableAll() {
@@ -274,7 +272,7 @@ public class GamePlayerController {
         spinButton.setDisable(true);
         solutionButton.setDisable(true);
         solutionTextField.setDisable(true);
-        letterTextfield.setDisable(true);
+        letterTextField.setDisable(true);
     }
 
     public void activeAll() {
@@ -282,7 +280,7 @@ public class GamePlayerController {
         vowelButton.setDisable(false);
         spinButton.setDisable(false);
         solutionButton.setDisable(false);
-        letterTextfield.setDisable(false);
+        letterTextField.setDisable(false);
     }
 
     public void runCountdown(int seconds) {
@@ -329,7 +327,7 @@ public class GamePlayerController {
 
     @FXML
     public void onEnter() throws RemoteException {
-        String letter = letterTextfield.getText();
+        String letter = letterTextField.getText();
         if (spinButton.isPressed()) {
             match.giveConsonant(letter, wheelResult);
         } else if (vowelButton.isPressed()) {

@@ -30,7 +30,7 @@ public class MonitoringManager {
 
     public String getBestMove(){
         MovesDTO bestMove = dbManager.getBestMove();
-        String result = ""+ bestMove.getPlayer().getNickname() +" " +bestMove.getMoveType() +" "+ bestMove.getManche().getPhrase().getPhrase();
+        String result = ""+ bestMove.getPlayer().getNickname() +" " +bestMove.getMoveType() +" "+ bestMove.getManche().getPhrase().getPhrase();//?? perchè è chiamata due volte
         return result;
     }
 
@@ -66,39 +66,39 @@ public class MonitoringManager {
         UsersDTO user;
         user = dbManager.getBestUserForManche();
         if(user != null){
-            result += user.getNickname();
+            result += user.getNickname() +" ";
         }else{
-            result += "-";
+            result += "- ";
         }
         user = dbManager.getBestUserForMatch();
         if(user != null){
-            result += user.getNickname();
+            result += user.getNickname()+" ";
         }else{
-            result += "-";
+            result += "- ";
         }
         user = dbManager.getUserForMoreManchesPlayed();
         if(user != null){
-            result += user.getNickname();
+            result += user.getNickname() + " ";
         }else{
-            result += "-";
+            result += "- ";
         }
         user = dbManager.getUserForBestMancheAverage();
         if(user != null){
-            result += user.getNickname();
+            result += user.getNickname()+" ";
         }else{
-            result += "-";
+            result += "- ";
         }
         user = dbManager.getUserForMostLostTurn();
         if(user != null){
-            result += user.getNickname();
+            result += user.getNickname() + " ";
         }else{
-            result += "-";
+            result += "- ";
         }
         user = dbManager.getUserForMostLosses();
         if(user != null){
-            result += user.getNickname();
+            result += user.getNickname() +" ";
         }else{
-            result += "-";
+            result += "- ";
         }
 
         return result;
