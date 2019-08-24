@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import rdFUtil.MatchData;
+import rdFUtil.client.AdminChecker;
 import rdFUtil.client.Client;
 import serverRdF.Server;
 import serverRdF.matchRdF.Match;
@@ -68,6 +69,8 @@ public class GameView extends ListCell<MatchData> {
                     e.printStackTrace();
                 }
             }
+            if(AdminChecker.isIsAdmin())
+                joinButton.setVisible(false);
 
             label1.setText(item.getPlayer1());
 			label2.setText(item.getPlayer2());
@@ -112,7 +115,7 @@ public class GameView extends ListCell<MatchData> {
                 @Override
                 public void handle(javafx.event.ActionEvent event) {
                     try {
-                        match.addObserver(client);
+                        match = server.observeMatch(client, item.getIdMatch());
                         GamePlayerController.setMatch(match);
                         GamePlayerController.setObserver(true);
                     } catch (RemoteException e) {

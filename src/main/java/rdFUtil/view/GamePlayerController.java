@@ -115,6 +115,11 @@ public class GamePlayerController {
             }
 
         }
+        try {
+            match.askNotify(client);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     public void updatePhrase(String letter) {
