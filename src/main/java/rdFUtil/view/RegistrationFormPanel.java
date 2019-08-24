@@ -16,6 +16,7 @@ import rdFUtil.logging.User;
 import serverRdF.Server;
 import serverRdF.registrationRdF.OTPHelper;
 
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 
 public class RegistrationFormPanel {
@@ -32,6 +33,8 @@ public class RegistrationFormPanel {
     Button confirmButton;
     @FXML
     private PasswordField password;
+    @FXML
+    private Button backButton;
     private Server server;
     private Client client;
     private User user;
@@ -98,5 +101,17 @@ public class RegistrationFormPanel {
                     .position(Pos.CENTER);
             notification.showError();
         }
+    }
+
+    public void back() throws IOException{
+        Parent root = FXMLLoader.load(Thread.currentThread().getClass().getResource("OTP_registration_pane.fxml"));
+        Scene scene = new Scene(root);
+        Stage primaryStage = new Stage();
+        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        primaryStage.setTitle("Wheel of Fortune");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        Stage thisStage = (Stage) backButton.getScene().getWindow();
+        thisStage.close();
     }
 }
