@@ -1,12 +1,16 @@
 package rdFUtil.client;
 
 import rdFUtil.view.GamePlayerController;
+import rdFUtil.view.OTPRegistrationPane;
+import rdFUtil.view.TabPane;
 
 import java.rmi.RemoteException;
 
 public class ClientImplementation implements Client {
 
     private GamePlayerController game;
+    private OTPRegistrationPane otpRegistrationPane;
+    private TabPane tab;
     private String id;
     private String nickname;
     private String name;
@@ -58,71 +62,87 @@ public class ClientImplementation implements Client {
 
     @Override
     public void notifyWrongOTP() throws RemoteException {
-
+       otpRegistrationPane.notifyWrongOTP();
     }
 
     @Override
     public void notifyTooManyPlayers() throws RemoteException {
+       tab.notifyTooManyPlayers();
     }
 
     @Override
     public void notifyLeaver(String nickname) throws RemoteException {
+        game.notifyLeaver(nickname);
     }
 
     @Override
     public void notifyMatchAbort(String reason) throws RemoteException {
+        game.notifyMatchAbort(reason);
     }
 
     @Override
     public void notifyMatchStart() throws RemoteException {
+        game.notifyMatchStart();
     }
 
     @Override
     public void notifyMancheVictory() throws RemoteException {
+        game.notifyMancheVictory();
     }
 
     @Override
     public void notifyMancheResult(String winner) throws RemoteException {
+        game.notifyMancheResult(winner);
     }
 
     @Override
     public void notifyNewManche(int numManche) throws RemoteException {
+        game.notifyNewManche(numManche);
     }
 
     @Override
     public void setNewPhrase(String theme, String phrase) throws RemoteException {
+        game.setNewPhrase(theme,phrase);
     }
 
     @Override
     public void notifyNewTurn(String player) throws RemoteException {
+        game.notifyNewTurn( player);
     }
 
     @Override
     public void notifyYourTurn() throws RemoteException {
+        game.notifyYourTurn();
     }
 
     @Override
     public void notifyEndMatch(String winner) throws RemoteException {
+        game.notifyEndMatch(winner);
     }
 
     @Override
     public void notifyMatchWin() throws RemoteException {
+        game.notifyMatchWin();
     }
 
     @Override
     public void notifyPlayerStats(int position, String name, int partialPoints, int points, int numJolly) throws RemoteException {
+      game.notifyPlayerStats(position, name, partialPoints, points, numJolly);
     }
 
     @Override
     public void updatePhrase(boolean[] phrase) throws RemoteException {
+        game.updatePhrase(phrase);
     }
 
     @Override
     public void updatePhrase(String letter) throws RemoteException {
+        game.updatePhrase(letter);
     }
 
     @Override
     public void notifyTimeOut() throws RemoteException {
+        game.notiTimeOut();
     }
 
     @Override
@@ -132,10 +152,12 @@ public class ClientImplementation implements Client {
 
     @Override
     public void askForJolly() throws RemoteException {
+        game.askForJolly();
     }
 
     @Override
     public void notifyPlayerError(String name) throws RemoteException {
+        game.notifyPlayerError(name);
     }
 
     public void setGameController(GamePlayerController game){

@@ -473,4 +473,65 @@ public class GamePlayerController {
             oldStage.hide();
         }
     }
+
+
+
+    public void notifyLeaver(String nickname) {
+        String message = nickname + "\nha lasciato la partita";
+        Notifications notification = Notifications.create()
+                                             .title("Notifica di partita")
+                                             .text(message)
+                                             .hideAfter(Duration.seconds(2))
+                                             .position(Pos.BASELINE_CENTER);
+        notification.showInformation();
+    }
+
+    public void notifyMatchAbort(String reason) {
+        String message = reason + "\nla partita è finita";
+        Notifications notification = Notifications.create()
+                                             .title("Notifica di partita")
+                                             .text(message)
+                                             .hideAfter(Duration.seconds(2))
+                                             .position(Pos.BASELINE_CENTER);
+        notification.showInformation();
+    }
+
+    public void notifyMatchStart() {
+        String message = "Partita iniziata";
+        Notifications notification = Notifications.create()
+                                             .title("Notifica di partita")
+                                             .text(message)
+                                             .hideAfter(Duration.seconds(2))
+                                             .position(Pos.BASELINE_CENTER);
+        notification.showInformation();
+    }
+
+    public void notifyMancheVictory() {
+        Notifications notification = Notifications.create()
+                                             .title("Notifica di partita")
+                                             .text("HAI VINTO!!!")
+                                             .hideAfter(Duration.seconds(2))
+                                             .position(Pos.BASELINE_CENTER);
+        notification.showInformation();
+    }
+
+    public void notifyMancheResult(String winner) {
+        String message = winner + "\nha vinto la manche ";
+        Notifications notification = Notifications.create()
+                                             .title("Notifica di partita")
+                                             .text(message)
+                                             .hideAfter(Duration.seconds(2))
+                                             .position(Pos.BASELINE_CENTER);
+        notification.showInformation();
+    }
+
+    public void notifyNewManche(int numManche) {
+        String message = "la manche numero " + numManche + "\nsta per cominciare";
+        Notifications notification = Notifications.create()
+                                             .title("Notifica di partita")
+                                             .text(message)
+                                             .hideAfter(Duration.seconds(2))
+                                             .position(Pos.BASELINE_CENTER);
+        notification.showInformation();
+    }
 }

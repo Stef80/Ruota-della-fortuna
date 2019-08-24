@@ -115,4 +115,13 @@ public class OTPRegistrationPane {
         }));
         timeline.playFromStart();
     }
+
+    public void notifyWrongOTP(){
+        Notifications notification = Notifications.create()
+                                             .title("OTP Notification")
+                                             .text("OTP inserito errato \nriprova")
+                                             .hideAfter(Duration.seconds(3))
+                                             .position(Pos.CENTER);
+        notification.showError();
+    }
 }
