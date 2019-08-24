@@ -356,17 +356,17 @@ public class GamePlayerController {
 
     public void setTurn(String nickName) throws RemoteException {
         if (nickName.equals(player1Label.getText())) {
-            player1Box.setStyle("-fx-border-color = ");
-            player2Box.setStyle("");
-            player3Box.setStyle("");
+            player1Box.setStyle("-fx-border-color = #FFF404;");
+            player2Box.setStyle("-fx-border-color = #073CA0;");
+            player3Box.setStyle("-fx-border-color = #073CA0;");
         } else if (nickName.equals(player2Label.getText())) {
-            player1Box.setStyle("");
-            player2Box.setStyle("");
-            player3Box.setStyle("");
+            player1Box.setStyle("-fx-border-color = #073CA0;");
+            player2Box.setStyle("-fx-border-color = #FFF404;");
+            player3Box.setStyle("-fx-border-color = #073CA0;");
         } else if (nickName.equals(player3Label.getText())) {
-            player1Box.setStyle("");
-            player2Box.setStyle("");
-            player3Box.setStyle("");
+            player1Box.setStyle("-fx-border-color = #073CA0;");
+            player2Box.setStyle("-fx-border-color = #073CA0;");
+            player3Box.setStyle("-fx-border-color = #FFF404;");
         }
         if (!nickName.equals(client.getNickname())) {
             disableAll();

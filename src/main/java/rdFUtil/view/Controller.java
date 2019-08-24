@@ -128,15 +128,12 @@ public class Controller {
         Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("forgotten_password_pane.fxml"));
         Stage primaryStage = new Stage();
         Scene scene = new Scene(root1);
-       // scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         primaryStage.setTitle(titleFrame);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    public static void setAdmin(boolean isAdmin){
-        admin = isAdmin;
-    }
+
     public static void setIsServer(boolean isS){
         isServer =isS;
     }

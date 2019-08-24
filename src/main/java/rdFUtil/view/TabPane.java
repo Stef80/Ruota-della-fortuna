@@ -103,13 +103,15 @@ public class TabPane implements Initializable {
     private Server server;
     private RemoteMatch match;
     private MatchData matchData;
+    private boolean isAdmin;
 
 
     public TabPane(){}
 
-    public TabPane(Server server, Client client) {
+    public TabPane(Server server, Client client,boolean isAdmin) {
         this.server = server;
         this.client = client;
+        this.isAdmin = isAdmin;
     }
 
     public void addMatch(ActionEvent actionEvent) throws RemoteException, NotBoundException {
