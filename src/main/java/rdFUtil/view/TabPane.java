@@ -18,6 +18,7 @@ import rdFUtil.client.Client;
 import serverRdF.Server;
 import serverRdF.matchRdF.RemoteMatch;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.NotBoundException;
@@ -93,6 +94,8 @@ public class TabPane implements Initializable {
 	private PasswordField passwordField;
 	@FXML
 	private Button refreshButton;
+	@FXML
+	private TextField filePhraseTextField;
 
 
     private ObservableList<MatchData> gameObservableList = FXCollections.observableArrayList();
@@ -236,6 +239,23 @@ public class TabPane implements Initializable {
 		for (MatchData matchData: list){
 			gameList.setCellFactory(e -> new GameView(server, client, matchData));
 		}
+	}
+
+	public void enterFilePhrase(){
+    	String phrases = filePhraseTextField.getText();
+    	String phrasesTrim = phrases.trim();
+		File filePhrases = new File(phrasesTrim);
+		try {
+			server.addPhrases(filePhrases);
+		} catch (RemoteException e) {
+			Notifications notification = Notifications.create()
+												 .title("Notifica Errore")
+												 .text("File non Caricato")
+												 .hideAfter(Duration.seconds(2))
+												 .position(Pos.BASELINE_CENTER);
+			notification.showError();
+		}
+
 	}
 }
 
