@@ -100,7 +100,7 @@ public class ServerImplementation extends UnicastRemoteObject implements Server 
     }
 
     @Override
-    public void addPhrases(File file, Client c) throws RemoteException {
+    public void addPhrases(File file) throws RemoteException {
         try {
             phraseManager.addPhrases(file);
         }catch (IOException e){

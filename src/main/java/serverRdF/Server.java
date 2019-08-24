@@ -43,7 +43,7 @@ public interface Server extends Remote {
 
     public RemoteMatch observeMatch(Client c, String idMatch) throws RemoteException;
 
-    public void addPhrases(File file, Client c) throws RemoteException;
+    public void addPhrases(File file) throws RemoteException;
 
     public boolean changeName(String name, Client c) throws RemoteException;
 
