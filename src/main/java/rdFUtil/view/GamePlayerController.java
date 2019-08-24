@@ -441,8 +441,9 @@ public class GamePlayerController {
                 .hideAfter(Duration.seconds(2))
                 .position(Pos.BASELINE_CENTER);
         notification.showInformation();
-
     }
+
+
 
     public static void setMatch(RemoteMatch matc) {
         match = matc;

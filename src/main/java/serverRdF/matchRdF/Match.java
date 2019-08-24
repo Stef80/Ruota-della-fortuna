@@ -779,7 +779,25 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
             }
 
             dbManager.addMatchWinner(id, winner.getIdPlayer(), maxPoint);
+        }else{
+            for(Client c : observers){
+                try{
+                    c.notifyEndMatch("Nessuno");
+                }catch(RemoteException e){
+                    leaveMatchAsObserver(c);
+                }
+            }
+
+            for(Player p : players){
+                try{
+                        p.getClient().notifyEndMatch("Nessuno");
+
+                }catch(RemoteException e){
+                    leaveMatchAsPlayer(p);
+                }
+            }
         }
+
         UnicastRemoteObject.unexportObject(this, true);
     }
 
