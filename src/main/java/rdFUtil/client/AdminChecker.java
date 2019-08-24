@@ -7,7 +7,7 @@ public class AdminChecker {
         return isAdmin;
     }
 
-    public static void setIsAdmin(boolean isAdmin) {
-        AdminChecker.isAdmin = isAdmin;
+    public static void setIsAdmin(boolean isA) {
+        isAdmin = isA;
     }
 }

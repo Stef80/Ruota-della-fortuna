@@ -107,7 +107,6 @@ public class TabPane implements Initializable {
     private MatchData matchData;
     private boolean isAdmin;
 
-
     public TabPane(){}
 
     public TabPane(Server server, Client client,boolean isAdmin) {
@@ -155,10 +154,11 @@ public class TabPane implements Initializable {
 //			gameList.setCellFactory(e -> new GameView(server, client, matchData));
 //		}
 		if(!isAdmin){
-		phraseAdder.setDisable(true);
+			phraseAdder.setDisable(true);
 		}else {
 			phraseAdder.setDisable(false);
 		}
+
 
     }
     @FXML
@@ -269,13 +269,4 @@ public class TabPane implements Initializable {
 }
 
 
-
-// * @return una stringa contenente, divisi da spazi, i nickname dei giocatori che:
-// detengono il punteggio piu' alto per manche,
-// detengono il punteggio piu' alto per partita,
-//	 che ha giocato piu' manche in assoluto,
-//	 con la media di punti acquisiti per manche piu' alta,
-//	 che ha ceduto il turno piu' volte a causa di errori,
-//	 che ha perso tutto il maggior numero di volte
-////
 
