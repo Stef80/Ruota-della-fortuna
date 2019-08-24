@@ -328,6 +328,8 @@ public class GamePlayerController {
     @FXML
     public void onEnter() throws RemoteException {
         String letter = letterTextField.getText();
+        letter = letter.trim();
+        letter = letter.toUpperCase();
         if (spinButton.isPressed()) {
             match.giveConsonant(letter, wheelResult);
         } else if (vowelButton.isPressed()) {
