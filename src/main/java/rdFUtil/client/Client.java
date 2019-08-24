@@ -1,6 +1,8 @@
 package rdFUtil.client;
 
 
+import rdFUtil.view.GamePlayerController;
+
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -170,7 +172,7 @@ public interface Client extends Remote {
      * @param points        il punteggio totale
      * @throws RemoteException
      */
-    public void notifyPlayerStats(int position, String name, int partialPoints, int points) throws RemoteException;
+    public void notifyPlayerStats(int position, String name, int partialPoints, int points,int numJolly) throws RemoteException;
 
     /**
      * Metodo per visualizzare solo le lettere che sono state chiamate. Per funzionare e' necessario aver richiamato precedentemente il metodo
@@ -187,10 +189,9 @@ public interface Client extends Remote {
      * l'array dell'intera frase e in piu' notifica quanti punti ha fatto guadagnare
      *
      * @param letter la lettera chiamata
-     * @param amount il punteggio guadagnato per ogni lettera rivelata
      * @throws RemoteException
      */
-    public void updatePhrase(String letter, int amount) throws RemoteException;
+    public void updatePhrase(String letter) throws RemoteException;
 
     /**
      * Notifica al client che il tempo per concludere la mossa e' finito
@@ -229,4 +230,6 @@ public interface Client extends Remote {
     public void notifyJollyUsed(String name) throws RemoteException;
 
     public void notifyLetterCall(String name, String letter) throws RemoteException;
+
+    public void setGameController(GamePlayerController game);
 }

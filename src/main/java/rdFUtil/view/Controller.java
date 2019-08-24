@@ -53,9 +53,9 @@ public class Controller {
         String mail = emailTextField.getText();
         String password = passwordTextField.getText();
         Login login = new Login(password, mail);
-      //  int result = server.signIn(login, client, admin);
+        int result = server.signIn(login, client, admin);
         if(!isServer) {
-            int result = 0;
+            //int result = 0;
             if (result < 0) {
                 Notifications notification = Notifications.create()
                                                      .title("Mail Notification")

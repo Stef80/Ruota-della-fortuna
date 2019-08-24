@@ -19,9 +19,10 @@ public class PrimePane extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("wellcome_pane.fxml"));
+        Parent root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("wellcome_pane_player.fxml"));
+        //todo (per debug) Parent root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("main_pane.fxml"));
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        //scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         primaryStage.setTitle("Wheel of Fortune");
         primaryStage.setScene(scene);
         primaryStage.show();

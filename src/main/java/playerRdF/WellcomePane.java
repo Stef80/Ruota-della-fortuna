@@ -39,9 +39,10 @@ public class WellcomePane {
 			client = new ClientImplementation();
 			new Controller(server,client,PrimePane.ISADMIN);
 			new ForgottenPasswordPane(server,client);
-            new GamePlayerController(client);
+            GamePlayerController game = new GamePlayerController(client);
             new RegistrationFormPanel(server,client,PrimePane.ISADMIN);
             new TabPane(server,client);
+            client.setGameController(game);
 			Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("main_pane.fxml"));
 			Stage primaryStage = new Stage();
 			Scene scene = new Scene(root1);
@@ -51,8 +52,6 @@ public class WellcomePane {
 			primaryStage.show();
 			Stage oldStage = (Stage) confirmButton.getScene().getWindow();
 			oldStage.close();
-
-
 		}catch (RemoteException | NotBoundException e){
 			Notifications notification = Notifications.create()
 												 .title("Connection Notification")

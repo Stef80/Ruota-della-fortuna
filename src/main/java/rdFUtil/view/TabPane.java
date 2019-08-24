@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import rdFUtil.MatchData;
@@ -27,6 +28,8 @@ public class TabPane implements Initializable {
 
     @FXML
     private ListView<MatchData> gameList;
+    @FXML
+    private Button createMatchButton;
 
     private ObservableList<MatchData> gameObservableList = FXCollections.observableArrayList();
     private Client client;
@@ -59,6 +62,8 @@ public class TabPane implements Initializable {
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
+        Stage oldStage = (Stage) createMatchButton.getScene().getWindow();
+        oldStage.hide();
 
     }
 
