@@ -32,7 +32,7 @@ dependencies {
     compile 'com.sun.mail:javax.mail:1.6.2'
     //per lettura file csv
     compile 'com.opencsv:opencsv:4.6'
-    }
+}
 
 task runTestPlayer(type: JavaExec, dependsOn: classes, group: 'test') {
     classpath = sourceSets.main.runtimeClasspath
@@ -42,6 +42,11 @@ task runTestPlayer(type: JavaExec, dependsOn: classes, group: 'test') {
 task runTestAdmin(type: JavaExec, dependsOn: classes, group: 'test') {
     classpath = sourceSets.main.runtimeClasspath
     main = 'adminRdF.PrimePane'
+}
+
+task runDatabase(type: JavaExec, dependsOn: classes, group: 'test') {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'dbuilder.DatabaseBuilder'
 }
 
 //jar {
