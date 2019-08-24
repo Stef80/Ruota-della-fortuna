@@ -1,3 +1,5 @@
+import rdFUtil.database.DatabaseHelper;
+
 import java.sql.SQLException;
 
 public class MainTestPostgres {
