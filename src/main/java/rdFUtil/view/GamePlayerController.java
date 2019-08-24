@@ -122,10 +122,11 @@ public class GamePlayerController{
 
     public void updatePhrase(String letter){
         StackPane node;
+        Label label;
         for(int i=0; i<5; i++){
             for(int j=0; j<14; j++){
                 node = (StackPane)getNodeByRowColumnIndex(i,j);
-                Label label = (Label)node.getChildren().get(0);
+                label = (Label)node.getChildren().get(0);
                 if(label.getText().equals(letter)){
                     label.setVisible(true);
                     node.setStyle(" -fx-background-color: #d6e2e0;\n" +
@@ -133,6 +134,64 @@ public class GamePlayerController{
                             "    -fx-border-radius: 3px;\n" +
                             "    -fx-background-radius: 3px;\n" +
                             "    -fx-border-width: 2px;");
+                }
+            }
+        }
+    }
+
+    public void updatePhrase(boolean[] phrase){
+        int column = 0;
+        int row = 0;
+        int i = 0;
+        StackPane node;
+        Label label;
+        while(i<phrase.length){
+            node = (StackPane)getNodeByRowColumnIndex(row,column);
+            label = (Label)node.getChildren().get(0);
+            if(!label.isVisible()){
+                if(phrase[i] == true){
+                    label.setVisible(true);
+                    node.setStyle(" -fx-background-color: #d6e2e0;\n" +
+                            "    -fx-border-color: #08FBE1;\n" +
+                            "    -fx-border-radius: 3px;\n" +
+                            "    -fx-background-radius: 3px;\n" +
+                            "    -fx-border-width: 2px;");
+                    i++;
+                    if(column<13){
+                        column++;
+                    }else{
+                        column = 0;
+                        row++;
+                    }
+                }else{
+                    i++;
+                    if(column<13){
+                        column++;
+                    }else{
+                        column = 0;
+                        row++;
+                    }
+                }
+            }else {
+                if(node.getStyle().equals(" -fx-background-color: #d6e2e0;\n" +
+                        "    -fx-border-color: #08FBE1;\n" +
+                        "    -fx-border-radius: 3px;\n" +
+                        "    -fx-background-radius: 3px;\n" +
+                        "    -fx-border-width: 2px;")){
+                    i++;
+                    if(column<13){
+                        column++;
+                    }else{
+                        column = 0;
+                        row++;
+                    }
+                }else{
+                    if(column<13){
+                        column++;
+                    }else{
+                        column = 0;
+                        row++;
+                    }
                 }
             }
         }
@@ -147,6 +206,7 @@ public class GamePlayerController{
         phrase = phrase.toUpperCase();
         StringTokenizer st = new StringTokenizer(phrase," ',!?.:;\"/()\\^<>-+*");
         String s = st.nextToken();
+        Label label;
         int pointer = 0;
         for(int i=0; i<phrase.length(); i++){
             car = phrase.charAt(i);
@@ -164,7 +224,7 @@ public class GamePlayerController{
                     }
                 }
                 node = (StackPane)getNodeByRowColumnIndex(row,column);
-                Label label = (Label)node.getChildren().get(0);
+                label = (Label)node.getChildren().get(0);
                 label.setText(""+car);
                 node.setStyle(" -fx-background-color: #bbbebd;\n" +
                         "    -fx-border-color: #08FBE1;\n" +
@@ -181,7 +241,7 @@ public class GamePlayerController{
             }else{
                 if(!(car == ' ' && column == 0)) {
                     node = (StackPane) getNodeByRowColumnIndex(row, column);
-                    Label label = (Label) node.getChildren().get(0);
+                    label = (Label) node.getChildren().get(0);
                     label.setText("" + car);
                     if (i < phrase.length() - 1 && phrase.charAt(i + 1) == ' ')
                         i++;
