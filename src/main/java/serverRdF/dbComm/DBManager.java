@@ -29,9 +29,9 @@ public class DBManager implements DBManagerInterface{
     }
 
     /**
-     * @param url //todo
-     * @param userID //todo
-     * @param password //todo
+     * @param url l'url del database
+     * @param userID l'utente del database
+     * @param password password dell'utente del database
      * @return dbManager il singleton di tipo DBManager
      * @throws SQLException
      */
