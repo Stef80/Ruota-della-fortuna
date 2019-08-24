@@ -1,4 +1,4 @@
-package adminRdF;
+package rdFUtil.view;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
+import rdFUtil.client.AdminChecker;
 import rdFUtil.client.Client;
 import rdFUtil.client.ClientImplementation;
 import rdFUtil.view.*;
@@ -37,10 +38,10 @@ public class WellcomePane {
 			registry = LocateRegistry.getRegistry(host,1099);
 			server = (Server) registry.lookup("SERVER");
 			client = new ClientImplementation();
-			new Controller(server,client,PrimePane.ISADMIN);
+			new Controller(server,client, AdminChecker.isIsAdmin());
 			new ForgottenPasswordPane(server,client);
             GamePlayerController game = new GamePlayerController(client);
-            new RegistrationFormPanel(server,client,PrimePane.ISADMIN);
+            new RegistrationFormPanel(server,client,AdminChecker.isIsAdmin());
             new TabPane(server,client);
 			client.setGameController(game);
 			Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("main_pane.fxml"));
