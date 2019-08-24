@@ -91,6 +91,8 @@ public class TabPane implements Initializable {
 	private TextField surnameTextField;
 	@FXML
 	private PasswordField passwordField;
+	@FXML
+	private Button refreshButton;
 
 
     private ObservableList<MatchData> gameObservableList = FXCollections.observableArrayList();
@@ -134,7 +136,6 @@ public class TabPane implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     	gameList.setItems(gameObservableList);
-		gameList.setCellFactory(e -> new GameView(server, client, matchData));
 //		ArrayList<MatchData> list = new ArrayList<>();
 //		try {
 //			list = server.visualizeMatch(client);
@@ -221,7 +222,24 @@ public class TabPane implements Initializable {
 		notification.showInformation();
 
 	}
+
+	public void refresh(){
+		gameList.setItems(gameObservableList);
+		ArrayList<MatchData> list = new ArrayList<>();
+		try {
+			list = server.visualizeMatch(client);
+			gameObservableList.addAll(list);
+			gameList.setItems(gameObservableList);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		for (MatchData matchData: list){
+			gameList.setCellFactory(e -> new GameView(server, client, matchData));
+		}
+	}
 }
+
+
 
 // * @return una stringa contenente, divisi da spazi, i nickname dei giocatori che:
 // detengono il punteggio piu' alto per manche,
