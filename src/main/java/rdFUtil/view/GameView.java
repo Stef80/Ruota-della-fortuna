@@ -104,6 +104,8 @@ public class GameView extends ListCell<MatchData> {
                     Scene scene = new Scene(root);
                     primaryStage.setScene(scene);
                     primaryStage.show();
+                    Stage oldStage = (Stage) joinButton.getScene().getWindow();
+                    oldStage.hide();
                 }
             });
             observeButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
@@ -129,6 +131,8 @@ public class GameView extends ListCell<MatchData> {
                     Scene scene = new Scene(root);
                     primaryStage.setScene(scene);
                     primaryStage.show();
+                    Stage oldStage = (Stage) observeButton.getScene().getWindow();
+                    oldStage.hide();
                 }
             });
         }
