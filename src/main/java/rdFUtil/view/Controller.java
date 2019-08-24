@@ -66,8 +66,9 @@ public class Controller {
                                                      .position(Pos.CENTER);
                 notification.showError();
             } else if (result == 0) {
-              //  FXMLLoader loader = new FXMLLoader(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
+          //     FXMLLoader loader = new FXMLLoader(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
                 Parent root= FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
+//                Parent root = null;
 //                try {
 //                    root = loader.load();
 //                } catch (IOException e) {
@@ -78,7 +79,6 @@ public class Controller {
 //                tabPane.setUserStat();
                 Stage primaryStage = new Stage();
                 Scene scene = new Scene(root);
-                //   scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
                 primaryStage.setTitle(titleFrame);
                 primaryStage.setScene(scene);
                 primaryStage.show();
@@ -115,7 +115,6 @@ public class Controller {
         Parent root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("registration_form_pane.fxml"));
         Stage primaryStage = new Stage();
         Scene scene = new Scene(root);
-       // scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         primaryStage.setTitle(titleFrame);
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);

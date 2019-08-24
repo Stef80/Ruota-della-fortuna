@@ -8,9 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import rdFUtil.MatchData;
 import rdFUtil.client.Client;
@@ -74,6 +72,23 @@ public class TabPane implements Initializable {
 	private Label letterCalledLabel;
 	@FXML
 	private Label averageMovesTillSolutionLabel;
+	@FXML
+	private Label nicknameLabel;
+	@FXML
+	private Label nameLabel;
+	@FXML
+	private Label surnameLabel;
+	@FXML
+	private Label emailLabel;
+	@FXML
+	private TextField nicknameTextField;
+	@FXML
+	private TextField nameTextField;
+	@FXML
+	private TextField surnameTextField;
+	@FXML
+	private PasswordField passwordField;
+
 
     private ObservableList<MatchData> gameObservableList = FXCollections.observableArrayList();
     private Client client;
@@ -132,8 +147,8 @@ public class TabPane implements Initializable {
     }
     @FXML
 	public void setUserStat() throws RemoteException {
-    	String userStat = server.checkPerPlayer(client.getNickname());
-
+    //	String userStat = server.checkPerPlayer(client.getNickname());
+		String userStat = "";
     	if(!userStat.equals(null)) {
 
 			StringTokenizer stasts = new StringTokenizer(userStat, " ");
@@ -169,12 +184,14 @@ public class TabPane implements Initializable {
 //	numero medio di volte che ha dovuto cedere il turno di gioco per manche,
    @FXML
    public void setGlobalStats() throws RemoteException {
-    	String recordStatStr = server.checkRecordPlayer();
+    //	String recordStatStr = server.checkRecordPlayer();
 
-    	int avSolManches = server.averageManches();
+    //	int avSolManches = server.averageManches();
 
-	    String strBestMove = server.bestMove();
-
+	//    String strBestMove = server.bestMove();
+           String recordStatStr = " ";
+           int avSolManches = 1;
+           String strBestMove = " ";
 	    StringTokenizer bestMove = new StringTokenizer(strBestMove, " ");
     	StringTokenizer recordStat = new StringTokenizer(recordStatStr," ");
 
