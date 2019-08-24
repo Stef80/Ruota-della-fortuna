@@ -159,7 +159,6 @@ public class TabPane implements Initializable {
 
     private void disableTab(){
 		if(!this.isAdmin){
-			phraseAdder.setDisable(true);
 			tabs.getTabs().remove(phraseAdder);
 		}else {
 			phraseAdder.setDisable(false);
