@@ -52,8 +52,6 @@ public class WellcomePane {
 			primaryStage.show();
 			Stage oldStage = (Stage) confirmButton.getScene().getWindow();
 			oldStage.close();
-
-
 		}catch (RemoteException | NotBoundException e){
 			Notifications notification = Notifications.create()
 												 .title("Connection Notification")
