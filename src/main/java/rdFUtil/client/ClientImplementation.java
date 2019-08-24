@@ -110,7 +110,7 @@ public class ClientImplementation implements Client {
     }
 
     @Override
-    public void notifyPlayerStats(int position, String name, int partialPoints, int points) throws RemoteException {
+    public void notifyPlayerStats(int position, String name, int partialPoints, int points, int numJolly) throws RemoteException {
     }
 
     @Override
