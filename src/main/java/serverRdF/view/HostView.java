@@ -16,7 +16,7 @@ public class HostView {
 	public void takeAddress() throws Exception{
 		Registry r = InsubriaLoginPane.getRegistry();
 		ServerImplementation server = InsubriaLoginPane.getServer();
-		r.rebind("SERVER",server);
+		r.bind("SERVER",server);
 		InetAddress address = null;
 		try {
 			address = InetAddress.getLocalHost();
