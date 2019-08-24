@@ -107,18 +107,14 @@ public class TabPane implements Initializable {
     private MatchData matchData;
     private boolean isAdmin;
 
-    public TabPane(){}
 
-    public TabPane(Server server, Client client,boolean isAdmin) {
-        this.server = server;
-        this.client = client;
-        this.isAdmin = isAdmin;
-    }
+    public TabPane(){
+	}
 
     public void addMatch(ActionEvent actionEvent) throws RemoteException, NotBoundException {
-//    	match = server.createMatch(client);
-//        GamePlayerController.setMatch(match);
-//        GamePlayerController.setObserver(false);
+    	match = server.createMatch(client);
+        GamePlayerController.setMatch(match);
+        GamePlayerController.setObserver(false);
 
         FXMLLoader loader = new FXMLLoader(Thread.currentThread().getContextClassLoader().getResource("game_player_pane.fxml"));
         Parent root = null;
@@ -138,9 +134,10 @@ public class TabPane implements Initializable {
 
     }
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+    	Controller.setArgs(this);
+
     	gameList.setItems(gameObservableList);
 //		ArrayList<MatchData> list = new ArrayList<>();
 //		try {
@@ -153,14 +150,16 @@ public class TabPane implements Initializable {
 //		for (MatchData matchData: list){
 //			gameList.setCellFactory(e -> new GameView(server, client, matchData));
 //		}
-		if(!isAdmin){
+		disableTab();
+		}
+
+    public void disableTab(){
+		if(!this.isAdmin){
 			phraseAdder.setDisable(true);
 		}else {
 			phraseAdder.setDisable(false);
 		}
-
-
-    }
+	}
     @FXML
 	public void setUserStat() throws RemoteException {
     //	String userStat = server.checkPerPlayer(client.getNickname());
@@ -265,6 +264,19 @@ public class TabPane implements Initializable {
 			notification.showError();
 		}
 
+	}
+
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	public void setServer(Server server) {
+		this.server = server;
+	}
+
+	public void setAdmin(boolean admin) {
+		isAdmin = admin;
 	}
 }
 
