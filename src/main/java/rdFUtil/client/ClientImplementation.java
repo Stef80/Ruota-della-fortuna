@@ -127,6 +127,7 @@ public class ClientImplementation implements Client {
 
     @Override
     public void notifyWheelResult(String risultato) throws RemoteException {
+        game.wheelResult(risultato);
     }
 
     @Override

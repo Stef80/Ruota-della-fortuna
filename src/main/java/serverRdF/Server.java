@@ -67,7 +67,7 @@ public interface Server extends Remote {
      *
      * @param nickname il nickname dell'utente
      * @return una stringa contenente, divisi da spazi: numero manche giocate, numero partite giocate, numero manche osservate, numero match osservati,
-     * numero manche vinte, numero match vinti, punteggio medio vinto per partita, numero medio di volte che ha dovuto cedere il turno di gioco per manche, numero medio di volte che ha dovuto cedere il turno di gioco per manche,
+     * numero manche vinte, numero match vinti, punteggio medio vinto per partita, numero medio di volte che ha dovuto cedere il turno di gioco per manche, numero medio di volte che ha dovuto cedere il turno di gioco per match,
      * numero medio di volte che ha perso tutto per manche, numero medio di volte che ha perso tutto per match
      * @throws RemoteException
      */
