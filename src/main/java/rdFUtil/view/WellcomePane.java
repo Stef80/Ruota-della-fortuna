@@ -47,7 +47,6 @@ public class WellcomePane {
 			Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("main_pane.fxml"));
 			Stage primaryStage = new Stage();
 			Scene scene = new Scene(root1);
-			scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 			primaryStage.setTitle("Wheel of Fortune");
 			primaryStage.setScene(scene);
 			primaryStage.show();

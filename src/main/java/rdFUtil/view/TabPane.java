@@ -96,6 +96,8 @@ public class TabPane implements Initializable {
 	private Button refreshButton;
 	@FXML
 	private TextField filePhraseTextField;
+	@FXML
+	private Tab phraseAdder;
 
 
     private ObservableList<MatchData> gameObservableList = FXCollections.observableArrayList();
@@ -152,6 +154,11 @@ public class TabPane implements Initializable {
 //		for (MatchData matchData: list){
 //			gameList.setCellFactory(e -> new GameView(server, client, matchData));
 //		}
+		if(!isAdmin){
+		phraseAdder.setDisable(true);
+		}else {
+			phraseAdder.setDisable(false);
+		}
 
     }
     @FXML

@@ -51,7 +51,7 @@ public class Controller {
      *
      * @throws IOException
      */
-    public void login() throws IOException {
+    public void login() throws Exception {
         String mail = emailTextField.getText();
         String password = passwordTextField.getText();
         Login login = new Login(password, mail);
