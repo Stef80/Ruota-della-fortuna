@@ -18,6 +18,10 @@ import serverRdF.view.HostView;
 
 import java.io.IOException;
 
+/**
+ * Il controller delle finestra di login. Da qui e' possibile inserire le credenziali del proprio account e accedere alle funzionalita' della piattaforma,
+ * registrare un nuovo account oppure resettare la propria password.
+ */
 public class Controller {
     @FXML
     private TextField emailTextField;
@@ -111,6 +115,11 @@ public class Controller {
         }
     }
 
+    /**
+     * Apre la finestra utilizzata per la registrazione di un nuovo utente
+     *
+     * @throws IOException In caso non sia possibile aprire la nuova finestra
+     */
     public void register() throws IOException {
         Parent root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("registration_form_pane.fxml"));
         Stage primaryStage = new Stage();
@@ -124,6 +133,11 @@ public class Controller {
 
     }
 
+    /**
+     * Apre la finestra utilizzata per il reset della password
+     *
+     * @throws IOException In caso non sia possibile aprire la finestra
+     */
     public void reset() throws IOException {
         Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("forgotten_password_pane.fxml"));
         Stage primaryStage = new Stage();
@@ -138,6 +152,11 @@ public class Controller {
         isServer =isS;
     }
 
+    /**
+     * Metodo utilizzato per passare informazioni del client a {@link TabPane}
+     *
+     * @param tb il riferimento al controller {@link TabPane}
+     */
     public static void setArgs(TabPane tb){
         tb.setClient(client);
         tb.setServer(server);

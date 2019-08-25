@@ -829,7 +829,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
      * @return full <code>true</code> se la partita è piena rendendo impossibile la partecipazione, <code>false</code> altrimenti
      * @throws RemoteException
      */
-    public boolean addPlayer(Client c) throws RemoteException {
+    public synchronized boolean addPlayer(Client c) throws RemoteException {
         boolean full;
         if (players.size() >= 3)
             full = true;
@@ -868,7 +868,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
      * @param c riferimento all'osservatore
      * @throws RemoteException
      */
-    public void addObserver(Client c) throws RemoteException {
+    public synchronized void addObserver(Client c) throws RemoteException {
         observers.add(c);
         if (onGoing) {
             dbManager.addMancheJoiner(id, manche.getNumManche(), c.getId(), true);
@@ -881,7 +881,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
      * @param c Il client che abbandona il match
      * @throws RemoteException
      */
-    public void leaveMatchAsPlayer(Client c) throws RemoteException {
+    public synchronized void leaveMatchAsPlayer(Client c) throws RemoteException {
         String name = c.getNickname();
         int num = 0;
         for (Player p : players) {
@@ -916,7 +916,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         }
     }
 
-    void leaveMatchAsPlayer(Player player) throws RemoteException {
+    synchronized void leaveMatchAsPlayer(Player player) throws RemoteException {
         String name = player.getNickname();
         int num = 0;
         for (Player p : players) {
@@ -957,7 +957,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
      * @param c Il riferimento al client che smette di guardare la partita
      * @throws RemoteException
      */
-    public void leaveMatchAsObserver(Client c) throws RemoteException {
+    public synchronized void leaveMatchAsObserver(Client c) throws RemoteException {
         observers.remove(c);
     }
 

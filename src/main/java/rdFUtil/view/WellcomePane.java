@@ -21,6 +21,9 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
+/**
+ * Controller della finestra iniziale di PlayerRdF e AdminRdF. Inserendo l'hostname del server sara' possibile creare una connessione
+ */
 public class WellcomePane {
 	@FXML
 	private TextField hostnameTextField;
@@ -32,6 +35,10 @@ public class WellcomePane {
 	private Client client;
 
 
+	/**
+	 * Questo metodo controlla l'hostname inserito e prova a stabilire una connessione. In caso di riuscita verra' caricata la schermata di login, in caso
+	 * contrario viene segnalato l'errore
+	 */
 	public void startGameView(){
 		String host = hostnameTextField.getText();
 		try {

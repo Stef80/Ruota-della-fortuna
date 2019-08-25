@@ -30,6 +30,10 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.StringTokenizer;
 
+/**
+ * Controller del menu principale di AdminRdF e PlayerRdF. Permette di visualizzare le partite, crearene di nuove, visualizzare le statistiche della piattaforma
+ * e gestire le informazioni del proprio profilo. Se si accede come admin e' anche possibile aggiungere nuove frasi.
+ */
 public class TabPane implements Initializable {
 
     @FXML
@@ -116,7 +120,13 @@ public class TabPane implements Initializable {
     public TabPane(){
 	}
 
-    public void addMatch(ActionEvent actionEvent) throws RemoteException, NotBoundException {
+	/**
+	 * Metodo utilizzato per la creazione di un nuovo match. Carichera' anche la schermata di gioco
+	 *
+	 * @param actionEvent
+	 * @throws RemoteException in caso di errore di comunicazione con il server
+	 */
+    public void addMatch(ActionEvent actionEvent) throws RemoteException {
     	match = server.createMatch(client);
         GamePlayerController.setMatch(match);
         GamePlayerController.setObserver(false);
@@ -140,6 +150,9 @@ public class TabPane implements Initializable {
     }
 
     @Override
+	/**
+	 * Inizializza il controller caricando automaticamente le partite disponibili, le statistiche di utilizzo della piattaforma e le informazioni del proprio profilo
+	 */
     public void initialize(URL location, ResourceBundle resources) {
     	Controller.setArgs(this);
 
@@ -186,6 +199,9 @@ public class TabPane implements Initializable {
 		}
 	}
     @FXML
+	/**
+	 * Carica le statistiche relative all'utente loggato.
+	 */
 	public void setUserStat() throws RemoteException {
     	String userStat = server.checkPerPlayer(client.getNickname());
 //		String userStat = "";
@@ -221,6 +237,9 @@ public class TabPane implements Initializable {
 
 
    @FXML
+   /**
+	* Carica i record di utilizzo della piattaforma
+	*/
    public void setGlobalStats() throws RemoteException {
     	String recordStatStr = server.checkRecordPlayer();
 
@@ -247,6 +266,9 @@ public class TabPane implements Initializable {
     	averageMovesTillSolutionLabel.setText(String.valueOf(avSolManches));
    }
 
+	/**
+	 * Notifica che la partita alla quale si ha provato a partecipare come giocatore e' piena
+	 */
 	public void notifyTooManyPlayers() {
 		Notifications notification = Notifications.create()
 											 .title("Giocatori")
@@ -257,6 +279,9 @@ public class TabPane implements Initializable {
 
 	}
 
+	/**
+	 * Ricarica la lista delle partite disponibili aggiornata
+	 */
 	public void refresh(){
 		gameList.setItems(gameObservableList);
 		ArrayList<MatchData> list = new ArrayList<>();
@@ -272,6 +297,9 @@ public class TabPane implements Initializable {
 		}
 	}
 
+	/**
+	 * Legge il file .csv inserito per l'aggiunta di nuove frasi e lo invia al server
+	 */
 	public void enterFilePhrase(){
     	String phrases = filePhraseTextField.getText();
     	String phrasesTrim = phrases.trim();
@@ -304,6 +332,11 @@ public class TabPane implements Initializable {
 
 	}
 
+	/**
+	 * Permette di cambiare il proprio nome.
+	 *
+	 * @throws RemoteException In caso di errore di connessione al server
+	 */
 	public void changeName() throws RemoteException{
     	String name = nameTextField.getText();
     	if(!name.equals("")) {
@@ -329,6 +362,11 @@ public class TabPane implements Initializable {
 		}
 	}
 
+	/**
+	 * Permette di cambiare il proprio cognome.
+	 *
+	 * @throws RemoteException In caso di un errore di connesione al server
+	 */
 	public void changeSurname() throws RemoteException{
 		String surname = surnameTextField.getText();
 		if(surname.equals("")) {
@@ -354,6 +392,11 @@ public class TabPane implements Initializable {
 		}
 	}
 
+	/**
+	 * Permette di cambiare il proprio nickname.
+	 *
+	 * @throws RemoteException In caso di errore di connessione al server
+	 */
 	public void changeNickname() throws RemoteException{
 		String nickname = nicknameTextField.getText();
 		if(nickname.equals("")) {
@@ -379,6 +422,11 @@ public class TabPane implements Initializable {
 		}
 	}
 
+	/**
+	 * Permette di modificare la propria password
+	 *
+	 * @throws RemoteException In caso di errore di connesione al server
+	 */
 	public void changePassword() throws RemoteException{
 		String password = passwordField.getText();
 		if(password.equals("")) {

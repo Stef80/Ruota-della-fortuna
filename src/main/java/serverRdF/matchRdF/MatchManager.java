@@ -49,7 +49,7 @@ public class MatchManager {
      * @param c il riferimento del Client che sara' fornito all'oggetto remoto {@link Match} in modo da poter inviargli le notifiche (Observers design pattern)
      * @return match un riferimento all'oggetto remoto {@link RemoteMatch} della partita appena creata.
      */
-    public RemoteMatch createMatch(Client c) {
+    public synchronized RemoteMatch createMatch(Client c) {
         String id = UUID.randomUUID().toString();
         LocalDateTime currentTime = LocalDateTime.now();
         Match match = null;
@@ -79,7 +79,7 @@ public class MatchManager {
      * @param idMatch il nome del match al quale si vuole partecipare
      * @return un riferimento all'oggetto remoto {@link RemoteMatch} della partita a cui si ha appena partecipato, o null nel caso in cui la partita sia piena o ci siano stati problemi con la connessione al server
      */
-    public synchronized RemoteMatch joinMatch(Client c, String idMatch) {
+    public RemoteMatch joinMatch(Client c, String idMatch) {
         Match match = matches.get(idMatch);
         boolean full;
         try {
