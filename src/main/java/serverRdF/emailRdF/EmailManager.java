@@ -4,6 +4,10 @@ import serverRdF.ServerImplementation;
 
 import javax.mail.MessagingException;
 
+
+/**
+ * Classe che si occupa dell'invio delle mail automatiche.
+ */
 public class EmailManager {
     private static EmailManager emailManager = null;
     private String email;
@@ -31,6 +35,8 @@ public class EmailManager {
     }
 
     /**
+     * Invia una mail
+     *
      * @param to  il destinatario
      * @param sub l'oggetto della mail
      * @param txt il corpo del messaggio

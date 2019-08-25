@@ -10,6 +10,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implementazione dell'interfaccia {@link DBManagerInterface}
+ */
 public class DBManager implements DBManagerInterface{
     //TODO bisogna implementare i metodi dell'interfaccia
     private static DBManager dbManager=null;

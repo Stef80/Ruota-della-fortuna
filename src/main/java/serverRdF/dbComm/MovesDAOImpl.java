@@ -7,6 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Implementazione dell'interfaccia {@link MovesDAO}
+ */
 public class MovesDAOImpl implements MovesDAO {
     private Connection con;
 
@@ -14,6 +17,7 @@ public class MovesDAOImpl implements MovesDAO {
         con = c;
     }
 
+    @Override
     public boolean addMove(Move move) throws SQLException{
         String queryAdd = "INSERT INTO " + MovesTable + "(" + MovesIdPlayerAttribute + "," + MovesMoveTypeAttribute + "," + MovesOutcomeAttribute + "," + MovesIdMatchAttribute + "," + MovesMancheNumberAttribute + ","+MovesMoveIdAttribute+") " +
                             "VALUES ('" + move.getPlayer() + "','" + move.getMoveType() + "'," + move.getOutCome() + ",'" + move.getIdMatch() + "'," + move.getNumManche() + ",'"+ move.getMoveId()+"')";
@@ -21,6 +25,7 @@ public class MovesDAOImpl implements MovesDAO {
         return stmt.executeUpdate(queryAdd) > 0;
     }
 
+    @Override
     public MovesDTO getBestMove() throws SQLException{
         String queryGet = "SELECT * FROM "+UsersDAO.UserTable+" M JOIN "+MovesTable+" U ON M.id = U.id JOIN "+ManchesDAO.ManchesTable+" MT ON U.idMatch = MT.id AND U.number = MT.number "+
                 "JOIN "+PhrasesDAO.PhraseTable+" PT ON MT.phrase = PT.phrase WHERE U.outcome = (SELECT MAX("+MovesOutcomeAttribute+") FROM "+MovesTable+");";

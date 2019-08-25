@@ -7,6 +7,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implementazione dell'interfaccia {@link UsersDAO}
+ */
 public class UsersDAOImpl implements UsersDAO {
     private Connection con;
     UsersDAOImpl(Connection c){
@@ -157,6 +160,7 @@ public class UsersDAOImpl implements UsersDAO {
             return null;
     }
 
+    @Override
     public UsersDTO getUserForMostLostTurn() throws SQLException{
         String queryBest = "SELECT "+UserNicknameAttribute+", COUNT("+UserIdAttribute+") AS count FROM " +UserTable+" U " +
                 "JOIN "+MancheJoinersDAO.mancheJoinersTable+" MW ON U.id = MW.idPlayer " +
@@ -174,6 +178,7 @@ public class UsersDAOImpl implements UsersDAO {
             return null;
     }
 
+    @Override
     public UsersDTO getUserForMostLosses() throws SQLException{
         String queryBest = "SELECT "+UserNicknameAttribute+", COUNT("+UserIdAttribute+") AS count FROM " +UserTable+" U " +
                 "JOIN "+MancheJoinersDAO.mancheJoinersTable+" MW ON U.id = MW.idPlayer " +

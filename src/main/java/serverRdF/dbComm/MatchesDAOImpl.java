@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Implementazione dell'interfaccia {@link MatchesDAO}
+ */
 public class MatchesDAOImpl implements MatchesDAO {
     private Connection con;
     MatchesDAOImpl(Connection c){

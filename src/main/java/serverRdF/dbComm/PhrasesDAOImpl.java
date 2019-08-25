@@ -7,6 +7,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implementazione dell'interfaccia {@link PhrasesDAO}
+ */
 public class PhrasesDAOImpl implements PhrasesDAO {
     private Connection con;
     PhrasesDAOImpl(Connection c){

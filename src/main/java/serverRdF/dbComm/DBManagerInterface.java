@@ -8,6 +8,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Interfaccia utilizzata dai managers del server per accedere ai metodo del database
+ */
 public interface DBManagerInterface {
 
     //i metodi ritornano false se non riescono a fare le query (per esempio a causa di SQLException) o null quando la query ritorna una tabella vuota. negli altri casi ritorna true/riferimento
@@ -188,38 +191,133 @@ public interface DBManagerInterface {
      */
     int getAverageMovesPerManche();
 
+    /**
+     * Permette di individuare il numero di manche vinte da un dato giocatore
+     *
+     * @param id id del giocatore
+     * @return il numero di manche vinte
+     */
     int getWonManchesByUser(String id);
 
+    /**
+     * Permette di individuare il numero di manche giocate da un dato giocatore
+     *
+     * @param id id del giocatore
+     * @return il numero di manche giocate
+     */
     int getManchePlayedByUser(String id);
 
+    /**
+     * Permette di individuare il numero di partite giocate da un dato giocatore
+     *
+     * @param id id del giocatore
+     * @return il numero di partite giocate
+     */
     int getMatchesPlayedByUser(String id);
 
+    /**
+     * Permette di individuare il numero di partite vinte da un dato giocatore
+     *
+     * @param id id del giocatore
+     * @return il numero di partite vinte
+     */
     int getWonMatchesByUser(String id);
 
+    /**
+     * Permette di individuare il numero di manche osservate da un dato utente
+     *
+     * @param id id dell'utente
+     * @return il numero di manche osservate
+     */
     int getObservedManchesByUser(String id);
 
+    /**
+     * Permette di individuare il numero di partite osservate da un dato utente
+     *
+     * @param id id dell'utente
+     * @return il numero di partite osservate
+     */
     int getObservedMatchesByUser(String id);
 
+    /**
+     * Permette di ottenere la quantita' media di punti vinti per partita
+     *
+     * @param id id del giocatore
+     * @return la media di punti vinti per partita
+     */
     int getAveragePointsWonByUser(String id);
 
+    /**
+     * Permette di ottenere il numero medio di turni passati per manche da un dato giocatore
+     *
+     * @param id id del giocatore
+     * @return il numero medio di turni persi per manche
+     */
     int getAveragePassedTurnPerMancheByUser(String id);
 
+    /**
+     * Permette di ottenere il numero medio di turni passati per partita da un dato giocatore
+     *
+     * @param id id del giocatore
+     * @return il numero medio di turni persi per partita
+     */
     int getAveragePassedTurnPerMatchByUser(String id);
 
+    /**
+     * Il numero medio di volte che un giocatore ha perso tutto per manche
+     *
+     * @param id id del giocatore
+     * @return il numero medio di volte che ha perso tutto per manche
+     */
     int getAverageLossPerMancheByUser(String id);
 
+    /**
+     * Il numero medio di volte che un giocatore ha perso tutto per partita
+     *
+     * @param id id del giocatore
+     * @return il numero medio di volte che ha perso tutto per partita
+     */
     int getAverageLossPerMatchByUser(String id);
 
+    /**
+     * Permette di ottenere l'utente che ha totalizzato la maggiore quantita' di punti in una manche
+     *
+     * @return un riferimento di tipo {@link UsersDTO} relativo al giocatore
+     */
     UsersDTO getBestUserForManche();
 
+    /**
+     * Permette di ottenere l'utente che ha totalizzato la maggiore quantita' di punti in una partita
+     *
+     * @return un riferimento di tipo {@link UsersDTO} relativo al giocatore
+     */
     UsersDTO getBestUserForMatch();
 
+    /**
+     * Permette di ottenere l'utente che ha giocato la maggiore quantita' di manche
+     *
+     * @return un riferimento di tipo {@link UsersDTO} relativo al giocatore
+     */
     UsersDTO getUserForMoreManchesPlayed();
 
+    /**
+     * Permette di ottenere l'utente con la media piu' alta di punti acquisiti per manche
+     *
+     * @return un riferimento di tipo {@link UsersDTO} relativo al giocatore
+     */
     UsersDTO getUserForBestMancheAverage();
 
+    /**
+     * Permette di ottenere l'utente che ha perso piu' volte il turno in seguito ad errori
+     *
+     * @return un riferimento di tipo {@link UsersDTO} relativo al giocatore
+     */
     UsersDTO getUserForMostLostTurn();
 
+    /**
+     * Permette di ottenere l'utente che ha perso tutto piu' volte in un giro della ruota
+     *
+     * @return un riferimento di tipo {@link UsersDTO} relativo al giocatore
+     */
     UsersDTO getUserForMostLosses();
-    //TODO tutti i metodi che servono agli altri manager e a Match. ricordarsi di aggiungere man mano i metodi utilizzati nelle altre classi per non perderli.
 }

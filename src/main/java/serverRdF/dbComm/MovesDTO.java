@@ -1,5 +1,8 @@
 package serverRdF.dbComm;
 
+/**
+ * La classe dei Data Transfer Objects relativi alle tuple della tabella "Moves". I suoi metodi permettono la costruzione e l'ottenimento dei campi dell'oggetto
+ */
 public class MovesDTO {
     private UsersDTO player;
     private String moveType;

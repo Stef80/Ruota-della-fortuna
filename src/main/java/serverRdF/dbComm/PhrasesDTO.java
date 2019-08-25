@@ -1,5 +1,8 @@
 package serverRdF.dbComm;
 
+/**
+ * La classe dei Data Transfer Objects relativi alle tuple della tabella "Phrases". I suoi metodi permettono la costruzione e l'ottenimento dei campi dell'oggetto
+ */
 public class PhrasesDTO {
     private String theme;
     private String phrase;

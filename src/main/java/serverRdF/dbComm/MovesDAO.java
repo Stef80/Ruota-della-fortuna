@@ -4,6 +4,9 @@ import serverRdF.matchRdF.Move;
 
 import java.sql.SQLException;
 
+/**
+ * Interfaccia del Data Access Object che si occupa degli accessi al database relativi alle mosse
+ */
 public interface MovesDAO {
     String MovesTable = "Moves";
     String MovesIdPlayerAttribute = "id";
@@ -18,7 +21,7 @@ public interface MovesDAO {
      *
      * @param move la mossa da inserire
      * @return <code>true</code> se l'inserimento va a buon fine, altrimenti <code>false</code>
-     * @throws SQLException
+     * @throws SQLException in caso di errore di connessione al database
      */
     boolean addMove(Move move) throws SQLException;
 
@@ -26,7 +29,7 @@ public interface MovesDAO {
      * Questo metodo permette di individuare la mossa che ha fatto guadagnare la maggiore quantita' di punti
      *
      * @return Un oggetto di tipo {@link UsersDTO}
-     * @throws SQLException
+     * @throws SQLException in caso di errore di connessione al database
      */
     public MovesDTO getBestMove() throws SQLException;
 

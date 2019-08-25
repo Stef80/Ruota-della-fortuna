@@ -2,6 +2,9 @@ package serverRdF.dbComm;
 
 import java.sql.SQLException;
 
+/**
+ * Interfaccia del Data Access Object che si occupa degli accessi al database relativi alle partite
+ */
 public interface MatchesDAO {
     String MatchTable = "Matches";
     String MatchIdAttribute = "id";
@@ -13,7 +16,7 @@ public interface MatchesDAO {
      *
      * @param matchesDTO riferimento al Data Transfer Object relativo alla partita
      * @return <code>true</code> se la query va a buon fine, altrimenti <code>false</code>
-     * @throws SQLException
+     * @throws SQLException in caso di errore di connessione al database
      */
     boolean addMatch(MatchesDTO matchesDTO) throws SQLException;
 
@@ -23,7 +26,7 @@ public interface MatchesDAO {
      *
      * @param idMatch id del match da cancellare
      * @return <code>true</code> se l'eliminazione va a buon fine, <code>false</code> altrimenti
-     * @throws SQLException
+     * @throws SQLException in caso di errore di connessione al database
      */
     boolean deleteMatch(String idMatch) throws SQLException;
 }

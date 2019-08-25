@@ -8,13 +8,15 @@ import java.util.Properties;
 
 public class EmailSender {
   /**
+   * Invia delle mail attraverso l'account Insubria del mittente
+   *
    * @param from     la mail del mittente
    * @param password la password del mittente
    * @param to       la mail del destinatario
    * @param subject  l'oggetto della mail
    * @param body     il corpo della mail
    * @throws SendFailedException
-   * @throws MessagingException
+   * @throws MessagingException In caso non sia stato possibile inviare la mail
    */
   public static void sendUninsubriaEmail(String from, String password, String to, String subject, String body) throws SendFailedException, MessagingException {
     // host per la mail dell'universita'

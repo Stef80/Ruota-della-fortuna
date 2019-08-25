@@ -6,10 +6,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Implementazione dell'interfaccia {@link MatchWinnersDAO}
+ */
 public class MatchWinnersDAOImpl implements MatchWinnersDAO {
     private Connection con;
     MatchWinnersDAOImpl(Connection c){con = c;}
 
+    @Override
     public boolean addMatchWinner(String idMatch, String idPlayer, int amount) throws SQLException {
         String queryAdd = "INSERT INTO "+matchWinnersTable+"("+matchWinnersIdMatchAttribute+","+matchWinnersidPlayerAttribute+","+matchWinnersAmountAttribute+") " +
                 "VALUES ('"+idMatch+"','"+idPlayer+"',"+amount+");";

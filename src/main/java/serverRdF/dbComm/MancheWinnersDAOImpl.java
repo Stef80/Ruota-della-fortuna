@@ -5,6 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Implementazione dell'interfaccia {@link MancheWinnersDAO}
+ */
 public class MancheWinnersDAOImpl implements MancheWinnersDAO {
     private Connection con;
 

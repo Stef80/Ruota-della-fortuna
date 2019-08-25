@@ -5,6 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Implementazione dell'interfaccia {@link MancheJoinersDAO}
+ */
 public class MancheJoinersDAOImpl implements MancheJoinersDAO {
     private Connection con;
     MancheJoinersDAOImpl(Connection c){con = c;}
