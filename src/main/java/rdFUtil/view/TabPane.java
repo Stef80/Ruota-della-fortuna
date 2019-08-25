@@ -144,21 +144,21 @@ public class TabPane implements Initializable {
     	Controller.setArgs(this);
 
     	gameList.setItems(gameObservableList);
-//		ArrayList<MatchData> list = new ArrayList<>();
-//		try {
-//			list = server.visualizeMatch(client);
-//			gameObservableList.addAll(list);
-//			gameList.setItems(gameObservableList);
-//		} catch (RemoteException e) {
-//			e.printStackTrace();
-//		}
-//		for (MatchData matchData: list){
-//			gameList.setCellFactory(e -> new GameView(server, client, matchData));
-//		}
+		ArrayList<MatchData> list = new ArrayList<>();
+		try {
+			list = server.visualizeMatch(client);
+			gameObservableList.addAll(list);
+			gameList.setItems(gameObservableList);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		for (MatchData matchData: list){
+			gameList.setCellFactory(e -> new GameView(server, client, matchData));
+		}
 		disableTab();
 		try {
 			setUserStat();
-          //  setGlobalStats(); todo da provare con database attivo
+            setGlobalStats(); //todo da provare con database attivo
 		} catch (RemoteException e) {
 			Notifications notification = Notifications.create()
 												 .title("Notifica erorre")
@@ -187,8 +187,8 @@ public class TabPane implements Initializable {
 	}
     @FXML
 	public void setUserStat() throws RemoteException {
-    //	String userStat = server.checkPerPlayer(client.getNickname());
-		String userStat = "";
+    	String userStat = server.checkPerPlayer(client.getNickname());
+//		String userStat = "";
     	if(!userStat.equals("")) {
 
 			StringTokenizer stasts = new StringTokenizer(userStat, " ");
@@ -219,19 +219,17 @@ public class TabPane implements Initializable {
 
 	}
 
-//todo chiedere quale dei due prima
-// numero medio di volte che ha dovuto cedere il turno di gioco per manche,
-//	numero medio di volte che ha dovuto cedere il turno di gioco per manche,
+
    @FXML
    public void setGlobalStats() throws RemoteException {
-    //	String recordStatStr = server.checkRecordPlayer();
+    	String recordStatStr = server.checkRecordPlayer();
 
-    //	int avSolManches = server.averageManches();
+    	int avSolManches = server.averageManches();
 
-	//    String strBestMove = server.bestMove();
-           String recordStatStr = " ";
-           int avSolManches = 1;
-           String strBestMove = " ";
+	    String strBestMove = server.bestMove();
+//           String recordStatStr = " ";
+//           int avSolManches = 1;
+//           String strBestMove = " ";
 	    StringTokenizer bestMove = new StringTokenizer(strBestMove, " ");
     	StringTokenizer recordStat = new StringTokenizer(recordStatStr," ");
 
