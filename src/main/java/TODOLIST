@@ -3,8 +3,6 @@
 * mappa logica ER
 * Traduzione schema ER: aggiungere vincoli check che servono
 * qualche schema UML
-* Inserire nello schema ER nell'entità Matches gli attributi Data - ora (tipo varchar)
-* Mostrare nello schema ER l'identificatore misto di Manches e di Moves
 *
 * IMPLEMENTAZIONI DEL CLIENT IN ADMIN E PLAYER RDF
 * STABILIRE CONNESSIONE TRA CLIENT E SERVER

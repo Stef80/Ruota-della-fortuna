@@ -1,7 +1,0 @@
-per passare allo schema logico bisogna risolvere la generalizzazione
-
--Gerarchia totale-esclusiva
-	-è possibile sia eliminazione figli che padre
-	-eliminare i figli perchè non aggiungono alcun attributo e quindi l'eliminazione dei figli non porterebbe
-	 ad avere campi nulli
-	-eliminare il padre in quanto non si hanno mai accessi al padre ma solo ai figli
