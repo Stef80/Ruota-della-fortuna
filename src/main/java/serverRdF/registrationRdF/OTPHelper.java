@@ -5,6 +5,9 @@ import rdFUtil.client.Client;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
+/**
+ * Interfaccia remota dell'oggetto che si occupa di ricevere e controllare l'OTP utilizzato dal client per ultimare la registrazione
+ */
 public interface OTPHelper extends Remote {
 
     /**

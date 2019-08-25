@@ -7,6 +7,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import serverRdF.dbComm.DBManager;
 
+/**
+ *  La classe che avvia il modulo ServerRdF
+ */
 public class PrimePaneServer extends Application {
 
 

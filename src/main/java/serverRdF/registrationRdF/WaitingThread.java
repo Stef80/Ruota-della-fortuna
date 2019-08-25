@@ -24,6 +24,9 @@ public class WaitingThread extends Thread {
         this.admin = admin;
     }
 
+    /**
+     * Attende 10 minuti. Se non viene interrotto annulla la registrazione, altrimenti la completa
+     */
     public void run() {
         int tenMininSec = 600000;
         try {

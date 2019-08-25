@@ -279,11 +279,26 @@ public class TabPane implements Initializable {
     	String phrasesTrim = phrases.trim();
 		File filePhrases = new File(phrasesTrim);
 		try {
-			server.addPhrases(filePhrases);
+			boolean bool = server.addPhrases(filePhrases);
+			if(bool){
+				Notifications notification = Notifications.create()
+						.title("Successo")
+						.text("Le frasi sono state aggiunte con successo")
+						.hideAfter(Duration.seconds(2))
+						.position(Pos.BASELINE_CENTER);
+				notification.showInformation();
+			}else{
+				Notifications notification = Notifications.create()
+						.title("Notifica Errore")
+						.text("Non e' stato possibile aggiungere le nuove frasi\n Riprova")
+						.hideAfter(Duration.seconds(2))
+						.position(Pos.BASELINE_CENTER);
+				notification.showError();
+			}
 		} catch (RemoteException e) {
 			Notifications notification = Notifications.create()
 												 .title("Notifica Errore")
-												 .text("File non Caricato")
+												 .text("Server offline")
 												 .hideAfter(Duration.seconds(2))
 												 .position(Pos.BASELINE_CENTER);
 			notification.showError();

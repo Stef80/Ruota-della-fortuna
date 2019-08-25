@@ -41,7 +41,7 @@ public class WellcomePane {
 			new Controller(server,client, AdminChecker.isIsAdmin());
 			new ForgottenPasswordPane(server,client);
             GamePlayerController game = new GamePlayerController(client);
-            new RegistrationFormPanel(server,client,AdminChecker.isIsAdmin());
+            new RegistrationFormPanel(server,client,AdminChecker.isIsAdmin(), false);
 			client.setGameController(game);
 			Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("main_pane.fxml"));
 			Stage primaryStage = new Stage();

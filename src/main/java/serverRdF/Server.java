@@ -100,7 +100,7 @@ public interface Server extends Remote {
      * @param file il file CSV dal quale recuperare le frasi
      * @throws RemoteException nel caso in cui non sia possibile comunicare con il server
      */
-    public void addPhrases(File file) throws RemoteException;
+    public boolean addPhrases(File file) throws RemoteException;
 
     /**
      * Questo metodo permette ad un utente di cambiare il proprio nome

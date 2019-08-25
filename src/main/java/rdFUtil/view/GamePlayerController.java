@@ -322,6 +322,8 @@ public class GamePlayerController {
     @FXML
     public void confirmSolution() throws RemoteException {
         String solution = solutionTextField.getText();
+        solution = solution.trim();
+        solution = solution.toUpperCase();
         match.giveSolution(solution);
     }
 
@@ -549,6 +551,7 @@ public class GamePlayerController {
                                              .hideAfter(Duration.seconds(2))
                                              .position(Pos.BASELINE_CENTER);
         notification.showInformation();
+        yourTurn();
     }
 
     public void notifyEndMatch(String winner) {
@@ -589,7 +592,7 @@ public class GamePlayerController {
     }
 
     public void notifyPlayerError(String name) {
-        String message = name + "\nha sbagliato";
+        String message = name + "\nha commesso un errore";
         Notifications notification = Notifications.create()
                                              .title("Notifica di partita")
                                              .text(message)

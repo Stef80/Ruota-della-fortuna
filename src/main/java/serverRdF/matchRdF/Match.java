@@ -15,6 +15,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
+/**
+ * Oggetto remoto che implementa l'interfaccia {@link RemoteMatch}
+ */
 public class Match extends UnicastRemoteObject implements RemoteMatch {
 
     private List<Player> players;
@@ -317,11 +320,12 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
 
     @Override
     public void askForVocal() throws RemoteException {
-        if (firstTurn || timer.isThisForJolly() || players.get(turn).getPartialPoints() < 1000) {
+        if (firstTurn || timer.isThisForJolly() || players.get(turn).getPartialPoints() < 1000 || timer.isThisForSolution() || timer.isThisForVocal()) {
             timer.interrupt();
             errorInTurn(true, false);
             return;
         }
+        timer.interrupt();
         notifyVocalAsk();
         startTimer(10000, false, false, true);
     }
@@ -486,7 +490,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     }
 
     /**
-     * Questo metodo permette di conoscere il concorrente a cui appartiene il nuovo turno di gioco
+     * Questo metodo permette di passare al turno successivo
      *
      * @throws RemoteException
      */
@@ -525,12 +529,14 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         }
     }
 
+    @Override
     public void askForSolution() throws RemoteException {
-        if (firstTurn || timer.isThisForJolly()) {
+        if (firstTurn || timer.isThisForJolly() || timer.isThisForVocal() || timer.isThisForSolution()) {
             timer.interrupt();
             errorInTurn(true, false);
             return;
         }
+        timer.interrupt();
         notifySolutionAsk();
         startTimer(10000, false, true, false);
     }
@@ -556,6 +562,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         }
     }
 
+    @Override
     public void giveSolution(String solution) throws RemoteException {
         Player activePlayer = players.get(turn);
         if (firstTurn || timer.isThisForJolly() || !timer.isThisForSolution() || timer.isThisForVocal()) {
@@ -564,7 +571,8 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
             return;
         }
         timer.interrupt();
-        if (solution.equals(manche.getCurrentPhrase())) {
+        String phrase = manche.getCurrentPhrase().getPhrase();
+        if (solution.equals(phrase.toUpperCase())) {
             manche.getTurns().addMove(activePlayer.getIdPlayer(), "soluzione", -1);
             endManche(activePlayer);
         } else {
@@ -953,6 +961,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         observers.remove(c);
     }
 
+    @Override
     public void askNotify(Client c) throws RemoteException {
         if (onGoing) {
             Player p = null;
@@ -969,7 +978,6 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         }
     }
 
-    @Override
     public String getMatchId() throws RemoteException {
         return id;
     }

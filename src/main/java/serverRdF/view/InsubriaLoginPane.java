@@ -26,6 +26,10 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
+
+/**
+ * Controller della finestra utilizzata per effettuare l'accesso ad un account Insubria per l'invio delle mail automatiche.
+ */
 public class InsubriaLoginPane {
     @FXML
     private TextField userTextField;
@@ -39,6 +43,13 @@ public class InsubriaLoginPane {
     private static ServerImplementation server;
 
 
+    /**
+     * Questo metodo cerca di stabilire la connessione all'account Insubria attraverso l'invio di una email. Se l'invio avviene senza problemi,
+     * viene ricercata nel databse la presenza di admin. Se sono presenti degli admin, viene aperta la schermata di accesso, altrimenti viene aperta la schermata di registrazione
+     *
+     * @throws IOException In caso non riesca a caricare la finestra successiva
+     * @throws RemoteException
+     */
     public void loginManager() throws IOException, RemoteException {
         String user = userTextField.getText();
         String password = passwordTextField.getText();
@@ -53,7 +64,7 @@ public class InsubriaLoginPane {
             new Controller(server, client, true);
             Controller.setIsServer(true);
             new ForgottenPasswordPane(server, client);
-            new RegistrationFormPanel(server, client, true);
+            new RegistrationFormPanel(server, client, true, true);
             if (dbManager.getAnyAdmin()) {
                 Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("main_pane.fxml"));
                 Stage primaryStage = new Stage();

@@ -28,16 +28,35 @@ public class MonitoringManager {
         }
     }
 
+
+    /**
+     * Questo metodo permette di individuare la chiamata di consonante che ha permesso di ottenere la maggiore quantita' di punti
+     *
+     * @return la stringa contenente, divisi da spazi: il nickname del giocatore, la consonante chiamata e la frase associata
+     */
     public String getBestMove(){
         MovesDTO bestMove = dbManager.getBestMove();
-        String result = ""+ bestMove.getPlayer().getNickname() +" " +bestMove.getMoveType() +" "+ bestMove.getManche().getPhrase().getPhrase();//?? perchè è chiamata due volte
+        String result = ""+ bestMove.getPlayer().getNickname() +" " +bestMove.getMoveType() +" "+ bestMove.getManche().getPhrase().getPhrase();
         return result;
     }
 
+    /**
+     * Questo metodo permette di individuare la media di mosse necessarie per indovinare la soluzione
+     *
+     * @return il numero medio di mosse
+     */
     public int averageMovesPerManches(){
         return dbManager.getAverageMovesPerManche();
     }
 
+    /**
+     * Questo metodo permette di individuare le statistiche relative ad un singolo giocatore
+     *
+     * @param nickname il nickname del giocatore
+     * @return una stringa contenente, divisi da spazi: numero manche giocate, numero partite giocate, numero manche osservate, numero match osservati,
+     * numero manche vinte, numero match vinti, punteggio medio vinto per partita, numero medio di volte che ha dovuto cedere il turno di gioco per manche, numero medio di volte che ha dovuto cedere il turno di gioco per match,
+     * numero medio di volte che ha perso tutto per manche, numero medio di volte che ha perso tutto per match
+     */
     public String perPlayerStats(String nickname){
         UsersDTO user = dbManager.getUserByNickname(nickname);
         if(user != null){
@@ -61,6 +80,12 @@ public class MonitoringManager {
             return null;
     }
 
+    /**
+     * Permette di individuare i record della piattaforma
+     *
+     * @return una stringa contenente, divisi da spazi, i nickname dei giocatori che: detengono il punteggio piu' alto per manche, detengono il punteggio piu' alto per partita,
+     * che ha giocato piu' manche in assoluto, con la media di punti acquisiti per manche piu' alta, che ha ceduto il turno piu' volte a causa di errori, che ha perso tutto il maggior numero di volte
+     */
     public String bestStatsUsers(){
         String result = "";
         UsersDTO user;
