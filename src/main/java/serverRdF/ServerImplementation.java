@@ -17,6 +17,10 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+/**
+ * Implementazione dell'interfaccia remota Server.
+ *
+ */
 public class ServerImplementation extends UnicastRemoteObject implements Server {
     private DBManager dbManager;
     private EmailManager emailManager;
@@ -100,11 +104,11 @@ public class ServerImplementation extends UnicastRemoteObject implements Server 
     }
 
     @Override
-    public void addPhrases(File file) throws RemoteException {
+    public boolean addPhrases(File file) throws RemoteException {
         try {
-            phraseManager.addPhrases(file);
+            return phraseManager.addPhrases(file);
         }catch (IOException e){
-            e.printStackTrace();
+            return false;
         }
     }
 

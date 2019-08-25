@@ -9,7 +9,7 @@ import serverRdF.emailRdF.EmailManager;
 import java.util.Random;
 
 /**
- * Questa classe si occupa della modifica dei dati di uno specifico utente
+ * Questa classe si occupa della modifica dei dati di uno specifico utente.
  */
 public class ProfileManager {
     private DBManager dbManager;
@@ -23,7 +23,7 @@ public class ProfileManager {
 
     /**
      * @param dbmng        il riferimento a {@link DBManager}
-     * @param emailManager //TODO
+     * @param emailManager il riferimento a {@link EmailManager}
      * @return Il riferimento al singleton di {@link ProfileManager}
      */
     public static ProfileManager createProfileManager(DBManager dbmng, EmailManager emailManager) {
@@ -35,24 +35,52 @@ public class ProfileManager {
         }
     }
 
+    /**
+     * Questo metodo modifica il nome di un utente nel database
+     *
+     * @param name il nuovo nome da sostituire al vecchio
+     * @param idUser id dell'utente
+     * @return <code>true</code> se il cambiamento avviene con successo, <code>false</code> altrimenti
+     */
     public boolean changeName(String name, String idUser) {
         UsersDTO user = dbManager.getUserById(idUser);
         user.setName(name);
         return dbManager.updateUser(user);
     }
 
+    /**
+     * Questo metodo modifica il cognome di un utente nel database
+     *
+     * @param surname il nuovo cognome da sostituire al vecchio
+     * @param idUser id dell'utente
+     * @return <code>true</code> se il cambiamento avviene con successo, <code>false</code> altrimenti
+     */
     public boolean changeSurname(String surname, String idUser) {
         UsersDTO user = dbManager.getUserById(idUser);
         user.setSurname(surname);
         return dbManager.updateUser(user);
     }
 
+    /**
+     * Questo metodo modifica il nickname di un utente nel database
+     *
+     * @param nickname il nuovo nickname da sostituire al vecchio
+     * @param idUser id dell'utente
+     * @return <code>true</code> se il cambiamento avviene con successo, <code>false</code> altrimenti
+     */
     public boolean changeNickname(String nickname, String idUser) {
         UsersDTO user = dbManager.getUserById(idUser);
         user.setNickname(nickname);
         return dbManager.updateUser(user);
     }
 
+    /**
+     * Questo metodo modifica la password di un utente nel database
+     *
+     * @param password la nuova password da sostituire alla vecchia
+     * @param idUser id dell'utente
+     * @return <code>true</code> se il cambiamento avviene con successo, <code>false</code> altrimenti
+     */
     public boolean changePassword(String password, String idUser){
         UsersDTO user = dbManager.getUserById(idUser);
         user.setPassword(password);
@@ -63,6 +91,12 @@ public class ProfileManager {
         return dbManager.updateUser(user);
     }
 
+    /**
+     * Questo metodo reimposta la password di un utente con una generata casualmente. Manda una mail all'utente contenente la password
+     *
+     * @param email l'indirizzo email dell'account da modificare
+     * @return <code>true</code> se il reset avviene con successo, <code>false</code> altrimenti
+     */
     public boolean resetPassword(String email){
         UsersDTO user = dbManager.getUserByEmail(email);
         if(user != null) {

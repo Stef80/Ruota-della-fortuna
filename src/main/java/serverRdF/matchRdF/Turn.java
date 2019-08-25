@@ -24,7 +24,7 @@ public class Turn {
      * Questo metodo si occupa di salvare tutte le mosse eseguite da un giocatore in suo turno alla fine della manche e svuota la lista
      *
      * @param dbManager riferimento all'oggetto di tipo {@link DBManager} per l'accesso al database
-     * @return <code>true</code> se l'operazione va a buon fine, <code>false</code> altrimenti
+     * @return <code>true</code> se l'operazione va a buon fine, <code>false</code> se almeno una delle mosse non e' stata salvata correttamente
      */
     public boolean saveMoves(DBManager dbManager){
         boolean success = true;

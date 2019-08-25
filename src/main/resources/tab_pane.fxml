@@ -369,7 +369,7 @@
                                 <Label fx:id="nicknameLabel" prefWidth="80.0" text="label" />
                                 <Region prefWidth="30.0" />
                                 <TextField fx:id="nicknameTextField" prefWidth="170.0" text="immetti qui nuovo nik" />
-                                <Button fx:id="nickNameModifierButton" mnemonicParsing="false" text="modifica" />
+                                <Button fx:id="nickNameModifierButton" mnemonicParsing="false" onAction="#changeNickname" text="modifica" />
                             </children>
                             <VBox.margin>
                                 <Insets />
@@ -385,7 +385,7 @@
                                 <Label fx:id="nameLabel" prefWidth="80.0" text="Label" />
                                 <Region prefWidth="30.0" />
                                 <TextField fx:id="nameTextField" prefWidth="170.0" text="immetti qui nuovo nome" />
-                                <Button mnemonicParsing="false" text="modifica" />
+                                <Button mnemonicParsing="false" onAction="#changeName" text="modifica" />
                             </children>
                             <opaqueInsets>
                                 <Insets />
@@ -398,7 +398,7 @@
                                 <Label fx:id="surnameLabel" prefWidth="80.0" text="Label" />
                                 <Region prefWidth="30.0" />
                                 <TextField fx:id="surnameTextField" prefHeight="25.0" prefWidth="170.0" text="immetti qui nuovo cognome" />
-                                <Button mnemonicParsing="false" text="modifica" />
+                                <Button mnemonicParsing="false" onAction="#changeSurname" text="modifica" />
                             </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="400.0" spacing="20.0">
@@ -415,7 +415,7 @@
                                 <Region prefWidth="60.0" />
                                 <Region layoutX="160.0" layoutY="10.0" prefWidth="50.0" />
                                 <PasswordField fx:id="passwordField" alignment="CENTER" prefWidth="170.0" text="immeti qui nuova password" />
-                                <Button mnemonicParsing="false" text="modifica" />
+                                <Button mnemonicParsing="false" onAction="#changePassword" text="modifica" />
                             </children>
                         </HBox>
                     </children>

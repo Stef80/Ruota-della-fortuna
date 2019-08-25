@@ -17,6 +17,9 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 
+/**
+ * Il controller della prima finestra visibile all'avvio del server. Permette di accedere al database inserendo l'url del database e le credenziali d'accesso
+ */
 public class ServerMainPane {
     @FXML
 	private TextField userTextField;
@@ -29,7 +32,13 @@ public class ServerMainPane {
      private DBManager manager;
 
 
-    public void login() throws IOException {
+	/**
+	 * Cerca di collegarsi al database con le credenziali fornite dall'utente. Se si riesce a stabilire la connessione si passa alla schermata successiva,
+	 * controllata da {@link InsubriaLoginPane}
+	 *
+	 * @throws IOException In caso non sia possibile caricare la schermata successiva
+	 */
+	public void login() throws IOException {
 
     	String user = userTextField.getText();
     	String password = passwordTextField.getText();

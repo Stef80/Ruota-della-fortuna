@@ -9,6 +9,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe che gestisce le manche e i turni.
+ */
 public class Manche {
 
     private Turn turns;
@@ -75,6 +78,12 @@ public class Manche {
     }
 
 
+    /**
+     * Questo metodo aggiorna l'oggetto per permettere l'inizo della manche successiva. La lista di mosse viene svuotata e le mosse vengono salvate nel database
+     *
+     * @param winner l'eventuale vincitore della manche
+     * @return <code>true</code> se il metodo viene eseguito con successo, <code>false</code> altrimenti
+     */
     public boolean endManche(Player winner) {
         ManchesDTO manche = new ManchesDTO();
         manche.setNumber(numManche);

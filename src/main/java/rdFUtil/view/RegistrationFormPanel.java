@@ -39,13 +39,17 @@ public class RegistrationFormPanel {
     private Client client;
     private User user;
     private boolean admin;
+    private boolean isServer;
 
     public RegistrationFormPanel(){}
 
-    public RegistrationFormPanel(Server server, Client client, boolean admin) {
+    public RegistrationFormPanel(Server server, Client client, boolean admin, boolean isServer) {
         this.server = server;
         this.client = client;
         this.admin = admin;
+        this.isServer = isServer;
+        if(isServer)
+            backButton.setVisible(false);
     }
 
     /**

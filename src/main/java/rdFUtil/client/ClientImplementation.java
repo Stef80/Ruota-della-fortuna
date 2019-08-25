@@ -53,6 +53,21 @@ public class ClientImplementation implements Client {
     }
 
     @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String getSurname() {
+        return surname;
+    }
+
+    @Override
+    public String getEmail() {
+        return email;
+    }
+
+    @Override
     public void notifyServerError() throws RemoteException {
     }
 

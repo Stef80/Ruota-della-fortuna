@@ -15,6 +15,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
+/**
+ * Oggetto remoto che implementa l'interfaccia {@link RemoteMatch}
+ */
 public class Match extends UnicastRemoteObject implements RemoteMatch {
 
     private List<Player> players;
@@ -53,16 +56,16 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     public int wheelSpin() throws RemoteException {
         Player activePlayer = players.get(turn);
 
-        if(timer.isThisForJolly() || timer.isThisForSolution() || timer.isThisForVocal()){
-            errorInTurn(false,false);
+        if (timer.isThisForJolly() || timer.isThisForSolution() || timer.isThisForVocal()) {
+            errorInTurn(false, false);
             return 0;
-        }else {
+        } else {
             firstTurn = false;
             timer.interrupt();
             wheelResult("GIRA...");
             int j = 0;
-            for(int i=0; i<1000000000; i++){
-                j = j*5;
+            for (int i = 0; i < 1000000000; i++) {
+                j = j * 5;
             }
             spinnedWheel = true;
             Random rnd = new Random();
@@ -82,7 +85,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                 case 0:
                     wheelResult("PASSA");
                     manche.getTurns().addMove(activePlayer.getIdPlayer(), "passa", 0);
-                    errorInTurn(true,true);
+                    errorInTurn(true, true);
                     return 0;
                 case 1:
                     wheelResult("JOLLY");
@@ -91,77 +94,92 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                     for (Client c : observers) {
                         try {
                             Player p = null;
-                            for(int i=0; i<3; i++) {
+                            for (int i = 0; i < 3; i++) {
                                 p = players.get(i);
-                                c.notifyPlayerStats(i, p.getNickname(), 0, p.getPoints(),p.getNumJolly());
+                                c.notifyPlayerStats(i, p.getNickname(), 0, p.getPoints(), p.getNumJolly());
                             }
-                        }catch(RemoteException e){
+                        } catch (RemoteException e) {
                             leaveMatchAsObserver(c);
                         }
                     }
                     for (Player p : players) {
                         try {
                             Player pl = null;
-                            for(int i=0; i<3; i++) {
+                            for (int i = 0; i < 3; i++) {
                                 pl = players.get(i);
                                 p.getClient().notifyPlayerStats(i, pl.getNickname(), 0, pl.getPoints(), pl.getNumJolly());
                             }
-                        }catch(RemoteException e){
+                        } catch (RemoteException e) {
                             leaveMatchAsPlayer(p);
                         }
                     }
                     startTurn(turn);
                     return 0;
-                case 2: case 3: case 4: case 5: case 6:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
                     wheelResult("400");
-                    startTimer(5000, false,false,false);
+                    startTimer(5000, false, false, false);
                     return 400;
-                case 7: case 8:
+                case 7:
+                case 8:
                     wheelResult("PERDE");
                     manche.getTurns().addMove(activePlayer.getIdPlayer(), "perde", 0);
                     for (Client c : observers) {
                         try {
                             Player p = null;
-                            for(int i=0; i<3; i++) {
+                            for (int i = 0; i < 3; i++) {
                                 p = players.get(i);
                                 c.notifyPlayerStats(i, p.getNickname(), 0, p.getPoints(), p.getNumJolly());
                             }
-                        }catch(RemoteException e){
+                        } catch (RemoteException e) {
                             leaveMatchAsObserver(c);
                         }
                     }
                     for (Player p : players) {
                         try {
                             Player pl = null;
-                            for(int i=0; i<3; i++) {
+                            for (int i = 0; i < 3; i++) {
                                 pl = players.get(i);
-                                p.getClient().notifyPlayerStats(i, pl.getNickname(), 0, pl.getPoints(),pl.getNumJolly());
+                                p.getClient().notifyPlayerStats(i, pl.getNickname(), 0, pl.getPoints(), pl.getNumJolly());
                             }
-                        }catch(RemoteException e){
+                        } catch (RemoteException e) {
                             leaveMatchAsPlayer(p);
                         }
                     }
                     nextTurn();
                     return 0;
-                case 9: case 10: case 11: case 12:
+                case 9:
+                case 10:
+                case 11:
+                case 12:
                     wheelResult("500");
-                    startTimer(5000, false,false,false);
+                    startTimer(5000, false, false, false);
                     return 500;
-                case 13: case 14: case 15: case 16: case 17: case 18:
+                case 13:
+                case 14:
+                case 15:
+                case 16:
+                case 17:
+                case 18:
                     wheelResult("300");
-                    startTimer(5000, false,false, false);
+                    startTimer(5000, false, false, false);
                     return 300;
-                case 19: case 20: case 21:
+                case 19:
+                case 20:
+                case 21:
                     wheelResult("600");
-                    startTimer(5000, false,false, false);
+                    startTimer(5000, false, false, false);
                     return 600;
                 case 22:
                     wheelResult("1000");
-                    startTimer(5000, false,false, false);
+                    startTimer(5000, false, false, false);
                     return 1000;
                 case 23:
                     wheelResult("700");
-                    startTimer(5000, false,false, false);
+                    startTimer(5000, false, false, false);
                     return 700;
                 default:
                     return 0;
@@ -169,18 +187,18 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         }
     }
 
-    private void wheelResult(String result) throws RemoteException{
-        for(Client c : observers){
-            try{
+    private void wheelResult(String result) throws RemoteException {
+        for (Client c : observers) {
+            try {
                 c.notifyWheelResult(result);
-            }catch(RemoteException e){
+            } catch (RemoteException e) {
                 leaveMatchAsObserver(c);
             }
         }
-        for(Player p : players){
-            try{
+        for (Player p : players) {
+            try {
                 p.getClient().notifyWheelResult(result);
-            }catch (RemoteException e){
+            } catch (RemoteException e) {
                 leaveMatchAsPlayer(p);
             }
         }
@@ -191,19 +209,19 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
      *
      * @throws RemoteException
      */
-    private void notifyError() throws RemoteException{
+    private void notifyError() throws RemoteException {
         Player activePlayer = players.get(turn);
-        for(Client c : observers){
+        for (Client c : observers) {
             try {
                 c.notifyPlayerError(activePlayer.getNickname());
-            }catch (RemoteException e){
+            } catch (RemoteException e) {
                 leaveMatchAsObserver(c);
             }
         }
-        for(Player p : players){
-            try{
+        for (Player p : players) {
+            try {
                 p.getClient().notifyPlayerError(activePlayer.getNickname());
-            }catch (RemoteException e){
+            } catch (RemoteException e) {
                 leaveMatchAsPlayer(p);
             }
         }
@@ -214,24 +232,24 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         Player activePlayer = players.get(turn);
         char vocal = letter.charAt(0);
         boolean isVocal = (vocal == 'A' || vocal == 'E' || vocal == 'I' || vocal == 'O' || vocal == 'U');
-        if(firstTurn || !spinnedWheel || amount==0 || timer.isThisForJolly() || timer.isThisForSolution() || letter.length()>1 || isVocal || timer.isThisForVocal()){
+        if (firstTurn || !spinnedWheel || amount == 0 || timer.isThisForJolly() || timer.isThisForSolution() || letter.length() > 1 || isVocal || timer.isThisForVocal()) {
             timer.interrupt();
-            errorInTurn(true,false);
+            errorInTurn(true, false);
             return;
         }
         timer.interrupt();
         notifyLetterCall(letter);
-        for(Client c : observers){
-            try{
+        for (Client c : observers) {
+            try {
                 c.updatePhrase(letter);
-            }catch(RemoteException e){
+            } catch (RemoteException e) {
                 leaveMatchAsObserver(c);
             }
         }
-        for(Player p : players){
-            try{
+        for (Player p : players) {
+            try {
                 p.getClient().updatePhrase(letter);
-            }catch (RemoteException e){
+            } catch (RemoteException e) {
                 leaveMatchAsPlayer(p);
             }
         }
@@ -239,61 +257,61 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         StringTokenizer st = new StringTokenizer(phrase, " ',!?.:;\"/()\\^<>-+*");
         int j = 0;
         int counter = 0;
-        while(st.hasMoreTokens()){
+        while (st.hasMoreTokens()) {
             String ss = st.nextToken();
-            for(int i=0; i<ss.length(); i++){
-                if(ss.charAt(i) == letter.charAt(0)){
-                    if(phraseStatus[j] == false) {
+            for (int i = 0; i < ss.length(); i++) {
+                if (ss.charAt(i) == letter.charAt(0)) {
+                    if (phraseStatus[j] == false) {
                         phraseStatus[j] = true;
                         counter++;
                     }
                     j++;
-                }else{
+                } else {
                     j++;
                 }
             }
         }
-        if(counter > 0){
+        if (counter > 0) {
             int result = counter * amount;
-            manche.getTurns().addMove(activePlayer.getIdPlayer(), ""+letter, result);
+            manche.getTurns().addMove(activePlayer.getIdPlayer(), "" + letter, result);
             players.get(turn).updatePartialPoints(result);
-            for(Client c : observers){
-                try{
+            for (Client c : observers) {
+                try {
                     c.notifyPlayerStats(turn, activePlayer.getNickname(), activePlayer.getPartialPoints(), activePlayer.getPoints(), activePlayer.getNumJolly());
-                }catch (RemoteException e){
+                } catch (RemoteException e) {
                     leaveMatchAsObserver(c);
                 }
             }
-            for(Player p : players){
-                try{
+            for (Player p : players) {
+                try {
                     p.getClient().notifyPlayerStats(turn, activePlayer.getNickname(), activePlayer.getPartialPoints(), activePlayer.getPoints(), activePlayer.getNumJolly());
-                }catch (RemoteException e){
+                } catch (RemoteException e) {
                     leaveMatchAsPlayer(p);
                 }
             }
             startTurn(turn);
-        }else{
-            manche.getTurns().addMove(activePlayer.getIdPlayer(), ""+letter, 0);
-            errorInTurn(true,true);
+        } else {
+            manche.getTurns().addMove(activePlayer.getIdPlayer(), "" + letter, 0);
+            errorInTurn(true, true);
         }
     }
 
-    private void notifyLetterCall(String letter) throws RemoteException{
+    private void notifyLetterCall(String letter) throws RemoteException {
         Player activePlayer = players.get(turn);
-        for(Client c : observers){
+        for (Client c : observers) {
             try {
                 c.notifyLetterCall(activePlayer.getNickname(), letter);
-            }catch(RemoteException e){
+            } catch (RemoteException e) {
                 leaveMatchAsObserver(c);
             }
         }
-        for(Player p : players){
+        for (Player p : players) {
             try {
                 if (p.equals(activePlayer)) {
                 } else {
                     p.getClient().notifyLetterCall(activePlayer.getNickname(), letter);
                 }
-            }catch(RemoteException e){
+            } catch (RemoteException e) {
                 leaveMatchAsPlayer(p);
             }
         }
@@ -302,31 +320,32 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
 
     @Override
     public void askForVocal() throws RemoteException {
-        if(firstTurn || timer.isThisForJolly() || players.get(turn).getPartialPoints()<1000){
+        if (firstTurn || timer.isThisForJolly() || players.get(turn).getPartialPoints() < 1000 || timer.isThisForSolution() || timer.isThisForVocal()) {
             timer.interrupt();
-            errorInTurn(true,false);
+            errorInTurn(true, false);
             return;
         }
+        timer.interrupt();
         notifyVocalAsk();
         startTimer(10000, false, false, true);
     }
 
-    private void notifyVocalAsk() throws RemoteException{
+    private void notifyVocalAsk() throws RemoteException {
         Player activePlayer = players.get(turn);
-        for(Client c : observers){
+        for (Client c : observers) {
             try {
                 c.notifyTryVocal(activePlayer.getNickname());
-            }catch(RemoteException e){
+            } catch (RemoteException e) {
                 leaveMatchAsObserver(c);
             }
         }
-        for(Player p : players){
+        for (Player p : players) {
             try {
                 if (p.equals(activePlayer)) {
                 } else {
                     p.getClient().notifyTryVocal(activePlayer.getNickname());
                 }
-            }catch(RemoteException e){
+            } catch (RemoteException e) {
                 leaveMatchAsPlayer(p);
             }
         }
@@ -337,66 +356,66 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         Player activePlayer = players.get(turn);
         char vocal = letter.charAt(0);
         boolean isVocal = (vocal == 'A' || vocal == 'E' || vocal == 'I' || vocal == 'O' || vocal == 'U');
-        if(firstTurn || timer.isThisForJolly() || timer.isThisForSolution() || letter.length()>1 || !isVocal || !timer.isThisForVocal()){
+        if (firstTurn || timer.isThisForJolly() || timer.isThisForSolution() || letter.length() > 1 || !isVocal || !timer.isThisForVocal()) {
             timer.interrupt();
-            errorInTurn(true,false);
+            errorInTurn(true, false);
             return;
         }
         timer.interrupt();
         notifyLetterCall(letter);
-        for(Client c : observers){
-            try{
+        for (Client c : observers) {
+            try {
                 c.updatePhrase(letter);
-            }catch(RemoteException e){
+            } catch (RemoteException e) {
                 leaveMatchAsObserver(c);
             }
         }
-        for(Player p : players){
-            try{
+        for (Player p : players) {
+            try {
                 p.getClient().updatePhrase(letter);
-            }catch (RemoteException e){
+            } catch (RemoteException e) {
                 leaveMatchAsPlayer(p);
             }
         }
         activePlayer.updatePartialPoints(-1000);
         String phrase = manche.getCurrentPhrase().getPhrase();
-        StringTokenizer st = new StringTokenizer(phrase," ',!?.:;\"/()\\^<>-+*");
+        StringTokenizer st = new StringTokenizer(phrase, " ',!?.:;\"/()\\^<>-+*");
         int j = 0;
         int counter = 0;
-        while(st.hasMoreTokens()){
+        while (st.hasMoreTokens()) {
             String ss = st.nextToken();
-            for(int i=0; i<ss.length(); i++){
-                if(ss.charAt(i) == letter.charAt(0)){
-                    if(phraseStatus[j] == false) {
+            for (int i = 0; i < ss.length(); i++) {
+                if (ss.charAt(i) == letter.charAt(0)) {
+                    if (phraseStatus[j] == false) {
                         phraseStatus[j] = true;
                         counter++;
                     }
                     j++;
-                }else{
+                } else {
                     j++;
                 }
             }
         }
-        for(Client c : observers){
-            try{
+        for (Client c : observers) {
+            try {
                 c.notifyPlayerStats(turn, activePlayer.getNickname(), activePlayer.getPartialPoints(), activePlayer.getPoints(), activePlayer.getNumJolly());
-            }catch (RemoteException e){
+            } catch (RemoteException e) {
                 leaveMatchAsObserver(c);
             }
         }
-        for(Player p : players){
-            try{
-                p.getClient().notifyPlayerStats(turn, activePlayer.getNickname(), activePlayer.getPartialPoints(), activePlayer.getPoints(),activePlayer.getNumJolly());
-            }catch (RemoteException e){
+        for (Player p : players) {
+            try {
+                p.getClient().notifyPlayerStats(turn, activePlayer.getNickname(), activePlayer.getPartialPoints(), activePlayer.getPoints(), activePlayer.getNumJolly());
+            } catch (RemoteException e) {
                 leaveMatchAsPlayer(p);
             }
         }
-        if(counter > 0){
-            manche.getTurns().addMove(activePlayer.getIdPlayer(), ""+letter, -1);
+        if (counter > 0) {
+            manche.getTurns().addMove(activePlayer.getIdPlayer(), "" + letter, -1);
             startTurn(turn);
-        }else{
-            manche.getTurns().addMove(activePlayer.getIdPlayer(), ""+letter, 0);
-            errorInTurn(true,true);
+        } else {
+            manche.getTurns().addMove(activePlayer.getIdPlayer(), "" + letter, 0);
+            errorInTurn(true, true);
         }
 
     }
@@ -404,11 +423,11 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     @Override
     public void jolly() throws RemoteException {
         Player activePlayer = players.get(turn);
-        if(!timer.isThisForJolly() || timer.isThisForSolution() || timer.isThisForVocal()){
+        if (!timer.isThisForJolly() || timer.isThisForSolution() || timer.isThisForVocal()) {
             timer.interrupt();
             errorInTurn(true, false);
             return;
-        }else{
+        } else {
             timer.interrupt();
             manche.getTurns().getLastMove().setOutCome(-1);
             activePlayer.removeJolly();
@@ -417,22 +436,22 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         }
     }
 
-    private void notifyJollyUsed() throws RemoteException{
+    private void notifyJollyUsed() throws RemoteException {
         Player activePlayer = players.get(turn);
-        for(Client c : observers){
+        for (Client c : observers) {
             try {
                 c.notifyJollyUsed(activePlayer.getNickname());
-            }catch(RemoteException e){
+            } catch (RemoteException e) {
                 leaveMatchAsObserver(c);
             }
         }
-        for(Player p : players){
+        for (Player p : players) {
             try {
                 if (p.equals(activePlayer)) {
                 } else {
                     p.getClient().notifyJollyUsed(activePlayer.getNickname());
                 }
-            }catch(RemoteException e){
+            } catch (RemoteException e) {
                 leaveMatchAsPlayer(p);
             }
         }
@@ -451,27 +470,27 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                 if (players.get(turn).getNumJolly() > 0) {
                     players.get(turn).getClient().askForJolly();
                     startTimer(5000, true, false, false);
-                }else{
-                    if(moveDone)
+                } else {
+                    if (moveDone)
                         manche.getTurns().getLastMove().setOutCome(0);
                     else
                         manche.getTurns().addMove(activePlayer.getIdPlayer(), "errore", 0);
                     nextTurn();
                 }
-            }else{
-                if(moveDone)
+            } else {
+                if (moveDone)
                     manche.getTurns().getLastMove().setOutCome(0);
                 else
                     manche.getTurns().addMove(activePlayer.getIdPlayer(), "errore", 0);
                 nextTurn();
             }
-        }catch(RemoteException e){
+        } catch (RemoteException e) {
             ServerImplementation.serverError(null);
         }
     }
 
     /**
-     * Questo metodo permette di conoscere il concorrente a cui appartiene il nuovo turno di gioco
+     * Questo metodo permette di passare al turno successivo
      *
      * @throws RemoteException
      */
@@ -485,17 +504,17 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     }
 
 
-    private void startTurn(int turn) throws RemoteException{
+    private void startTurn(int turn) throws RemoteException {
         Player activePlayer = players.get(turn);
         spinnedWheel = false;
-        for(Client c : observers){
+        for (Client c : observers) {
             try {
                 c.notifyNewTurn(activePlayer.getNickname());
-            }catch(RemoteException e){
+            } catch (RemoteException e) {
                 leaveMatchAsObserver(c);
             }
         }
-        for(Player p : players){
+        for (Player p : players) {
             try {
                 if (p.equals(activePlayer)) {
                     p.getClient().notifyNewTurn(p.getNickname());
@@ -504,57 +523,61 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                 } else {
                     p.getClient().notifyNewTurn(activePlayer.getNickname());
                 }
-            }catch(RemoteException e){
+            } catch (RemoteException e) {
                 leaveMatchAsPlayer(p);
             }
         }
     }
 
-    public void askForSolution() throws RemoteException{
-        if(firstTurn || timer.isThisForJolly()){
+    @Override
+    public void askForSolution() throws RemoteException {
+        if (firstTurn || timer.isThisForJolly() || timer.isThisForVocal() || timer.isThisForSolution()) {
             timer.interrupt();
-            errorInTurn(true,false);
+            errorInTurn(true, false);
             return;
         }
+        timer.interrupt();
         notifySolutionAsk();
         startTimer(10000, false, true, false);
     }
 
-    private void notifySolutionAsk() throws RemoteException{
+    private void notifySolutionAsk() throws RemoteException {
         Player activePlayer = players.get(turn);
-        for(Client c : observers){
+        for (Client c : observers) {
             try {
                 c.notifyTryForSolution(activePlayer.getNickname());
-            }catch(RemoteException e){
+            } catch (RemoteException e) {
                 leaveMatchAsObserver(c);
             }
         }
-        for(Player p : players){
+        for (Player p : players) {
             try {
                 if (p.equals(activePlayer)) {
                 } else {
                     p.getClient().notifyTryForSolution(activePlayer.getNickname());
                 }
-            }catch(RemoteException e){
+            } catch (RemoteException e) {
                 leaveMatchAsPlayer(p);
             }
         }
     }
 
+    @Override
     public void giveSolution(String solution) throws RemoteException {
         Player activePlayer = players.get(turn);
-        if(firstTurn || timer.isThisForJolly() || !timer.isThisForSolution() || timer.isThisForVocal()){
+        if (firstTurn || timer.isThisForJolly() || !timer.isThisForSolution() || timer.isThisForVocal()) {
             timer.interrupt();
-            errorInTurn(true,false);
+            errorInTurn(true, false);
             return;
         }
         timer.interrupt();
-        if(solution.equals(manche.getCurrentPhrase())){
+        String phrase = manche.getCurrentPhrase().getPhrase();
+        if (solution.equals(phrase.toUpperCase())) {
             manche.getTurns().addMove(activePlayer.getIdPlayer(), "soluzione", -1);
             endManche(activePlayer);
-        }else{
+        } else {
             manche.getTurns().addMove(activePlayer.getIdPlayer(), "soluzione", 0);
-            errorInTurn(true,true);
+            errorInTurn(true, true);
         }
     }
 
@@ -573,19 +596,19 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
 
             List<PhrasesDTO> phrases = dbManager.get5Phrases(idPlayer1, idPlayer2, idPlayer3);
 
-            if(phrases == null || phrases.isEmpty()){
+            if (phrases == null || phrases.isEmpty()) {
                 try {
                     for (Client c : observers) {
                         try {
                             c.notifyMatchAbort("Partita annullata: non ci sono abbastanza frasi");
-                        }catch(RemoteException e){
+                        } catch (RemoteException e) {
                             leaveMatchAsObserver(c);
                         }
                     }
                     for (Player p : players) {
                         try {
                             p.getClient().notifyMatchAbort("Partita annullata: non ci sono abbastanza frasi");
-                        }catch(RemoteException er){
+                        } catch (RemoteException er) {
                             players.remove(p);
                         }
                     }
@@ -598,14 +621,14 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                     String email = "";
                     String obj = "Mancanza di frasi in DBRdF";
                     String txt = "Una o piu' partite sono state annullate a causa della mancanza di frasi nel database. Per favore aggiungere nuove frasi attraverso la piattaforma AdminRdf / ServerRdF";
-                    for(UsersDTO admin : admins) {
+                    for (UsersDTO admin : admins) {
                         email = admin.getEmail();
                         emailmng.sendEmail(email, obj, txt);
                     }
-                }catch(SQLException|RemoteException e){
+                } catch (SQLException | RemoteException e) {
                     ServerImplementation.serverError(null);
                 }
-            }else {
+            } else {
                 manche.setNumManche(1);
                 PhrasesDTO newPhrase = manche.getCurrentPhrase();
                 resetPhraseStatus(newPhrase.getPhrase());
@@ -614,7 +637,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                         c.notifyMatchStart();
                         c.setNewPhrase(newPhrase.getTheme(), newPhrase.getPhrase());
                         dbManager.addMancheJoiner(id, manche.getNumManche(), c.getId(), true);
-                    }catch(RemoteException e){
+                    } catch (RemoteException e) {
                         leaveMatchAsObserver(c);
                     }
                 }
@@ -623,7 +646,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                         p.getClient().notifyMatchStart();
                         p.getClient().setNewPhrase(newPhrase.getTheme(), newPhrase.getPhrase());
                         dbManager.addMancheJoiner(id, manche.getNumManche(), p.getIdPlayer(), false);
-                    }catch(RemoteException e){
+                    } catch (RemoteException e) {
                         leaveMatchAsPlayer(p);
                     }
                 }
@@ -631,19 +654,19 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                 turn = rnd.nextInt(3);
                 nextTurn();
             }
-        }catch(RemoteException e) {
+        } catch (RemoteException e) {
             try {
                 for (Client c : observers) {
                     try {
                         c.notifyMatchAbort("Partita annullata: errore di comunicazione con il server");
-                    }catch(RemoteException d){
+                    } catch (RemoteException d) {
                         leaveMatchAsObserver(c);
                     }
                 }
                 for (Player p : players) {
                     try {
                         p.getClient().notifyMatchAbort("Partita annullata: errore di comunicazione con il server");
-                    }catch(RemoteException ex){
+                    } catch (RemoteException ex) {
                         players.remove(p);
                     }
                 }
@@ -658,18 +681,18 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         }
     }
 
-    private void resetPhraseStatus(String phrase){
-        StringTokenizer st = new StringTokenizer(phrase," ',!?.:;\"/()\\^<>-+*");
+    private void resetPhraseStatus(String phrase) {
+        StringTokenizer st = new StringTokenizer(phrase, " ',!?.:;\"/()\\^<>-+*");
         int length = 0;
 
-        while(st.hasMoreTokens()){
+        while (st.hasMoreTokens()) {
             String s = st.nextToken();
-            for(int j=0; j<s.length(); j++){
+            for (int j = 0; j < s.length(); j++) {
                 length++;
             }
         }
         this.phraseStatus = new boolean[length];
-        for(int k=0; k<phraseStatus.length; k++){
+        for (int k = 0; k < phraseStatus.length; k++) {
             phraseStatus[k] = false;
         }
     }
@@ -681,63 +704,63 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
      * @throws RemoteException
      */
     public void endManche(Player winner) throws RemoteException {
-       manche.endManche(winner);
-       if(winner != null) {
-           for (Player p : players) {
-               try {
-                   if (p.equals(winner)) {
-                       p.updatePoints(p.getPartialPoints());
-                       p.partialPointsToZero();
-                       p.getClient().notifyMancheVictory();
-                   } else {
-                       p.partialPointsToZero();
-                       p.getClient().notifyMancheResult(winner.getNickname());
-                   }
-               }catch(RemoteException e){
-                   leaveMatchAsPlayer(p);
-               }
-           }
+        manche.endManche(winner);
+        if (winner != null) {
+            for (Player p : players) {
+                try {
+                    if (p.equals(winner)) {
+                        p.updatePoints(p.getPartialPoints());
+                        p.partialPointsToZero();
+                        p.getClient().notifyMancheVictory();
+                    } else {
+                        p.partialPointsToZero();
+                        p.getClient().notifyMancheResult(winner.getNickname());
+                    }
+                } catch (RemoteException e) {
+                    leaveMatchAsPlayer(p);
+                }
+            }
 
-           if(manche.getNumManche() > 5) {
-               endMatch(true);
-               return;
-           }else {
-               PhrasesDTO newPhrase = manche.getCurrentPhrase();
-               resetPhraseStatus(newPhrase.getPhrase());
-               for (Client c : observers) {
-                   try {
-                       c.notifyMancheResult(winner.getNickname());
-                       c.notifyNewManche(manche.getNumManche());
-                       c.setNewPhrase(newPhrase.getTheme(), newPhrase.getPhrase());
-                       Player p = null;
-                       for(int i=0; i<3; i++) {
-                           p = players.get(i);
-                           c.notifyPlayerStats(i, p.getNickname(), 0, p.getPoints(), p.getNumJolly());
-                       }
-                       dbManager.addMancheJoiner(id, manche.getNumManche(), c.getId(), true);
-                   }catch(RemoteException e){
-                       leaveMatchAsObserver(c);
-                   }
-               }
-               for (Player p : players) {
-                   try {
-                       p.getClient().notifyNewManche(manche.getNumManche());
-                       p.getClient().setNewPhrase(newPhrase.getTheme(), newPhrase.getPhrase());
-                       Player pl = null;
-                       for(int i=0; i<3; i++) {
-                           pl = players.get(i);
-                           p.getClient().notifyPlayerStats(i, pl.getNickname(), 0, pl.getPoints(), pl.getNumJolly());
-                       }
-                       dbManager.addMancheJoiner(id, manche.getNumManche(), p.getIdPlayer(), false);
-                   }catch(RemoteException e){
-                       leaveMatchAsPlayer(p);
-                   }
-               }
-               nextTurn();
-           }
-       }else{
-           endMatch(false);
-       }
+            if (manche.getNumManche() > 5) {
+                endMatch(true);
+                return;
+            } else {
+                PhrasesDTO newPhrase = manche.getCurrentPhrase();
+                resetPhraseStatus(newPhrase.getPhrase());
+                for (Client c : observers) {
+                    try {
+                        c.notifyMancheResult(winner.getNickname());
+                        c.notifyNewManche(manche.getNumManche());
+                        c.setNewPhrase(newPhrase.getTheme(), newPhrase.getPhrase());
+                        Player p = null;
+                        for (int i = 0; i < 3; i++) {
+                            p = players.get(i);
+                            c.notifyPlayerStats(i, p.getNickname(), 0, p.getPoints(), p.getNumJolly());
+                        }
+                        dbManager.addMancheJoiner(id, manche.getNumManche(), c.getId(), true);
+                    } catch (RemoteException e) {
+                        leaveMatchAsObserver(c);
+                    }
+                }
+                for (Player p : players) {
+                    try {
+                        p.getClient().notifyNewManche(manche.getNumManche());
+                        p.getClient().setNewPhrase(newPhrase.getTheme(), newPhrase.getPhrase());
+                        Player pl = null;
+                        for (int i = 0; i < 3; i++) {
+                            pl = players.get(i);
+                            p.getClient().notifyPlayerStats(i, pl.getNickname(), 0, pl.getPoints(), pl.getNumJolly());
+                        }
+                        dbManager.addMancheJoiner(id, manche.getNumManche(), p.getIdPlayer(), false);
+                    } catch (RemoteException e) {
+                        leaveMatchAsPlayer(p);
+                    }
+                }
+                nextTurn();
+            }
+        } else {
+            endMatch(false);
+        }
     }
 
     /**
@@ -748,51 +771,51 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
      */
     public void endMatch(boolean isThereAWinner) throws RemoteException {
         MatchManager.deleteMatch(id);
-        if(isThereAWinner){
+        if (isThereAWinner) {
             Player winner = null;
             int maxPoint = 0;
-            for(Player p : players){
-                if(p.getPoints() > maxPoint){
+            for (Player p : players) {
+                if (p.getPoints() > maxPoint) {
                     maxPoint = p.getPoints();
                     winner = p;
                 }
             }
 
-            for(Client c : observers){
-                try{
+            for (Client c : observers) {
+                try {
                     c.notifyEndMatch(winner.getNickname());
-                }catch(RemoteException e){
+                } catch (RemoteException e) {
                     leaveMatchAsObserver(c);
                 }
             }
 
-            for(Player p : players){
-                try{
-                    if(p.equals(winner)) {
+            for (Player p : players) {
+                try {
+                    if (p.equals(winner)) {
                         p.getClient().notifyMatchWin();
-                    }else{
+                    } else {
                         p.getClient().notifyEndMatch(winner.getNickname());
                     }
-                }catch(RemoteException e){
+                } catch (RemoteException e) {
                     leaveMatchAsPlayer(p);
                 }
             }
 
             dbManager.addMatchWinner(id, winner.getIdPlayer(), maxPoint);
-        }else{
-            for(Client c : observers){
-                try{
+        } else {
+            for (Client c : observers) {
+                try {
                     c.notifyEndMatch("Nessuno");
-                }catch(RemoteException e){
+                } catch (RemoteException e) {
                     leaveMatchAsObserver(c);
                 }
             }
 
-            for(Player p : players){
-                try{
-                        p.getClient().notifyEndMatch("Nessuno");
+            for (Player p : players) {
+                try {
+                    p.getClient().notifyEndMatch("Nessuno");
 
-                }catch(RemoteException e){
+                } catch (RemoteException e) {
                     leaveMatchAsPlayer(p);
                 }
             }
@@ -812,8 +835,29 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
             full = true;
         else {
             players.add(new Player(c));
+            int num = 0;
+            for (Player p : players) {
+                if (p.getClient().equals(c))
+                    break;
+                else
+                    num++;
+            }
+            for (Player p : players) {
+                try {
+                    p.getClient().notifyPlayerStats(num, "--", 0, 0, 0);
+                } catch (RemoteException e) {
+                    leaveMatchAsPlayer(p);
+                }
+            }
+            for (Client client : observers) {
+                try {
+                    c.notifyPlayerStats(num, "--", 0, 0, 0);
+                } catch (RemoteException e) {
+                    leaveMatchAsObserver(client);
+                }
+            }
             full = false;
-            if(players.size() == 3){
+            if (players.size() == 3) {
                 startMatch();
             }
         }
@@ -826,7 +870,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
      */
     public void addObserver(Client c) throws RemoteException {
         observers.add(c);
-        if(onGoing){
+        if (onGoing) {
             dbManager.addMancheJoiner(id, manche.getNumManche(), c.getId(), true);
         }
     }
@@ -840,43 +884,43 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     public void leaveMatchAsPlayer(Client c) throws RemoteException {
         String name = c.getNickname();
         int num = 0;
-        for(Player p : players){
-            if(p.getClient().equals(c))
+        for (Player p : players) {
+            if (p.getClient().equals(c))
                 break;
             else
                 num++;
         }
-            for (Player p : players) {
-                try {
-                    if (p.getClient().equals(c)) {
-                        players.remove(p);
-                    } else {
-                        p.getClient().notifyLeaver(name);
-                        p.getClient().notifyPlayerStats(num, "--", 0,0,0);
-                    }
-                } catch (RemoteException e) {
+        for (Player p : players) {
+            try {
+                if (p.getClient().equals(c)) {
                     players.remove(p);
+                } else {
+                    p.getClient().notifyLeaver(name);
+                    p.getClient().notifyPlayerStats(num, "--", 0, 0, 0);
                 }
+            } catch (RemoteException e) {
+                players.remove(p);
             }
-            for (Client client : observers) {
-                try {
-                    client.notifyLeaver(name);
-                    c.notifyPlayerStats(num, "--", 0,0,0);
-                } catch (RemoteException e) {
-                    leaveMatchAsObserver(client);
-                }
+        }
+        for (Client client : observers) {
+            try {
+                client.notifyLeaver(name);
+                c.notifyPlayerStats(num, "--", 0, 0, 0);
+            } catch (RemoteException e) {
+                leaveMatchAsObserver(client);
             }
-            if(onGoing) {
-                endManche(null);
-                endMatch(false);
-            }
+        }
+        if (onGoing) {
+            endManche(null);
+            endMatch(false);
+        }
     }
 
     void leaveMatchAsPlayer(Player player) throws RemoteException {
         String name = player.getNickname();
         int num = 0;
-        for(Player p : players){
-            if(p.equals(player))
+        for (Player p : players) {
+            if (p.equals(player))
                 break;
             else
                 num++;
@@ -887,21 +931,21 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                     players.remove(p);
                 } else {
                     p.getClient().notifyLeaver(name);
-                    p.getClient().notifyPlayerStats(num, "--", 0,0,0);
+                    p.getClient().notifyPlayerStats(num, "--", 0, 0, 0);
                 }
-            }catch(RemoteException e){
+            } catch (RemoteException e) {
                 players.remove(p);
             }
         }
         for (Client client : observers) {
             try {
                 client.notifyLeaver(name);
-                client.notifyPlayerStats(num, "--", 0,0,0);
-            }catch(RemoteException e){
+                client.notifyPlayerStats(num, "--", 0, 0, 0);
+            } catch (RemoteException e) {
                 leaveMatchAsObserver(client);
             }
         }
-        if(onGoing) {
+        if (onGoing) {
             endManche(null);
             endMatch(false);
         }
@@ -917,26 +961,27 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         observers.remove(c);
     }
 
+    @Override
     public void askNotify(Client c) throws RemoteException {
-        if(onGoing){
+        if (onGoing) {
             Player p = null;
-            for(int i=0; i<players.size(); i++){
+            for (int i = 0; i < players.size(); i++) {
                 p = players.get(i);
                 c.notifyPlayerStats(i, p.getNickname(), p.getPartialPoints(), p.getPoints(), p.getNumJolly());
                 c.setNewPhrase(manche.getCurrentPhrase().getTheme(), manche.getCurrentPhrase().getPhrase());
                 c.updatePhrase(phraseStatus);
             }
-        }else{
-            for(int i=0; i<players.size(); i++) {
+        } else {
+            for (int i = 0; i < players.size(); i++) {
                 c.notifyPlayerStats(i + 1, players.get(i).getNickname(), 0, 0, 0);
             }
         }
     }
 
-    @Override
     public String getMatchId() throws RemoteException {
         return id;
     }
+
     /**
      * @return un oggetto di tipo MatchData contenente tutte le informazioni del match necessarie a MatchVisualizer
      */
@@ -984,7 +1029,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         return turn;
     }
 
-    private void startTimer(int time, boolean jolly, boolean solution, boolean vocal){
+    private void startTimer(int time, boolean jolly, boolean solution, boolean vocal) {
         timer = new MoveTimer(time, this, jolly, solution, vocal);
         timer.start();
     }

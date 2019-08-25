@@ -36,6 +36,9 @@ public class MoveTimer extends Thread {
         return isThisForVocal;
     }
 
+    /**
+     * Aspetta per un tempo stabilito. Se non riceve l'interrupt segnala l'errore
+     */
     public void run(){
         try{
             sleep(time);

@@ -37,6 +37,13 @@ public class PhraseManager {
         }
     }
 
+    /**
+     * Questo metodo aggiunge al database le frasi ottenute attraverso un file di tipo .csv
+     *
+     * @param file il file da leggere
+     * @return <code>true</code> se l'inserimento avviene con successo, <code>false</code> altrimenti
+     * @throws IOException in caso di errori nella lettura del file
+     */
     public boolean addPhrases(File file) throws IOException {
         CSVReader reader = new CSVReader(new FileReader(file.getName()));
         ArrayList<PhrasesDTO> phrases = new ArrayList<>();

@@ -46,6 +46,12 @@ public interface Client extends Remote {
 
     public void setEmail(String email) throws RemoteException;
 
+    public String getName();
+
+    public String getSurname();
+
+    public String getEmail();
+
     /**
      * Notifica al client che c'e' stato un problema di connessione al server da parte del client o al database da parte del server
      *
