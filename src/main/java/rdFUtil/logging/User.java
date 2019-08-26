@@ -2,6 +2,9 @@ package rdFUtil.logging;
 
 import java.util.UUID;
 
+/**
+ * Una classe che estende {@link Login} per inviare al server i dati necessari alla registrazione. I metodi permettono di accedere e modificare tali dati.
+ */
 public class User extends Login {
     private String name;
     private String surname;

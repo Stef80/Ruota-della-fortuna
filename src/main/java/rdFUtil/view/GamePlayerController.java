@@ -475,6 +475,15 @@ public class GamePlayerController {
         activeAll();
     }
 
+    /**
+     * Aggiorna le statistiche di uno dei giocatori
+     *
+     * @param pos La sua posizione nella schermata (0 a sinistra, 1 al centro e 2 a destra)
+     * @param nickname il nickname del giocatore
+     * @param partial il punteggio parziale del giocatore
+     * @param total il punteggio totale del giocatore
+     * @param numJolly il numero di jolly accumulati dal giocatore
+     */
     public void notifyPlayerStats(int pos, String nickname, int partial, int total, int numJolly) {
         switch (pos) {
             case 0:
@@ -498,6 +507,11 @@ public class GamePlayerController {
         }
     }
 
+    /**
+     * Notifica che un giocatore ha deciso di chiamare una vocale
+     *
+     * @param nickname il nickname del giocatore che ha deciso di chiamare la vocale
+     */
     public void vocalCallNotify(String nickname) {
         String message = nickname + " ha chiamato la vocale";
         Notifications notification = Notifications.create()
@@ -508,6 +522,11 @@ public class GamePlayerController {
         notification.showInformation();
     }
 
+    /**
+     * Notifica che un giocatore vuole dare la soluzione
+     *
+     * @param nickname il nickname del giocatore
+     */
     public void callSolutionNotify(String nickname) {
         String message = nickname + " da la soluzione ";
         Notifications notification = Notifications.create()
@@ -519,6 +538,11 @@ public class GamePlayerController {
 
     }
 
+    /**
+     * Notifica che un giocatore ha usato il jolly
+     *
+     * @param nickname nickname del giocatore
+     */
     public void jollyNotify(String nickname) {
         String message = nickname + " ha giocato il jolly";
         Notifications notification = Notifications.create()
@@ -530,6 +554,12 @@ public class GamePlayerController {
 
     }
 
+    /**
+     * Notifica che un giocatore ha chiamato una lettera
+     *
+     * @param nickname il nickname del giocatore
+     * @param letter la lettera chiamata
+     */
     public void callLetterNotify(String nickname, String letter) {
         String message = nickname + " ha scelto la lettera " + letter;
         Notifications notification = Notifications.create()
@@ -550,6 +580,12 @@ public class GamePlayerController {
         isObserver = observer;
     }
 
+    /**
+     * Permette al giocatore di abbandonare la partita per poi essere reindirizzato alla finestra principale della piattaforma
+     *
+     * @param actionEvent
+     * @throws IOException Nel caso in cui non sia possibile caricare la finestra successiva
+     */
     public void exitMatch(ActionEvent actionEvent) throws IOException {
         try {
             if (isObserver) {
@@ -573,7 +609,11 @@ public class GamePlayerController {
     }
 
 
-
+    /**
+     * Notifica che un giocatore ha abbandonato la partita
+     *
+     * @param nickname il nickname del giocatore
+     */
     public void notifyLeaver(String nickname) {
         String message = nickname + "\nha lasciato la partita";
         Notifications notification = Notifications.create()
@@ -584,6 +624,11 @@ public class GamePlayerController {
         notification.showInformation();
     }
 
+    /**
+     * Notifica che la partita e' stata annullata
+     *
+     * @param reason il motivo per cui e' stata annullatat
+     */
     public void notifyMatchAbort(String reason) {
         String message = reason + "\nla partita è finita";
         Notifications notification = Notifications.create()
@@ -592,8 +637,25 @@ public class GamePlayerController {
                                              .hideAfter(Duration.seconds(2))
                                              .position(Pos.BASELINE_CENTER);
         notification.showInformation();
+        match = null;
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Stage primaryStage = new Stage();
+        Scene scene = new Scene(root);
+        primaryStage.setTitle("Wheel of Fortune");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        Stage oldStage = (Stage) exitButton.getScene().getWindow();
+        oldStage.close();
     }
 
+    /**
+     * Notifica l'inizio di una partita
+     */
     public void notifyMatchStart() {
         String message = "Partita iniziata";
         Notifications notification = Notifications.create()
@@ -604,15 +666,23 @@ public class GamePlayerController {
         notification.showInformation();
     }
 
+    /**
+     * Notifica che l'utente ha vinto la manche
+     */
     public void notifyMancheVictory() {
         Notifications notification = Notifications.create()
                                              .title("Notifica di partita")
-                                             .text("HAI VINTO!!!")
+                                             .text("HAI VINTO LA MANCHE!!!")
                                              .hideAfter(Duration.seconds(2))
                                              .position(Pos.BASELINE_CENTER);
         notification.showInformation();
     }
 
+    /**
+     * Notifica la fine della manche
+     *
+     * @param winner Il nickname del vincitore
+     */
     public void notifyMancheResult(String winner) {
         String message = winner + "\nha vinto la manche ";
         Notifications notification = Notifications.create()
@@ -623,6 +693,11 @@ public class GamePlayerController {
         notification.showInformation();
     }
 
+    /**
+     * Notifica l'inizio di una nuova manche
+     *
+     * @param numManche il numero della manche che sta per iniziare
+     */
     public void notifyNewManche(int numManche) {
         String message = "la manche numero " + numManche + "\nsta per cominciare";
         Notifications notification = Notifications.create()
@@ -633,7 +708,9 @@ public class GamePlayerController {
         notification.showInformation();
     }
 
-
+    /**
+     * Notifica che e' il turno dell'utente
+     */
     public void notifyYourTurn() {
         Notifications notification = Notifications.create()
                                              .title("Notifica di partita")
@@ -644,6 +721,11 @@ public class GamePlayerController {
         yourTurn();
     }
 
+    /**
+     * Notifica la fine della partita e fa tornare l'utente alla schermata principale
+     *
+     * @param winner il nickname del vincitore
+     */
     public void notifyEndMatch(String winner) {
         String message = winner + "\nha vinto la partita ";
         Notifications notification = Notifications.create()
@@ -652,8 +734,25 @@ public class GamePlayerController {
                                              .hideAfter(Duration.seconds(2))
                                              .position(Pos.BASELINE_CENTER);
         notification.showInformation();
+        match = null;
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Stage primaryStage = new Stage();
+        Scene scene = new Scene(root);
+        primaryStage.setTitle("Wheel of Fortune");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        Stage oldStage = (Stage) exitButton.getScene().getWindow();
+        oldStage.close();
     }
 
+    /**
+     * Notifica all'utente che ha vinto la partita e lo fa tornare alla schermata principale
+     */
     public void notifyMatchWin() {
         Notifications notification = Notifications.create()
                                              .title("Notifica di partita")
@@ -661,8 +760,25 @@ public class GamePlayerController {
                                              .hideAfter(Duration.seconds(2))
                                              .position(Pos.BASELINE_CENTER);
         notification.showInformation();
+        match = null;
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Stage primaryStage = new Stage();
+        Scene scene = new Scene(root);
+        primaryStage.setTitle("Wheel of Fortune");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        Stage oldStage = (Stage) exitButton.getScene().getWindow();
+        oldStage.close();
     }
 
+    /**
+     * Notifica che il tempo a disposizione di un giocatore e' scaduto
+     */
     public void notifyTimeOut() {
         Notifications notification = Notifications.create()
                                              .title("Notifica di partita")
@@ -672,15 +788,23 @@ public class GamePlayerController {
         notification.showInformation();
     }
 
+    /**
+     * Chiede all'utente se ha intezione di usare un jolly in seguito di un errore
+     */
     public void askForJolly() {
         Notifications notification = Notifications.create()
                                              .title("Notifica di partita")
-                                             .text("vuoi usare il jolly")
+                                             .text("Hai fatto un errore. Vuoi usare il jolly?")
                                              .hideAfter(Duration.seconds(2))
                                              .position(Pos.BASELINE_CENTER);
         notification.showInformation();
     }
 
+    /**
+     * Notifica che un giocatore ha commesso un errore
+     *
+     * @param name il nickname del giocatore
+     */
     public void notifyPlayerError(String name) {
         String message = name + "\nha commesso un errore";
         Notifications notification = Notifications.create()

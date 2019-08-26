@@ -39,7 +39,7 @@ public class ForgottenPasswordController {
 	 * il metodo gestisce il click del pulsante di invio, che acquisisce l'indirizzo mail inserito e automaticamente
 	 * viene inviata una meil al proprio indirizzo con una nuova password
 	 *
-	 * @throws RemoteException
+	 * @throws RemoteException In caso di errore di connesione al server
 	 */
 
 	public void enter() throws RemoteException {
@@ -48,7 +48,7 @@ public class ForgottenPasswordController {
 		if(!bool){
 			Notifications notification = Notifications.create()
 					.title("Mail Notification")
-					.text("L'indirizzo email non esiste. \nriprova!")
+					.text("L'indirizzo email non esiste.\nriprova!")
 					.hideAfter(Duration.seconds(3))
 					.position(Pos.CENTER);
 			notification.showError();

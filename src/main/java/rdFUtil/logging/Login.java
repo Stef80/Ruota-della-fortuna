@@ -2,6 +2,9 @@ package rdFUtil.logging;
 
 import java.io.Serializable;
 
+/**
+ * Classe che contiene tutti i dati necessari al'accesso alla piattaforma. I metodi permettono la modifica e l'accesso a tali dati
+ */
 public class Login implements Serializable {
     public static final long serialVersionUID = 1L;
 

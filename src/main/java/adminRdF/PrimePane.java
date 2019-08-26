@@ -8,7 +8,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import rdFUtil.client.AdminChecker;
 
-
+/**
+ * La classe che avvia il modulo AdminRdF
+ */
 public class PrimePane extends Application {
     public PrimePane(){}
 

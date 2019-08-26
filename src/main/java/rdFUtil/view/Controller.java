@@ -53,7 +53,7 @@ public class Controller {
      * se il login avviene dal server mostra l'hostname del server che deve essere utilizzato
      * per la connessione.
      *
-     * @throws IOException
+     * @throws IOException Nel caso in cui non sia possibile accedere alla finestra successiva
      */
     public void login() throws Exception {
         String mail = emailTextField.getText();
