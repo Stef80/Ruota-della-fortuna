@@ -11,12 +11,10 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
-import rdFUtil.client.AdminChecker;
 import rdFUtil.client.ClientImplementation;
 import rdFUtil.view.Controller;
-import rdFUtil.view.ForgottenPasswordPane;
-import rdFUtil.view.GamePlayerController;
-import rdFUtil.view.RegistrationFormPanel;
+import rdFUtil.view.ForgottenPasswordController;
+import rdFUtil.view.RegistrationFormController;
 import serverRdF.ServerImplementation;
 import serverRdF.dbComm.DBManager;
 import serverRdF.emailRdF.EmailManager;
@@ -30,7 +28,7 @@ import java.rmi.registry.Registry;
 /**
  * Controller della finestra utilizzata per effettuare l'accesso ad un account Insubria per l'invio delle mail automatiche.
  */
-public class InsubriaLoginPane {
+public class InsubriaLoginController {
     @FXML
     private TextField userTextField;
     @FXML
@@ -63,8 +61,8 @@ public class InsubriaLoginPane {
             ClientImplementation client = new ClientImplementation();
             new Controller(server, client, true);
             Controller.setIsServer(true);
-            new ForgottenPasswordPane(server, client);
-            new RegistrationFormPanel(server, client, true, true);
+            new ForgottenPasswordController(server, client);
+            new RegistrationFormController(server, client, true, true);
             if (dbManager.getAnyAdmin()) {
                 Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("main_pane.fxml"));
                 Stage primaryStage = new Stage();

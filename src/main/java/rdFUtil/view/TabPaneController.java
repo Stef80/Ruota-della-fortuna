@@ -24,7 +24,6 @@ import serverRdF.matchRdF.RemoteMatch;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -34,7 +33,7 @@ import java.util.StringTokenizer;
  * Controller del menu principale di AdminRdF e PlayerRdF. Permette di visualizzare le partite, crearene di nuove, visualizzare le statistiche della piattaforma
  * e gestire le informazioni del proprio profilo. Se si accede come admin e' anche possibile aggiungere nuove frasi.
  */
-public class TabPane implements Initializable {
+public class TabPaneController implements Initializable {
 
     @FXML
     private ListView<MatchData> gameList;
@@ -117,7 +116,7 @@ public class TabPane implements Initializable {
     private boolean isAdmin;
 
 
-    public TabPane(){
+    public TabPaneController(){
 	}
 
 	/**
@@ -166,7 +165,7 @@ public class TabPane implements Initializable {
 			e.printStackTrace();
 		}
 		for (MatchData matchData: list){
-			gameList.setCellFactory(e -> new GameView(server, client, matchData));
+			gameList.setCellFactory(e -> new GameViewController(server, client, matchData));
 		}
 		disableTab();
 		try {
@@ -293,7 +292,7 @@ public class TabPane implements Initializable {
 			e.printStackTrace();
 		}
 		for (MatchData matchData: list){
-			gameList.setCellFactory(e -> new GameView(server, client, matchData));
+			gameList.setCellFactory(e -> new GameViewController(server, client, matchData));
 		}
 	}
 

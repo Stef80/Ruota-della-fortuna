@@ -28,6 +28,10 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.StringTokenizer;
 
+/**
+ * il controller della finestra di gioco che visualizza mosse, turni e notifiche di gioco a tutti i giocatori e agli osservatori
+ */
+
 public class GamePlayerController {
     @FXML
     private Button jollyButton;
@@ -98,6 +102,10 @@ public class GamePlayerController {
         this.client = client;
     }
 
+    /**
+     * il metodo crea il tabellone dove viene visualizzata la frase misteriosa
+     */
+
     public void createTableOfPhrase() {
 
         for (int i = 0; i < 5; i++) {
@@ -121,6 +129,12 @@ public class GamePlayerController {
             e.printStackTrace();
         }
     }
+
+    /**
+     * il metodo aggiorna il tabellone ad ogni lettera chiamata e rende visibile tutte le occorrenze di tale lettera
+     *
+     * @param letter
+     */
 
     public void updatePhrase(String letter) {
         StackPane node;
@@ -148,6 +162,11 @@ public class GamePlayerController {
             }
         }
     }
+
+    /**
+     *
+     * @param phrase
+     */
 
     public void updatePhrase(boolean[] phrase) {
         int column = 0;
@@ -192,6 +211,13 @@ public class GamePlayerController {
             }
         }
     }
+
+    /**
+     * il metodo aggiunge una nuova frase al tabellone  e aggionra l'etichetta del tema della frase
+     *
+     * @param theme
+     * @param phrase
+     */
 
     public void setNewPhrase(String theme, String phrase) {
         phraseThemeLabel.setText(theme);
@@ -255,6 +281,12 @@ public class GamePlayerController {
         }
     }
 
+    /**
+     * il metodo ritorna la casella identificata dalla riga e dalla colonna in cui si trova
+     * @param row
+     * @param column
+     * @return result
+     */
     private Node getNodeByRowColumnIndex(final int row, final int column) {
         Node result = null;
         ObservableList<Node> childrens = phraseGridPane.getChildren();
@@ -269,6 +301,9 @@ public class GamePlayerController {
         return result;
     }
 
+    /**
+     * il metodo rende invisibili tutti i pulsanti e disabilita i campi di testo
+     */
 
     public void hideAll() {
         jollyButton.setVisible(false);
@@ -279,6 +314,10 @@ public class GamePlayerController {
         letterTextField.setDisable(true);
     }
 
+    /**
+     * il metodo disabilita tutti i pulsanti e i campi di testo
+     */
+
     public void disableAll() {
         jollyButton.setDisable(true);
         vowelButton.setDisable(true);
@@ -288,6 +327,10 @@ public class GamePlayerController {
         letterTextField.setDisable(true);
     }
 
+    /**
+     * il metodo attiva tutti i bottoni e abilita il campo di testo per l'inserimento delle lettere
+     */
+
     public void activeAll() {
         jollyButton.setDisable(false);
         vowelButton.setDisable(false);
@@ -295,6 +338,11 @@ public class GamePlayerController {
         solutionButton.setDisable(false);
         letterTextField.setDisable(false);
     }
+
+    /**
+     * il metodo fa partire il conto alla rovescia
+     * @param seconds
+     */
 
     public void runCountdown(int seconds) {
         timeSeconds = seconds;
@@ -573,7 +621,7 @@ public class GamePlayerController {
         notification.showInformation();
     }
 
-    public void notiTimeOut() {
+    public void notifyTimeOut() {
         Notifications notification = Notifications.create()
                                              .title("Notifica di partita")
                                              .text("Tempo scduto ")

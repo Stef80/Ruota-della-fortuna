@@ -34,7 +34,7 @@ public class ServerMainPane {
 
 	/**
 	 * Cerca di collegarsi al database con le credenziali fornite dall'utente. Se si riesce a stabilire la connessione si passa alla schermata successiva,
-	 * controllata da {@link InsubriaLoginPane}
+	 * controllata da {@link InsubriaLoginController}
 	 *
 	 * @throws IOException In caso non sia possibile caricare la schermata successiva
 	 */
@@ -45,11 +45,10 @@ public class ServerMainPane {
     	String hostname = hostnameTextField.getText();
 		try {
 			manager = DBManager.createDBManager(hostname,user,password);
-			InsubriaLoginPane.setDbManager(manager);
+			InsubriaLoginController.setDbManager(manager);
 			Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("insubria_login_pane.fxml"));
 			Stage primaryStage = new Stage();
 			Scene scene = new Scene(root1);
-			//   scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 			primaryStage.setTitle("");
 			primaryStage.setScene(scene);
 			primaryStage.show();

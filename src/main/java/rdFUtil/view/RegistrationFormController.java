@@ -16,10 +16,9 @@ import rdFUtil.logging.User;
 import serverRdF.Server;
 import serverRdF.registrationRdF.OTPHelper;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 
-public class RegistrationFormPanel {
+public class RegistrationFormController {
 
     @FXML
     private TextField nameTextField;
@@ -41,9 +40,9 @@ public class RegistrationFormPanel {
     private boolean admin;
     private boolean isServer;
 
-    public RegistrationFormPanel(){}
+    public RegistrationFormController(){}
 
-    public RegistrationFormPanel(Server server, Client client, boolean admin, boolean isServer) {
+    public RegistrationFormController(Server server, Client client, boolean admin, boolean isServer) {
         this.server = server;
         this.client = client;
         this.admin = admin;
@@ -86,7 +85,7 @@ public class RegistrationFormPanel {
                 String passwordStr = password.getText();
                 user = new User(passwordStr, mailStr, nameStr, surnameStr, nickStr);
                 OTPHelper otpHelper = server.signUp(user, client, true);//todo modificare l'import di OTPHelper
-                new OTPRegistrationPane(server, client, otpHelper);
+                new OTPRegistrationController(server, client, otpHelper);
                 Parent root = FXMLLoader.load(Thread.currentThread().getClass().getResource("OTP_registration_pane.fxml"));
                 Scene scene = new Scene(root);
                 Stage primaryStage = new Stage();

@@ -14,7 +14,7 @@ import org.controlsfx.control.Notifications;
 import rdFUtil.client.Client;
 import rdFUtil.logging.Login;
 import serverRdF.Server;
-import serverRdF.view.HostView;
+import serverRdF.view.HostViewController;
 
 import java.io.IOException;
 
@@ -104,7 +104,7 @@ public class Controller {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            HostView hostname = loader.getController();
+            HostViewController hostname = loader.getController();
             hostname.takeAddress();
             Stage primaryStage = new Stage();
             Scene scene = new Scene(root);
@@ -153,11 +153,11 @@ public class Controller {
     }
 
     /**
-     * Metodo utilizzato per passare informazioni del client a {@link TabPane}
+     * Metodo utilizzato per passare informazioni del client a {@link TabPaneController}
      *
-     * @param tb il riferimento al controller {@link TabPane}
+     * @param tb il riferimento al controller {@link TabPaneController}
      */
-    public static void setArgs(TabPane tb){
+    public static void setArgs(TabPaneController tb){
         tb.setClient(client);
         tb.setServer(server);
         tb.setAdmin(admin);

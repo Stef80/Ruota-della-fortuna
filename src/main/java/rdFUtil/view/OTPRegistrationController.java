@@ -23,7 +23,7 @@ import serverRdF.registrationRdF.OTPHelper;
 import java.io.IOException;
 import java.rmi.RemoteException;
 
-public class OTPRegistrationPane {
+public class OTPRegistrationController {
     @FXML
     private TextField otpTextField;
     @FXML
@@ -37,9 +37,9 @@ public class OTPRegistrationPane {
     private Client client;
     private OTPHelper otp;
 
-    public OTPRegistrationPane(){}
+    public OTPRegistrationController(){}
 
-    public OTPRegistrationPane(Server server, Client client, OTPHelper otp) {
+    public OTPRegistrationController(Server server, Client client, OTPHelper otp) {
         this.server = server;
         this.client = client;
         this.otp = otp;

@@ -1,16 +1,16 @@
 package rdFUtil.client;
 
 import rdFUtil.view.GamePlayerController;
-import rdFUtil.view.OTPRegistrationPane;
-import rdFUtil.view.TabPane;
+import rdFUtil.view.OTPRegistrationController;
+import rdFUtil.view.TabPaneController;
 
 import java.rmi.RemoteException;
 
 public class ClientImplementation implements Client {
 
     private GamePlayerController game;
-    private OTPRegistrationPane otpRegistrationPane;
-    private TabPane tab;
+    private OTPRegistrationController otpRegistrationPane;
+    private TabPaneController tab;
     private String id;
     private String nickname;
     private String name;
@@ -157,7 +157,7 @@ public class ClientImplementation implements Client {
 
     @Override
     public void notifyTimeOut() throws RemoteException {
-        game.notiTimeOut();
+        game.notifyTimeOut();
     }
 
     @Override

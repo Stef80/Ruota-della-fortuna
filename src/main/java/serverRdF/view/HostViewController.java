@@ -11,7 +11,7 @@ import java.rmi.registry.Registry;
 /**
  * Controlla la schermata principale del server, la quale visualizza l'hostname necessario ai client per accedere alla piattaforma
  */
-public class HostView {
+public class HostViewController {
 
 	@FXML
 	private Label hostnameLabel;
@@ -22,8 +22,8 @@ public class HostView {
 	 * @throws Exception
 	 */
 	public void takeAddress() throws Exception{
-		Registry r = InsubriaLoginPane.getRegistry();
-		ServerImplementation server = InsubriaLoginPane.getServer();
+		Registry r = InsubriaLoginController.getRegistry();
+		ServerImplementation server = InsubriaLoginController.getServer();
 		r.rebind("SERVER",server);
 		InetAddress address = null;
 		try {

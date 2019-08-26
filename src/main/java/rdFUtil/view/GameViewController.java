@@ -23,7 +23,7 @@ import serverRdF.matchRdF.RemoteMatch;
 import java.io.IOException;
 import java.rmi.RemoteException;
 
-public class GameView extends ListCell<MatchData> {
+public class GameViewController extends ListCell<MatchData> {
     @FXML
     private Label label1;
     @FXML
@@ -43,9 +43,9 @@ public class GameView extends ListCell<MatchData> {
     private MatchData matchData;
     private RemoteMatch match;
 
-    public GameView(){}
+    public GameViewController(){}
 
-    public GameView(Server server, Client client,MatchData matchData) {
+    public GameViewController(Server server, Client client, MatchData matchData) {
         this.server = server;
         this.client = client;
         this.matchData = matchData;
