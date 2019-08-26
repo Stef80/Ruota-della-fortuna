@@ -1,17 +1,9 @@
 /**TODO
-* mappa progettuale ER
-* mappa logica ER
-* Traduzione schema ER: aggiungere vincoli check che servono
-* qualche schema UML
+* DOCUMENTAZIONE SCHEMI UML
 *
-* IMPLEMENTAZIONI DEL CLIENT IN ADMIN E PLAYER RDF
-* STABILIRE CONNESSIONE TRA CLIENT E SERVER
 *
 * MODIFICARE I DIAGRAMMI UML
 *
 *
-* QUANDO BISOGNA GESTIRE UNA ECCEZIONE RemoteExcepton/SQLException (CHE MANDERA' AL CLIENT UNA NOTIFICA PER DIRE DELL'ERRORE SERVER), UTILIZZARE IL METODO STATICO "ServerImplementation.serverError(Client c)".
-* E' GIA' IMPLEMENTATO NELLA CLASSE
 *
-* REMINDER METODI SYNCHRONIZED (tutti i metodi di modifica dei vari DAO e altri metodi in giro)
-**/
+   **/

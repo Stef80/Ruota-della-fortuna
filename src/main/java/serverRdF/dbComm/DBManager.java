@@ -14,7 +14,6 @@ import java.util.List;
  * Implementazione dell'interfaccia {@link DBManagerInterface}
  */
 public class DBManager implements DBManagerInterface{
-    //TODO bisogna implementare i metodi dell'interfaccia
     private static DBManager dbManager=null;
     private Connection con;
     private PhrasesDAO phrasesDAO;
@@ -27,7 +26,6 @@ public class DBManager implements DBManagerInterface{
     private MatchWinnersDAO matchWinnersDAO;
 
     private DBManager(String url, String userID, String password) throws SQLException {
-        //TODO connessione con database
         con = DriverManager.getConnection(url,userID, password);
     }
 
