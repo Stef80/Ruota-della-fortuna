@@ -23,6 +23,10 @@ import serverRdF.registrationRdF.OTPHelper;
 import java.io.IOException;
 import java.rmi.RemoteException;
 
+/**
+ * Controller della finestra per l'inserimento di dell'OTP necessario al completamento della registrazione. Possiede un timer di dieci minuti oltre il
+ *  quale la registrazione viene annullata
+ */
 public class OTPRegistrationController {
     @FXML
     private TextField otpTextField;
@@ -45,6 +49,11 @@ public class OTPRegistrationController {
         this.otp = otp;
     }
 
+    /**
+     * Controlla che l'OTP inserito sia uguale a quello inviato via email. Se i due codici corrispondono, si viene reindirizzati alla schermata di login
+     *
+     * @throws IOException In caso non sia possibile accedere alla finestra successiva
+     */
     public void enter() throws IOException {
         String otpStr = otpTextField.getText();
         boolean check = false;
@@ -74,6 +83,9 @@ public class OTPRegistrationController {
         }
     }
 
+    /**
+     * Avvia il timer di dieci minuti. Quando il temnpo scade, si viene reindirizzati alla schermata di login e viene segnalato il time out
+     */
     public void runCountdown() {
         timeLabel.setText(String.valueOf(timeMinutes) + ":" + String.valueOf(timeSeconds));
         timeline = new Timeline();
@@ -116,6 +128,9 @@ public class OTPRegistrationController {
         timeline.playFromStart();
     }
 
+    /**
+     * Notifica che l'OTP inserito non corrisponde con quello che e' stato inviato via email.
+     */
     public void notifyWrongOTP(){
         Notifications notification = Notifications.create()
                                              .title("OTP Notification")

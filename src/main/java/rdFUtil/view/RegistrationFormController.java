@@ -18,6 +18,10 @@ import serverRdF.registrationRdF.OTPHelper;
 
 import java.io.IOException;
 
+/**
+ * Il controller della finestra di registrazione. Permette di compilare tutti i campi necessari e registrare un nuovo utente. Grazie al campo 'admin'
+ * {@link RegistrationFormController} e' in grado di chiedere al server sia la registrazione di un admin che di un giocatore
+ */
 public class RegistrationFormController {
 
     @FXML
@@ -56,7 +60,7 @@ public class RegistrationFormController {
      * tra la mail inserita e quelle già registrate se non esiste la registra
      * visualizza una finestra di errore altrimenti
      *
-     * @throws IOException
+     * @throws IOException In caso non sia possibile accedere alla finestra successiva
      */
     public void confirm() throws IOException {
         //se la mail non esiste visualizza notifica
@@ -106,6 +110,11 @@ public class RegistrationFormController {
         }
     }
 
+    /**
+     * Permette di tornare alla schermata di login
+     *
+     * @throws IOException In caso non sia possibile accedere alla finestra
+     */
     public void back() throws IOException{
         Parent root = FXMLLoader.load(Thread.currentThread().getClass().getResource("main_pane.fxml"));
         Scene scene = new Scene(root);

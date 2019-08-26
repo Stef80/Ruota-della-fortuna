@@ -131,9 +131,9 @@ public class GamePlayerController {
     }
 
     /**
-     * il metodo aggiorna il tabellone ad ogni lettera chiamata e rende visibile tutte le occorrenze di tale lettera
+     * Il metodo aggiorna il tabellone ad ogni lettera chiamata e rende visibile tutte le occorrenze di tale lettera
      *
-     * @param letter
+     * @param letter la lettera scelta
      */
 
     public void updatePhrase(String letter) {
@@ -164,8 +164,9 @@ public class GamePlayerController {
     }
 
     /**
+     * Aggiorna il tabellone degli osservatori entrati a meta' partita con le lettere che sono gia state richiamate
      *
-     * @param phrase
+     * @param phrase l'array di booleani che indica con <code>true</code> se una lettera e' gia' stata chiamata e false altrimenti
      */
 
     public void updatePhrase(boolean[] phrase) {
@@ -213,10 +214,10 @@ public class GamePlayerController {
     }
 
     /**
-     * il metodo aggiunge una nuova frase al tabellone  e aggionra l'etichetta del tema della frase
+     * Il metodo aggiunge una nuova frase al tabellone  e aggionra l'etichetta del tema della frase
      *
-     * @param theme
-     * @param phrase
+     * @param theme Il tema della frase
+     * @param phrase La frase
      */
 
     public void setNewPhrase(String theme, String phrase) {
@@ -282,7 +283,8 @@ public class GamePlayerController {
     }
 
     /**
-     * il metodo ritorna la casella identificata dalla riga e dalla colonna in cui si trova
+     * Il metodo ritorna la casella identificata dalla riga e dalla colonna in cui si trova
+     *
      * @param row
      * @param column
      * @return result
@@ -302,7 +304,7 @@ public class GamePlayerController {
     }
 
     /**
-     * il metodo rende invisibili tutti i pulsanti e disabilita i campi di testo
+     * Il metodo rende invisibili tutti i pulsanti e disabilita i campi di testo
      */
 
     public void hideAll() {
@@ -315,7 +317,7 @@ public class GamePlayerController {
     }
 
     /**
-     * il metodo disabilita tutti i pulsanti e i campi di testo
+     * Il metodo disabilita tutti i pulsanti e i campi di testo
      */
 
     public void disableAll() {
@@ -328,7 +330,7 @@ public class GamePlayerController {
     }
 
     /**
-     * il metodo attiva tutti i bottoni e abilita il campo di testo per l'inserimento delle lettere
+     * Il metodo attiva tutti i bottoni e abilita il campo di testo per l'inserimento delle lettere
      */
 
     public void activeAll() {
@@ -340,8 +342,9 @@ public class GamePlayerController {
     }
 
     /**
-     * il metodo fa partire il conto alla rovescia
-     * @param seconds
+     * Il metodo fa partire il conto alla rovescia
+     *
+     * @param seconds i secondi di timer
      */
 
     public void runCountdown(int seconds) {
@@ -361,6 +364,11 @@ public class GamePlayerController {
     }
 
 
+    /**
+     * Il metodo segnala al server che si vuole provare a dare la soluzione
+     *
+     * @throws RemoteException In caso di errore di connessione al server
+     */
     public void giveSolution() throws RemoteException {
         match.askForSolution();
         solutionTextField.setDisable(false);
@@ -368,6 +376,9 @@ public class GamePlayerController {
     }
 
     @FXML
+    /**
+     * Viene inviata al server la soluzione indicata. Se corrisponde alla soluzione effettiva la manche si conclude
+     */
     public void confirmSolution() throws RemoteException {
         String solution = solutionTextField.getText();
         solution = solution.trim();
@@ -375,6 +386,9 @@ public class GamePlayerController {
         match.giveSolution(solution);
     }
 
+    /**
+     * Richiede al server un giro della ruota.
+     */
     public void wheelSpin() {
         try {
             wheelResult = match.wheelSpin();
@@ -384,11 +398,20 @@ public class GamePlayerController {
         if (wheelResult != 0) runCountdown(5);
     }
 
+    /**
+     * Notifica nella schermata di gioco il valore ottenuto dal giro di ruota
+     *
+     * @param result il risultato da visualizzare
+     */
     public void wheelResult(String result) {
         resultLabel.setText(result);
     }
 
     @FXML
+    /**
+     * Premendo il tasto 'enter' dopo aver inserito una lettera, verra' comunicato al server che si sta provando a dare una vocale se prima e' stata girata la
+     * ruota o una vocale se prima e' stato premuto il tasto 'vocale'
+     */
     public void onEnter() throws RemoteException {
         String letter = letterTextField.getText();
         letter = letter.trim();
@@ -400,15 +423,31 @@ public class GamePlayerController {
         }
     }
 
+    /**
+     * Metodo per indicare al server che sia ha intenzione di dare una vocale
+     *
+     * @throws RemoteException In caso di errore di comunicazione con il server
+     */
     public void giveVocal() throws RemoteException {
         match.askForVocal();
         runCountdown(5);
     }
 
+    /**
+     * Indica al server che si ha intenzione di utilizzare un jolly
+     *
+     * @throws RemoteException In caso di errore di comunicazione con il server
+     */
     public void giveJolly() throws RemoteException {
         match.jolly();
     }
 
+    /**
+     * Modifica la schermata di gioco affinche' venga indicato il turno del giocatore successivo
+     *
+     * @param nickName il nickname del giocatore attivo
+     * @throws RemoteException In caso di errore di comunicazione con il server
+     */
     public void setTurn(String nickName) throws RemoteException {
         if (nickName.equals(player1Label.getText())) {
             player1Box.setStyle("-fx-border-color = #FFF404;");
@@ -429,6 +468,9 @@ public class GamePlayerController {
         runCountdown(5);
     }
 
+    /**
+     * Attiva i bottoni per effetuare le mosse nel caso sia il proprio turno
+     */
     public void yourTurn() {
         activeAll();
     }

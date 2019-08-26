@@ -23,6 +23,10 @@ import serverRdF.matchRdF.RemoteMatch;
 import java.io.IOException;
 import java.rmi.RemoteException;
 
+/**
+ * Controller degli elementi della lista dei match in corso e in attesa di giocatori. Contiene informazioni utili come i giocatori che gia' partecipano
+ * alla partita e se la partita e' gia' in corso. Ogni elemento GameView ha i propri bottoni per partecipare come osservatore o giocatore
+ */
 public class GameViewController extends ListCell<MatchData> {
     @FXML
     private Label label1;
@@ -52,6 +56,11 @@ public class GameViewController extends ListCell<MatchData> {
     }
 
     @Override
+    /**
+     * Aggiorna i gli elementi con i dati del match. Il tasto per partecipare alla partita sara' disponibiile sono se il match e' disponibile e l'utente connesso
+     * non e' un admin. Il tasto di join permette di partecipare alla partita, il tasto observe di parteciparvi. In entrambi i casi verra' aperta la finestra di
+     * gioco.
+     */
     protected void updateItem(MatchData item, boolean empty) {
         super.updateItem(item, empty);
         if (empty || item == null) {
