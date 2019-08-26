@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 
 /**
- * Il controller della finestra per il reset della password inserendo la propria mail e inviando una nuova password
+ * Il controller della finestra per il reset della password. Inserendo la propria mail, il server mandera' una nuova password via email
  */
 
 public class ForgottenPasswordController {
@@ -21,8 +21,6 @@ public class ForgottenPasswordController {
 	private Button enterButton;
 	@FXML
 	private TextField mailText;
-	@FXML
-	private Button backButton;
 	private Server server;
 	private Client client;
 
@@ -46,21 +44,5 @@ public class ForgottenPasswordController {
 		server.resetPassword(client, mail);
 		Stage oldStage = (Stage) enterButton.getScene().getWindow();
 		oldStage.close();
-	}
-
-	/**
-	 *
-	 * @throws IOException
-	 */
-
-	public void back() throws IOException {
-		Parent root = FXMLLoader.load(Thread.currentThread().getClass().getResource("OTP_registration_pane.fxml"));//TODO perchè va in otp e non in main?
-		Scene scene = new Scene(root);
-		Stage primaryStage = new Stage();
-		primaryStage.setTitle("Wheel of Fortune");
-		primaryStage.setScene(scene);
-		primaryStage.show();
-		Stage thisStage = (Stage) backButton.getScene().getWindow();
-		thisStage.close();
 	}
 }
