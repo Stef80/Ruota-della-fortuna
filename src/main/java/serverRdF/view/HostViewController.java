@@ -31,6 +31,6 @@ public class HostViewController {
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}
-		hostnameLabel.setText(address.getHostName());
+		hostnameLabel.setText("Hostname: " + address.getHostName());
 	}
 }

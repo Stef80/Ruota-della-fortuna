@@ -2,11 +2,14 @@ package rdFUtil.view;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 import rdFUtil.client.Client;
 import serverRdF.Server;
 import java.io.IOException;
@@ -41,8 +44,17 @@ public class ForgottenPasswordController {
 
 	public void enter() throws RemoteException {
 		String mail = mailText.getText();
-		server.resetPassword(client, mail);
-		Stage oldStage = (Stage) enterButton.getScene().getWindow();
-		oldStage.close();
+		boolean bool = server.resetPassword(client, mail);
+		if(!bool){
+			Notifications notification = Notifications.create()
+					.title("Mail Notification")
+					.text("L'indirizzo email non esiste. \nriprova!")
+					.hideAfter(Duration.seconds(3))
+					.position(Pos.CENTER);
+			notification.showError();
+		}else {
+			Stage oldStage = (Stage) enterButton.getScene().getWindow();
+			oldStage.close();
+		}
 	}
 }

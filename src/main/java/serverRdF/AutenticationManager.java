@@ -41,7 +41,7 @@ public class AutenticationManager {
      * @param c     il riferimento al client
      * @param admin il boolean che indica se l'utente e' admin oppure no
      * @return 0 se l'autenticazione è andata a buon fine, 1 se l'utente si e' loggato ma non e' sulla piattaforma giusta, -1 altrimenti
-     * @throws RemoteException
+     * @throws RemoteException In caso di errore di connessione con il client
      */
     public int signIn(Login form, Client c, boolean admin) throws RemoteException {
         String email = form.getEmail();
