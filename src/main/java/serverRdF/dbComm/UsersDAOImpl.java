@@ -99,7 +99,6 @@ public class UsersDAOImpl implements UsersDAO {
         String queryUpdate = "UPDATE "+UserTable+" SET "+UserNameAttribute+" = '"+user.getName()+"', "+UserSurnameAttribute+" = '"+user.getSurname()+"', "+
                 UserNicknameAttribute+" = '"+user.getNickname()+"', "+UserPasswordAttribute+" = '"+user.getPassword()+"' WHERE "+UserIdAttribute+" = '"+user.getId()+"';";
         Statement stmt = con.createStatement();
-        System.out.println("Utente Modificato");
         boolean bool = stmt.executeUpdate(queryUpdate) > 0;
         return bool;
     }

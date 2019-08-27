@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
+import rdFUtil.client.AdminChecker;
 import rdFUtil.client.Client;
 import rdFUtil.logging.User;
 import serverRdF.Server;
@@ -61,8 +62,6 @@ public class RegistrationFormController implements Initializable {
      */
     public void confirm() throws IOException {
         //se la mail non esiste visualizza notifica
-        System.out.print("dati: ");
-        System.out.println((server == null) ? "no" : "ok" + " ");
         if (!(nameTextField.getText().equals("") || surnameTextField.getText().equals("") || nicknameTextField.getText().equals("") || mailTextField.getText().equals("") || passwordTextField.getText().equals(""))) {
             if (!server.checkEMail(mailTextField.getText())) {
                 Notifications notification = Notifications.create()
@@ -87,7 +86,7 @@ public class RegistrationFormController implements Initializable {
                 String mailStr = mailTextField.getText();
                 String passwordStr = passwordTextField.getText();
                 user = new User(passwordStr, mailStr, nameStr, surnameStr, nickStr);
-                otp = server.signUp(user, client, true);//todo modificare l'import di OTPHelper
+                otp = server.signUp(user, client, admin);//todo modificare l'import di OTPHelper
                 Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("OTP_registration_pane.fxml"));
                 Scene scene = new Scene(root);
                 Stage primaryStage = new Stage();

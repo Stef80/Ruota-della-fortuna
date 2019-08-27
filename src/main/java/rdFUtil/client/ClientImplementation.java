@@ -23,6 +23,10 @@ public class ClientImplementation extends UnicastRemoteObject implements Client,
 
     public ClientImplementation() throws RemoteException{}
 
+    public void setGame(GamePlayerController e) throws RemoteException{
+        game = e;
+    }
+
     @Override
     public String getNickname() throws RemoteException {
         return nickname;
@@ -148,7 +152,7 @@ public class ClientImplementation extends UnicastRemoteObject implements Client,
 
     @Override
     public void notifyPlayerStats(int position, String name, int partialPoints, int points, int numJolly) throws RemoteException {
-      game.notifyPlayerStats(position, name, partialPoints, points, numJolly);
+        game.notifyPlayerStats(position, name, partialPoints, points, numJolly);
     }
 
     @Override

@@ -103,7 +103,15 @@ public class GamePlayerController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        GameViewController.setGameControlle(this);
+        if(TabPaneController.player)
+            TabPaneController.setGameControlle(this);
+        else
+            GameViewController.setGameControllerObserver(this);
+        try {
+            client.setGame(this);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
         createTableOfPhrase();
     }
 
