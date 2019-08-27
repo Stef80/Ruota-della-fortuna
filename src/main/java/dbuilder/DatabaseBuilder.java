@@ -27,13 +27,10 @@ public class DatabaseBuilder {
             statement=connection.createStatement();
             System.out.println("ok");
             File cazzoDiFileCheNonSiLegge = new File(PATH);
-//        db = new DatabaseHelper("localhost", 5433, "postgres", "postgres", "postgres");
-//        dbManager=DBManager.createDBManager("jdbc:postgresql://localhost:5433/postgres","postgres","postgres");
             sb = new StringBuilder("");
             scan=new Scanner(cazzoDiFileCheNonSiLegge);
             while (scan.hasNextLine()) {
                 sb.append(scan.nextLine());
-                sb.append("\n");
             }
             System.out.println(sb.toString());
             String s=sb.toString();
@@ -42,7 +39,5 @@ public class DatabaseBuilder {
             System.out.println("no");
             ex.printStackTrace();
         }
-
-
     }
 }
