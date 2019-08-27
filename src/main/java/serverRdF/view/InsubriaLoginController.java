@@ -11,11 +11,13 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
+import rdFUtil.client.Client;
 import rdFUtil.client.ClientImplementation;
 import rdFUtil.view.Controller;
 import rdFUtil.view.ForgottenPasswordController;
 import rdFUtil.view.FrameTitle;
 import rdFUtil.view.RegistrationFormController;
+import serverRdF.Server;
 import serverRdF.ServerImplementation;
 import serverRdF.dbComm.DBManager;
 import serverRdF.emailRdF.EmailManager;
@@ -39,9 +41,9 @@ public class InsubriaLoginController {
     private EmailManager emailManager;
     private static DBManager dbManager;
     private static Registry registry;
-    private static ServerImplementation server;
-    private static ClientImplementation client;
-    public static boolean gogo = true;
+    private static Server server;
+    private static Client client;
+    public static boolean gogo = false;
 
 
     /**
@@ -56,6 +58,7 @@ public class InsubriaLoginController {
         String password = passwordTextField.getText();
         boolean logged = EmailManager.logIntoAccount(user, password);
         if (logged) {
+            gogo = true;
             emailManager = EmailManager.createEmailManager(user, password);
             server = new ServerImplementation(dbManager, emailManager);
             System.out.println("Server creato");
@@ -98,7 +101,7 @@ public class InsubriaLoginController {
         dbManager = db;
     }
 
-    public static ServerImplementation getServer() {
+    public static Server getServer() {
         return server;
     }
 
@@ -111,5 +114,11 @@ public class InsubriaLoginController {
         r.setServer(server);
         r.setAdmin(true);
         r.setClient(client);
+    }
+
+    public static void setController(Controller ctr){
+        ctr.setClient(client);
+        ctr.setServer(server);
+        ctr.setAdmin(true);
     }
 }

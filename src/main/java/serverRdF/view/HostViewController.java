@@ -2,6 +2,7 @@ package serverRdF.view;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import serverRdF.Server;
 import serverRdF.ServerImplementation;
 
 import java.net.InetAddress;
@@ -23,7 +24,7 @@ public class HostViewController {
 	 */
 	public void takeAddress() throws Exception{
 		Registry r = InsubriaLoginController.getRegistry();
-		ServerImplementation server = InsubriaLoginController.getServer();
+		Server server = InsubriaLoginController.getServer();
 		r.rebind("SERVER",server);
 		InetAddress address = null;
 		try {

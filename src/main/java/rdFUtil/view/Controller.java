@@ -17,6 +17,7 @@ import rdFUtil.client.Client;
 import rdFUtil.logging.Login;
 import serverRdF.Server;
 import serverRdF.view.HostViewController;
+import serverRdF.view.InsubriaLoginController;
 
 import java.io.IOException;
 import java.net.URL;
@@ -47,7 +48,10 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        WelcomePane.setController(this);
+        if(!InsubriaLoginController.gogo)
+            WelcomePane.setController(this);
+        else
+            InsubriaLoginController.setController(this);
     }
 
     /**
@@ -61,9 +65,9 @@ public class Controller implements Initializable {
         String mail = emailTextField.getText();
         String password = passwordTextField.getText();
         Login login = new Login(password, mail);
-       // int result = server.signIn(login, client, admin);
+        int result = server.signIn(login, client, admin);
         if(!isServer) {
-            int result = 0;
+            //int result = 0;
             if (result < 0) {
                 Notifications notification = Notifications.create()
                                                      .title("Mail Notification")
@@ -73,7 +77,7 @@ public class Controller implements Initializable {
                 notification.showError();
             } else if (result == 0) {
           //     FXMLLoader loader = new FXMLLoader(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
-                Parent root= FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
+                Parent root= FXMLLoader.load(getClass().getClassLoader().getResource("tab_pane.fxml"));
 //                Parent root = null;
 //                try {
 //                    root = loader.load();

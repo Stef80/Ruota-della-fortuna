@@ -46,7 +46,7 @@ public class RegistrationFormController implements Initializable {
     private static Client client;
     private User user;
     private boolean admin;
-    private boolean isServer;
+    private static boolean isServer;
     private static OTPHelper otp;
 
     public RegistrationFormController(){}
@@ -140,7 +140,7 @@ public class RegistrationFormController implements Initializable {
         return backButton;
     }
 
-    public void setServer(boolean server) {
+    public static void setServer(boolean server) {
         isServer = server;
     }
 
