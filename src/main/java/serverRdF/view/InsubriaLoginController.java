@@ -62,8 +62,9 @@ public class InsubriaLoginController {
             new Controller(server, client, true);
             Controller.setIsServer(true);
             new ForgottenPasswordController(server, client);
-            RegistrationFormController rfc = new RegistrationFormController(server, client, true);
+            RegistrationFormController rfc = new RegistrationFormController(server, client, true,true);
             if (dbManager.getAnyAdmin()) {
+                rfc.setServer(false);
                 Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("main_pane.fxml"));
                 Stage primaryStage = new Stage();
                 Scene scene = new Scene(root1);
@@ -80,10 +81,9 @@ public class InsubriaLoginController {
                 //   scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
                 primaryStage.setTitle("");
                 primaryStage.setScene(scene);
-                rfc.getBackButton().setVisible(false);
                 primaryStage.show();
                 Stage oldStage = (Stage) confirmButton.getScene().getWindow();
-                oldStage.hide();
+                oldStage.close();
             }
         } else {
             Notifications notification = Notifications.create()

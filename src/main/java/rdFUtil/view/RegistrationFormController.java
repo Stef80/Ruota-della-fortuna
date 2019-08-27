@@ -31,24 +31,26 @@ public class RegistrationFormController {
     @FXML
     private TextField nicknameTextField;
     @FXML
-    private TextField emailTextField;
+    private TextField mailTextField;
     @FXML
     Button confirmButton;
     @FXML
-    private PasswordField password;
+    private PasswordField passwordTextField;
     @FXML
     private Button backButton;
     private Server server;
     private Client client;
     private User user;
     private boolean admin;
+    private boolean isServer;
 
     public RegistrationFormController(){}
 
-    public RegistrationFormController(Server server, Client client, boolean admin) {
+    public RegistrationFormController(Server server, Client client, boolean admin, boolean isServer) {
         this.server = server;
         this.client = client;
         this.admin = admin;
+        this.isServer = isServer;
     }
 
     /**
@@ -60,8 +62,8 @@ public class RegistrationFormController {
      */
     public void confirm() throws IOException {
         //se la mail non esiste visualizza notifica
-        if (!(nameTextField.getText().equals("") || surnameTextField.getText().equals("") || nicknameTextField.getText().equals("") || emailTextField.getText().equals("") || password.getText().equals(""))) {
-            if (!server.checkEMail(emailTextField.getText())) {
+        if (!(nameTextField.getText().equals("") || surnameTextField.getText().equals("") || nicknameTextField.getText().equals("") || mailTextField.getText().equals("") || passwordTextField.getText().equals(""))) {
+            if (!server.checkEMail(mailTextField.getText())) {
                 Notifications notification = Notifications.create()
                         .title("Mail Notification")
                         .text("E-mail già presente \nimmettere nuova mail")
@@ -81,11 +83,12 @@ public class RegistrationFormController {
                 String nameStr = nameTextField.getText();
                 String surnameStr = surnameTextField.getText();
                 String nickStr = nicknameTextField.getText();
-                String mailStr = emailTextField.getText();
-                String passwordStr = password.getText();
+                String mailStr = mailTextField.getText();
+                String passwordStr = passwordTextField.getText();
                 user = new User(passwordStr, mailStr, nameStr, surnameStr, nickStr);
                 OTPHelper otpHelper = server.signUp(user, client, true);//todo modificare l'import di OTPHelper
                 new OTPRegistrationController(server, client, otpHelper);
+                setServer(false);
                 Parent root = FXMLLoader.load(Thread.currentThread().getClass().getResource("OTP_registration_pane.fxml"));
                 Scene scene = new Scene(root);
                 Stage primaryStage = new Stage();
@@ -112,18 +115,34 @@ public class RegistrationFormController {
      * @throws IOException In caso non sia possibile accedere alla finestra
      */
     public void back() throws IOException{
-        Parent root = FXMLLoader.load(Thread.currentThread().getClass().getResource("main_pane.fxml"));
-        Scene scene = new Scene(root);
-        Stage primaryStage = new Stage();
+        if(!isServer) {
+            Parent root = FXMLLoader.load(Thread.currentThread().getClass().getResource("main_pane.fxml"));
+            Scene scene = new Scene(root);
+            Stage primaryStage = new Stage();
 //        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-        primaryStage.setTitle("Wheel of Fortune");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-        Stage thisStage = (Stage) backButton.getScene().getWindow();
-        thisStage.close();
+            primaryStage.setTitle("Wheel of Fortune");
+            primaryStage.setScene(scene);
+            primaryStage.show();
+            Stage thisStage = (Stage) backButton.getScene().getWindow();
+            thisStage.close();
+        }else{
+            Parent root = FXMLLoader.load(Thread.currentThread().getClass().getResource("insubria_login_pane.fxml"));
+            Scene scene = new Scene(root);
+            Stage primaryStage = new Stage();
+//        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+            primaryStage.setTitle("Wheel of Fortune");
+            primaryStage.setScene(scene);
+            primaryStage.show();
+            Stage thisStage = (Stage) backButton.getScene().getWindow();
+            thisStage.close();
+        }
     }
 
     public Button getBackButton() {
         return backButton;
+    }
+
+    public void setServer(boolean server) {
+        isServer = server;
     }
 }
