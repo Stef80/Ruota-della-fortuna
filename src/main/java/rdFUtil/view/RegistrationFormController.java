@@ -42,17 +42,13 @@ public class RegistrationFormController {
     private Client client;
     private User user;
     private boolean admin;
-    private boolean isServer;
 
     public RegistrationFormController(){}
 
-    public RegistrationFormController(Server server, Client client, boolean admin, boolean isServer) {
+    public RegistrationFormController(Server server, Client client, boolean admin) {
         this.server = server;
         this.client = client;
         this.admin = admin;
-        this.isServer = isServer;
-        if(isServer)
-            backButton.setVisible(false);
     }
 
     /**
@@ -125,5 +121,9 @@ public class RegistrationFormController {
         primaryStage.show();
         Stage thisStage = (Stage) backButton.getScene().getWindow();
         thisStage.close();
+    }
+
+    public Button getBackButton() {
+        return backButton;
     }
 }

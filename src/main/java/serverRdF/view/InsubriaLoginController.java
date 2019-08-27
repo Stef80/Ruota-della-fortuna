@@ -62,7 +62,8 @@ public class InsubriaLoginController {
             new Controller(server, client, true);
             Controller.setIsServer(true);
             new ForgottenPasswordController(server, client);
-            new RegistrationFormController(server, client, true, true);
+            RegistrationFormController rfc = new RegistrationFormController(server, client, true);
+            rfc.getBackButton().setVisible(false);
             if (dbManager.getAnyAdmin()) {
                 Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("main_pane.fxml"));
                 Stage primaryStage = new Stage();
