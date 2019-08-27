@@ -84,7 +84,7 @@ public class Controller {
 //                tabPane.setUserStat();
                 Stage primaryStage = new Stage();
                 Scene scene = new Scene(root);
-                primaryStage.setTitle(titleFrame);
+                primaryStage.setTitle(FrameTitle.main);
                 primaryStage.setScene(scene);
                 primaryStage.show();
                 Stage oldStage = (Stage) loginButton.getScene().getWindow();
@@ -125,7 +125,7 @@ public class Controller {
         Parent root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("registration_form_pane.fxml"));
         Stage primaryStage = new Stage();
         Scene scene = new Scene(root);
-        primaryStage.setTitle(titleFrame);
+        primaryStage.setTitle(FrameTitle.main);
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
@@ -143,7 +143,7 @@ public class Controller {
         Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("forgotten_password_pane.fxml"));
         Stage primaryStage = new Stage();
         Scene scene = new Scene(root1);
-        primaryStage.setTitle(titleFrame);
+        primaryStage.setTitle(FrameTitle.main);
         primaryStage.setScene(scene);
         primaryStage.show();
     }

@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
+import rdFUtil.view.FrameTitle;
 import serverRdF.dbComm.DBManager;
 
 import java.io.IOException;
@@ -49,7 +50,7 @@ public class ServerMainPane {
 			Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("insubria_login_pane.fxml"));
 			Stage primaryStage = new Stage();
 			Scene scene = new Scene(root1);
-			primaryStage.setTitle("");
+			primaryStage.setTitle(FrameTitle.main);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			Stage oldStage = (Stage) confirmButton.getScene().getWindow();
