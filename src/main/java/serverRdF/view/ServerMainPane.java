@@ -30,7 +30,7 @@ public class ServerMainPane {
 	private TextField hostnameTextField;
     @FXML
 	private Button confirmButton;
-     private DBManager manager;
+    private DBManager manager;
 
 
 	/**
