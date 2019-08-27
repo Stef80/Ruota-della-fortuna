@@ -109,10 +109,10 @@ public class TabPaneController implements Initializable {
 
 
     private ObservableList<MatchData> gameObservableList = FXCollections.observableArrayList();
-    private Client client;
-    private Server server;
-    private RemoteMatch match;
-    private MatchData matchData;
+    private static Client client;
+    private static Server server;
+    private static RemoteMatch match;
+    private static MatchData matchData;
     private boolean isAdmin;
 
 

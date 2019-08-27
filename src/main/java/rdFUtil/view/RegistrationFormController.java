@@ -90,13 +90,8 @@ public class RegistrationFormController implements Initializable {
                 Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("OTP_registration_pane.fxml"));
                 Scene scene = new Scene(root);
                 Stage primaryStage = new Stage();
-<<<<<<< HEAD
                 //scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-                primaryStage.setTitle("Wheel of Fortune");
-=======
-                scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
                 primaryStage.setTitle(FrameTitle.main);
->>>>>>> 1b5d07301c2a8070a12a143c4b14d5053c2dba44
                 primaryStage.setScene(scene);
                 primaryStage.show();
                 Stage thisStage = (Stage) confirmButton.getScene().getWindow();

@@ -43,9 +43,9 @@ public class GameViewController extends ListCell<MatchData> {
     private FXMLLoader loader;
     private Parent pane;
     private Server server;
-    private Client client;
+    private static Client client;
     private MatchData matchData;
-    private RemoteMatch match;
+    private static RemoteMatch match;
 
     public GameViewController(){}
 
@@ -104,7 +104,7 @@ public class GameViewController extends ListCell<MatchData> {
                                 .position(Pos.BASELINE_RIGHT);
                         notification.showError();
                     }
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("game_player_pane.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("game_player_pane.fxml"));
                     Parent root = null;
                     try {
                         root = loader.load();
@@ -125,8 +125,6 @@ public class GameViewController extends ListCell<MatchData> {
                 public void handle(javafx.event.ActionEvent event) {
                     try {
                         match = server.observeMatch(client, item.getIdMatch());
-                        GamePlayerController.setMatch(match);
-                        GamePlayerController.setObserver(true);
                     } catch (RemoteException e) {
                         e.printStackTrace();
                     }
@@ -143,6 +141,7 @@ public class GameViewController extends ListCell<MatchData> {
                     Scene scene = new Scene(root);
                     primaryStage.setScene(scene);
                     primaryStage.show();
+                    GamePlayerController.setObserver(true);
                     Stage oldStage = (Stage) observeButton.getScene().getWindow();
                     oldStage.hide();
                 }
@@ -162,4 +161,8 @@ public class GameViewController extends ListCell<MatchData> {
         }
     }
 
+    public static void setGameControlle(GamePlayerController gpc){
+        gpc.setClient(client);
+        gpc.setMatch(match);
+    }
 }

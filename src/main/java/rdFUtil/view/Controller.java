@@ -2,6 +2,7 @@ package rdFUtil.view;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,12 +19,14 @@ import serverRdF.Server;
 import serverRdF.view.HostViewController;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * Il controller delle finestra di login. Da qui e' possibile inserire le credenziali del proprio account e accedere alle funzionalita' della piattaforma,
  * registrare un nuovo account oppure resettare la propria password.
  */
-public class Controller {
+public class Controller implements Initializable {
     @FXML
     private TextField emailTextField;
     @FXML
@@ -42,11 +45,9 @@ public class Controller {
 
     public Controller(){}
 
-    //Aggiunto il campo admin che dipende da dove viene avviato
-    public Controller(Server server, Client client, boolean isAdmin) {
-        this.server = server;
-        this.client = client;
-        admin = isAdmin;
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        WelcomePane.setController(this);
     }
 
     /**
@@ -169,5 +170,22 @@ public class Controller {
         registration.setServer(server);
         registration.setServer(false);
         registration.setAdmin(AdminChecker.isIsAdmin());
+    }
+
+    public static void setResetPanel(ForgottenPasswordController f){
+        f.setClient(client);
+        f.setServer(server);
+    }
+
+    public static void setServer(Server server) {
+        Controller.server = server;
+    }
+
+    public static void setClient(Client client) {
+        Controller.client = client;
+    }
+
+    public static void setAdmin(boolean admin) {
+        Controller.admin = admin;
     }
 }

@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -25,14 +26,16 @@ import rdFUtil.client.Client;
 import serverRdF.matchRdF.RemoteMatch;
 
 import java.io.IOException;
+import java.net.URL;
 import java.rmi.RemoteException;
+import java.util.ResourceBundle;
 import java.util.StringTokenizer;
 
 /**
  * il controller della finestra di gioco che visualizza mosse, turni e notifiche di gioco a tutti i giocatori e agli osservatori
  */
 
-public class GamePlayerController {
+public class GamePlayerController implements Initializable {
     @FXML
     private Button jollyButton;
     @FXML
@@ -98,8 +101,9 @@ public class GamePlayerController {
 
     }
 
-    public GamePlayerController(Client client) {
-        this.client = client;
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        GameViewController.setGameControlle(this);
     }
 
     /**
@@ -578,6 +582,10 @@ public class GamePlayerController {
 
     public static void setObserver(boolean observer) {
         isObserver = observer;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     /**
