@@ -19,19 +19,19 @@
       <HBox alignment="TOP_RIGHT" spacing="4.0">
          <children>
             <Label text="Utente" />
-            <TextField fx:id="userTextField" />
+            <TextField fx:id="userTextField" promptText="Utente del database"/>
          </children>
       </HBox>
       <HBox alignment="TOP_RIGHT" spacing="4.0">
          <children>
             <Label text="Password" />
-            <PasswordField fx:id="passwordTextField" />
+            <PasswordField fx:id="passwordTextField" promptText="Password dell'untente del database"/>
          </children>
       </HBox>
       <HBox alignment="TOP_RIGHT" spacing="4.0">
          <children>
             <Label text="Hostname" />
-            <TextField fx:id="hostnameTextField" />
+            <TextField fx:id="hostnameTextField" promptText="Hostname:port"/>
          </children>
       </HBox>
       <Button fx:id="confirmButton" mnemonicParsing="false" onAction="#login" stylesheets="@style.css" text="Invia" />

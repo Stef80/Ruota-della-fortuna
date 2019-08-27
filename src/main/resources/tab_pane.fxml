@@ -370,7 +370,7 @@
                                               <Image url="@male_avatar-512.png" />
                                           </image>
                                       </ImageView>
-                                      <Label text="nickName  " />
+                                      <Label text="Nickname" />
                                       <Label fx:id="nicknameLabel" prefWidth="80.0" text="Label" />
                                       <Region HBox.hgrow="ALWAYS" />
                                       <TextField fx:id="nicknameTextField" prefWidth="170.0" promptText="immetti qui nuovo nik" />
@@ -410,7 +410,7 @@
                                   <children>
                                       <Region prefWidth="50.0" />
                                       <Label prefWidth="100.0" text="Indirizzo mail" />
-                                      <Label fx:id="emailLabel" prefWidth="100.0" text="Label" />
+                                      <Label fx:id="emailLabel" prefHeight="17.0" prefWidth="420.0" text="Label" />
                                   </children>
                               </HBox>
                               <HBox alignment="CENTER_LEFT" spacing="20.0" VBox.vgrow="ALWAYS">
