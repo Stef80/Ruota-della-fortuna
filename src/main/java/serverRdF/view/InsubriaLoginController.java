@@ -14,6 +14,7 @@ import org.controlsfx.control.Notifications;
 import rdFUtil.client.ClientImplementation;
 import rdFUtil.view.Controller;
 import rdFUtil.view.ForgottenPasswordController;
+import rdFUtil.view.FrameTitle;
 import rdFUtil.view.RegistrationFormController;
 import serverRdF.ServerImplementation;
 import serverRdF.dbComm.DBManager;
@@ -45,7 +46,7 @@ public class InsubriaLoginController {
      * Questo metodo cerca di stabilire la connessione all'account Insubria attraverso l'invio di una email. Se l'invio avviene senza problemi,
      * viene ricercata nel databse la presenza di admin. Se sono presenti degli admin, viene aperta la schermata di accesso, altrimenti viene aperta la schermata di registrazione
      *
-     * @throws IOException In caso non riesca a caricare la finestra successiva
+     * @throws IOException     In caso non riesca a caricare la finestra successiva
      * @throws RemoteException
      */
     public void loginManager() throws IOException, RemoteException {
@@ -63,14 +64,14 @@ public class InsubriaLoginController {
             new Controller(server, client, true);
             Controller.setIsServer(true);
             new ForgottenPasswordController(server, client);
-            RegistrationFormController rfc = new RegistrationFormController(server, client, true,true);
+            RegistrationFormController rfc = new RegistrationFormController(server, client, true, true);
             if (dbManager.getAnyAdmin()) {
                 rfc.setServer(false);
                 Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("main_pane.fxml"));
                 Stage primaryStage = new Stage();
                 Scene scene = new Scene(root1);
                 //   scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-                primaryStage.setTitle("");
+                primaryStage.setTitle(FrameTitle.main);
                 primaryStage.setScene(scene);
                 primaryStage.show();
                 Stage oldStage = (Stage) confirmButton.getScene().getWindow();
@@ -80,7 +81,7 @@ public class InsubriaLoginController {
                 Stage primaryStage = new Stage();
                 Scene scene = new Scene(root1);
                 //   scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-                primaryStage.setTitle("");
+                primaryStage.setTitle(FrameTitle.main);
                 primaryStage.setScene(scene);
                 primaryStage.show();
                 Stage oldStage = (Stage) confirmButton.getScene().getWindow();

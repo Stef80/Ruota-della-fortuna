@@ -52,7 +52,7 @@ public class WelcomePane {
 			Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("main_pane.fxml"));
 			Stage primaryStage = new Stage();
 			Scene scene = new Scene(root1);
-			primaryStage.setTitle("Wheel of Fortune");
+			primaryStage.setTitle(FrameTitle.main);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			Stage oldStage = (Stage) confirmButton.getScene().getWindow();

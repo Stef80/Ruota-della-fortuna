@@ -94,7 +94,7 @@ public class RegistrationFormController {
                 Scene scene = new Scene(root);
                 Stage primaryStage = new Stage();
                 scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-                primaryStage.setTitle("Wheel of Fortune");
+                primaryStage.setTitle(FrameTitle.main);
                 primaryStage.setScene(scene);
                 primaryStage.show();
                 Stage thisStage = (Stage) confirmButton.getScene().getWindow();
@@ -121,7 +121,7 @@ public class RegistrationFormController {
             Scene scene = new Scene(root);
             Stage primaryStage = new Stage();
 //        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-            primaryStage.setTitle("Wheel of Fortune");
+            primaryStage.setTitle(FrameTitle.main);
             primaryStage.setScene(scene);
             primaryStage.show();
             Stage thisStage = (Stage) backButton.getScene().getWindow();
@@ -131,7 +131,7 @@ public class RegistrationFormController {
             Scene scene = new Scene(root);
             Stage primaryStage = new Stage();
 //        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-            primaryStage.setTitle("Wheel of Fortune");
+            primaryStage.setTitle(FrameTitle.main);
             primaryStage.setScene(scene);
             primaryStage.show();
             Stage thisStage = (Stage) backButton.getScene().getWindow();

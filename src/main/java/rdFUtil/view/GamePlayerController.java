@@ -600,7 +600,7 @@ public class GamePlayerController {
             Parent root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
             Stage primaryStage = new Stage();
             Scene scene = new Scene(root);
-            primaryStage.setTitle("Wheel of Fortune");
+            primaryStage.setTitle(FrameTitle.main);
             primaryStage.setScene(scene);
             primaryStage.show();
             Stage oldStage = (Stage) exitButton.getScene().getWindow();
@@ -646,7 +646,7 @@ public class GamePlayerController {
         }
         Stage primaryStage = new Stage();
         Scene scene = new Scene(root);
-        primaryStage.setTitle("Wheel of Fortune");
+        primaryStage.setTitle(FrameTitle.main);
         primaryStage.setScene(scene);
         primaryStage.show();
         Stage oldStage = (Stage) exitButton.getScene().getWindow();
@@ -743,7 +743,7 @@ public class GamePlayerController {
         }
         Stage primaryStage = new Stage();
         Scene scene = new Scene(root);
-        primaryStage.setTitle("Wheel of Fortune");
+        primaryStage.setTitle(FrameTitle.main);
         primaryStage.setScene(scene);
         primaryStage.show();
         Stage oldStage = (Stage) exitButton.getScene().getWindow();
@@ -769,7 +769,7 @@ public class GamePlayerController {
         }
         Stage primaryStage = new Stage();
         Scene scene = new Scene(root);
-        primaryStage.setTitle("Wheel of Fortune");
+        primaryStage.setTitle(FrameTitle.main);
         primaryStage.setScene(scene);
         primaryStage.show();
         Stage oldStage = (Stage) exitButton.getScene().getWindow();
