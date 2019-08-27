@@ -21,8 +21,12 @@ public class UsersDAOImpl implements UsersDAO {
                 UserSurnameAttribute+","+UserNicknameAttribute+","+UserEmailAttribute+","+UserPasswordAttribute+") " +
                 "VALUES ('"+user.getId()+"',"+user.isAdmin()+",'"+user.getName()+"','"+user.getSurname()+"','"
                 +user.getNickname()+"','"+user.getEmail()+"','"+user.getPassword()+"');";
+
         Statement stmt = con.createStatement();
-        return stmt.executeUpdate(queryAdd) > 0;
+        System.out.println("Provo ad aggiungere");
+        boolean res =  stmt.executeUpdate(queryAdd) > 0;
+        System.out.println("aggiunto: " + res);
+        return res;
     }
 
     @Override
