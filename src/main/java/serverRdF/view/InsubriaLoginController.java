@@ -55,6 +55,7 @@ public class InsubriaLoginController {
         if (logged) {
             emailManager = EmailManager.createEmailManager(user, password);
             server = new ServerImplementation(dbManager, emailManager);
+            System.out.println("Server creato");
             if ((registry = LocateRegistry.getRegistry(1099)) == null) {
                 registry = LocateRegistry.createRegistry(1099);
             }

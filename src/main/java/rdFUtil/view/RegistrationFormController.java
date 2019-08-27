@@ -62,6 +62,7 @@ public class RegistrationFormController {
      */
     public void confirm() throws IOException {
         //se la mail non esiste visualizza notifica
+        System.out.println("dati: "+server==null? "no" : "ok" + " ");
         if (!(nameTextField.getText().equals("") || surnameTextField.getText().equals("") || nicknameTextField.getText().equals("") || mailTextField.getText().equals("") || passwordTextField.getText().equals(""))) {
             if (!server.checkEMail(mailTextField.getText())) {
                 Notifications notification = Notifications.create()
