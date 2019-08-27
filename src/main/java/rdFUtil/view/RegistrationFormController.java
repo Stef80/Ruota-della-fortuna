@@ -49,7 +49,8 @@ public class RegistrationFormController implements Initializable {
     private static boolean isServer;
     private static OTPHelper otp;
 
-    public RegistrationFormController(){}
+    public RegistrationFormController() {
+    }
 
     /**
      * Registra il nuovo user verificando che non esista già tramite il confronto
@@ -60,7 +61,8 @@ public class RegistrationFormController implements Initializable {
      */
     public void confirm() throws IOException {
         //se la mail non esiste visualizza notifica
-        System.out.println("dati: "+server==null? "no" : "ok" + " ");
+        System.out.print("dati: ");
+        System.out.println((server == null) ? "no" : "ok" + " ");
         if (!(nameTextField.getText().equals("") || surnameTextField.getText().equals("") || nicknameTextField.getText().equals("") || mailTextField.getText().equals("") || passwordTextField.getText().equals(""))) {
             if (!server.checkEMail(mailTextField.getText())) {
                 Notifications notification = Notifications.create()

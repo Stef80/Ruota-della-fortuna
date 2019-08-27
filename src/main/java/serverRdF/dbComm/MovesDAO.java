@@ -12,7 +12,7 @@ public interface MovesDAO {
     String MovesIdPlayerAttribute = "id";
     String MovesMoveTypeAttribute = "moveType";
     String MovesOutcomeAttribute = "outcome";
-    String MovesIdMatchAttribute  = "idMatch";
+    String MovesIdMatchAttribute = "idMatch";
     String MovesMancheNumberAttribute = "number";
     String MovesMoveIdAttribute = "moveId";
 
@@ -36,7 +36,9 @@ public interface MovesDAO {
     /**
      * Questo metodo permette di individuare il numero medio di mosse eseguite per indovinare una frase misteriosa
      *
+     * @param numManche //todo
      * @return il numero medio di mosse eseguite per indovinare una frase misteriosa
+     * @throws SQLException
      */
     public int getAverageMovesPerManche(int numManche) throws SQLException;
 
