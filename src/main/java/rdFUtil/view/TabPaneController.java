@@ -138,7 +138,6 @@ public class TabPaneController implements Initializable {
             e.printStackTrace();
         }
         GamePlayerController game = loader.getController();
-        game.createTableOfPhrase();
         Stage primaryStage = new Stage();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
@@ -183,12 +182,12 @@ public class TabPaneController implements Initializable {
 
 		try {
 			nicknameLabel.setText(client.getNickname());
-		} catch (RemoteException e) {
+			nameLabel.setText(client.getName());
+			surnameLabel.setText(client.getSurname());
+			emailLabel.setText(client.getEmail());
+		}catch(RemoteException e){
 			e.printStackTrace();
 		}
-		nameLabel.setText(client.getName());
-		surnameLabel.setText(client.getSurname());
-		emailLabel.setText(client.getEmail());
 	}
 
     private void disableTab(){
@@ -205,7 +204,7 @@ public class TabPaneController implements Initializable {
 	public void setUserStat() throws RemoteException {
     	String userStat = server.checkPerPlayer(client.getNickname());
 //		String userStat = "";
-    	if(!userStat.equals("")) {
+			if(!(userStat == null)) {
 
 			StringTokenizer stasts = new StringTokenizer(userStat, " ");
 			numberManchesPlayedLabel.setText(stasts.nextToken());
@@ -249,21 +248,23 @@ public class TabPaneController implements Initializable {
 //           String recordStatStr = " ";
 //           int avSolManches = 1;
 //           String strBestMove = " ";
-	    StringTokenizer bestMove = new StringTokenizer(strBestMove, " ");
-    	StringTokenizer recordStat = new StringTokenizer(recordStatStr," ");
+	   if((recordStatStr!=null) && (!strBestMove.equals(""))) {
+		   StringTokenizer bestMove = new StringTokenizer(strBestMove, " ");
+		   StringTokenizer recordStat = new StringTokenizer(recordStatStr, " ");
 
-    	bestPointsWonMancheLabel.setText(recordStat.nextToken());
-    	bestPointsWonMatchLabel.setText(recordStat.nextToken());
-    	mostManchePlayedLabel.setText(recordStat.nextToken());
-    	averagePointPerMancheLabel.setText(recordStat.nextToken());
-    	mostTimeLostTurnLabel.setText(recordStat.nextToken());
-    	mostTimeLostAllLabel.setText(recordStat.nextToken());
+		   bestPointsWonMancheLabel.setText(recordStat.nextToken());
+		   bestPointsWonMatchLabel.setText(recordStat.nextToken());
+		   mostManchePlayedLabel.setText(recordStat.nextToken());
+		   averagePointPerMancheLabel.setText(recordStat.nextToken());
+		   mostTimeLostTurnLabel.setText(recordStat.nextToken());
+		   mostTimeLostAllLabel.setText(recordStat.nextToken());
 
-    	nickBestCallLabel.setText(bestMove.nextToken());
-    	letterCalledLabel.setText(bestMove.nextToken());
-    	phraseAsociatedLabel.setText(bestMove.nextToken());
+		   nickBestCallLabel.setText(bestMove.nextToken());
+		   letterCalledLabel.setText(bestMove.nextToken());
+		   phraseAsociatedLabel.setText(bestMove.nextToken());
 
-    	averageMovesTillSolutionLabel.setText(String.valueOf(avSolManches));
+		   averageMovesTillSolutionLabel.setText(String.valueOf(avSolManches));
+	   }
    }
 
 	/**

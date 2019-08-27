@@ -36,8 +36,12 @@ public class MonitoringManager {
      */
     public String getBestMove(){
         MovesDTO bestMove = dbManager.getBestMove();
-        String result = ""+ bestMove.getPlayer().getNickname() +" " +bestMove.getMoveType() +" "+ bestMove.getManche().getPhrase().getPhrase();
-        return result;
+        String result;
+        if(bestMove != null) {
+            result = "" + bestMove.getPlayer().getNickname() + " " + bestMove.getMoveType() + " " + bestMove.getManche().getPhrase().getPhrase();
+            return result;
+        }else
+            return "";
     }
 
     /**

@@ -41,13 +41,14 @@ public class Controller implements Initializable {
     private static Server server;
     private static Client client;
     private static boolean admin;
-    private static boolean isServer= false;
+    private static boolean isServer = false;
 
-    public Controller(){}
+    public Controller() {
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        if(!InsubriaLoginController.gogo)
+        if (!InsubriaLoginController.gogo)
             WelcomePane.setController(this);
         else
             InsubriaLoginController.setController(this);
@@ -63,20 +64,21 @@ public class Controller implements Initializable {
     public void login() throws Exception {
         String mail = emailTextField.getText();
         String password = passwordTextField.getText();
-        Login login = new Login(password, mail);
-        int result = server.signIn(login, client, admin);
-        if(!isServer) {
+        if (!(mail.equals("") || password.equals(""))) {
+            Login login = new Login(password, mail);
+            int result = server.signIn(login, client, admin);
             //int result = 0;
             if (result < 0) {
                 Notifications notification = Notifications.create()
-                                                     .title("Mail Notification")
-                                                     .text("E-mail o password errati \nriprova!")
-                                                     .hideAfter(Duration.seconds(3))
-                                                     .position(Pos.BASELINE_RIGHT);
+                        .title("Mail Notification")
+                        .text("E-mail o password errati \nriprova!")
+                        .hideAfter(Duration.seconds(3))
+                        .position(Pos.BASELINE_RIGHT);
                 notification.showError();
             } else if (result == 0) {
-          //     FXMLLoader loader = new FXMLLoader(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
-                Parent root= FXMLLoader.load(getClass().getClassLoader().getResource("tab_pane.fxml"));
+                //     FXMLLoader loader = new FXMLLoader(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
+                if (!isServer) {
+                    Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("tab_pane.fxml"));
 //                Parent root = null;
 //                try {
 //                    root = loader.load();
@@ -86,35 +88,36 @@ public class Controller implements Initializable {
 //                TabPane tabPane = loader.getController();
 //                tabPane.setGlobalStats();
 //                tabPane.setUserStat();
-                Stage primaryStage = new Stage();
-                Scene scene = new Scene(root);
-                primaryStage.setTitle(FrameTitle.main);
-                primaryStage.setScene(scene);
-                primaryStage.show();
-                Stage oldStage = (Stage) loginButton.getScene().getWindow();
-                oldStage.hide();
+                    Stage primaryStage = new Stage();
+                    Scene scene = new Scene(root);
+                    primaryStage.setTitle(FrameTitle.main);
+                    primaryStage.setScene(scene);
+                    primaryStage.show();
+                    Stage oldStage = (Stage) loginButton.getScene().getWindow();
+                    oldStage.hide();
+                } else {
+                    FXMLLoader loader = new FXMLLoader(Thread.currentThread().getContextClassLoader().getResource("host_view.fxml"));
+                    Parent root = null;
+                    try {
+                        root = loader.load();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    Stage primaryStage = new Stage();
+                    Scene scene = new Scene(root);
+                    primaryStage.setScene(scene);
+                    primaryStage.show();
+                    Stage oldStage = (Stage) loginButton.getScene().getWindow();
+                    oldStage.hide();
+                }
             } else {
                 Notifications notification = Notifications.create()
-                                                     .title("Mail Notification")
-                                                     .text("Si sta provando ad accedere alla piattaforma dal client sbagliato \nriprova!")
-                                                     .hideAfter(Duration.seconds(3))
-                                                     .position(Pos.BASELINE_RIGHT);
+                        .title("Mail Notification")
+                        .text("Si sta provando ad accedere alla piattaforma dal client sbagliato \nriprova!")
+                        .hideAfter(Duration.seconds(3))
+                        .position(Pos.BASELINE_RIGHT);
                 notification.showError();
             }
-        }else{
-            FXMLLoader loader = new FXMLLoader(Thread.currentThread().getContextClassLoader().getResource("host_view.fxml"));
-            Parent root = null;
-            try {
-                root = loader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Stage primaryStage = new Stage();
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-            Stage oldStage = (Stage) loginButton.getScene().getWindow();
-            oldStage.hide();
         }
     }
 
