@@ -113,6 +113,7 @@ public class GamePlayerController implements Initializable {
             e.printStackTrace();
         }
         createTableOfPhrase();
+        disableAll();
     }
 
     /**

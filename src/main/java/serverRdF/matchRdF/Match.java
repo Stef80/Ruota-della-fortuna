@@ -844,14 +844,14 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
             }
             for (Player p : players) {
                 try {
-                    p.getClient().notifyPlayerStats(num, "--", 0, 0, 0);
+                    p.getClient().notifyPlayerStats(num, c.getNickname(), 0, 0, 0);
                 } catch (RemoteException e) {
                     leaveMatchAsPlayer(p);
                 }
             }
             for (Client client : observers) {
                 try {
-                    c.notifyPlayerStats(num, "--", 0, 0, 0);
+                    c.notifyPlayerStats(num, c.getNickname(), 0, 0, 0);
                 } catch (RemoteException e) {
                     leaveMatchAsObserver(client);
                 }
@@ -890,18 +890,20 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
             else
                 num++;
         }
+        Player player = null;
         for (Player p : players) {
             try {
                 if (p.getClient().equals(c)) {
-                    players.remove(p);
+                    player = p;
                 } else {
                     p.getClient().notifyLeaver(name);
                     p.getClient().notifyPlayerStats(num, "--", 0, 0, 0);
                 }
             } catch (RemoteException e) {
-                players.remove(p);
+                player = p;
             }
         }
+        players.remove(player);
         for (Client client : observers) {
             try {
                 client.notifyLeaver(name);
@@ -912,8 +914,8 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         }
         if (onGoing) {
             endManche(null);
-            endMatch(false);
         }
+            endMatch(false);
     }
 
     synchronized void leaveMatchAsPlayer(Player player) throws RemoteException {
@@ -925,18 +927,20 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
             else
                 num++;
         }
+        Player player1 = null;
         for (Player p : players) {
             try {
                 if (p.getClient().equals(player)) {
-                    players.remove(p);
+                    player1 = p;
                 } else {
                     p.getClient().notifyLeaver(name);
                     p.getClient().notifyPlayerStats(num, "--", 0, 0, 0);
                 }
             } catch (RemoteException e) {
-                players.remove(p);
+                player1 = p;
             }
         }
+        players.remove(player1);
         for (Client client : observers) {
             try {
                 client.notifyLeaver(name);
@@ -973,7 +977,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
             }
         } else {
             for (int i = 0; i < players.size(); i++) {
-                c.notifyPlayerStats(i + 1, players.get(i).getNickname(), 0, 0, 0);
+                c.notifyPlayerStats(i, players.get(i).getNickname(), 0, 0, 0);
             }
         }
     }
