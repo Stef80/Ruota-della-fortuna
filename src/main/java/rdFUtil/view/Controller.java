@@ -39,7 +39,6 @@ public class Controller implements Initializable {
     private Button registerButton;
     private static Server server;
     private static Client client;
-    private String titleFrame = "Wheel of Fortune";
     private static boolean admin;
     private static boolean isServer= false;
 
