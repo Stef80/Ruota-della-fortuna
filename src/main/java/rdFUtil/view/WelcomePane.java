@@ -23,7 +23,7 @@ import java.rmi.registry.Registry;
 /**
  * Controller della finestra iniziale di PlayerRdF e AdminRdF. Inserendo l'hostname del server sara' possibile creare una connessione
  */
-public class WellcomePane {
+public class WelcomePane {
 	@FXML
 	private TextField hostnameTextField;
 	@FXML

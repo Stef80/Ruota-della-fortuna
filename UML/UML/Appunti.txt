@@ -1,0 +1,23 @@
+Il server sfrutta il design pattern della façade, fornendo un interfaccia (Server) che comprende tutte le funzionalità disponibili al client.
+Tutti i managers sfruttano il design pattern del singleton avendo un campo statico che impedisce la creazione di ulteriori oggetti dello stesso tipo
+La comunicazione del server è gestita attraverso l'uso del Data Access Object pattern. Esistono delle interfacce DAO (come UsersDAO) che gestiscono l'accesso alle tabelle e utilizzano dei Data Transer Objects (come UsersDTO) contenenti i campi relativi agli attributi della tabella
+DBManager funge da DAO factory andando a istanziare le altre interfaccie più specifiche
+La classe player è una delega dell'oggetto remoto Client che permette, oltre che inviare notifiche al client, di gestire le informazioni dei giocatori in-game.
+La comunicazione tra Client e Server è gestita tramite oggetti remoti e un sistema di callback per notificare successi e fallimenti.
+La comunicazione tra Match e Client sfrutta il design pattern dell'observer dove il Match è l'oggetto osservato e Client e Player sono gli osservatori. Match mantiene una lista di entrambi
+Ogni partita è gestita da un proprio oggetto remoto RemoteMatch
+Per la registrazione sono state aggiunte delle classi per gestire l'inserimento dell'OTP entro dieci minuti (OTPHelper e WaitingThread)
+Per le partite è stata aggiunta la classe MoveTimer per la gestione del timer
+Sono poi state aggiunte le classi MatchData per il trasferimento dei dati relativi alle partite e AdminChecker per gestire e il funzionamento dell'interfaccia in funzione dei permessi dell'utente autenticato
+
+GUI:
+L'interfaccia grafica è stata realizzata utilizzando JavaFX. Per la gestione delle finestre, realizzate in formato .fxml, avviene per mezzo di classi controller.
+E' stata aggiunta una finestra controllata dalla classe WelcomePane per ricercare l'hostname del server
+LoginPanel diventa Controller
+RegistrationForm diventa RegistrationFormController
+Il mainMenu e le sue sotto parti sfruttano un TabPane gestito da TabPaneController
+GamePanel diventa GamePlayerController
+Sono stati aggiunti i controller ForgottenPasswordController per la finestra del reset della password, GameViewController per la visualizzazione delle partite disponibili e OTPRegistrationController per la finestra in cui inserire l'OTP per ultimare la registrazione
+DBLoginPanel diventa ServerMainPane
+InsubriaLoginPanel diventa InsubriaLoginController
+ServerMainPanel diventa HostViewController
