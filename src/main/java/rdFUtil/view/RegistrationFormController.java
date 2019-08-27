@@ -46,7 +46,7 @@ public class RegistrationFormController implements Initializable {
     private static Client client;
     private User user;
     private boolean admin;
-    private boolean isServer;
+    private static boolean isServer;
     private static OTPHelper otp;
 
     public RegistrationFormController(){}
@@ -86,7 +86,7 @@ public class RegistrationFormController implements Initializable {
                 String passwordStr = passwordTextField.getText();
                 user = new User(passwordStr, mailStr, nameStr, surnameStr, nickStr);
                 otp = server.signUp(user, client, true);//todo modificare l'import di OTPHelper
-                setServer(false);
+                InsubriaLoginController.gogo = false;
                 Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("OTP_registration_pane.fxml"));
                 Scene scene = new Scene(root);
                 Stage primaryStage = new Stage();
@@ -140,7 +140,7 @@ public class RegistrationFormController implements Initializable {
         return backButton;
     }
 
-    public void setServer(boolean server) {
+    public static void setServer(boolean server) {
         isServer = server;
     }
 

@@ -158,6 +158,7 @@ public class TabPaneController implements Initializable {
     	gameList.setItems(gameObservableList);
 		ArrayList<MatchData> list = new ArrayList<>();
 		try {
+			System.out.println((server==null? "no" : "ok"));
 			list = server.visualizeMatch(client);
 			gameObservableList.addAll(list);
 			gameList.setItems(gameObservableList);
