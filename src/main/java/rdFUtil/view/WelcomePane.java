@@ -33,7 +33,6 @@ public class WelcomePane {
 	private static Server server;
 	private static Client client;
 
-
 	/**
 	 * Questo metodo controlla l'hostname inserito e prova a stabilire una connessione. In caso di riuscita verra' caricata la schermata di login, in caso
 	 * contrario viene segnalato l'errore
