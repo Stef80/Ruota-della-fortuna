@@ -155,7 +155,7 @@ public class GamePlayerController implements Initializable {
                             "    -fx-border-radius: 3px;\n" +
                             "    -fx-background-radius: 3px;\n" +
                             "    -fx-border-width: 2px;");
-                }else if((let.equals("È") && letter.equals("E")) || (let.equals("Ì") && letter.equals("I")) || (let.equals("À") && letter.equals("A")) || (let.equals("Ò") && letter.equals("O")) || (let.equals("Ù") && letter.equals("U"))) {
+                } else if ((let.equals("È") && letter.equals("E")) || (let.equals("Ì") && letter.equals("I")) || (let.equals("À") && letter.equals("A")) || (let.equals("Ò") && letter.equals("O")) || (let.equals("Ù") && letter.equals("U"))) {
                     label.setVisible(true);
                     node.setStyle(" -fx-background-color: #d6e2e0;\n" +
                             "    -fx-border-color: #08FBE1;\n" +
@@ -220,7 +220,7 @@ public class GamePlayerController implements Initializable {
     /**
      * Il metodo aggiunge una nuova frase al tabellone  e aggionra l'etichetta del tema della frase
      *
-     * @param theme Il tema della frase
+     * @param theme  Il tema della frase
      * @param phrase La frase
      */
 
@@ -454,17 +454,17 @@ public class GamePlayerController implements Initializable {
      */
     public void setTurn(String nickName) throws RemoteException {
         if (nickName.equals(player1Label.getText())) {
-            player1Box.setStyle("-fx-border-color = #FFF404;");
-            player2Box.setStyle("-fx-border-color = #073CA0;");
-            player3Box.setStyle("-fx-border-color = #073CA0;");
+            player1Box.setStyle("-fx-border-color: #FFF404;");
+            player2Box.setStyle("-fx-border-color: #073CA0;");
+            player3Box.setStyle("-fx-border-color: #073CA0;");
         } else if (nickName.equals(player2Label.getText())) {
-            player1Box.setStyle("-fx-border-color = #073CA0;");
-            player2Box.setStyle("-fx-border-color = #FFF404;");
-            player3Box.setStyle("-fx-border-color = #073CA0;");
+            player1Box.setStyle("-fx-border-color: #073CA0;");
+            player2Box.setStyle("-fx-border-color: #FFF404;");
+            player3Box.setStyle("-fx-border-color: #073CA0;");
         } else if (nickName.equals(player3Label.getText())) {
-            player1Box.setStyle("-fx-border-color = #073CA0;");
-            player2Box.setStyle("-fx-border-color = #073CA0;");
-            player3Box.setStyle("-fx-border-color = #FFF404;");
+            player1Box.setStyle("-fx-border-color: #073CA0;");
+            player2Box.setStyle("-fx-border-color: #073CA0;");
+            player3Box.setStyle("-fx-border-color: #FFF404;");
         }
         if (!nickName.equals(client.getNickname())) {
             disableAll();
@@ -482,10 +482,10 @@ public class GamePlayerController implements Initializable {
     /**
      * Aggiorna le statistiche di uno dei giocatori
      *
-     * @param pos La sua posizione nella schermata (0 a sinistra, 1 al centro e 2 a destra)
+     * @param pos      La sua posizione nella schermata (0 a sinistra, 1 al centro e 2 a destra)
      * @param nickname il nickname del giocatore
-     * @param partial il punteggio parziale del giocatore
-     * @param total il punteggio totale del giocatore
+     * @param partial  il punteggio parziale del giocatore
+     * @param total    il punteggio totale del giocatore
      * @param numJolly il numero di jolly accumulati dal giocatore
      */
     public void notifyPlayerStats(int pos, String nickname, int partial, int total, int numJolly) {
@@ -562,7 +562,7 @@ public class GamePlayerController implements Initializable {
      * Notifica che un giocatore ha chiamato una lettera
      *
      * @param nickname il nickname del giocatore
-     * @param letter la lettera chiamata
+     * @param letter   la lettera chiamata
      */
     public void callLetterNotify(String nickname, String letter) {
         String message = nickname + " ha scelto la lettera " + letter;
@@ -573,7 +573,6 @@ public class GamePlayerController implements Initializable {
                 .position(Pos.BASELINE_CENTER);
         notification.showInformation();
     }
-
 
 
     public static void setMatch(RemoteMatch matc) {
@@ -625,10 +624,10 @@ public class GamePlayerController implements Initializable {
     public void notifyLeaver(String nickname) {
         String message = nickname + "\nha lasciato la partita";
         Notifications notification = Notifications.create()
-                                             .title("Notifica di partita")
-                                             .text(message)
-                                             .hideAfter(Duration.seconds(2))
-                                             .position(Pos.BASELINE_CENTER);
+                .title("Notifica di partita")
+                .text(message)
+                .hideAfter(Duration.seconds(2))
+                .position(Pos.BASELINE_CENTER);
         notification.showInformation();
     }
 
@@ -640,10 +639,10 @@ public class GamePlayerController implements Initializable {
     public void notifyMatchAbort(String reason) {
         String message = reason + "\nla partita è finita";
         Notifications notification = Notifications.create()
-                                             .title("Notifica di partita")
-                                             .text(message)
-                                             .hideAfter(Duration.seconds(2))
-                                             .position(Pos.BASELINE_CENTER);
+                .title("Notifica di partita")
+                .text(message)
+                .hideAfter(Duration.seconds(2))
+                .position(Pos.BASELINE_CENTER);
         notification.showInformation();
         match = null;
         Parent root = null;
@@ -667,10 +666,10 @@ public class GamePlayerController implements Initializable {
     public void notifyMatchStart() {
         String message = "Partita iniziata";
         Notifications notification = Notifications.create()
-                                             .title("Notifica di partita")
-                                             .text(message)
-                                             .hideAfter(Duration.seconds(2))
-                                             .position(Pos.BASELINE_CENTER);
+                .title("Notifica di partita")
+                .text(message)
+                .hideAfter(Duration.seconds(2))
+                .position(Pos.BASELINE_CENTER);
         notification.showInformation();
     }
 
@@ -679,10 +678,10 @@ public class GamePlayerController implements Initializable {
      */
     public void notifyMancheVictory() {
         Notifications notification = Notifications.create()
-                                             .title("Notifica di partita")
-                                             .text("HAI VINTO LA MANCHE!!!")
-                                             .hideAfter(Duration.seconds(2))
-                                             .position(Pos.BASELINE_CENTER);
+                .title("Notifica di partita")
+                .text("HAI VINTO LA MANCHE!!!")
+                .hideAfter(Duration.seconds(2))
+                .position(Pos.BASELINE_CENTER);
         notification.showInformation();
     }
 
@@ -694,10 +693,10 @@ public class GamePlayerController implements Initializable {
     public void notifyMancheResult(String winner) {
         String message = winner + "\nha vinto la manche ";
         Notifications notification = Notifications.create()
-                                             .title("Notifica di partita")
-                                             .text(message)
-                                             .hideAfter(Duration.seconds(2))
-                                             .position(Pos.BASELINE_CENTER);
+                .title("Notifica di partita")
+                .text(message)
+                .hideAfter(Duration.seconds(2))
+                .position(Pos.BASELINE_CENTER);
         notification.showInformation();
     }
 
@@ -709,10 +708,10 @@ public class GamePlayerController implements Initializable {
     public void notifyNewManche(int numManche) {
         String message = "la manche numero " + numManche + "\nsta per cominciare";
         Notifications notification = Notifications.create()
-                                             .title("Notifica di partita")
-                                             .text(message)
-                                             .hideAfter(Duration.seconds(2))
-                                             .position(Pos.BASELINE_CENTER);
+                .title("Notifica di partita")
+                .text(message)
+                .hideAfter(Duration.seconds(2))
+                .position(Pos.BASELINE_CENTER);
         notification.showInformation();
     }
 
@@ -721,10 +720,10 @@ public class GamePlayerController implements Initializable {
      */
     public void notifyYourTurn() {
         Notifications notification = Notifications.create()
-                                             .title("Notifica di partita")
-                                             .text("E' IL TUO TURNO")
-                                             .hideAfter(Duration.seconds(2))
-                                             .position(Pos.BASELINE_CENTER);
+                .title("Notifica di partita")
+                .text("E' IL TUO TURNO")
+                .hideAfter(Duration.seconds(2))
+                .position(Pos.BASELINE_CENTER);
         notification.showInformation();
         yourTurn();
     }
@@ -737,10 +736,10 @@ public class GamePlayerController implements Initializable {
     public void notifyEndMatch(String winner) {
         String message = winner + "\nha vinto la partita ";
         Notifications notification = Notifications.create()
-                                             .title("Notifica di partita")
-                                             .text(message)
-                                             .hideAfter(Duration.seconds(2))
-                                             .position(Pos.BASELINE_CENTER);
+                .title("Notifica di partita")
+                .text(message)
+                .hideAfter(Duration.seconds(2))
+                .position(Pos.BASELINE_CENTER);
         notification.showInformation();
         match = null;
         Parent root = null;
@@ -763,10 +762,10 @@ public class GamePlayerController implements Initializable {
      */
     public void notifyMatchWin() {
         Notifications notification = Notifications.create()
-                                             .title("Notifica di partita")
-                                             .text("HAI VINTO!!!")
-                                             .hideAfter(Duration.seconds(2))
-                                             .position(Pos.BASELINE_CENTER);
+                .title("Notifica di partita")
+                .text("HAI VINTO!!!")
+                .hideAfter(Duration.seconds(2))
+                .position(Pos.BASELINE_CENTER);
         notification.showInformation();
         match = null;
         Parent root = null;
@@ -789,10 +788,10 @@ public class GamePlayerController implements Initializable {
      */
     public void notifyTimeOut() {
         Notifications notification = Notifications.create()
-                                             .title("Notifica di partita")
-                                             .text("Tempo scduto ")
-                                             .hideAfter(Duration.seconds(2))
-                                             .position(Pos.BASELINE_CENTER);
+                .title("Notifica di partita")
+                .text("Tempo scduto ")
+                .hideAfter(Duration.seconds(2))
+                .position(Pos.BASELINE_CENTER);
         notification.showInformation();
     }
 
@@ -801,10 +800,10 @@ public class GamePlayerController implements Initializable {
      */
     public void askForJolly() {
         Notifications notification = Notifications.create()
-                                             .title("Notifica di partita")
-                                             .text("Hai fatto un errore. Vuoi usare il jolly?")
-                                             .hideAfter(Duration.seconds(2))
-                                             .position(Pos.BASELINE_CENTER);
+                .title("Notifica di partita")
+                .text("Hai fatto un errore. Vuoi usare il jolly?")
+                .hideAfter(Duration.seconds(2))
+                .position(Pos.BASELINE_CENTER);
         notification.showInformation();
     }
 
@@ -816,10 +815,10 @@ public class GamePlayerController implements Initializable {
     public void notifyPlayerError(String name) {
         String message = name + "\nha commesso un errore";
         Notifications notification = Notifications.create()
-                                             .title("Notifica di partita")
-                                             .text(message)
-                                             .hideAfter(Duration.seconds(2))
-                                             .position(Pos.BASELINE_CENTER);
+                .title("Notifica di partita")
+                .text(message)
+                .hideAfter(Duration.seconds(2))
+                .position(Pos.BASELINE_CENTER);
         notification.showInformation();
     }
 }
