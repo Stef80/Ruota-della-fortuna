@@ -27,17 +27,18 @@ create table manches
     number numeric(1)                              not null,
     id     varchar(36) references matches (id)     not null,
     phrase varchar(60) references phrases (phrase) not null,
-    primary key (number, id)
+    primary key (id, number)
 );
 
 create table moves
 (
     moveid   varchar(36) primary key,
-    id       varchar(36) references users (id)      not null,
-    movetype varchar(10)                            not null,
-    outcome  numeric(1)                             not null,
-    idmanche varchar(36) references manches (id)    not null,
-    number   numeric(1) references manches (number) not null
+    id       varchar(36) references users (id) not null,
+    movetype varchar(10)                       not null,
+    outcome  numeric(1)                        not null,
+    idmanche varchar(36)                       not null,
+    number   numeric(1)                        not null,
+    foreign key (idmanche, number) references manches
 );
 
 create table matchwinners
@@ -50,18 +51,20 @@ create table matchwinners
 
 create table manchewinners
 (
-    id       varchar(36) references manches (id),
-    number   numeric(1) references manches (number),
+    id       varchar(36),
+    number   numeric(1),
     idplayer varchar(36) references users (id),
     amount   numeric(6) not null,
+    foreign key (id, number) references manches,
     primary key (id, number, idplayer)
 );
 
 create table manchejoiners
 (
-    id       varchar(36) references manches (id),
-    number   numeric(1) references manches (number),
+    id       varchar(36),
+    number   numeric(1),
     idplayer varchar(36) references users (id),
-    oberser  boolean not null,
+    observer boolean not null,
+    foreign key (id, number) references manches,
     primary key (id, number, idplayer)
 );
