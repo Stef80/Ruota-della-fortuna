@@ -27,7 +27,6 @@ public class DBManager implements DBManagerInterface{
 
     private DBManager(String url, String userID, String password) throws SQLException {
         con = DriverManager.getConnection(url,userID, password);
-        System.out.println("Connessione creata");
     }
 
     /**
@@ -82,7 +81,6 @@ public class DBManager implements DBManagerInterface{
         if(usersDAO==null)
             createUsersDAO();
         try {
-            System.out.println("Provo ad aggiungere");
             return usersDAO.addUser(new UsersDTO(user.getId(), isAdmin, user.getName(), user.getSurname(), user.getNickname(), user.getEmail(), user.getPasswordC()));
         }catch(SQLException e){
             return false;

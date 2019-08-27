@@ -86,7 +86,6 @@ public class RegistrationFormController implements Initializable {
                 String passwordStr = passwordTextField.getText();
                 user = new User(passwordStr, mailStr, nameStr, surnameStr, nickStr);
                 otp = server.signUp(user, client, true);//todo modificare l'import di OTPHelper
-                InsubriaLoginController.gogo = false;
                 Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("OTP_registration_pane.fxml"));
                 Scene scene = new Scene(root);
                 Stage primaryStage = new Stage();

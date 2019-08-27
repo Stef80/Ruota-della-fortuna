@@ -225,7 +225,7 @@ public class TabPaneController implements Initializable {
 			numberManchesObservedLabel.setText("0");
 			numberMatchesObservedLabel.setText("0");
 			numberOfManchesWonLabel.setText("0");
-			numberOfMatchesWonLabel.setText("0");;
+			numberOfMatchesWonLabel.setText("0");
 			averagePointsWonLabel.setText("0");
 			averageTurnLostPerMancheLabel.setText("0");
 			averageTurnLostPerMatchLabel.setText("0");

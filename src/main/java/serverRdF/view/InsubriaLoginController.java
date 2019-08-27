@@ -120,5 +120,11 @@ public class InsubriaLoginController {
         ctr.setClient(client);
         ctr.setServer(server);
         ctr.setAdmin(true);
+        ctr.setIsServer(true);
+    }
+
+    public static void setHost(HostViewController host){
+        host.setServer(server);
+        host.setR(registry);
     }
 }

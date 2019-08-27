@@ -14,8 +14,8 @@ public class MancheJoinersDAOImpl implements MancheJoinersDAO {
 
     @Override
     public boolean addMancheJoiner(String idMatch, int numManche, String idPlayer, boolean observer) throws SQLException {
-        String queryAdd = "INSERT INTO "+mancheJoinersTable+"("+mancheJoinersIdMatchAttribute+","+mancheJoinersNumMancheAttribute+","+mancheJoinersIdPlayerAttribute+","+mancheJoinersObserverAttribute+") " +
-                "VALUES ('"+idMatch+"',"+numManche+",'"+idPlayer+"',"+(observer? 1 : 0)+");";
+        String queryAdd = "INSERT INTO "+mancheJoinersTable+" ("+mancheJoinersIdMatchAttribute+","+mancheJoinersNumMancheAttribute+","+mancheJoinersIdPlayerAttribute+","+mancheJoinersObserverAttribute+") " +
+                "VALUES ('"+idMatch+"',"+numManche+",'"+idPlayer+"',"+observer+");";
         Statement stmt = con.createStatement();
         return stmt.executeUpdate(queryAdd) > 0;
     }

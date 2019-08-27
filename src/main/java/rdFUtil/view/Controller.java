@@ -109,8 +109,6 @@ public class Controller implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            HostViewController hostname = loader.getController();
-            hostname.takeAddress();
             Stage primaryStage = new Stage();
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
