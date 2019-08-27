@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
+import rdFUtil.client.AdminChecker;
 import rdFUtil.client.Client;
 import rdFUtil.logging.Login;
 import serverRdF.Server;
@@ -161,5 +162,12 @@ public class Controller {
         tb.setClient(client);
         tb.setServer(server);
         tb.setAdmin(admin);
+    }
+
+    public static void setRegistration(RegistrationFormController registration){
+        registration.setClient(client);
+        registration.setServer(server);
+        registration.setServer(false);
+        registration.setAdmin(AdminChecker.isIsAdmin());
     }
 }

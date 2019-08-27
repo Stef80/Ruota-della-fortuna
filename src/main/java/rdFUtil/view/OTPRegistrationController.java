@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -21,13 +22,15 @@ import serverRdF.Server;
 import serverRdF.registrationRdF.OTPHelper;
 
 import java.io.IOException;
+import java.net.URL;
 import java.rmi.RemoteException;
+import java.util.ResourceBundle;
 
 /**
  * Controller della finestra per l'inserimento di dell'OTP necessario al completamento della registrazione. Possiede un timer di dieci minuti oltre il
  *  quale la registrazione viene annullata
  */
-public class OTPRegistrationController {
+public class OTPRegistrationController implements Initializable {
     @FXML
     private TextField otpTextField;
     @FXML
@@ -71,7 +74,7 @@ public class OTPRegistrationController {
             notification.showError();
         } else {
             timeline.stop();
-            Parent root = FXMLLoader.load(Thread.currentThread().getClass().getResource("main_pane.fxml"));
+            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("main_pane.fxml"));
             Scene scene = new Scene(root);
             Stage primaryStage = new Stage();
             //scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
@@ -110,13 +113,13 @@ public class OTPRegistrationController {
                     notification.showError();
                     Parent root = null;
                     try {
-                        root = FXMLLoader.load(Thread.currentThread().getClass().getResource("main_pane.fxml"));
+                        root = FXMLLoader.load(getClass().getClassLoader().getResource("main_pane.fxml"));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                     Scene scene = new Scene(root);
                     Stage primaryStage = new Stage();
-                    scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+                    //scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
                     primaryStage.setTitle("Wheel of Fortune");
                     primaryStage.setScene(scene);
                     primaryStage.show();
@@ -138,5 +141,22 @@ public class OTPRegistrationController {
                                              .hideAfter(Duration.seconds(3))
                                              .position(Pos.BASELINE_RIGHT);
         notification.showError();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        RegistrationFormController.setOTP(this);
+    }
+
+    public void setServer(Server server) {
+        this.server = server;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public void setOtp(OTPHelper otp) {
+        this.otp = otp;
     }
 }

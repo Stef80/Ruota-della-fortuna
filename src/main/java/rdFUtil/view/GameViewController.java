@@ -130,7 +130,7 @@ public class GameViewController extends ListCell<MatchData> {
                     } catch (RemoteException e) {
                         e.printStackTrace();
                     }
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("game_player_pane.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("game_player_pane.fxml"));
                     Parent root = null;
                     try {
                         root = loader.load();

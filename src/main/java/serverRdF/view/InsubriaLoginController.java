@@ -39,6 +39,8 @@ public class InsubriaLoginController {
     private static DBManager dbManager;
     private static Registry registry;
     private static ServerImplementation server;
+    private static ClientImplementation client;
+    public static boolean gogo = true;
 
 
     /**
@@ -59,13 +61,12 @@ public class InsubriaLoginController {
             if ((registry = LocateRegistry.getRegistry(1099)) == null) {
                 registry = LocateRegistry.createRegistry(1099);
             }
-            ClientImplementation client = new ClientImplementation();
+            client = new ClientImplementation();
             new Controller(server, client, true);
             Controller.setIsServer(true);
             new ForgottenPasswordController(server, client);
             RegistrationFormController rfc = new RegistrationFormController(server, client, true,true);
             if (dbManager.getAnyAdmin()) {
-                rfc.setServer(false);
                 Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("main_pane.fxml"));
                 Stage primaryStage = new Stage();
                 Scene scene = new Scene(root1);
@@ -106,5 +107,12 @@ public class InsubriaLoginController {
 
     public static Registry getRegistry() {
         return registry;
+    }
+
+    public static void setReg(RegistrationFormController r){
+        r.setServer(true);
+        r.setServer(server);
+        r.setAdmin(true);
+        r.setClient(client);
     }
 }

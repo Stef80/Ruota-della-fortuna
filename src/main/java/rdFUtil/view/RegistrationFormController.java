@@ -2,6 +2,7 @@ package rdFUtil.view;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,14 +16,17 @@ import rdFUtil.client.Client;
 import rdFUtil.logging.User;
 import serverRdF.Server;
 import serverRdF.registrationRdF.OTPHelper;
+import serverRdF.view.InsubriaLoginController;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * Il controller della finestra di registrazione. Permette di compilare tutti i campi necessari e registrare un nuovo utente. Grazie al campo 'admin'
  * {@link RegistrationFormController} e' in grado di chiedere al server sia la registrazione di un admin che di un giocatore
  */
-public class RegistrationFormController {
+public class RegistrationFormController implements Initializable {
 
     @FXML
     private TextField nameTextField;
@@ -38,20 +42,14 @@ public class RegistrationFormController {
     private PasswordField passwordTextField;
     @FXML
     private Button backButton;
-    private Server server;
-    private Client client;
+    private static Server server;
+    private static Client client;
     private User user;
     private boolean admin;
     private boolean isServer;
+    private static OTPHelper otp;
 
     public RegistrationFormController(){}
-
-    public RegistrationFormController(Server server, Client client, boolean admin, boolean isServer) {
-        this.server = server;
-        this.client = client;
-        this.admin = admin;
-        this.isServer = isServer;
-    }
 
     /**
      * Registra il nuovo user verificando che non esista già tramite il confronto
@@ -87,13 +85,12 @@ public class RegistrationFormController {
                 String mailStr = mailTextField.getText();
                 String passwordStr = passwordTextField.getText();
                 user = new User(passwordStr, mailStr, nameStr, surnameStr, nickStr);
-                OTPHelper otpHelper = server.signUp(user, client, true);//todo modificare l'import di OTPHelper
-                new OTPRegistrationController(server, client, otpHelper);
+                otp = server.signUp(user, client, true);//todo modificare l'import di OTPHelper
                 setServer(false);
-                Parent root = FXMLLoader.load(Thread.currentThread().getClass().getResource("OTP_registration_pane.fxml"));
+                Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("OTP_registration_pane.fxml"));
                 Scene scene = new Scene(root);
                 Stage primaryStage = new Stage();
-                scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+                //scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
                 primaryStage.setTitle("Wheel of Fortune");
                 primaryStage.setScene(scene);
                 primaryStage.show();
@@ -117,7 +114,7 @@ public class RegistrationFormController {
      */
     public void back() throws IOException{
         if(!isServer) {
-            Parent root = FXMLLoader.load(Thread.currentThread().getClass().getResource("main_pane.fxml"));
+            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("main_pane.fxml"));
             Scene scene = new Scene(root);
             Stage primaryStage = new Stage();
 //        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
@@ -127,7 +124,7 @@ public class RegistrationFormController {
             Stage thisStage = (Stage) backButton.getScene().getWindow();
             thisStage.close();
         }else{
-            Parent root = FXMLLoader.load(Thread.currentThread().getClass().getResource("insubria_login_pane.fxml"));
+            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("insubria_login_pane.fxml"));
             Scene scene = new Scene(root);
             Stage primaryStage = new Stage();
 //        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
@@ -145,5 +142,32 @@ public class RegistrationFormController {
 
     public void setServer(boolean server) {
         isServer = server;
+    }
+
+    public void setServer(Server server) {
+        this.server = server;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        if(InsubriaLoginController.gogo) {
+            InsubriaLoginController.setReg(this);
+        }else {
+            Controller.setRegistration(this);
+        }
+    }
+
+    public static void setOTP(OTPRegistrationController otpp){
+        otpp.setClient(client);
+        otpp.setServer(server);
+        otpp.setOtp(otp);
     }
 }
