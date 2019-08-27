@@ -29,6 +29,7 @@ public interface Client extends Remote {
     /**
      * Permette di settare il nickname dell'utente loggato nel client
      *
+     * @param nickname //todo
      * @throws RemoteException
      */
     public void setNickname(String nickname) throws RemoteException;
@@ -36,6 +37,7 @@ public interface Client extends Remote {
     /**
      * Permette di settare il nickname dell'utente loggato nel client
      *
+     * @param id //todo
      * @throws RemoteException
      */
     public void setId(String id) throws RemoteException;
@@ -176,6 +178,7 @@ public interface Client extends Remote {
      * @param name          il nickname del giocatore
      * @param partialPoints il punteggio parziale
      * @param points        il punteggio totale
+     * @param numJolly      //todo
      * @throws RemoteException
      */
     public void notifyPlayerStats(int position, String name, int partialPoints, int points,int numJolly) throws RemoteException;

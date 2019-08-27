@@ -36,7 +36,9 @@ public interface MovesDAO {
     /**
      * Questo metodo permette di individuare il numero medio di mosse eseguite per indovinare una frase misteriosa
      *
+     * @param numManche //todo
      * @return il numero medio di mosse eseguite per indovinare una frase misteriosa
+     * @throws SQLException
      */
     public int getAverageMovesPerManche(int numManche) throws SQLException;
 

@@ -98,6 +98,7 @@ public interface Server extends Remote {
      * Questo metodo permette all'admin di aggiungere nuove frasi al database per mezzo di un file CSV composto di tema,frase
      *
      * @param file il file CSV dal quale recuperare le frasi
+     * @return //todo
      * @throws RemoteException nel caso in cui non sia possibile comunicare con il server
      */
     public boolean addPhrases(File file) throws RemoteException;
@@ -181,6 +182,7 @@ public interface Server extends Remote {
     /**
      * Permette il reset della password. Viene inviata una mail all'inidirizzo indicato con la nuova password
      *
+     * @param c    //todo
      * @param mail l'indirizzo email dell'account da resettare
      * @return <code>true</code> se il reset avviene con successo, <code>false</code> se l'indirizzo email non esiste nel database
      * @throws RemoteException nel caso in cui non sia possibile comunicare con il server
