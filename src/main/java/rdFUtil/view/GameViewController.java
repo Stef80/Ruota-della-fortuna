@@ -17,7 +17,6 @@ import rdFUtil.MatchData;
 import rdFUtil.client.AdminChecker;
 import rdFUtil.client.Client;
 import serverRdF.Server;
-import serverRdF.matchRdF.Match;
 import serverRdF.matchRdF.RemoteMatch;
 
 import java.io.IOException;
