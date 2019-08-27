@@ -70,7 +70,6 @@ public class InsubriaLoginController {
                 Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("main_pane.fxml"));
                 Stage primaryStage = new Stage();
                 Scene scene = new Scene(root1);
-                //   scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
                 primaryStage.setTitle(FrameTitle.main);
                 primaryStage.setScene(scene);
                 primaryStage.show();
@@ -80,7 +79,6 @@ public class InsubriaLoginController {
                 Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("registration_form_pane.fxml"));
                 Stage primaryStage = new Stage();
                 Scene scene = new Scene(root1);
-                //   scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
                 primaryStage.setTitle(FrameTitle.main);
                 primaryStage.setScene(scene);
                 primaryStage.show();
@@ -120,5 +118,11 @@ public class InsubriaLoginController {
         ctr.setClient(client);
         ctr.setServer(server);
         ctr.setAdmin(true);
+        ctr.setIsServer(true);
+    }
+
+    public static void setHost(HostViewController host){
+        host.setServer(server);
+        host.setR(registry);
     }
 }

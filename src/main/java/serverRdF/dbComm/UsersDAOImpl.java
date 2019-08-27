@@ -17,15 +17,13 @@ public class UsersDAOImpl implements UsersDAO {
     }
     @Override
     public boolean addUser(UsersDTO user) throws SQLException {
-        String queryAdd = "INSERT INTO "+UserTable+"("+UserIdAttribute+","+UserTipoAttribute+","+UserNameAttribute+","+
+        String queryAdd = "INSERT INTO "+UserTable+" ("+UserIdAttribute+","+UserTipoAttribute+","+UserNameAttribute+","+
                 UserSurnameAttribute+","+UserNicknameAttribute+","+UserEmailAttribute+","+UserPasswordAttribute+") " +
-                "VALUES ('"+user.getId()+"',"+user.isAdmin()+",'"+user.getName()+"','"+user.getSurname()+"','"
+                "VALUES ('"+user.getId()+"',"+(user.isAdmin()? 1 : 0) +",'"+user.getName()+"','"+user.getSurname()+"','"
                 +user.getNickname()+"','"+user.getEmail()+"','"+user.getPassword()+"');";
 
         Statement stmt = con.createStatement();
-        System.out.println("Provo ad aggiungere");
         boolean res =  stmt.executeUpdate(queryAdd) > 0;
-        System.out.println("aggiunto: " + res);
         return res;
     }
 
