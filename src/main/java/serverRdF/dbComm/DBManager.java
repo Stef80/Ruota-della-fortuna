@@ -36,7 +36,7 @@ public class DBManager implements DBManagerInterface{
      * @return dbManager il singleton di tipo DBManager
      * @throws SQLException
      */
-    public static DBManager createDBManager(String url, String userID, String password) throws SQLException {
+    public static DBManager createDBManager(String url, String userID, String password) throws SQLException {//TODO url del database
         if (dbManager == null) {
             dbManager = new DBManager(url,userID, password);
             return dbManager;
