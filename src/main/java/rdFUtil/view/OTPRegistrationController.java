@@ -119,13 +119,8 @@ public class OTPRegistrationController implements Initializable {
                     }
                     Scene scene = new Scene(root);
                     Stage primaryStage = new Stage();
-<<<<<<< HEAD
                     //scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-                    primaryStage.setTitle("Wheel of Fortune");
-=======
-                    scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
                     primaryStage.setTitle(FrameTitle.main);
->>>>>>> 1b5d07301c2a8070a12a143c4b14d5053c2dba44
                     primaryStage.setScene(scene);
                     primaryStage.show();
                     Stage thisStage = (Stage) confirmButton.getScene().getWindow();
@@ -151,6 +146,7 @@ public class OTPRegistrationController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         RegistrationFormController.setOTP(this);
+        runCountdown();
     }
 
     public void setServer(Server server) {
