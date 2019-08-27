@@ -45,10 +45,26 @@ public class PhraseManager {
      * @throws IOException in caso di errori nella lettura del file
      */
     public boolean addPhrases(File file) throws IOException {
-        CSVReader reader = new CSVReader(new FileReader(file.getName()));
+        CSVReader reader = new CSVReader(new FileReader(file));
         ArrayList<PhrasesDTO> phrases = new ArrayList<>();
         String[] nextLine;
+        String theme = "";
+        String phrase = "";
         while((nextLine = reader.readNext()) != null){
+            for(int i=0; i<nextLine[0].length(); i++){
+                char c = nextLine[0].charAt(i);
+                theme += c;
+                if(c == '\''){
+                    theme += "'";
+                }
+            }
+            for(int i=0; i<nextLine[1].length(); i++){
+                char c = nextLine[1].charAt(i);
+                phrase += c;
+                if(c == '\''){
+                    phrase += "'";
+                }
+            }
             phrases.add(new PhrasesDTO(nextLine[0],nextLine[1]));
         }
         return dbManager.addPhrases(phrases);

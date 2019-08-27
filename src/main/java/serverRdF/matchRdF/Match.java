@@ -803,6 +803,8 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
 
             dbManager.addMatchWinner(id, winner.getIdPlayer(), maxPoint);
         } else {
+            if(manche.getNumManche() == 0)
+                dbManager.deleteMatch(id);
             for (Client c : observers) {
                 try {
                     c.notifyEndMatch("Nessuno");
@@ -842,18 +844,22 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                 else
                     num++;
             }
-            for (Player p : players) {
-                try {
-                    p.getClient().notifyPlayerStats(num, c.getNickname(), 0, 0, 0);
-                } catch (RemoteException e) {
-                    leaveMatchAsPlayer(p);
+//            System.out.println("cici");
+            if(players.size() != 1) {
+                for (Player p : players) {
+                    try {
+                        p.getClient().notifyPlayerStats(num, c.getNickname(), 0, 0, 0);
+                    } catch (RemoteException e) {
+                        leaveMatchAsPlayer(p);
+                    }
                 }
-            }
-            for (Client client : observers) {
-                try {
-                    c.notifyPlayerStats(num, c.getNickname(), 0, 0, 0);
-                } catch (RemoteException e) {
-                    leaveMatchAsObserver(client);
+//                System.out.println("primo ciclo");
+                for (Client client : observers) {
+                    try {
+                        c.notifyPlayerStats(num, c.getNickname(), 0, 0, 0);
+                    } catch (RemoteException e) {
+                        leaveMatchAsObserver(client);
+                    }
                 }
             }
             full = false;
@@ -861,6 +867,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                 startMatch();
             }
         }
+//        System.out.println(full);
         return full;
     }
 
@@ -914,8 +921,13 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         }
         if (onGoing) {
             endManche(null);
-        }
             endMatch(false);
+        }else{
+            if(players.isEmpty()){
+                endMatch(false);
+            }
+        }
+
     }
 
     synchronized void leaveMatchAsPlayer(Player player) throws RemoteException {
@@ -952,6 +964,10 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         if (onGoing) {
             endManche(null);
             endMatch(false);
+        }else{
+            if(players.isEmpty()){
+                endMatch(false);
+            }
         }
     }
 
@@ -994,12 +1010,12 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
 
         String noName = "--";
         result.setPlayer1(players.get(0).getNickname());
-        if (players.get(1) != null) {
+        if (players.size() == 2) {
             result.setPlayer2(players.get(1).getNickname());
         } else {
             result.setPlayer2(noName);
         }
-        if (players.get(2) != null) {
+        if (players.size() == 3) {
             result.setPlayer3(players.get(2).getNickname());
         } else {
             result.setPlayer3(noName);

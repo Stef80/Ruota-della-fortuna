@@ -33,17 +33,17 @@ public class PhrasesDAOImpl implements PhrasesDAO {
 
     @Override
     public boolean addPhrases(ArrayList<PhrasesDTO> phrases) throws SQLException {
-       String queryAdd = "INSERT INTO "+PhraseTable+"("+PhraseThemeAttribute+","+PhrasePhraseAttribute+") VALUES ";
-       int count=0;
-       for(PhrasesDTO phrasesDTO : phrases){
-           queryAdd+="('"+phrasesDTO.getTheme()+"','"+phrasesDTO.getPhrase()+"')";
-           if(++count<phrases.size())
-               queryAdd+=",";
-           else
-               queryAdd+=";";
+        String queryAdd = "";
+        for(PhrasesDTO phrasesDTO : phrases){
+           queryAdd = "INSERT INTO "+PhraseTable+" ("+PhraseThemeAttribute+","+PhrasePhraseAttribute+") VALUES ";
+           queryAdd += "('"+phrasesDTO.getTheme()+"','"+phrasesDTO.getPhrase()+"');";
+           queryAdd += "\n";
+           Statement stmt = con.createStatement();
+           queryAdd = "";
        }
-        Statement stmt = con.createStatement();
-        return stmt.executeUpdate(queryAdd) == phrases.size();
+        System.out.println(queryAdd);
+
+        return true;
     }
 
     @Override

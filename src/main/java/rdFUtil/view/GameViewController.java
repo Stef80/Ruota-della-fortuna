@@ -34,7 +34,7 @@ public class GameViewController extends ListCell<MatchData> {
     @FXML
     private Label label3;
     @FXML
-    private Label availableLabel;
+    private Label aviableLabel;
     @FXML
     private Button observeButton;
     @FXML
@@ -72,7 +72,7 @@ public class GameViewController extends ListCell<MatchData> {
             setGraphic(null);
         } else {
             if (loader == null) {
-                loader = new FXMLLoader(Thread.currentThread().getContextClassLoader().getResource("game_list_pane.fxml"));
+                loader = new FXMLLoader(getClass().getClassLoader().getResource("game_list_pane.fxml"));
                 loader.setController(this);
                 try {
                     pane = loader.load();
@@ -157,9 +157,9 @@ public class GameViewController extends ListCell<MatchData> {
 
     private void setAviableLabel(boolean aviable) {
         if (aviable) {
-            availableLabel.setText("available");
+            aviableLabel.setText("available");
         } else {
-            availableLabel.setText(null);
+            aviableLabel.setText(null);
             joinButton.setDisable(true);
         }
     }

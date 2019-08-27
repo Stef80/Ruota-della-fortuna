@@ -51,6 +51,12 @@ public class ForgottenPasswordController  implements Initializable {
 					.position(Pos.BASELINE_RIGHT);
 			notification.showError();
 		}else {
+			Notifications notification = Notifications.create()
+					.title("Successo")
+					.text("E' stata inviata una mail contenente la nuova password")
+					.hideAfter(Duration.seconds(3))
+					.position(Pos.BASELINE_RIGHT);
+			notification.showInformation();
 			Stage oldStage = (Stage) enterButton.getScene().getWindow();
 			oldStage.close();
 		}
