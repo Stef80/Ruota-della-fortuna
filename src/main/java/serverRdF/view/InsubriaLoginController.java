@@ -63,7 +63,6 @@ public class InsubriaLoginController {
             Controller.setIsServer(true);
             new ForgottenPasswordController(server, client);
             RegistrationFormController rfc = new RegistrationFormController(server, client, true);
-            rfc.getBackButton().setVisible(false);
             if (dbManager.getAnyAdmin()) {
                 Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("main_pane.fxml"));
                 Stage primaryStage = new Stage();
@@ -75,12 +74,13 @@ public class InsubriaLoginController {
                 Stage oldStage = (Stage) confirmButton.getScene().getWindow();
                 oldStage.hide();
             } else {
-                Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("registration_form_pane"));
+                Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("registration_form_pane.fxml"));
                 Stage primaryStage = new Stage();
                 Scene scene = new Scene(root1);
                 //   scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
                 primaryStage.setTitle("");
                 primaryStage.setScene(scene);
+                rfc.getBackButton().setVisible(false);
                 primaryStage.show();
                 Stage oldStage = (Stage) confirmButton.getScene().getWindow();
                 oldStage.hide();
