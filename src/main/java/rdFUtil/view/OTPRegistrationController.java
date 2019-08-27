@@ -77,7 +77,6 @@ public class OTPRegistrationController implements Initializable {
             Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("main_pane.fxml"));
             Scene scene = new Scene(root);
             Stage primaryStage = new Stage();
-            //scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
             primaryStage.setTitle(FrameTitle.main);
             primaryStage.setScene(scene);
             primaryStage.show();
@@ -119,7 +118,6 @@ public class OTPRegistrationController implements Initializable {
                     }
                     Scene scene = new Scene(root);
                     Stage primaryStage = new Stage();
-                    //scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
                     primaryStage.setTitle(FrameTitle.main);
                     primaryStage.setScene(scene);
                     primaryStage.show();
