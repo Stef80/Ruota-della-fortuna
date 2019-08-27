@@ -1,10 +1,8 @@
 package rdFUtil.view;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -12,14 +10,15 @@ import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import rdFUtil.client.Client;
 import serverRdF.Server;
-import java.io.IOException;
+import java.net.URL;
 import java.rmi.RemoteException;
+import java.util.ResourceBundle;
 
 /**
  * Il controller della finestra per il reset della password. Inserendo la propria mail, il server mandera' una nuova password via email
  */
 
-public class ForgottenPasswordController {
+public class ForgottenPasswordController  implements Initializable {
 	@FXML
 	private Button enterButton;
 	@FXML
@@ -29,10 +28,9 @@ public class ForgottenPasswordController {
 
 	public ForgottenPasswordController(){}
 
-	public ForgottenPasswordController(Server server, Client client) {
-
-		this.server = server;
-		this.client = client;
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		Controller.setResetPanel(this);
 	}
 
 	/**
@@ -56,5 +54,13 @@ public class ForgottenPasswordController {
 			Stage oldStage = (Stage) enterButton.getScene().getWindow();
 			oldStage.close();
 		}
+	}
+
+	public void setServer(Server server) {
+		this.server = server;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
 	}
 }

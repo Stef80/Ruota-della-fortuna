@@ -109,10 +109,10 @@ public class TabPaneController implements Initializable {
 
 
     private ObservableList<MatchData> gameObservableList = FXCollections.observableArrayList();
-    private Client client;
-    private Server server;
-    private RemoteMatch match;
-    private MatchData matchData;
+    private static Client client;
+    private static Server server;
+    private static RemoteMatch match;
+    private static MatchData matchData;
     private boolean isAdmin;
 
 
@@ -158,6 +158,7 @@ public class TabPaneController implements Initializable {
     	gameList.setItems(gameObservableList);
 		ArrayList<MatchData> list = new ArrayList<>();
 		try {
+			System.out.println((server==null? "no" : "ok"));
 			list = server.visualizeMatch(client);
 			gameObservableList.addAll(list);
 			gameList.setItems(gameObservableList);
@@ -224,7 +225,7 @@ public class TabPaneController implements Initializable {
 			numberManchesObservedLabel.setText("0");
 			numberMatchesObservedLabel.setText("0");
 			numberOfManchesWonLabel.setText("0");
-			numberOfMatchesWonLabel.setText("0");;
+			numberOfMatchesWonLabel.setText("0");
 			averagePointsWonLabel.setText("0");
 			averageTurnLostPerMancheLabel.setText("0");
 			averageTurnLostPerMatchLabel.setText("0");

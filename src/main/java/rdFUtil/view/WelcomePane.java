@@ -30,9 +30,8 @@ public class WelcomePane {
 	private Button confirmButton;
 
 	private Registry registry;
-	private Server server;
-	private Client client;
-
+	private static Server server;
+	private static Client client;
 
 	/**
 	 * Questo metodo controlla l'hostname inserito e prova a stabilire una connessione. In caso di riuscita verra' caricata la schermata di login, in caso
@@ -44,15 +43,10 @@ public class WelcomePane {
 			registry = LocateRegistry.getRegistry(host,1099);
 			server = (Server) registry.lookup("SERVER");
 			client = new ClientImplementation();
-			new Controller(server,client, AdminChecker.isIsAdmin());
-			new ForgottenPasswordController(server,client);
-            GamePlayerController game = new GamePlayerController(client);
-            new RegistrationFormController(server,client,AdminChecker.isIsAdmin(),false);
-			client.setGameController(game);
 			Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("main_pane.fxml"));
 			Stage primaryStage = new Stage();
 			Scene scene = new Scene(root1);
-			primaryStage.setTitle("Wheel of Fortune");
+			primaryStage.setTitle(FrameTitle.main);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			Stage oldStage = (Stage) confirmButton.getScene().getWindow();
@@ -70,5 +64,11 @@ public class WelcomePane {
 			e.printStackTrace();
 		}
 
+	}
+
+	public static void setController(Controller c){
+		c.setClient(client);
+		c.setServer(server);
+		c.setAdmin(AdminChecker.isIsAdmin());
 	}
 }

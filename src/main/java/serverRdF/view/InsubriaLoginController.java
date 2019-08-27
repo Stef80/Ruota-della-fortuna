@@ -11,10 +11,13 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
+import rdFUtil.client.Client;
 import rdFUtil.client.ClientImplementation;
 import rdFUtil.view.Controller;
 import rdFUtil.view.ForgottenPasswordController;
+import rdFUtil.view.FrameTitle;
 import rdFUtil.view.RegistrationFormController;
+import serverRdF.Server;
 import serverRdF.ServerImplementation;
 import serverRdF.dbComm.DBManager;
 import serverRdF.emailRdF.EmailManager;
@@ -38,14 +41,16 @@ public class InsubriaLoginController {
     private EmailManager emailManager;
     private static DBManager dbManager;
     private static Registry registry;
-    private static ServerImplementation server;
+    private static Server server;
+    private static Client client;
+    public static boolean gogo = false;
 
 
     /**
      * Questo metodo cerca di stabilire la connessione all'account Insubria attraverso l'invio di una email. Se l'invio avviene senza problemi,
      * viene ricercata nel databse la presenza di admin. Se sono presenti degli admin, viene aperta la schermata di accesso, altrimenti viene aperta la schermata di registrazione
      *
-     * @throws IOException In caso non riesca a caricare la finestra successiva
+     * @throws IOException     In caso non riesca a caricare la finestra successiva
      * @throws RemoteException
      */
     public void loginManager() throws IOException, RemoteException {
@@ -53,24 +58,20 @@ public class InsubriaLoginController {
         String password = passwordTextField.getText();
         boolean logged = EmailManager.logIntoAccount(user, password);
         if (logged) {
+            gogo = true;
             emailManager = EmailManager.createEmailManager(user, password);
             server = new ServerImplementation(dbManager, emailManager);
             System.out.println("Server creato");
             if ((registry = LocateRegistry.getRegistry(1099)) == null) {
                 registry = LocateRegistry.createRegistry(1099);
             }
-            ClientImplementation client = new ClientImplementation();
-            new Controller(server, client, true);
-            Controller.setIsServer(true);
-            new ForgottenPasswordController(server, client);
-            RegistrationFormController rfc = new RegistrationFormController(server, client, true,true);
+            client = new ClientImplementation();
             if (dbManager.getAnyAdmin()) {
-                rfc.setServer(false);
                 Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("main_pane.fxml"));
                 Stage primaryStage = new Stage();
                 Scene scene = new Scene(root1);
                 //   scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-                primaryStage.setTitle("");
+                primaryStage.setTitle(FrameTitle.main);
                 primaryStage.setScene(scene);
                 primaryStage.show();
                 Stage oldStage = (Stage) confirmButton.getScene().getWindow();
@@ -80,7 +81,7 @@ public class InsubriaLoginController {
                 Stage primaryStage = new Stage();
                 Scene scene = new Scene(root1);
                 //   scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-                primaryStage.setTitle("");
+                primaryStage.setTitle(FrameTitle.main);
                 primaryStage.setScene(scene);
                 primaryStage.show();
                 Stage oldStage = (Stage) confirmButton.getScene().getWindow();
@@ -100,11 +101,30 @@ public class InsubriaLoginController {
         dbManager = db;
     }
 
-    public static ServerImplementation getServer() {
+    public static Server getServer() {
         return server;
     }
 
     public static Registry getRegistry() {
         return registry;
+    }
+
+    public static void setReg(RegistrationFormController r){
+        r.setServer(true);
+        r.setServer(server);
+        r.setAdmin(true);
+        r.setClient(client);
+    }
+
+    public static void setController(Controller ctr){
+        ctr.setClient(client);
+        ctr.setServer(server);
+        ctr.setAdmin(true);
+        ctr.setIsServer(true);
+    }
+
+    public static void setHost(HostViewController host){
+        host.setServer(server);
+        host.setR(registry);
     }
 }

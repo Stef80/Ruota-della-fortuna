@@ -7,7 +7,7 @@ import java.util.List;
  * Interfaccia del Data Access Object che si occupa degli accessi al database relativi agli utenti
  */
 public interface UsersDAO {
-    String UserTable = "Users";
+    String UserTable = "users";
     String UserIdAttribute = "id";
     String UserTipoAttribute = "tipo";
     String UserNameAttribute  = "name";

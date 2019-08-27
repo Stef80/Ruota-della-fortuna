@@ -9,30 +9,27 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-      spacing="10.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="rdFUtil.view.OTPRegistrationController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rdFUtil.view.OTPRegistrationController">
     <children>
         <Label text="La Ruota della Fortuna">
             <font>
-                <Font size="18.0"/>
+                <Font size="18.0" />
             </font>
         </Label>
         <HBox alignment="CENTER">
             <children>
-                <TextField fx:id="otpTextField" prefHeight="25.0" prefWidth="201.0"
-                           promptText="Inserisci il codice qui"/>
-                <Region minWidth="10.0"/>
-                <Button fx:id="comfirmButton" mnemonicParsing="false" onAction="#enter" text="Invio"/>
+                <TextField fx:id="otpTextField" prefHeight="25.0" prefWidth="201.0" promptText="Inserisci il codice qui" />
+                <Region minWidth="10.0" />
+                <Button fx:id="confirmButton" mnemonicParsing="false" onAction="#enter" text="Invio" />
             </children>
         </HBox>
-        <Label text="Timer">
+        <Label fx:id="timeLabel" text="Timer">
             <VBox.margin>
-                <Insets/>
+                <Insets />
             </VBox.margin>
         </Label>
     </children>
     <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
 </VBox>

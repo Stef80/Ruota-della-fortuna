@@ -10,7 +10,6 @@ sourceCompatibility = 1.8
 sourceSets {
     main.java {
         srcDir 'src/main/java'
-//        exclude 'rdFUtil/view/**' //TODO - escluso package perché da correggere
     }
     main.resources.srcDir 'src/main/resources'
     test.java.srcDir 'src/test/java'
