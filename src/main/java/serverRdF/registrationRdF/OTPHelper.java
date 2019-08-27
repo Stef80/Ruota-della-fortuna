@@ -15,6 +15,7 @@ public interface OTPHelper extends Remote {
      *
      * @param otp codice inviato dal client
      * @param c   riferimento al client
+     * @return //todo
      * @throws RemoteException in caso di errore di connessione al server
      */
     public boolean checkOTP(String otp, Client c) throws RemoteException;

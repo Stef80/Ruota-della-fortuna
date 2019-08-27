@@ -27,7 +27,7 @@
                         <Region prefHeight="2.0" />
                         <HBox alignment="CENTER" prefHeight="23.0" prefWidth="626.0" spacing="20.0">
                             <children>
-                                <Button fx:id="createMatchButton" mnemonicParsing="false" onAction="#addMatch" text="create match">
+                                <Button fx:id="createMatchButton" mnemonicParsing="false" onAction="#addMatch" text="Crea match">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin></Button>
@@ -35,7 +35,7 @@
                            <HBox.margin>
                               <Insets />
                            </HBox.margin></Region>
-                                <Button fx:id="refreshButton" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
+                                <Button fx:id="refreshButton" mnemonicParsing="false" onAction="#refresh" text="Ricarica" />
                             </children>
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -356,9 +356,9 @@
         </Tab>
         <Tab fx:id="profileTab" closable="false" text="Profilo">
             <content>
-                <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="634.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+                <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="30.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
                     <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="400.0" spacing="20.0">
+                        <HBox alignment="CENTER_LEFT" spacing="20.0">
                             <children>
                                 <ImageView fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -366,10 +366,10 @@
                                     </image>
                                 </ImageView>
                                 <Label text="nickName  " />
-                                <Label fx:id="nicknameLabel" prefWidth="80.0" text="label" />
-                                <Region prefWidth="30.0" />
-                                <TextField fx:id="nicknameTextField" prefWidth="170.0" text="immetti qui nuovo nik" />
-                                <Button fx:id="nickNameModifierButton" mnemonicParsing="false" onAction="#changeNickname" text="modifica" />
+                                <Label fx:id="nicknameLabel" prefWidth="80.0" text="Label" />
+                                <Region HBox.hgrow="ALWAYS" />
+                                <TextField fx:id="nicknameTextField" prefWidth="170.0" promptText="immetti qui nuovo nik" />
+                                <Button fx:id="nickNameModifierButton" mnemonicParsing="false" onAction="#changeNickname" text="Modifica" />
                             </children>
                             <VBox.margin>
                                 <Insets />
@@ -378,50 +378,52 @@
                                 <Insets left="10.0" />
                             </padding>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" spacing="20.0">
+                        <HBox alignment="CENTER_LEFT" spacing="20.0">
                             <children>
                                 <Region prefWidth="50.0" />
                                 <Label prefWidth="60.0" text="Nome     " />
                                 <Label fx:id="nameLabel" prefWidth="80.0" text="Label" />
-                                <Region prefWidth="30.0" />
-                                <TextField fx:id="nameTextField" prefWidth="170.0" text="immetti qui nuovo nome" />
-                                <Button mnemonicParsing="false" onAction="#changeName" text="modifica" />
+                                <Region HBox.hgrow="ALWAYS" />
+                                <TextField fx:id="nameTextField" prefWidth="170.0" promptText="immetti qui nuovo nome" />
+                                <Button mnemonicParsing="false" onAction="#changeName" text="Modifica" />
                             </children>
                             <opaqueInsets>
                                 <Insets />
                             </opaqueInsets>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="60.0" spacing="20.0">
+                        <HBox alignment="CENTER_LEFT" spacing="20.0">
                             <children>
                                 <Region prefWidth="50.0" />
                                 <Label prefWidth="60.0" text="Cognome" />
                                 <Label fx:id="surnameLabel" prefWidth="80.0" text="Label" />
-                                <Region prefWidth="30.0" />
-                                <TextField fx:id="surnameTextField" prefHeight="25.0" prefWidth="170.0" text="immetti qui nuovo cognome" />
-                                <Button mnemonicParsing="false" onAction="#changeSurname" text="modifica" />
+                                <Region HBox.hgrow="ALWAYS" />
+                                <TextField fx:id="surnameTextField" prefHeight="25.0" prefWidth="170.0" promptText="immetti qui nuovo cognome" />
+                                <Button mnemonicParsing="false" onAction="#changeSurname" text="Modifica" />
                             </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="400.0" spacing="20.0">
+                        <HBox alignment="CENTER_LEFT" spacing="20.0">
                             <children>
                                 <Region prefWidth="50.0" />
                                 <Label prefWidth="100.0" text="Indirizzo mail" />
                                 <Label fx:id="emailLabel" prefWidth="100.0" text="Label" />
                             </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="400.0" spacing="20.0">
+                        <HBox alignment="CENTER_LEFT" spacing="20.0">
                             <children>
                                 <Region prefWidth="50.0" />
                                 <Label text="Password   " />
-                                <Region prefWidth="60.0" />
-                                <Region layoutX="160.0" layoutY="10.0" prefWidth="50.0" />
-                                <PasswordField fx:id="passwordField" alignment="CENTER" prefWidth="170.0" text="immeti qui nuova password" />
-                                <Button mnemonicParsing="false" onAction="#changePassword" text="modifica" />
+                                <Region layoutX="160.0" layoutY="10.0" HBox.hgrow="ALWAYS" />
+                                <PasswordField fx:id="passwordField" alignment="CENTER" prefWidth="170.0" promptText="immeti qui nuova password" />
+                                <Button mnemonicParsing="false" onAction="#changePassword" text="Modifica" />
                             </children>
                         </HBox>
                     </children>
                     <HBox.margin>
                         <Insets top="15.0" />
                     </HBox.margin>
+               <padding>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </padding>
                 </VBox>
             </content>
         </Tab>
@@ -429,7 +431,7 @@
          <content>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
                <children>
-                  <Label text="inserire il percorso di un file .csv file" textAlignment="RIGHT">
+                  <Label text="Inserire il percorso di un file .csv file" textAlignment="RIGHT">
                      <font>
                         <Font size="18.0" />
                      </font>

@@ -122,7 +122,7 @@ public class TabPaneController implements Initializable {
 	/**
 	 * Metodo utilizzato per la creazione di un nuovo match. Carichera' anche la schermata di gioco
 	 *
-	 * @param actionEvent
+	 * @param actionEvent //todo
 	 * @throws RemoteException in caso di errore di comunicazione con il server
 	 */
     public void addMatch(ActionEvent actionEvent) throws RemoteException {
@@ -176,7 +176,7 @@ public class TabPaneController implements Initializable {
 												 .title("Notifica erorre")
 												 .text("statistiche non caricate")
 												 .hideAfter(Duration.seconds(2))
-												 .position(Pos.BASELINE_CENTER);
+												 .position(Pos.BASELINE_RIGHT);
 			notification.showError();
 		}
 
@@ -275,9 +275,8 @@ public class TabPaneController implements Initializable {
 											 .title("Giocatori")
 											 .text("Troppi giocatori")
 											 .hideAfter(Duration.seconds(2))
-											 .position(Pos.BASELINE_CENTER);
+											 .position(Pos.BASELINE_RIGHT);
 		notification.showInformation();
-
 	}
 
 	/**
@@ -312,14 +311,14 @@ public class TabPaneController implements Initializable {
 						.title("Successo")
 						.text("Le frasi sono state aggiunte con successo")
 						.hideAfter(Duration.seconds(2))
-						.position(Pos.BASELINE_CENTER);
+						.position(Pos.BASELINE_RIGHT);
 				notification.showInformation();
 			}else{
 				Notifications notification = Notifications.create()
 						.title("Notifica Errore")
 						.text("Non e' stato possibile aggiungere le nuove frasi\n Riprova")
 						.hideAfter(Duration.seconds(2))
-						.position(Pos.BASELINE_CENTER);
+						.position(Pos.BASELINE_RIGHT);
 				notification.showError();
 			}
 		} catch (RemoteException e) {
@@ -327,10 +326,9 @@ public class TabPaneController implements Initializable {
 												 .title("Notifica Errore")
 												 .text("Server offline")
 												 .hideAfter(Duration.seconds(2))
-												 .position(Pos.BASELINE_CENTER);
+												 .position(Pos.BASELINE_RIGHT);
 			notification.showError();
 		}
-
 	}
 
 	/**
@@ -348,18 +346,16 @@ public class TabPaneController implements Initializable {
 						.title("Successo")
 						.text("Il nome e' stato modificato con successo")
 						.hideAfter(Duration.seconds(2))
-						.position(Pos.BASELINE_CENTER);
+						.position(Pos.BASELINE_RIGHT);
 				notification.showInformation();
 			} else {
 				Notifications notification = Notifications.create()
 						.title("Notifica Errore")
 						.text("Non e' stato possibile modificare il nome")
 						.hideAfter(Duration.seconds(2))
-						.position(Pos.BASELINE_CENTER);
+						.position(Pos.BASELINE_RIGHT);
 				notification.showError();
 			}
-		}else{
-
 		}
 	}
 
@@ -378,18 +374,16 @@ public class TabPaneController implements Initializable {
 						.title("Successo")
 						.text("Il cognome e' stato modificato con successo")
 						.hideAfter(Duration.seconds(2))
-						.position(Pos.BASELINE_CENTER);
+						.position(Pos.BASELINE_RIGHT);
 				notification.showInformation();
 			} else {
 				Notifications notification = Notifications.create()
 						.title("Notifica Errore")
 						.text("Non e' stato possibile modificare il cognome")
 						.hideAfter(Duration.seconds(2))
-						.position(Pos.BASELINE_CENTER);
+						.position(Pos.BASELINE_RIGHT);
 				notification.showError();
 			}
-		}else{
-
 		}
 	}
 
@@ -408,18 +402,16 @@ public class TabPaneController implements Initializable {
 						.title("Successo")
 						.text("Il nickname e' stato modificato con successo")
 						.hideAfter(Duration.seconds(2))
-						.position(Pos.BASELINE_CENTER);
+						.position(Pos.BASELINE_RIGHT);
 				notification.showInformation();
 			} else {
 				Notifications notification = Notifications.create()
 						.title("Notifica Errore")
 						.text("Non e' stato possibile modificare il nickname oppure e' gia' in uso")
 						.hideAfter(Duration.seconds(2))
-						.position(Pos.BASELINE_CENTER);
+						.position(Pos.BASELINE_RIGHT);
 				notification.showError();
 			}
-		}else{
-
 		}
 	}
 
@@ -438,18 +430,16 @@ public class TabPaneController implements Initializable {
 						.title("Successo")
 						.text("La password e' stata modificata con successo")
 						.hideAfter(Duration.seconds(2))
-						.position(Pos.BASELINE_CENTER);
+						.position(Pos.BASELINE_RIGHT);
 				notification.showInformation();
 			} else {
 				Notifications notification = Notifications.create()
 						.title("Notifica Errore")
 						.text("Non e' stato possibile modificare la password")
 						.hideAfter(Duration.seconds(2))
-						.position(Pos.BASELINE_CENTER);
+						.position(Pos.BASELINE_RIGHT);
 				notification.showError();
 			}
-		}else{
-
 		}
 	}
 
