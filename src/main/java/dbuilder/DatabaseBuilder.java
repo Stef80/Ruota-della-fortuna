@@ -23,25 +23,26 @@ public class DatabaseBuilder {
     private static Statement statement;
     private static DBManager dbManager;
     public static void main(String[] args) throws SQLException, IOException {
-        try(Connection connection= DriverManager.getConnection("jdbc:postgresql://localhost:5433/postgres", "postgres", "postgres")){
+        try(Connection connection= DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "")){
             statement=connection.createStatement();
             System.out.println("ok");
+            File cazzoDiFileCheNonSiLegge = new File(PATH);
+//        db = new DatabaseHelper("localhost", 5433, "postgres", "postgres", "postgres");
+//        dbManager=DBManager.createDBManager("jdbc:postgresql://localhost:5433/postgres","postgres","postgres");
+            sb = new StringBuilder("");
+            scan=new Scanner(cazzoDiFileCheNonSiLegge);
+            while (scan.hasNextLine()) {
+                sb.append(scan.nextLine());
+                sb.append("\n");
+            }
+            System.out.println(sb.toString());
+            String s=sb.toString();
+            statement.executeUpdate(s);
         }catch (SQLException ex){
             System.out.println("no");
             ex.printStackTrace();
         }
 
-        File cazzoDiFileCheNonSiLegge = new File(PATH);
-//        db = new DatabaseHelper("localhost", 5433, "postgres", "postgres", "postgres");
-//        dbManager=DBManager.createDBManager("jdbc:postgresql://localhost:5433/postgres","postgres","postgres");
-        sb = new StringBuilder("");
-        scan=new Scanner(cazzoDiFileCheNonSiLegge);
-        while (scan.hasNextLine()) {
-            sb.append(scan.nextLine());
-            sb.append("\n");
-        }
-        System.out.println(sb.toString());
-        String s=sb.toString();
-        statement.executeUpdate(s);
+
     }
 }
