@@ -55,6 +55,7 @@ public class AutenticationManager {
                 c.setName(user.getName());
                 c.setSurname(user.getSurname());
                 c.setEmail(user.getEmail());
+                System.out.println(c.getId());
             }
             return result;
     }

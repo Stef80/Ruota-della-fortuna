@@ -25,12 +25,12 @@ public class ClientImplementation extends UnicastRemoteObject implements Client,
 
     @Override
     public String getNickname() throws RemoteException {
-        return null;
+        return nickname;
     }
 
     @Override
     public String getId() throws RemoteException {
-        return null;
+        return id;
     }
 
     @Override

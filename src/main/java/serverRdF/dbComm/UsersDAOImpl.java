@@ -35,7 +35,7 @@ public class UsersDAOImpl implements UsersDAO {
         if(resultSet==null)
             return null;
         resultSet.next();
-        return new UsersDTO(resultSet.getString(UserIdAttribute),resultSet.getBoolean(UserTipoAttribute),
+        return new UsersDTO(resultSet.getString(UserIdAttribute),resultSet.getInt(UserTipoAttribute) == 1,
                 resultSet.getString(UserNameAttribute),resultSet.getString(UserSurnameAttribute),
                 resultSet.getString(UserNicknameAttribute), email,
                 resultSet.getString(UserPasswordAttribute));
@@ -49,7 +49,7 @@ public class UsersDAOImpl implements UsersDAO {
         if(resultSet==null)
             return null;
         resultSet.next();
-        return new UsersDTO(resultSet.getString(UserIdAttribute),resultSet.getBoolean(UserTipoAttribute),
+        return new UsersDTO(resultSet.getString(UserIdAttribute),resultSet.getInt(UserTipoAttribute) == 1,
                 resultSet.getString(UserNameAttribute),resultSet.getString(UserSurnameAttribute), nickname,
                 resultSet.getString(UserEmailAttribute), resultSet.getString(UserPasswordAttribute));
     }
@@ -63,7 +63,7 @@ public class UsersDAOImpl implements UsersDAO {
             return null;
         }
         resultSet.next();
-        return new UsersDTO(id,resultSet.getBoolean(UserTipoAttribute), resultSet.getString(UserNameAttribute),
+        return new UsersDTO(id,(resultSet.getInt(UserTipoAttribute) == 1), resultSet.getString(UserNameAttribute),
                 resultSet.getString(UserSurnameAttribute), resultSet.getString(UserNicknameAttribute),
                 resultSet.getString(UserEmailAttribute), resultSet.getString(UserPasswordAttribute));
     }
@@ -97,10 +97,11 @@ public class UsersDAOImpl implements UsersDAO {
     @Override
     public boolean updateUser(UsersDTO user) throws SQLException {
         String queryUpdate = "UPDATE "+UserTable+" SET "+UserNameAttribute+" = '"+user.getName()+"', "+UserSurnameAttribute+" = '"+user.getSurname()+"', "+
-                UserNicknameAttribute+" = '"+user.getNickname()+"', "+UserPasswordAttribute+" = '"+user.getPassword()+"' WHERE "+UserIdAttribute+" = '"+user.getId()+"' " +
-                "WHERE id = "+ user.getId() +";";
+                UserNicknameAttribute+" = '"+user.getNickname()+"', "+UserPasswordAttribute+" = '"+user.getPassword()+"' WHERE "+UserIdAttribute+" = '"+user.getId()+"';";
         Statement stmt = con.createStatement();
-        return stmt.executeUpdate(queryUpdate) > 0;
+        System.out.println("Utente Modificato");
+        boolean bool = stmt.executeUpdate(queryUpdate) > 0;
+        return bool;
     }
 
     @Override

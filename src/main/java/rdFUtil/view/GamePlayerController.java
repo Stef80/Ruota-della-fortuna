@@ -104,6 +104,7 @@ public class GamePlayerController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         GameViewController.setGameControlle(this);
+        createTableOfPhrase();
     }
 
     /**
