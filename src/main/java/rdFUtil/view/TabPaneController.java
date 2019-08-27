@@ -114,6 +114,7 @@ public class TabPaneController implements Initializable {
     private static RemoteMatch match;
     private static MatchData matchData;
     private boolean isAdmin;
+    public static boolean player = true;
 
 
     public TabPaneController(){
@@ -127,23 +128,18 @@ public class TabPaneController implements Initializable {
 	 */
     public void addMatch(ActionEvent actionEvent) throws RemoteException {
     	match = server.createMatch(client);
-        GamePlayerController.setMatch(match);
-        GamePlayerController.setObserver(false);
 
-        FXMLLoader loader = new FXMLLoader(Thread.currentThread().getContextClassLoader().getResource("game_player_pane.fxml"));
-        Parent root = null;
         try {
-            root = loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        GamePlayerController game = loader.getController();
-        Stage primaryStage = new Stage();
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-        Stage oldStage = (Stage) createMatchButton.getScene().getWindow();
-        oldStage.hide();
+			Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("game_player_pane.fxml"));
+        	Stage primaryStage = new Stage();
+       	 	Scene scene = new Scene(root);
+        	primaryStage.setScene(scene);
+        	primaryStage.show();
+        	Stage oldStage = (Stage) createMatchButton.getScene().getWindow();
+        	oldStage.hide();
+		}catch (IOException e){
+			e.printStackTrace();
+		}
 
     }
 
@@ -154,6 +150,8 @@ public class TabPaneController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
     	Controller.setArgs(this);
 
+    	if(isAdmin)
+    		createMatchButton.setVisible(false);
     	gameList.setItems(gameObservableList);
 		ArrayList<MatchData> list = new ArrayList<>();
 		try {
@@ -310,14 +308,14 @@ public class TabPaneController implements Initializable {
 				Notifications notification = Notifications.create()
 						.title("Successo")
 						.text("Le frasi sono state aggiunte con successo")
-						.hideAfter(Duration.seconds(2))
+						.hideAfter(Duration.seconds(3))
 						.position(Pos.BASELINE_RIGHT);
 				notification.showInformation();
 			}else{
 				Notifications notification = Notifications.create()
 						.title("Notifica Errore")
 						.text("Non e' stato possibile aggiungere le nuove frasi\n Riprova")
-						.hideAfter(Duration.seconds(2))
+						.hideAfter(Duration.seconds(3))
 						.position(Pos.BASELINE_RIGHT);
 				notification.showError();
 			}
@@ -366,7 +364,7 @@ public class TabPaneController implements Initializable {
 	 */
 	public void changeSurname() throws RemoteException{
 		String surname = surnameTextField.getText();
-		if(surname.equals("")) {
+		if(!surname.equals("")) {
 			boolean bool = server.changeSurname(surname, client);
 			if (bool) {
 				surnameLabel.setText(surname);
@@ -394,7 +392,7 @@ public class TabPaneController implements Initializable {
 	 */
 	public void changeNickname() throws RemoteException{
 		String nickname = nicknameTextField.getText();
-		if(nickname.equals("")) {
+		if(!nickname.equals("")) {
 			boolean bool = server.changeNickname(nickname, client);
 			if (bool) {
 				nicknameLabel.setText(nickname);
@@ -422,7 +420,7 @@ public class TabPaneController implements Initializable {
 	 */
 	public void changePassword() throws RemoteException{
 		String password = passwordField.getText();
-		if(password.equals("")) {
+		if(!password.equals("")) {
 			password = CryptPassword.encrypt(password);
 			boolean bool = server.changePassword(password, client);
 			if (bool) {
@@ -453,6 +451,12 @@ public class TabPaneController implements Initializable {
 
 	public void setAdmin(boolean admin) {
 		isAdmin = admin;
+	}
+
+	public static void setGameControlle(GamePlayerController gpc){
+		gpc.setClient(client);
+		gpc.setMatch(match);
+		gpc.setObserver(false);
 	}
 }
 

@@ -131,6 +131,7 @@ public class GameViewController extends ListCell<MatchData> {
                     } catch (RemoteException e) {
                         e.printStackTrace();
                     }
+                    TabPaneController.player = false;
                     FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("game_player_pane.fxml"));
                     Parent root = null;
                     try {
@@ -144,7 +145,6 @@ public class GameViewController extends ListCell<MatchData> {
                     Scene scene = new Scene(root);
                     primaryStage.setScene(scene);
                     primaryStage.show();
-                    GamePlayerController.setObserver(true);
                     Stage oldStage = (Stage) observeButton.getScene().getWindow();
                     oldStage.hide();
                 }
@@ -164,8 +164,9 @@ public class GameViewController extends ListCell<MatchData> {
         }
     }
 
-    public static void setGameControlle(GamePlayerController gpc){
+    public static void setGameControllerObserver(GamePlayerController gpc){
         gpc.setClient(client);
         gpc.setMatch(match);
+        gpc.setObserver(true);
     }
 }

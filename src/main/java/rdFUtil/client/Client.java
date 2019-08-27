@@ -48,6 +48,8 @@ public interface Client extends Remote {
 
     public void setEmail(String email) throws RemoteException;
 
+    public void setGame(GamePlayerController e) throws RemoteException;
+
     public String getName() throws RemoteException;
 
     public String getSurname() throws RemoteException;
