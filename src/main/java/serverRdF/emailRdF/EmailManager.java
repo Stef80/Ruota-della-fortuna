@@ -59,7 +59,7 @@ public class EmailManager {
     public static boolean logIntoAccount(String email, String password) {
         try{
             String sub = "RdF: collegamento dell'account riuscito";
-            String txt = "Ora e' possibile inviare emails in automatico dalla piattaforma attraverso questo account.";
+            String txt = "Ora e' possibile inviare email in automatico dalla piattaforma attraverso questo account.";
             EmailSender.sendUninsubriaEmail(email,password,email,sub,txt);
             return true;
         }catch(MessagingException e){

@@ -32,6 +32,7 @@ public class UsersDAOImpl implements UsersDAO {
         ResultSet resultSet = stmt.executeQuery(querySearch);
         if(resultSet==null)
             return null;
+        resultSet.next();
         return new UsersDTO(resultSet.getString(UserIdAttribute),resultSet.getBoolean(UserTipoAttribute),
                 resultSet.getString(UserNameAttribute),resultSet.getString(UserSurnameAttribute),
                 resultSet.getString(UserNicknameAttribute), email,
@@ -45,6 +46,7 @@ public class UsersDAOImpl implements UsersDAO {
         ResultSet resultSet = stmt.executeQuery(querySearch);
         if(resultSet==null)
             return null;
+        resultSet.next();
         return new UsersDTO(resultSet.getString(UserIdAttribute),resultSet.getBoolean(UserTipoAttribute),
                 resultSet.getString(UserNameAttribute),resultSet.getString(UserSurnameAttribute), nickname,
                 resultSet.getString(UserEmailAttribute), resultSet.getString(UserPasswordAttribute));
