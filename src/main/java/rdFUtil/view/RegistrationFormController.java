@@ -69,7 +69,7 @@ public class RegistrationFormController {
                         .title("Mail Notification")
                         .text("E-mail già presente \nimmettere nuova mail")
                         .hideAfter(Duration.seconds(3))
-                        .position(Pos.CENTER);
+                        .position(Pos.BASELINE_RIGHT);
                 notification.showError();
                 //se esiste nickName visualizza notifica
             } else if (!server.checkNickname(nicknameTextField.getText())) {
@@ -77,7 +77,7 @@ public class RegistrationFormController {
                         .title("Mail Notification")
                         .text("NickName già presente \nimmettere un nuovo nickname")
                         .hideAfter(Duration.seconds(3))
-                        .position(Pos.CENTER);
+                        .position(Pos.BASELINE_RIGHT);
                 notification.showError();
 
             } else {
@@ -105,7 +105,7 @@ public class RegistrationFormController {
                     .title("Registration Notification")
                     .text("Errore:\nTutti i campi sono obbligatori")
                     .hideAfter(Duration.seconds(3))
-                    .position(Pos.CENTER);
+                    .position(Pos.BASELINE_RIGHT);
             notification.showError();
         }
     }

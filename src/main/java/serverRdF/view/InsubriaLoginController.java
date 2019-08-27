@@ -91,7 +91,7 @@ public class InsubriaLoginController {
                     .title("Mail Notification")
                     .text("E-mail o password errati \nimmettere nuova mail")
                     .hideAfter(Duration.seconds(3))
-                    .position(Pos.CENTER);
+                    .position(Pos.BASELINE_RIGHT);
             notification.showError();
         }
     }

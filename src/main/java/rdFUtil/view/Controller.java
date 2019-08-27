@@ -67,7 +67,7 @@ public class Controller {
                                                      .title("Mail Notification")
                                                      .text("E-mail o password errati \nriprova!")
                                                      .hideAfter(Duration.seconds(3))
-                                                     .position(Pos.CENTER);
+                                                     .position(Pos.BASELINE_RIGHT);
                 notification.showError();
             } else if (result == 0) {
           //     FXMLLoader loader = new FXMLLoader(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
@@ -93,7 +93,7 @@ public class Controller {
                                                      .title("Mail Notification")
                                                      .text("Si sta provando ad accedere alla piattaforma dal client sbagliato \nriprova!")
                                                      .hideAfter(Duration.seconds(3))
-                                                     .position(Pos.CENTER);
+                                                     .position(Pos.BASELINE_RIGHT);
                 notification.showError();
             }
         }else{

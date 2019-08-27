@@ -60,7 +60,7 @@ public class ServerMainPane {
 												 .title("Connection Notification")
 												 .text("Connessione non riuscita \nriprovare")
 												 .hideAfter(Duration.seconds(3))
-												 .position(Pos.CENTER);
+												 .position(Pos.BASELINE_CENTER);
 			notification.showError();
 		}
 

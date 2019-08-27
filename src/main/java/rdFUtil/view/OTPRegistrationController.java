@@ -67,7 +67,7 @@ public class OTPRegistrationController {
                     .title("OTP Notification")
                     .text("CodiceOTP non valido\n")
                     .hideAfter(Duration.seconds(3))
-                    .position(Pos.CENTER);
+                    .position(Pos.BASELINE_RIGHT);
             notification.showError();
         } else {
             timeline.stop();
@@ -106,7 +106,7 @@ public class OTPRegistrationController {
                             .title("OTP Notification")
                             .text("Tempo esaurito \nripeti la procedura di registrazione")
                             .hideAfter(Duration.seconds(3))
-                            .position(Pos.CENTER);
+                            .position(Pos.BASELINE_RIGHT);
                     notification.showError();
                     Parent root = null;
                     try {
@@ -136,7 +136,7 @@ public class OTPRegistrationController {
                                              .title("OTP Notification")
                                              .text("OTP inserito errato \nriprova")
                                              .hideAfter(Duration.seconds(3))
-                                             .position(Pos.CENTER);
+                                             .position(Pos.BASELINE_RIGHT);
         notification.showError();
     }
 }

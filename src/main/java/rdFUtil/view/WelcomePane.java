@@ -64,7 +64,7 @@ public class WelcomePane {
 												 .title("Connection Notification")
 												 .text("Connessione non riuscita \nriprovare")
 												 .hideAfter(Duration.seconds(3))
-												 .position(Pos.CENTER);
+												 .position(Pos.BASELINE_RIGHT);
 			notification.showError();
 		} catch (IOException e) {
 			e.printStackTrace();

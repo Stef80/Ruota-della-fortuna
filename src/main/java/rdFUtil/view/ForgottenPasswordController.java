@@ -50,7 +50,7 @@ public class ForgottenPasswordController {
 					.title("Mail Notification")
 					.text("L'indirizzo email non esiste.\nriprova!")
 					.hideAfter(Duration.seconds(3))
-					.position(Pos.CENTER);
+					.position(Pos.BASELINE_RIGHT);
 			notification.showError();
 		}else {
 			Stage oldStage = (Stage) enterButton.getScene().getWindow();

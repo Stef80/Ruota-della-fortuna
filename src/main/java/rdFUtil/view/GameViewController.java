@@ -101,7 +101,7 @@ public class GameViewController extends ListCell<MatchData> {
                                 .title("")
                                 .text("")
                                 .hideAfter(Duration.seconds(3))
-                                .position(Pos.CENTER);
+                                .position(Pos.BASELINE_RIGHT);
                         notification.showError();
                     }
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("game_player_pane.fxml"));
