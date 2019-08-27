@@ -44,8 +44,11 @@ public class ProfileManager {
      */
     public boolean changeName(String name, String idUser) {
         UsersDTO user = dbManager.getUserById(idUser);
-        user.setName(name);
-        return dbManager.updateUser(user);
+        if(user != null) {
+            user.setName(name);
+            return dbManager.updateUser(user);
+        }else
+            return false;
     }
 
     /**

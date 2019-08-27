@@ -9,6 +9,7 @@ import serverRdF.ServerImplementation;
 import java.net.InetAddress;
 import java.net.URL;
 import java.net.UnknownHostException;
+import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ResourceBundle;
 
@@ -25,6 +26,11 @@ public class HostViewController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		InsubriaLoginController.setHost(this);
+		try {
+			takeAddress();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -33,6 +39,7 @@ public class HostViewController implements Initializable {
 	 * @throws Exception
 	 */
 	public void takeAddress() throws Exception{
+		r = LocateRegistry.createRegistry(1099);
 		r.rebind("SERVER",server);
 		InetAddress address = null;
 		try {

@@ -4,9 +4,13 @@ import rdFUtil.view.GamePlayerController;
 import rdFUtil.view.OTPRegistrationController;
 import rdFUtil.view.TabPaneController;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
-public class ClientImplementation implements Client {
+public class ClientImplementation extends UnicastRemoteObject implements Client,Serializable {
+
+    public static final long serialVersionUID = 1L;
 
     private GamePlayerController game;
     private OTPRegistrationController otpRegistrationPane;
@@ -16,6 +20,8 @@ public class ClientImplementation implements Client {
     private String name;
     private String surname;
     private String email;
+
+    public ClientImplementation() throws RemoteException{}
 
     @Override
     public String getNickname() throws RemoteException {

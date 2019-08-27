@@ -48,11 +48,11 @@ public interface Client extends Remote {
 
     public void setEmail(String email) throws RemoteException;
 
-    public String getName();
+    public String getName() throws RemoteException;
 
-    public String getSurname();
+    public String getSurname() throws RemoteException;
 
-    public String getEmail();
+    public String getEmail() throws RemoteException;
 
     /**
      * Notifica al client che c'e' stato un problema di connessione al server da parte del client o al database da parte del server
@@ -239,6 +239,4 @@ public interface Client extends Remote {
     public void notifyJollyUsed(String name) throws RemoteException;
 
     public void notifyLetterCall(String name, String letter) throws RemoteException;
-
-    public void setGameController(GamePlayerController game);
 }
