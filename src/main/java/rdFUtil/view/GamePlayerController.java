@@ -539,7 +539,6 @@ public class GamePlayerController implements Initializable {
                 .hideAfter(Duration.seconds(2))
                 .position(Pos.BASELINE_RIGHT);
         notification.showInformation();
-
     }
 
     /**
@@ -590,10 +589,9 @@ public class GamePlayerController implements Initializable {
     /**
      * Permette al giocatore di abbandonare la partita per poi essere reindirizzato alla finestra principale della piattaforma
      *
-     * @param actionEvent //todo
      * @throws IOException Nel caso in cui non sia possibile caricare la finestra successiva
      */
-    public void exitMatch(ActionEvent actionEvent) throws IOException {
+    public void exitMatch() throws IOException {
         try {
             if (isObserver) {
                 match.leaveMatchAsObserver(client);
