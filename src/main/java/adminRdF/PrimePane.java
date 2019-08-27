@@ -1,7 +1,6 @@
 package adminRdF;
 
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,7 +12,9 @@ import rdFUtil.view.FrameTitle;
  * La classe che avvia il modulo AdminRdF
  */
 public class PrimePane extends Application {
-    public PrimePane(){}
+
+    public PrimePane() {
+    }
 
     public static void main(String[] args) throws Exception {
         AdminChecker.setIsAdmin(true);
