@@ -37,8 +37,8 @@ public interface Server extends Remote {
     /**
      * Questo metodo permette al client di registrare un nuovo account
      *
-     * @param form un oggetto di tipo{@link User} contenente tutti i dati necessari
-     * @param c il riferimento al client
+     * @param form  un oggetto di tipo{@link User} contenente tutti i dati necessari
+     * @param c     il riferimento al client
      * @param admin <code>true</code> se si prova a registrare un admin, <code>false</code> altrimenti
      * @return un oggetto remoto {@link OTPHelper} necessario ad ultimare la registrazione
      * @throws RemoteException nel caso in cui non sia possibile comunicare con il server
@@ -48,8 +48,8 @@ public interface Server extends Remote {
     /**
      * Questo metodo permette al client di effettuare l'accesso alla piattaforma
      *
-     * @param form un oggetto di tipo {@link Login} contenente email e password
-     * @param c il riferimento al client
+     * @param form  un oggetto di tipo {@link Login} contenente email e password
+     * @param c     il riferimento al client
      * @param admin <code>true</code> se si prova ad accedere come admin, <code>false</code> altrimenti
      * @return 0 se il login va a buon fine, -1 se email o password sono sbagliati o 1 se le credenziali sono giuste ma si sta tentando l'accesso dalla piattaforma sbagliata
      * @throws RemoteException nel caso in cui non sia possibile comunicare con il server
@@ -77,7 +77,7 @@ public interface Server extends Remote {
     /**
      * Questo metodo permette al client di partecipare ad una partita esistente come giocatore
      *
-     * @param c il riferimento al client
+     * @param c       il riferimento al client
      * @param idMatch l'id del match al quale si vuole partecipare
      * @return il riferimento all'oggetto remoto {@link RemoteMatch} appena creato
      * @throws RemoteException nel caso in cui non sia possibile comunicare con il server
@@ -87,7 +87,7 @@ public interface Server extends Remote {
     /**
      * Questo metodo permette al client di partecipare ad una partita esistente come osservatore
      *
-     * @param c il riferimento al client
+     * @param c       il riferimento al client
      * @param idMatch l'id del match al quale si vuole partecipare
      * @return il riferimento all'oggetto remoto {@link RemoteMatch} appena creato
      * @throws RemoteException nel caso in cui non sia possibile comunicare con il server
@@ -107,7 +107,7 @@ public interface Server extends Remote {
      * Questo metodo permette ad un utente di cambiare il proprio nome
      *
      * @param name il nuovo nome da sostituire al vecchio
-     * @param c il riferimento al client
+     * @param c    il riferimento al client
      * @return <code>true</code> se la modifica e' andata a buon fine, <code>false</code> altrimenti
      * @throws RemoteException nel caso in cui non sia possibile comunicare con il server
      */
@@ -117,7 +117,7 @@ public interface Server extends Remote {
      * Questo metodo permette ad un utente di cambiare il proprio cognome
      *
      * @param surname il nuovo cognome da sostituire al vecchio
-     * @param c il riferimento al client
+     * @param c       il riferimento al client
      * @return <code>true</code> se la modifica e' andata a buon fine, <code>false</code> altrimenti
      * @throws RemoteException nel caso in cui non sia possibile comunicare con il server
      */
@@ -127,7 +127,7 @@ public interface Server extends Remote {
      * Questo metodo permette ad un utente di cambiare il proprio nickname
      *
      * @param nickname il nuovo cognome da sostituire al vecchio
-     * @param c il riferimento al client
+     * @param c        il riferimento al client
      * @return <code>true</code> se la modifica e' andata a buon fine, <code>false</code> se la modifica non e' stata possibile, ad esempio a causa dell'utilizzo di un nickname gia' esistente
      * @throws RemoteException nel caso in cui non sia possibile comunicare con il server
      */
@@ -137,7 +137,7 @@ public interface Server extends Remote {
      * Questo metodo permette ad un utente di cambiare il proprio password
      *
      * @param password la nuova password da sostituire al vecchio
-     * @param c il riferimento al client
+     * @param c        il riferimento al client
      * @return <code>true</code> se la modifica e' andata a buon fine, <code>false</code> altrimenti
      * @throws RemoteException nel caso in cui non sia possibile comunicare con il server
      */
@@ -187,5 +187,5 @@ public interface Server extends Remote {
      * @return <code>true</code> se il reset avviene con successo, <code>false</code> se l'indirizzo email non esiste nel database
      * @throws RemoteException nel caso in cui non sia possibile comunicare con il server
      */
-    public boolean resetPassword(Client c,String mail) throws RemoteException;
+    public boolean resetPassword(Client c, String mail) throws RemoteException;
 }
