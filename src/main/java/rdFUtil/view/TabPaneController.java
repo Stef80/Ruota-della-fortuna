@@ -276,7 +276,6 @@ public class TabPaneController implements Initializable {
 											 .hideAfter(Duration.seconds(2))
 											 .position(Pos.BASELINE_RIGHT);
 		notification.showInformation();
-
 	}
 
 	/**
@@ -329,7 +328,6 @@ public class TabPaneController implements Initializable {
 												 .position(Pos.BASELINE_RIGHT);
 			notification.showError();
 		}
-
 	}
 
 	/**
@@ -357,8 +355,6 @@ public class TabPaneController implements Initializable {
 						.position(Pos.BASELINE_RIGHT);
 				notification.showError();
 			}
-		}else{
-
 		}
 	}
 
@@ -387,8 +383,6 @@ public class TabPaneController implements Initializable {
 						.position(Pos.BASELINE_RIGHT);
 				notification.showError();
 			}
-		}else{
-
 		}
 	}
 
@@ -417,8 +411,6 @@ public class TabPaneController implements Initializable {
 						.position(Pos.BASELINE_RIGHT);
 				notification.showError();
 			}
-		}else{
-
 		}
 	}
 
@@ -447,8 +439,6 @@ public class TabPaneController implements Initializable {
 						.position(Pos.BASELINE_RIGHT);
 				notification.showError();
 			}
-		}else{
-
 		}
 	}
 
