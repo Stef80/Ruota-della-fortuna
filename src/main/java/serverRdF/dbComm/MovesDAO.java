@@ -12,7 +12,7 @@ public interface MovesDAO {
     String MovesIdPlayerAttribute = "id";
     String MovesMoveTypeAttribute = "moveType";
     String MovesOutcomeAttribute = "outcome";
-    String MovesIdMatchAttribute  = "idMatch";
+    String MovesIdMatchAttribute = "idMatch";
     String MovesMancheNumberAttribute = "number";
     String MovesMoveIdAttribute = "moveId";
 
