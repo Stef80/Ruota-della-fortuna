@@ -93,7 +93,6 @@ public class RegistrationFormController {
                 Parent root = FXMLLoader.load(Thread.currentThread().getClass().getResource("OTP_registration_pane.fxml"));
                 Scene scene = new Scene(root);
                 Stage primaryStage = new Stage();
-                scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
                 primaryStage.setTitle("Wheel of Fortune");
                 primaryStage.setScene(scene);
                 primaryStage.show();
