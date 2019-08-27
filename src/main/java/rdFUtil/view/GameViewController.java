@@ -54,12 +54,17 @@ public class GameViewController extends ListCell<MatchData> {
         this.matchData = matchData;
     }
 
-    @Override
     /**
-     * Aggiorna i gli elementi con i dati del match. Il tasto per partecipare alla partita sara' disponibiile sono se il match e' disponibile e l'utente connesso
-     * non e' un admin. Il tasto di join permette di partecipare alla partita, il tasto observe di parteciparvi. In entrambi i casi verra' aperta la finestra di
-     * gioco.
+     * Aggiorna i gli elementi con i dati del match. Il tasto per partecipare alla partita sara' disponibiile sono se il match
+     * e' disponibile e l'utente connesso non e' un admin.
+     * Il tasto di join permette di partecipare alla partita, il tasto observe di parteciparvi.In entrambi i casi verra'
+     * aperta la finestra di gioco.
+     *
+     * @param item
+     * @param empty
      */
+
+    @Override
     protected void updateItem(MatchData item, boolean empty) {
         super.updateItem(item, empty);
         if (empty || item == null) {
@@ -72,7 +77,6 @@ public class GameViewController extends ListCell<MatchData> {
                 try {
                     pane = loader.load();
                     Scene scene = new Scene(pane);
-                    //	scene.getStylesheets().add(getClass().getResource("/sample/resources/sampleScene.css").toExternalForm());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

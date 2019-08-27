@@ -34,7 +34,7 @@
             <TextField fx:id="hostnameTextField" />
          </children>
       </HBox>
-      <Button fx:id="confirmButton" mnemonicParsing="false" onAction="#login" text="Invia" />
+      <Button fx:id="confirmButton" mnemonicParsing="false" onAction="#login" stylesheets="@style.css" text="Invia" />
    </children>
    <padding>
       <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
