@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import rdFUtil.client.Client;
@@ -70,6 +71,9 @@ public class InsubriaLoginController {
                 primaryStage.setTitle(FrameTitle.main);
                 primaryStage.setScene(scene);
                 primaryStage.show();
+                primaryStage.setOnCloseRequest((WindowEvent event1) -> {
+                    System.exit(0);
+                });
                 Stage oldStage = (Stage) confirmButton.getScene().getWindow();
                 oldStage.hide();
             } else {
@@ -79,8 +83,12 @@ public class InsubriaLoginController {
                 primaryStage.setTitle(FrameTitle.main);
                 primaryStage.setScene(scene);
                 primaryStage.show();
+                primaryStage.setOnCloseRequest((WindowEvent event1) -> {
+                    System.exit(0);
+                });
                 Stage oldStage = (Stage) confirmButton.getScene().getWindow();
                 oldStage.close();
+
             }
         } else {
             Notifications notification = Notifications.create()

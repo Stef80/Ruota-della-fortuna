@@ -13,6 +13,7 @@ import javafx.scene.control.ListCell;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
+import rdFUtil.ApplicationCloser;
 import rdFUtil.MatchData;
 import rdFUtil.client.AdminChecker;
 import rdFUtil.client.Client;
@@ -119,8 +120,9 @@ public class GameViewController extends ListCell<MatchData> {
                     Scene scene = new Scene(root);
                     primaryStage.setScene(scene);
                     primaryStage.show();
+                    ApplicationCloser.setCloser(primaryStage);
                     Stage oldStage = (Stage) joinButton.getScene().getWindow();
-                    oldStage.hide();
+                    oldStage.close();
                 }
             });
             observeButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
@@ -139,14 +141,13 @@ public class GameViewController extends ListCell<MatchData> {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    GamePlayerController game = loader.getController();
-                    game.hideAll();
                     Stage primaryStage = new Stage();
                     Scene scene = new Scene(root);
                     primaryStage.setScene(scene);
                     primaryStage.show();
+                    ApplicationCloser.setCloser(primaryStage);
                     Stage oldStage = (Stage) observeButton.getScene().getWindow();
-                    oldStage.hide();
+                    oldStage.close();
                 }
             });
         }

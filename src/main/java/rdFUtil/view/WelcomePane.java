@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
+import rdFUtil.ApplicationCloser;
 import rdFUtil.client.AdminChecker;
 import rdFUtil.client.Client;
 import rdFUtil.client.ClientImplementation;
@@ -42,13 +43,13 @@ public class WelcomePane {
 		try {
 			registry = LocateRegistry.getRegistry(host,1099);
 			server = (Server) registry.lookup("SERVER");
-			client = new ClientImplementation();
 			Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("main_pane.fxml"));
 			Stage primaryStage = new Stage();
 			Scene scene = new Scene(root1);
 			primaryStage.setTitle(FrameTitle.main);
 			primaryStage.setScene(scene);
 			primaryStage.show();
+			ApplicationCloser.setCloser(primaryStage);
 			Stage oldStage = (Stage) confirmButton.getScene().getWindow();
 			oldStage.close();
 
@@ -67,7 +68,6 @@ public class WelcomePane {
 	}
 
 	public static void setController(Controller c){
-		c.setClient(client);
 		c.setServer(server);
 		c.setAdmin(AdminChecker.isIsAdmin());
 	}

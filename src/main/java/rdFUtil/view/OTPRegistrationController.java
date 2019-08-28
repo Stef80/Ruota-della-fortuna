@@ -17,6 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
+import rdFUtil.ApplicationCloser;
 import rdFUtil.client.Client;
 import serverRdF.Server;
 import serverRdF.registrationRdF.OTPHelper;
@@ -80,6 +81,7 @@ public class OTPRegistrationController implements Initializable {
             primaryStage.setTitle(FrameTitle.main);
             primaryStage.setScene(scene);
             primaryStage.show();
+            ApplicationCloser.setCloser(primaryStage);
             Stage thisStage = (Stage) confirmButton.getScene().getWindow();
             thisStage.close();
         }
@@ -121,6 +123,7 @@ public class OTPRegistrationController implements Initializable {
                     primaryStage.setTitle(FrameTitle.main);
                     primaryStage.setScene(scene);
                     primaryStage.show();
+                    ApplicationCloser.setCloser(primaryStage);
                     Stage thisStage = (Stage) confirmButton.getScene().getWindow();
                     thisStage.close();
                 }

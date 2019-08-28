@@ -23,9 +23,8 @@ public class PrimePaneServer extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
 
-//        primaryStage.setOnCloseRequest((WindowEvent event1) -> {
-//            Platform.exit();
-//            System.exit(0);
-//        });
+        primaryStage.setOnCloseRequest((WindowEvent event1) -> {
+            System.exit(0);
+        });
     }
 }

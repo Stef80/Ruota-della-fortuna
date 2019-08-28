@@ -3,6 +3,7 @@ package rdFUtil.view;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -22,6 +23,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
+import rdFUtil.ApplicationCloser;
 import rdFUtil.client.Client;
 import serverRdF.matchRdF.RemoteMatch;
 
@@ -103,16 +105,26 @@ public class GamePlayerController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        if(TabPaneController.player)
+        if (TabPaneController.player) {
             TabPaneController.setGameControlle(this);
-        else
+            System.out.println("Utilizzato per giocatore");
+        } else {
             GameViewController.setGameControllerObserver(this);
+            hideAll();
+            System.out.println("Utilizzato per osservatore");
+        }
         try {
             client.setGame(this);
+            System.out.println("Creato oggetto game per" + client.getNickname());
         } catch (RemoteException e) {
             e.printStackTrace();
         }
         createTableOfPhrase();
+        try {
+            match.askNotify(client);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
         disableAll();
     }
 
@@ -136,11 +148,6 @@ public class GamePlayerController implements Initializable {
                 phraseGridPane.add(slotPane, j, i);
             }
 
-        }
-        try {
-            match.askNotify(client);
-        } catch (RemoteException e) {
-            e.printStackTrace();
         }
     }
 
@@ -463,23 +470,32 @@ public class GamePlayerController implements Initializable {
      * @throws RemoteException In caso di errore di comunicazione con il server
      */
     public void setTurn(String nickName) throws RemoteException {
-        if (nickName.equals(player1Label.getText())) {
-            player1Box.setStyle("-fx-border-color: #FFF404;");
-            player2Box.setStyle("-fx-border-color: #073CA0;");
-            player3Box.setStyle("-fx-border-color: #073CA0;");
-        } else if (nickName.equals(player2Label.getText())) {
-            player1Box.setStyle("-fx-border-color: #073CA0;");
-            player2Box.setStyle("-fx-border-color: #FFF404;");
-            player3Box.setStyle("-fx-border-color: #073CA0;");
-        } else if (nickName.equals(player3Label.getText())) {
-            player1Box.setStyle("-fx-border-color: #073CA0;");
-            player2Box.setStyle("-fx-border-color: #073CA0;");
-            player3Box.setStyle("-fx-border-color: #FFF404;");
-        }
-        if (!nickName.equals(client.getNickname())) {
-            disableAll();
-        }
-        runCountdown(5);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                if (nickName.equals(player1Label.getText())) {
+                    player1Box.setStyle("-fx-border-color: #FFF404;");
+                    player2Box.setStyle("-fx-border-color: #073CA0;");
+                    player3Box.setStyle("-fx-border-color: #073CA0;");
+                } else if (nickName.equals(player2Label.getText())) {
+                    player1Box.setStyle("-fx-border-color: #073CA0;");
+                    player2Box.setStyle("-fx-border-color: #FFF404;");
+                    player3Box.setStyle("-fx-border-color: #073CA0;");
+                } else if (nickName.equals(player3Label.getText())) {
+                    player1Box.setStyle("-fx-border-color: #073CA0;");
+                    player2Box.setStyle("-fx-border-color: #073CA0;");
+                    player3Box.setStyle("-fx-border-color: #FFF404;");
+                }
+                try {
+                    if (!nickName.equals(client.getNickname())) {
+                        disableAll();
+                    }
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+                runCountdown(5);
+            }
+        });
     }
 
     /**
@@ -499,26 +515,31 @@ public class GamePlayerController implements Initializable {
      * @param numJolly il numero di jolly accumulati dal giocatore
      */
     public void notifyPlayerStats(int pos, String nickname, int partial, int total, int numJolly) {
-        switch (pos) {
-            case 0:
-                player1Label.setText(nickname);
-                partial1Label.setText(String.valueOf(partial));
-                total1Label.setText(String.valueOf(total));
-                jolly1Label.setText(String.valueOf(numJolly));
-                break;
-            case 1:
-                player2Label.setText(nickname);
-                partial2Label.setText(String.valueOf(partial));
-                total2Label.setText(String.valueOf(total));
-                jolly2Label.setText(String.valueOf(numJolly));
-                break;
-            case 2:
-                player3Label.setText(nickname);
-                partial3Label.setText(String.valueOf(partial));
-                total3Label.setText(String.valueOf(total));
-                jolly3Label.setText(String.valueOf(numJolly));
-                break;
-        }
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                switch (pos) {
+                    case 0:
+                        player1Label.setText(nickname);
+                        partial1Label.setText(String.valueOf(partial));
+                        total1Label.setText(String.valueOf(total));
+                        jolly1Label.setText(String.valueOf(numJolly));
+                        break;
+                    case 1:
+                        player2Label.setText(nickname);
+                        partial2Label.setText(String.valueOf(partial));
+                        total2Label.setText(String.valueOf(total));
+                        jolly2Label.setText(String.valueOf(numJolly));
+                        break;
+                    case 2:
+                        player3Label.setText(nickname);
+                        partial3Label.setText(String.valueOf(partial));
+                        total3Label.setText(String.valueOf(total));
+                        jolly3Label.setText(String.valueOf(numJolly));
+                        break;
+                }
+            }
+        });
     }
 
     /**
@@ -527,13 +548,18 @@ public class GamePlayerController implements Initializable {
      * @param nickname il nickname del giocatore che ha deciso di chiamare la vocale
      */
     public void vocalCallNotify(String nickname) {
-        String message = nickname + " ha chiamato la vocale";
-        Notifications notification = Notifications.create()
-                .title("Mosse")
-                .text(message)
-                .hideAfter(Duration.seconds(2))
-                .position(Pos.BASELINE_RIGHT);
-        notification.showInformation();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                String message = nickname + " ha chiamato la vocale";
+                Notifications notification = Notifications.create()
+                        .title("Mosse")
+                        .text(message)
+                        .hideAfter(Duration.seconds(2))
+                        .position(Pos.BASELINE_RIGHT);
+                notification.showInformation();
+            }
+        });
     }
 
     /**
@@ -542,13 +568,18 @@ public class GamePlayerController implements Initializable {
      * @param nickname il nickname del giocatore
      */
     public void callSolutionNotify(String nickname) {
-        String message = nickname + " da la soluzione ";
-        Notifications notification = Notifications.create()
-                .title("Mosse")
-                .text(message)
-                .hideAfter(Duration.seconds(2))
-                .position(Pos.BASELINE_RIGHT);
-        notification.showInformation();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                String message = nickname + " da la soluzione ";
+                Notifications notification = Notifications.create()
+                        .title("Mosse")
+                        .text(message)
+                        .hideAfter(Duration.seconds(2))
+                        .position(Pos.BASELINE_RIGHT);
+                notification.showInformation();
+            }
+        });
     }
 
     /**
@@ -557,13 +588,18 @@ public class GamePlayerController implements Initializable {
      * @param nickname nickname del giocatore
      */
     public void jollyNotify(String nickname) {
-        String message = nickname + " ha giocato il jolly";
-        Notifications notification = Notifications.create()
-                .title("Mosse")
-                .text(message)
-                .hideAfter(Duration.seconds(2))
-                .position(Pos.BASELINE_RIGHT);
-        notification.showInformation();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                String message = nickname + " ha giocato il jolly";
+                Notifications notification = Notifications.create()
+                        .title("Mosse")
+                        .text(message)
+                        .hideAfter(Duration.seconds(2))
+                        .position(Pos.BASELINE_RIGHT);
+                notification.showInformation();
+            }
+        });
 
     }
 
@@ -574,13 +610,18 @@ public class GamePlayerController implements Initializable {
      * @param letter   la lettera chiamata
      */
     public void callLetterNotify(String nickname, String letter) {
-        String message = nickname + " ha scelto la lettera " + letter;
-        Notifications notification = Notifications.create()
-                .title("Mosse")
-                .text(message)
-                .hideAfter(Duration.seconds(2))
-                .position(Pos.BASELINE_RIGHT);
-        notification.showInformation();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                String message = nickname + " ha scelto la lettera " + letter;
+                Notifications notification = Notifications.create()
+                        .title("Mosse")
+                        .text(message)
+                        .hideAfter(Duration.seconds(2))
+                        .position(Pos.BASELINE_RIGHT);
+                notification.showInformation();
+            }
+        });
     }
 
 
@@ -618,6 +659,7 @@ public class GamePlayerController implements Initializable {
             primaryStage.setTitle(FrameTitle.main);
             primaryStage.setScene(scene);
             primaryStage.show();
+            ApplicationCloser.setCloser(primaryStage);
             Stage oldStage = (Stage) exitButton.getScene().getWindow();
             oldStage.close();
         }
@@ -630,13 +672,18 @@ public class GamePlayerController implements Initializable {
      * @param nickname il nickname del giocatore
      */
     public void notifyLeaver(String nickname) {
-        String message = nickname + "\nha lasciato la partita";
-        Notifications notification = Notifications.create()
-                .title("Notifica di partita")
-                .text(message)
-                .hideAfter(Duration.seconds(3))
-                .position(Pos.BASELINE_RIGHT);
-        notification.showInformation();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                String message = nickname + "\nha lasciato la partita";
+                Notifications notification = Notifications.create()
+                        .title("Notifica di partita")
+                        .text(message)
+                        .hideAfter(Duration.seconds(3))
+                        .position(Pos.BASELINE_RIGHT);
+                notification.showInformation();
+            }
+        });
     }
 
     /**
@@ -645,52 +692,67 @@ public class GamePlayerController implements Initializable {
      * @param reason il motivo per cui e' stata annullata
      */
     public void notifyMatchAbort(String reason) {
-        String message = reason + "\nla partita è finita";
-        Notifications notification = Notifications.create()
-                .title("Notifica di partita")
-                .text(message)
-                .hideAfter(Duration.seconds(3))
-                .position(Pos.BASELINE_RIGHT);
-        notification.showInformation();
-        match = null;
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Stage primaryStage = new Stage();
-        Scene scene = new Scene(root);
-        primaryStage.setTitle(FrameTitle.main);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-        Stage oldStage = (Stage) exitButton.getScene().getWindow();
-        oldStage.close();
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                String message = reason + "\nla partita è finita";
+                Notifications notification = Notifications.create()
+                        .title("Notifica di partita")
+                        .text(message)
+                        .hideAfter(Duration.seconds(3))
+                        .position(Pos.BASELINE_RIGHT);
+                notification.showInformation();
+                Parent root = null;
+                try {
+                    root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Stage primaryStage = new Stage();
+                Scene scene = new Scene(root);
+                primaryStage.setTitle(FrameTitle.main);
+                primaryStage.setScene(scene);
+                primaryStage.show();
+                Stage oldStage = (Stage) exitButton.getScene().getWindow();
+                oldStage.close();
+            }
+        });
     }
 
     /**
      * Notifica l'inizio di una partita
      */
     public void notifyMatchStart() {
-        String message = "Partita iniziata";
-        Notifications notification = Notifications.create()
-                .title("Notifica di partita")
-                .text(message)
-                .hideAfter(Duration.seconds(3))
-                .position(Pos.BASELINE_RIGHT);
-        notification.showInformation();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                String message = "Partita iniziata";
+                Notifications notification = Notifications.create()
+                        .title("Notifica di partita")
+                        .text(message)
+                        .hideAfter(Duration.seconds(3))
+                        .position(Pos.BASELINE_RIGHT);
+                notification.showInformation();
+            }
+        });
     }
 
     /**
      * Notifica che l'utente ha vinto la manche
      */
     public void notifyMancheVictory() {
-        Notifications notification = Notifications.create()
-                .title("Notifica di partita")
-                .text("HAI VINTO LA MANCHE!!!")
-                .hideAfter(Duration.seconds(3))
-                .position(Pos.BASELINE_RIGHT);
-        notification.showInformation();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Notifications notification = Notifications.create()
+                        .title("Notifica di partita")
+                        .text("HAI VINTO LA MANCHE!!!")
+                        .hideAfter(Duration.seconds(3))
+                        .position(Pos.BASELINE_RIGHT);
+                notification.showInformation();
+            }
+        });
     }
 
     /**
@@ -699,13 +761,18 @@ public class GamePlayerController implements Initializable {
      * @param winner Il nickname del vincitore
      */
     public void notifyMancheResult(String winner) {
-        String message = winner + "\nha vinto la manche ";
-        Notifications notification = Notifications.create()
-                .title("Notifica di partita")
-                .text(message)
-                .hideAfter(Duration.seconds(3))
-                .position(Pos.BASELINE_RIGHT);
-        notification.showInformation();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                String message = winner + "\nha vinto la manche ";
+                Notifications notification = Notifications.create()
+                        .title("Notifica di partita")
+                        .text(message)
+                        .hideAfter(Duration.seconds(3))
+                        .position(Pos.BASELINE_RIGHT);
+                notification.showInformation();
+            }
+        });
     }
 
     /**
@@ -714,26 +781,37 @@ public class GamePlayerController implements Initializable {
      * @param numManche il numero della manche che sta per iniziare
      */
     public void notifyNewManche(int numManche) {
-        String message = "la manche numero " + numManche + "\nsta per cominciare";
-        Notifications notification = Notifications.create()
-                .title("Notifica di partita")
-                .text(message)
-                .hideAfter(Duration.seconds(3))
-                .position(Pos.BASELINE_RIGHT);
-        notification.showInformation();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                String message = "la manche numero " + numManche + "\nsta per cominciare";
+                Notifications notification = Notifications.create()
+                        .title("Notifica di partita")
+                        .text(message)
+                        .hideAfter(Duration.seconds(3))
+                        .position(Pos.BASELINE_RIGHT);
+                notification.showInformation();
+            }
+        });
     }
 
     /**
      * Notifica che e' il turno dell'utente
      */
     public void notifyYourTurn() {
-        Notifications notification = Notifications.create()
-                .title("Notifica di partita")
-                .text("E' IL TUO TURNO")
-                .hideAfter(Duration.seconds(3))
-                .position(Pos.BASELINE_RIGHT);
-        notification.showInformation();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Notifications notification = Notifications.create()
+                        .title("Notifica di partita")
+                        .text("E' IL TUO TURNO")
+                        .hideAfter(Duration.seconds(3))
+                        .position(Pos.BASELINE_RIGHT);
+                notification.showInformation();
+            }
+        });
         yourTurn();
+
     }
 
     /**
@@ -742,13 +820,18 @@ public class GamePlayerController implements Initializable {
      * @param winner il nickname del vincitore
      */
     public void notifyEndMatch(String winner) {
-        String message = winner + "\nha vinto la partita ";
-        Notifications notification = Notifications.create()
-                .title("Notifica di partita")
-                .text(message)
-                .hideAfter(Duration.seconds(3))
-                .position(Pos.BASELINE_RIGHT);
-        notification.showInformation();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                String message = winner + "\nha vinto la partita ";
+                Notifications notification = Notifications.create()
+                        .title("Notifica di partita")
+                        .text(message)
+                        .hideAfter(Duration.seconds(3))
+                        .position(Pos.BASELINE_RIGHT);
+                notification.showInformation();
+            }
+        });
         match = null;
         Parent root = null;
         try {
@@ -769,12 +852,17 @@ public class GamePlayerController implements Initializable {
      * Notifica all'utente che ha vinto la partita e lo fa tornare alla schermata principale
      */
     public void notifyMatchWin() {
-        Notifications notification = Notifications.create()
-                .title("Notifica di partita")
-                .text("HAI VINTO!!!")
-                .hideAfter(Duration.seconds(3))
-                .position(Pos.BASELINE_RIGHT);
-        notification.showInformation();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Notifications notification = Notifications.create()
+                        .title("Notifica di partita")
+                        .text("HAI VINTO!!!")
+                        .hideAfter(Duration.seconds(3))
+                        .position(Pos.BASELINE_RIGHT);
+                notification.showInformation();
+            }
+        });
         match = null;
         Parent root = null;
         try {
@@ -795,24 +883,34 @@ public class GamePlayerController implements Initializable {
      * Notifica che il tempo a disposizione di un giocatore e' scaduto
      */
     public void notifyTimeOut() {
-        Notifications notification = Notifications.create()
-                .title("Notifica di partita")
-                .text("Tempo scduto ")
-                .hideAfter(Duration.seconds(3))
-                .position(Pos.BASELINE_RIGHT);
-        notification.showInformation();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Notifications notification = Notifications.create()
+                        .title("Notifica di partita")
+                        .text("Tempo scduto ")
+                        .hideAfter(Duration.seconds(3))
+                        .position(Pos.BASELINE_RIGHT);
+                notification.showInformation();
+            }
+        });
     }
 
     /**
      * Chiede all'utente se ha intezione di usare un jolly in seguito di un errore
      */
     public void askForJolly() {
-        Notifications notification = Notifications.create()
-                .title("Notifica di partita")
-                .text("Hai fatto un errore. Vuoi usare il jolly?")
-                .hideAfter(Duration.seconds(3))
-                .position(Pos.BASELINE_RIGHT);
-        notification.showInformation();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Notifications notification = Notifications.create()
+                        .title("Notifica di partita")
+                        .text("Hai fatto un errore. Vuoi usare il jolly?")
+                        .hideAfter(Duration.seconds(3))
+                        .position(Pos.BASELINE_RIGHT);
+                notification.showInformation();
+            }
+        });
     }
 
     /**
@@ -821,21 +919,31 @@ public class GamePlayerController implements Initializable {
      * @param name il nickname del giocatore
      */
     public void notifyPlayerError(String name) {
-        String message = name + "\nha commesso un errore";
-        Notifications notification = Notifications.create()
-                .title("Notifica di partita")
-                .text(message)
-                .hideAfter(Duration.seconds(3))
-                .position(Pos.BASELINE_RIGHT);
-        notification.showInformation();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                String message = name + "\nha commesso un errore";
+                Notifications notification = Notifications.create()
+                        .title("Notifica di partita")
+                        .text(message)
+                        .hideAfter(Duration.seconds(3))
+                        .position(Pos.BASELINE_RIGHT);
+                notification.showInformation();
+            }
+        });
     }
 
-    public void notifyNoMoreConsonant(){
-        Notifications notification = Notifications.create()
-                .title("Notifica di partita")
-                .text("Sono state chiamate tutte le consonanti")
-                .hideAfter(Duration.seconds(3))
-                .position(Pos.BASELINE_RIGHT);
-        notification.showInformation();
+    public void notifyNoMoreConsonant() {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Notifications notification = Notifications.create()
+                        .title("Notifica di partita")
+                        .text("Sono state chiamate tutte le consonanti")
+                        .hideAfter(Duration.seconds(3))
+                        .position(Pos.BASELINE_RIGHT);
+                notification.showInformation();
+            }
+        });
     }
 }

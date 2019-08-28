@@ -1,5 +1,6 @@
 package serverRdF.view;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -9,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import rdFUtil.view.FrameTitle;
@@ -53,6 +55,10 @@ public class ServerMainPane {
 			primaryStage.setTitle(FrameTitle.main);
 			primaryStage.setScene(scene);
 			primaryStage.show();
+			primaryStage.setOnCloseRequest((WindowEvent event1) -> {
+				Platform.exit();
+				System.exit(0);
+			});
 			Stage oldStage = (Stage) confirmButton.getScene().getWindow();
 			oldStage.close();
 
