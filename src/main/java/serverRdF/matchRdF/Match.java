@@ -65,7 +65,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
             timer.interrupt();
             wheelResult("GIRA...");
             int j = 0;
-            for (int i = 0; i < 1000000000; i++) {
+            for (int i = 0; i < 1000000000; i++) { //TODO controllare
                 j = j * 5;
             }
             spinnedWheel = true;
