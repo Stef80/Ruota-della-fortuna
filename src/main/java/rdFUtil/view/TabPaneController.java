@@ -368,6 +368,11 @@ public class TabPaneController implements Initializable {
             }
             if (bool) {
                 nameLabel.setText(name);
+                try {
+                    client.setName(name);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
                 Notifications notification = Notifications.create()
                         .title("Successo")
                         .text("Il nome e' stato modificato con successo")
@@ -406,6 +411,11 @@ public class TabPaneController implements Initializable {
             }
             if (bool) {
                 surnameLabel.setText(surname);
+                try {
+                    client.setSurname(surname);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
                 Notifications notification = Notifications.create()
                         .title("Successo")
                         .text("Il cognome e' stato modificato con successo")
@@ -443,6 +453,11 @@ public class TabPaneController implements Initializable {
                 notification.showError();
             }
             if (bool) {
+                try {
+                    client.setNickname(nickname);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
                 nicknameLabel.setText(nickname);
                 Notifications notification = Notifications.create()
                         .title("Successo")

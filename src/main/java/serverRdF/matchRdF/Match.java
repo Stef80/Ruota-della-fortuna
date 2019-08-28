@@ -894,9 +894,9 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
             }
 //            System.out.println("fine");
             full = false;
-            if (players.size() == 3) {
-                startMatch();
-            }
+//            if (players.size() == 3) {
+//                startMatch();
+//            }
         }
 //        System.out.println(full);
         return full;
@@ -911,6 +911,12 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         if (onGoing) {
             dbManager.addMancheJoiner(id, manche.getNumManche(), c.getId(), true);
         }
+    }
+
+    @Override
+    public void tryForStartMatch() throws RemoteException{
+        if(players.size() == 3)
+            startMatch();
     }
 
     /**

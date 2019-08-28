@@ -87,4 +87,6 @@ public interface RemoteMatch extends Remote {
      * @throws RemoteException nel caso in cui non sia possibile comunicare con il server
      */
     public void askForVocal() throws RemoteException;
+
+    public void tryForStartMatch() throws RemoteException;
 }
