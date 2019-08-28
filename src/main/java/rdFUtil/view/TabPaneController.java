@@ -279,8 +279,7 @@ public class TabPaneController implements Initializable {
 	 * Ricarica la lista delle partite disponibili aggiornata
 	 */
 	public void refresh(){
-		gameObservableList.removeAll();
-		gameList.refresh();
+		gameObservableList = FXCollections.observableArrayList();
 		gameList.setItems(gameObservableList);
 		ArrayList<MatchData> list = new ArrayList<>();
 		try {

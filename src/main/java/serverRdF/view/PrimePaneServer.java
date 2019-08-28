@@ -1,10 +1,12 @@
 package serverRdF.view;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import rdFUtil.view.FrameTitle;
 
 /**
@@ -20,5 +22,10 @@ public class PrimePaneServer extends Application {
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
+
+//        primaryStage.setOnCloseRequest((WindowEvent event1) -> {
+//            Platform.exit();
+//            System.exit(0);
+//        });
     }
 }

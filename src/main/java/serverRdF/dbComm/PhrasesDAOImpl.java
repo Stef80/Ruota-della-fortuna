@@ -39,6 +39,7 @@ public class PhrasesDAOImpl implements PhrasesDAO {
            queryAdd += "('"+phrasesDTO.getTheme()+"','"+phrasesDTO.getPhrase()+"');";
            queryAdd += "\n";
            Statement stmt = con.createStatement();
+           stmt.executeUpdate(queryAdd);
            queryAdd = "";
        }
         System.out.println(queryAdd);

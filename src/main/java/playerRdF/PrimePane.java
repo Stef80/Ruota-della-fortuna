@@ -1,10 +1,12 @@
 package playerRdF;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import rdFUtil.client.AdminChecker;
 import rdFUtil.view.FrameTitle;
 
@@ -29,5 +31,10 @@ public class PrimePane extends Application {
         primaryStage.setTitle(FrameTitle.main);
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        primaryStage.setOnCloseRequest((WindowEvent event1) -> {
+            Platform.exit();
+            System.exit(0);
+        });
     }
 }

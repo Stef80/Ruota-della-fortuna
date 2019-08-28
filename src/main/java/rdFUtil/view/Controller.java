@@ -93,7 +93,7 @@ public class Controller implements Initializable {
                     primaryStage.setScene(scene);
                     primaryStage.show();
                     Stage oldStage = (Stage) loginButton.getScene().getWindow();
-                    oldStage.hide();
+                    oldStage.close();
                 } else {
                     FXMLLoader loader = new FXMLLoader(Thread.currentThread().getContextClassLoader().getResource("host_view.fxml"));
                     Parent root = null;
@@ -107,7 +107,7 @@ public class Controller implements Initializable {
                     primaryStage.setScene(scene);
                     primaryStage.show();
                     Stage oldStage = (Stage) loginButton.getScene().getWindow();
-                    oldStage.hide();
+                    oldStage.close();
                 }
             } else {
                 Notifications notification = Notifications.create()
