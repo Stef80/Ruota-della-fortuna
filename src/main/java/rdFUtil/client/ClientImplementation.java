@@ -208,4 +208,9 @@ public class ClientImplementation extends UnicastRemoteObject implements Client,
     public void notifyLetterCall(String name, String letter) throws RemoteException {
         game.callLetterNotify(name, letter);
     }
+
+    @Override
+    public void notifyNoMoreConsonant() throws RemoteException {
+        game.notifyNoMoreConsonant();
+    }
 }

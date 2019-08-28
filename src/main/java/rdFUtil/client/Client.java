@@ -241,4 +241,6 @@ public interface Client extends Remote {
     public void notifyJollyUsed(String name) throws RemoteException;
 
     public void notifyLetterCall(String name, String letter) throws RemoteException;
+
+    public void notifyNoMoreConsonant() throws RemoteException;
 }

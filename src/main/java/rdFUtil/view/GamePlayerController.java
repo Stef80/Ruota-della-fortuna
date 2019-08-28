@@ -634,7 +634,7 @@ public class GamePlayerController implements Initializable {
         Notifications notification = Notifications.create()
                 .title("Notifica di partita")
                 .text(message)
-                .hideAfter(Duration.seconds(2))
+                .hideAfter(Duration.seconds(3))
                 .position(Pos.BASELINE_RIGHT);
         notification.showInformation();
     }
@@ -649,7 +649,7 @@ public class GamePlayerController implements Initializable {
         Notifications notification = Notifications.create()
                 .title("Notifica di partita")
                 .text(message)
-                .hideAfter(Duration.seconds(2))
+                .hideAfter(Duration.seconds(3))
                 .position(Pos.BASELINE_RIGHT);
         notification.showInformation();
         match = null;
@@ -676,7 +676,7 @@ public class GamePlayerController implements Initializable {
         Notifications notification = Notifications.create()
                 .title("Notifica di partita")
                 .text(message)
-                .hideAfter(Duration.seconds(2))
+                .hideAfter(Duration.seconds(3))
                 .position(Pos.BASELINE_RIGHT);
         notification.showInformation();
     }
@@ -688,7 +688,7 @@ public class GamePlayerController implements Initializable {
         Notifications notification = Notifications.create()
                 .title("Notifica di partita")
                 .text("HAI VINTO LA MANCHE!!!")
-                .hideAfter(Duration.seconds(2))
+                .hideAfter(Duration.seconds(3))
                 .position(Pos.BASELINE_RIGHT);
         notification.showInformation();
     }
@@ -703,7 +703,7 @@ public class GamePlayerController implements Initializable {
         Notifications notification = Notifications.create()
                 .title("Notifica di partita")
                 .text(message)
-                .hideAfter(Duration.seconds(2))
+                .hideAfter(Duration.seconds(3))
                 .position(Pos.BASELINE_RIGHT);
         notification.showInformation();
     }
@@ -718,7 +718,7 @@ public class GamePlayerController implements Initializable {
         Notifications notification = Notifications.create()
                 .title("Notifica di partita")
                 .text(message)
-                .hideAfter(Duration.seconds(2))
+                .hideAfter(Duration.seconds(3))
                 .position(Pos.BASELINE_RIGHT);
         notification.showInformation();
     }
@@ -730,7 +730,7 @@ public class GamePlayerController implements Initializable {
         Notifications notification = Notifications.create()
                 .title("Notifica di partita")
                 .text("E' IL TUO TURNO")
-                .hideAfter(Duration.seconds(2))
+                .hideAfter(Duration.seconds(3))
                 .position(Pos.BASELINE_RIGHT);
         notification.showInformation();
         yourTurn();
@@ -746,7 +746,7 @@ public class GamePlayerController implements Initializable {
         Notifications notification = Notifications.create()
                 .title("Notifica di partita")
                 .text(message)
-                .hideAfter(Duration.seconds(2))
+                .hideAfter(Duration.seconds(3))
                 .position(Pos.BASELINE_RIGHT);
         notification.showInformation();
         match = null;
@@ -772,7 +772,7 @@ public class GamePlayerController implements Initializable {
         Notifications notification = Notifications.create()
                 .title("Notifica di partita")
                 .text("HAI VINTO!!!")
-                .hideAfter(Duration.seconds(2))
+                .hideAfter(Duration.seconds(3))
                 .position(Pos.BASELINE_RIGHT);
         notification.showInformation();
         match = null;
@@ -798,7 +798,7 @@ public class GamePlayerController implements Initializable {
         Notifications notification = Notifications.create()
                 .title("Notifica di partita")
                 .text("Tempo scduto ")
-                .hideAfter(Duration.seconds(2))
+                .hideAfter(Duration.seconds(3))
                 .position(Pos.BASELINE_RIGHT);
         notification.showInformation();
     }
@@ -810,7 +810,7 @@ public class GamePlayerController implements Initializable {
         Notifications notification = Notifications.create()
                 .title("Notifica di partita")
                 .text("Hai fatto un errore. Vuoi usare il jolly?")
-                .hideAfter(Duration.seconds(2))
+                .hideAfter(Duration.seconds(3))
                 .position(Pos.BASELINE_RIGHT);
         notification.showInformation();
     }
@@ -825,7 +825,16 @@ public class GamePlayerController implements Initializable {
         Notifications notification = Notifications.create()
                 .title("Notifica di partita")
                 .text(message)
-                .hideAfter(Duration.seconds(2))
+                .hideAfter(Duration.seconds(3))
+                .position(Pos.BASELINE_RIGHT);
+        notification.showInformation();
+    }
+
+    public void notifyNoMoreConsonant(){
+        Notifications notification = Notifications.create()
+                .title("Notifica di partita")
+                .text("Sono state chiamate tutte le consonanti")
+                .hideAfter(Duration.seconds(3))
                 .position(Pos.BASELINE_RIGHT);
         notification.showInformation();
     }

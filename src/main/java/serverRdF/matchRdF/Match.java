@@ -34,6 +34,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     private boolean[] phraseStatus;
     private MoveTimer timer = null;
     private boolean spinnedWheel = false;
+    private boolean noConsonantLeft = false;
 
     public Match() throws RemoteException {
 
@@ -56,7 +57,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     public int wheelSpin() throws RemoteException {
         Player activePlayer = players.get(turn);
 
-        if (timer.isThisForJolly() || timer.isThisForSolution() || timer.isThisForVocal()) {
+        if (timer.isThisForJolly() || timer.isThisForSolution() || timer.isThisForVocal() || noConsonantLeft) {
             errorInTurn(false, false);
             return 0;
         } else {
@@ -232,13 +233,18 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         Player activePlayer = players.get(turn);
         char vocal = letter.charAt(0);
         boolean isVocal = (vocal == 'A' || vocal == 'E' || vocal == 'I' || vocal == 'O' || vocal == 'U');
-        if (firstTurn || !spinnedWheel || amount == 0 || timer.isThisForJolly() || timer.isThisForSolution() || letter.length() > 1 || isVocal || timer.isThisForVocal()) {
+        if (firstTurn || !spinnedWheel || amount == 0 || timer.isThisForJolly() || timer.isThisForSolution() || letter.length() > 1 || isVocal || timer.isThisForVocal() || !manche.checkConsonant(letter)) {
             timer.interrupt();
             errorInTurn(true, false);
             return;
         }
         timer.interrupt();
         notifyLetterCall(letter);
+        boolean bool = manche.addConsonant(letter);
+        if(bool) {
+            notifyNoMoreConsonants();
+            noConsonantLeft = true;
+        }
         for (Client c : observers) {
             try {
                 c.updatePhrase(letter);
@@ -311,6 +317,23 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                 } else {
                     p.getClient().notifyLetterCall(activePlayer.getNickname(), letter);
                 }
+            } catch (RemoteException e) {
+                leaveMatchAsPlayer(p);
+            }
+        }
+    }
+
+    private void notifyNoMoreConsonants() throws RemoteException {
+        for (Client c : observers) {
+            try {
+                c.notifyNoMoreConsonant();
+            } catch (RemoteException e) {
+                leaveMatchAsObserver(c);
+            }
+        }
+        for (Player p : players) {
+            try {
+                p.getClient().notifyNoMoreConsonant();
             } catch (RemoteException e) {
                 leaveMatchAsPlayer(p);
             }

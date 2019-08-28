@@ -23,6 +23,7 @@ public class Manche {
     private DBManager dbManager;
     private String match;
     private LocalDateTime matchTime;
+    private ArrayList<String> calledConsonant;
 
     public Manche(DBManager dbmng, String id, LocalDateTime time) {
         turns = new Turn(this);
@@ -31,6 +32,7 @@ public class Manche {
         dbManager = dbmng;
         this.match = id;
         matchTime = time;
+        calledConsonant = new ArrayList<>();
     }
 
     public Turn getTurns() {
@@ -77,6 +79,32 @@ public class Manche {
         return phrases.get(numManche - 1);
     }
 
+    /**
+     * Controlla se la consonante chiamata e' gia' stata scelta
+     * @param givenLetter la consonante chiamata
+     * @return true se non e' stata chiamata, false altrimenti
+     */
+    public boolean checkConsonant(String givenLetter){
+        if(calledConsonant.isEmpty())
+            return true;
+        else{
+            for(String letter : calledConsonant){
+                if(letter.equals(givenLetter)){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public boolean addConsonant(String letter){
+        calledConsonant.add(letter);
+        if(calledConsonant.size() == 26)
+            return true;
+        else
+            return false;
+    }
+
 
     /**
      * Questo metodo aggiorna l'oggetto per permettere l'inizo della manche successiva. La lista di mosse viene svuotata e le mosse vengono salvate nel database
@@ -89,6 +117,7 @@ public class Manche {
         manche.setNumber(numManche);
         manche.setPhrase(getCurrentPhrase());
         manche.setMatch(new MatchesDTO(match, matchTime));
+        calledConsonant = new ArrayList<String>();
         boolean man = dbManager.addManche(manche);
         boolean tur = turns.saveMoves(dbManager);
         if (winner != null) {
