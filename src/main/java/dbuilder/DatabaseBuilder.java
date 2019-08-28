@@ -1,44 +1,29 @@
 package dbuilder;
 
-import rdFUtil.database.DatabaseHelper;
-import serverRdF.dbComm.DBManager;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import rdFUtil.view.FrameTitle;
 
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Scanner;
 
-public class DatabaseBuilder {
+public class DatabaseBuilder extends Application {
 
-    private static DatabaseHelper db;
-    private static String url;
-    private static BufferedReader br;
-    private static StringBuilder sb;
-    private static final String PATH = "src/main/java/dbuilder/database_creator.sql";
-    private static Scanner scan;
-    private static Statement statement;
-    private static DBManager dbManager;
 
-    public static void main(String[] args) throws IOException {
-        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5433/postgres", "postgres", "postgres")) {
-            statement = connection.createStatement();
-            System.out.println("ok");
-            File cazzoDiFileCheNonSiLegge = new File(PATH);
-            sb = new StringBuilder("");
-            scan = new Scanner(cazzoDiFileCheNonSiLegge);
-            while (scan.hasNextLine()) {
-                sb.append(scan.nextLine());
-            }
-            System.out.println(sb.toString());
-            String s = sb.toString();
-            statement.executeUpdate(s);
-        } catch (SQLException ex) {
-            System.out.println("no");
-            ex.printStackTrace();
-        }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws IOException {
+        Parent root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("database_builder.fxml"));
+        Scene scene = new Scene(root);
+        primaryStage.setTitle(FrameTitle.main);
+        primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
+        primaryStage.show();
     }
 }
