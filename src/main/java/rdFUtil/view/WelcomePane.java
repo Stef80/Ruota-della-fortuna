@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
+import rdFUtil.ApplicationCloser;
 import rdFUtil.client.AdminChecker;
 import rdFUtil.client.Client;
 import rdFUtil.client.ClientImplementation;
@@ -48,6 +49,7 @@ public class WelcomePane {
 			primaryStage.setTitle(FrameTitle.main);
 			primaryStage.setScene(scene);
 			primaryStage.show();
+			ApplicationCloser.setCloser(primaryStage);
 			Stage oldStage = (Stage) confirmButton.getScene().getWindow();
 			oldStage.close();
 

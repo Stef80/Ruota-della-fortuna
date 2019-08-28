@@ -137,7 +137,7 @@ public class TabPaneController implements Initializable {
         	primaryStage.show();
 			ApplicationCloser.setCloser(primaryStage);
         	Stage oldStage = (Stage) createMatchButton.getScene().getWindow();
-        	oldStage.hide();
+        	oldStage.close();
 		}catch (IOException e){
 			e.printStackTrace();
 		}
