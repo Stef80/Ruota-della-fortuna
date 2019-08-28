@@ -9,8 +9,8 @@ import java.util.List;
 public interface UsersDAO {
     String UserTable = "users";
     String UserIdAttribute = "id";
-    String UserTipoAttribute = "tipo";
-    String UserNameAttribute  = "name";
+    String UserTipoAttribute = "type";
+    String UserNameAttribute  = "users_name";
     String UserSurnameAttribute = "surname";
     String UserNicknameAttribute = "nickname";
     String UserEmailAttribute = "email";

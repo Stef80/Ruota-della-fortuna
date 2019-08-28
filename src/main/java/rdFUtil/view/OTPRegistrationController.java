@@ -145,6 +145,11 @@ public class OTPRegistrationController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         RegistrationFormController.setOTP(this);
         runCountdown();
+        try {
+            client.setOtpPane(this);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setServer(Server server) {

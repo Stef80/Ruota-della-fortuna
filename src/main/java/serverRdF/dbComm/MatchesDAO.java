@@ -8,8 +8,8 @@ import java.sql.SQLException;
 public interface MatchesDAO {
     String MatchTable = "Matches";
     String MatchIdAttribute = "id";
-    String MatchDateAttribute = "date";
-    String MatchTimeAttribute = "time";
+    String MatchDateAttribute = "date_matches";
+    String MatchTimeAttribute = "time_matches";
 
     /**
      * Questo metodo permette di aggiungere una nuova partita all'interno del database
