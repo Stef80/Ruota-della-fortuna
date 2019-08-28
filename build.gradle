@@ -33,12 +33,12 @@ dependencies {
     compile 'com.opencsv:opencsv:4.6'
 }
 
-task runTestPlayer(type: JavaExec, dependsOn: classes, group: 'test') {
+task runPlayer(type: JavaExec, dependsOn: classes, group: 'test') {
     classpath = sourceSets.main.runtimeClasspath
     main = 'playerRdF.PrimePane'
 }
 
-task runTestAdmin(type: JavaExec, dependsOn: classes, group: 'test') {
+task runAdmin(type: JavaExec, dependsOn: classes, group: 'test') {
     classpath = sourceSets.main.runtimeClasspath
     main = 'adminRdF.PrimePane'
 }
@@ -46,6 +46,11 @@ task runTestAdmin(type: JavaExec, dependsOn: classes, group: 'test') {
 task runDatabase(type: JavaExec, dependsOn: classes, group: 'test') {
     classpath = sourceSets.main.runtimeClasspath
     main = 'dbuilder.DatabaseBuilder'
+}
+
+task runServer(type: JavaExec, dependsOn: classes, group: 'test') {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'serverRdF.view.PrimePaneServer'
 }
 
 //jar {
