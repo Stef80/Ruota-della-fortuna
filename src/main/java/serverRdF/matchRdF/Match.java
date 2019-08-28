@@ -868,16 +868,17 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                 else
                     num++;
             }
-//            System.out.println("cici");
+            System.out.println("inizio i cicli di notifica");
             if(players.size() != 1) {
                 for (Player p : players) {
                     try {
-                        p.getClient().notifyPlayerStats(num, c.getNickname(), 0, 0, 0);
+                        if (!p.getClient().equals(c))
+                            p.getClient().notifyPlayerStats(num, c.getNickname(), 0, 0, 0);
                     } catch (RemoteException e) {
                         leaveMatchAsPlayer(p);
                     }
                 }
-//                System.out.println("primo ciclo");
+                System.out.println("primo ciclo");
                 for (Client client : observers) {
                     try {
                         c.notifyPlayerStats(num, c.getNickname(), 0, 0, 0);
@@ -886,6 +887,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                     }
                 }
             }
+            System.out.println("fine");
             full = false;
             if (players.size() == 3) {
                 startMatch();

@@ -95,8 +95,7 @@ public class GameViewController extends ListCell<MatchData> {
                 public void handle(ActionEvent event) {
                     try {
                         match = server.joinMatch(client, item.getIdMatch());
-                        GamePlayerController.setMatch(match);
-                        GamePlayerController.setObserver(false);
+                        System.out.println("Entra nel match");
                     } catch (RemoteException e) {
                         e.printStackTrace();
                     }
@@ -108,6 +107,7 @@ public class GameViewController extends ListCell<MatchData> {
                                 .position(Pos.BASELINE_RIGHT);
                         notification.showError();
                     }
+                    System.out.println("Carico finestra");
                     FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("game_player_pane.fxml"));
                     Parent root = null;
                     try {
@@ -115,7 +115,6 @@ public class GameViewController extends ListCell<MatchData> {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    GamePlayerController game = loader.getController();
                     Stage primaryStage = new Stage();
                     Scene scene = new Scene(root);
                     primaryStage.setScene(scene);

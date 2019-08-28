@@ -111,6 +111,7 @@ public class GamePlayerController implements Initializable {
         } else {
             GameViewController.setGameControllerObserver(this);
             hideAll();
+            TabPaneController.player = false;
             System.out.println("Utilizzato per osservatore");
         }
         try {

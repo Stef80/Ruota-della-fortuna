@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
+import rdFUtil.ApplicationCloser;
 import rdFUtil.client.Client;
 import rdFUtil.client.ClientImplementation;
 import rdFUtil.view.Controller;
@@ -83,9 +84,7 @@ public class InsubriaLoginController {
                 primaryStage.setTitle(FrameTitle.main);
                 primaryStage.setScene(scene);
                 primaryStage.show();
-                primaryStage.setOnCloseRequest((WindowEvent event1) -> {
-                    System.exit(0);
-                });
+                ApplicationCloser.setCloser(primaryStage);
                 Stage oldStage = (Stage) confirmButton.getScene().getWindow();
                 oldStage.close();
 
