@@ -55,7 +55,7 @@ public class GamePlayerController implements Initializable {
     @FXML
     private TextField letterTextField;
     @FXML
-    private Label resultLabel;
+    private Label wheelResultLabel;
     @FXML
     private Label timerLabel;
     @FXML
@@ -443,7 +443,7 @@ public class GamePlayerController implements Initializable {
      * @param result il risultato da visualizzare
      */
     public void wheelResult(String result) {
-        resultLabel.setText(result);
+        wheelResultLabel.setText(result);
     }
 
     @FXML

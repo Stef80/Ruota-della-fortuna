@@ -109,7 +109,7 @@ public class GameViewController extends ListCell<MatchData> {
                                 .position(Pos.BASELINE_RIGHT);
                         notification.showError();
                     }
-                    System.out.println("Carico finestra");
+//                    System.out.println("Carico finestra");
                     TabPaneController.creator = false;
                     FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("game_player_pane.fxml"));
                     Parent root = null;
