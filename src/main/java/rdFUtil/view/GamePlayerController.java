@@ -105,11 +105,13 @@ public class GamePlayerController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        if(TabPaneController.player)
+        if (TabPaneController.player) {
             TabPaneController.setGameControlle(this);
-        else {
+            System.out.println("Utilizzato per giocatore");
+        } else {
             GameViewController.setGameControllerObserver(this);
             hideAll();
+            System.out.println("Utilizzato per osservatore");
         }
         try {
             client.setGame(this);
@@ -693,7 +695,7 @@ public class GamePlayerController implements Initializable {
 
         Platform.runLater(new Runnable() {
             @Override
-            public void run () {
+            public void run() {
                 String message = reason + "\nla partita è finita";
                 Notifications notification = Notifications.create()
                         .title("Notifica di partita")
@@ -701,21 +703,21 @@ public class GamePlayerController implements Initializable {
                         .hideAfter(Duration.seconds(3))
                         .position(Pos.BASELINE_RIGHT);
                 notification.showInformation();
+                Parent root = null;
+                try {
+                    root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Stage primaryStage = new Stage();
+                Scene scene = new Scene(root);
+                primaryStage.setTitle(FrameTitle.main);
+                primaryStage.setScene(scene);
+                primaryStage.show();
+                Stage oldStage = (Stage) exitButton.getScene().getWindow();
+                oldStage.close();
             }
         });
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Stage primaryStage = new Stage();
-        Scene scene = new Scene(root);
-        primaryStage.setTitle(FrameTitle.main);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-        Stage oldStage = (Stage) exitButton.getScene().getWindow();
-        oldStage.close();
     }
 
     /**
@@ -723,8 +725,8 @@ public class GamePlayerController implements Initializable {
      */
     public void notifyMatchStart() {
         Platform.runLater(new Runnable() {
-                @Override
-                public void run () {
+            @Override
+            public void run() {
                 String message = "Partita iniziata";
                 Notifications notification = Notifications.create()
                         .title("Notifica di partita")
@@ -798,16 +800,16 @@ public class GamePlayerController implements Initializable {
      */
     public void notifyYourTurn() {
         Platform.runLater(new Runnable() {
-                              @Override
-                              public void run() {
-                                  Notifications notification = Notifications.create()
-                                          .title("Notifica di partita")
-                                          .text("E' IL TUO TURNO")
-                                          .hideAfter(Duration.seconds(3))
-                                          .position(Pos.BASELINE_RIGHT);
-                                  notification.showInformation();
-                              }
-                          });
+            @Override
+            public void run() {
+                Notifications notification = Notifications.create()
+                        .title("Notifica di partita")
+                        .text("E' IL TUO TURNO")
+                        .hideAfter(Duration.seconds(3))
+                        .position(Pos.BASELINE_RIGHT);
+                notification.showInformation();
+            }
+        });
         yourTurn();
 
     }
@@ -828,8 +830,8 @@ public class GamePlayerController implements Initializable {
                         .hideAfter(Duration.seconds(3))
                         .position(Pos.BASELINE_RIGHT);
                 notification.showInformation();
-                }
-            });
+            }
+        });
         match = null;
         Parent root = null;
         try {
@@ -931,7 +933,7 @@ public class GamePlayerController implements Initializable {
         });
     }
 
-    public void notifyNoMoreConsonant(){
+    public void notifyNoMoreConsonant() {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
