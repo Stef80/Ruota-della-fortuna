@@ -113,20 +113,23 @@ public class Manche {
      * @return <code>true</code> se il metodo viene eseguito con successo, <code>false</code> altrimenti
      */
     public boolean endManche(Player winner) {
-        ManchesDTO manche = new ManchesDTO();
-        manche.setNumber(numManche);
-        manche.setPhrase(getCurrentPhrase());
-        manche.setMatch(new MatchesDTO(match, matchTime));
-        calledConsonant = new ArrayList<String>();
-        boolean man = dbManager.addManche(manche);
-        boolean tur = turns.saveMoves(dbManager);
-        if (winner != null) {
-            setNumManche(numManche + 1);
-            return dbManager.addMancheWinner(winner.getIdPlayer(), manche, winner.getPartialPoints());
-        }
-        if (man && tur) {
+        if(numManche != 0) {
+            ManchesDTO manche = new ManchesDTO();
+            manche.setNumber(numManche);
+            manche.setPhrase(getCurrentPhrase());
+            manche.setMatch(new MatchesDTO(match, matchTime));
+            calledConsonant = new ArrayList<String>();
+            boolean man = dbManager.addManche(manche);
+            boolean tur = turns.saveMoves(dbManager);
+            if (winner != null) {
+                setNumManche(numManche + 1);
+                return dbManager.addMancheWinner(winner.getIdPlayer(), manche, winner.getPartialPoints());
+            }
+            if (man && tur) {
+                return true;
+            } else
+                return false;
+        }else
             return true;
-        } else
-            return false;
     }
 }

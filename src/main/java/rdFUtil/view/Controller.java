@@ -1,5 +1,6 @@
 package rdFUtil.view;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -10,16 +11,20 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
+import rdFUtil.ApplicationCloser;
 import rdFUtil.client.AdminChecker;
 import rdFUtil.client.Client;
+import rdFUtil.client.ClientImplementation;
 import rdFUtil.logging.Login;
 import serverRdF.Server;
 import serverRdF.view.InsubriaLoginController;
 
 import java.io.IOException;
 import java.net.URL;
+import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
 /**
@@ -51,6 +56,11 @@ public class Controller implements Initializable {
             WelcomePane.setController(this);
         else
             InsubriaLoginController.setController(this);
+        try {
+            client = new ClientImplementation();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -92,6 +102,7 @@ public class Controller implements Initializable {
                     primaryStage.setTitle(FrameTitle.main);
                     primaryStage.setScene(scene);
                     primaryStage.show();
+                    ApplicationCloser.setCloser(primaryStage);
                     Stage oldStage = (Stage) loginButton.getScene().getWindow();
                     oldStage.close();
                 } else {
@@ -106,6 +117,7 @@ public class Controller implements Initializable {
                     Scene scene = new Scene(root);
                     primaryStage.setScene(scene);
                     primaryStage.show();
+                    ApplicationCloser.setCloser(primaryStage);
                     Stage oldStage = (Stage) loginButton.getScene().getWindow();
                     oldStage.close();
                 }
@@ -133,6 +145,7 @@ public class Controller implements Initializable {
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
+        ApplicationCloser.setCloser(primaryStage);
         Stage oldStage = (Stage) registerButton.getScene().getWindow();
         oldStage.close();
 

@@ -42,7 +42,6 @@ public class WelcomePane {
 		try {
 			registry = LocateRegistry.getRegistry(host,1099);
 			server = (Server) registry.lookup("SERVER");
-			client = new ClientImplementation();
 			Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("main_pane.fxml"));
 			Stage primaryStage = new Stage();
 			Scene scene = new Scene(root1);
@@ -67,7 +66,6 @@ public class WelcomePane {
 	}
 
 	public static void setController(Controller c){
-		c.setClient(client);
 		c.setServer(server);
 		c.setAdmin(AdminChecker.isIsAdmin());
 	}
