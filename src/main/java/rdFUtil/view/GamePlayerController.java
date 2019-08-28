@@ -105,18 +105,20 @@ public class GamePlayerController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        if (TabPaneController.player) {
+        if (TabPaneController.creator) {
             TabPaneController.setGameControlle(this);
-            System.out.println("Utilizzato per giocatore");
+//            System.out.println("Utilizzato per creatore");
         } else {
             GameViewController.setGameControllerObserver(this);
-            hideAll();
-            TabPaneController.player = false;
-            System.out.println("Utilizzato per osservatore");
+            if (!GameViewController.player) {
+                hideAll();
+//                System.out.println("Utilizzato per osservatore");
+            }
         }
+
         try {
             client.setGame(this);
-            System.out.println("Creato oggetto game per" + client.getNickname());
+//            System.out.println("Creato oggetto game per " + client.getNickname());
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -159,30 +161,35 @@ public class GamePlayerController implements Initializable {
      */
 
     public void updatePhrase(String letter) {
-        StackPane node;
-        Label label;
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 14; j++) {
-                node = (StackPane) getNodeByRowColumnIndex(i, j);
-                label = (Label) node.getChildren().get(0);
-                String let = label.getText();
-                if (let.equals(letter) && !let.equals("")) {
-                    label.setVisible(true);
-                    node.setStyle(" -fx-background-color: #d6e2e0;\n" +
-                            "    -fx-border-color: #08FBE1;\n" +
-                            "    -fx-border-radius: 3px;\n" +
-                            "    -fx-background-radius: 3px;\n" +
-                            "    -fx-border-width: 2px;");
-                } else if ((let.equals("È") && letter.equals("E")) || (let.equals("Ì") && letter.equals("I")) || (let.equals("À") && letter.equals("A")) || (let.equals("Ò") && letter.equals("O")) || (let.equals("Ù") && letter.equals("U"))) {
-                    label.setVisible(true);
-                    node.setStyle(" -fx-background-color: #d6e2e0;\n" +
-                            "    -fx-border-color: #08FBE1;\n" +
-                            "    -fx-border-radius: 3px;\n" +
-                            "    -fx-background-radius: 3px;\n" +
-                            "    -fx-border-width: 2px;");
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                StackPane node;
+                Label label;
+                for (int i = 0; i < 5; i++) {
+                    for (int j = 0; j < 14; j++) {
+                        node = (StackPane) getNodeByRowColumnIndex(i, j);
+                        label = (Label) node.getChildren().get(0);
+                        String let = label.getText();
+                        if (let.equals(letter) && !let.equals("")) {
+                            label.setVisible(true);
+                            node.setStyle(" -fx-background-color: #d6e2e0;\n" +
+                                    "    -fx-border-color: #08FBE1;\n" +
+                                    "    -fx-border-radius: 3px;\n" +
+                                    "    -fx-background-radius: 3px;\n" +
+                                    "    -fx-border-width: 2px;");
+                        } else if ((let.equals("È") && letter.equals("E")) || (let.equals("Ì") && letter.equals("I")) || (let.equals("À") && letter.equals("A")) || (let.equals("Ò") && letter.equals("O")) || (let.equals("Ù") && letter.equals("U"))) {
+                            label.setVisible(true);
+                            node.setStyle(" -fx-background-color: #d6e2e0;\n" +
+                                    "    -fx-border-color: #08FBE1;\n" +
+                                    "    -fx-border-radius: 3px;\n" +
+                                    "    -fx-background-radius: 3px;\n" +
+                                    "    -fx-border-width: 2px;");
+                        }
+                    }
                 }
             }
-        }
+        });
     }
 
     /**
@@ -192,116 +199,126 @@ public class GamePlayerController implements Initializable {
      */
 
     public void updatePhrase(boolean[] phrase) {
-        int column = 0;
-        int row = 0;
-        int i = 0;
-        StackPane node;
-        Label label;
-        while (i < phrase.length) {
-            node = (StackPane) getNodeByRowColumnIndex(row, column);
-            label = (Label) node.getChildren().get(0);
-            if (!label.isVisible() && !label.getText().equals("")) {
-                if (phrase[i] == true) {
-                    label.setVisible(true);
-                    node.setStyle(" -fx-background-color: #d6e2e0;\n" +
-                            "    -fx-border-color: #08FBE1;\n" +
-                            "    -fx-border-radius: 3px;\n" +
-                            "    -fx-background-radius: 3px;\n" +
-                            "    -fx-border-width: 2px;");
-                    i++;
-                    if (column < 13) {
-                        column++;
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                int column = 0;
+                int row = 0;
+                int i = 0;
+                StackPane node;
+                Label label;
+                while (i < phrase.length) {
+                    node = (StackPane) getNodeByRowColumnIndex(row, column);
+                    label = (Label) node.getChildren().get(0);
+                    if (!label.isVisible() && !label.getText().equals("")) {
+                        if (phrase[i] == true) {
+                            label.setVisible(true);
+                            node.setStyle(" -fx-background-color: #d6e2e0;\n" +
+                                    "    -fx-border-color: #08FBE1;\n" +
+                                    "    -fx-border-radius: 3px;\n" +
+                                    "    -fx-background-radius: 3px;\n" +
+                                    "    -fx-border-width: 2px;");
+                            i++;
+                            if (column < 13) {
+                                column++;
+                            } else {
+                                column = 0;
+                                row++;
+                            }
+                        } else {
+                            i++;
+                            if (column < 13) {
+                                column++;
+                            } else {
+                                column = 0;
+                                row++;
+                            }
+                        }
                     } else {
-                        column = 0;
-                        row++;
+                        if (column < 13) {
+                            column++;
+                        } else {
+                            column = 0;
+                            row++;
+                        }
                     }
-                } else {
-                    i++;
-                    if (column < 13) {
-                        column++;
-                    } else {
-                        column = 0;
-                        row++;
-                    }
-                }
-            } else {
-                if (column < 13) {
-                    column++;
-                } else {
-                    column = 0;
-                    row++;
                 }
             }
-        }
+        });
     }
 
     /**
      * Il metodo aggiunge una nuova frase al tabellone e aggiorna l'etichetta del tema della frase
      *
      * @param theme  Il tema della frase
-     * @param phrase La frase
+     * @param phrases La frase
      */
 
-    public void setNewPhrase(String theme, String phrase) {
-        phraseThemeLabel.setText(theme);
-        int column = 0;
-        int row = 0;
-        char car;
-        StackPane node;
-        phrase = phrase.toUpperCase();
-        StringTokenizer st = new StringTokenizer(phrase, " ',!?.:;\"/()\\^<>-+*");
-        String s = st.nextToken();
-        Label label;
-        int pointer = 0;
-        for (int i = 0; i < phrase.length(); i++) {
-            car = phrase.charAt(i);
-            if (car != ' ' && car != ',' && car != '\'' && car != '.' && car != ':' && car != ';' && car != '?' && car != '!' && car != '"' && car != '/' && car != '\\' && car != '(' && car != ')'
-                    && car != '^' && car != '<' && car != '>' && car != '-' && car != '+' && car != '*') {
-                if (pointer == s.length() - 1) {
-                    if (st.hasMoreTokens()) {
-                        s = st.nextToken();
-                        pointer = -1;
-                    }
-                } else if (pointer == 0) {
-                    if (s.length() > (14 - column)) {
-                        column = 0;
-                        row++;
-                    }
-                }
-                node = (StackPane) getNodeByRowColumnIndex(row, column);
-                label = (Label) node.getChildren().get(0);
-                label.setText("" + car);
-                node.setStyle(" -fx-background-color: #bbbebd;\n" +
-                        "    -fx-border-color: #08FBE1;\n" +
-                        "    -fx-border-radius: 3px;\n" +
-                        "    -fx-background-radius: 3px;\n" +
-                        "    -fx-border-width: 2px;");
-                pointer++;
-                if (column < 13) {
-                    column++;
-                } else {
-                    column = 0;
-                    row++;
-                }
-            } else {
-                if (!(car == ' ' && column == 0)) {
-                    node = (StackPane) getNodeByRowColumnIndex(row, column);
-                    label = (Label) node.getChildren().get(0);
-                    label.setText("" + car);
-                    if (i < phrase.length() - 1 && phrase.charAt(i + 1) == ' ')
-                        i++;
-                    label.setVisible(true);
-                    if (column < 13) {
-                        column++;
+    public void setNewPhrase(String theme, String phrases) {
+        final String phrase = phrases.toUpperCase();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                phraseThemeLabel.setText(theme);
+                int column = 0;
+                int row = 0;
+                char car;
+                StackPane node;
+                StringTokenizer st = new StringTokenizer(phrase, " ',!?.:;\"/()\\^<>-+*");
+                String s = st.nextToken();
+                Label label;
+                int pointer = 0;
+                for (int i = 0; i < phrase.length(); i++) {
+                    car = phrase.charAt(i);
+                    if (car != ' ' && car != ',' && car != '\'' && car != '.' && car != ':' && car != ';' && car != '?' && car != '!' && car != '"' && car != '/' && car != '\\' && car != '(' && car != ')'
+                            && car != '^' && car != '<' && car != '>' && car != '-' && car != '+' && car != '*') {
+                        if (pointer == s.length() - 1) {
+                            if (st.hasMoreTokens()) {
+                                s = st.nextToken();
+                                pointer = -1;
+                            }
+                        } else if (pointer == 0) {
+                            if (s.length() > (14 - column)) {
+                                column = 0;
+                                row++;
+                            }
+                        }
+                        node = (StackPane) getNodeByRowColumnIndex(row, column);
+                        label = (Label) node.getChildren().get(0);
+                        label.setText("" + car);
+                        node.setStyle(" -fx-background-color: #bbbebd;\n" +
+                                "    -fx-border-color: #08FBE1;\n" +
+                                "    -fx-border-radius: 3px;\n" +
+                                "    -fx-background-radius: 3px;\n" +
+                                "    -fx-border-width: 2px;");
+                        pointer++;
+                        if (column < 13) {
+                            column++;
+                        } else {
+                            column = 0;
+                            row++;
+                        }
                     } else {
-                        column = 0;
-                        row++;
-                    }
-                } else {
+                        if (!(car == ' ' && column == 0)) {
+                            node = (StackPane) getNodeByRowColumnIndex(row, column);
+                            label = (Label) node.getChildren().get(0);
+                            label.setText("" + car);
+                            if (i < phrase.length() - 1 && phrase.charAt(i + 1) == ' ')
+                                i++;
+                            label.setVisible(true);
+                            if (column < 13) {
+                                column++;
+                            } else {
+                                column = 0;
+                                row++;
+                            }
+                        } else {
 
+                        }
+                    }
                 }
             }
-        }
+        });
     }
 
     /**
@@ -626,11 +643,11 @@ public class GamePlayerController implements Initializable {
     }
 
 
-    public static void setMatch(RemoteMatch matc) {
+    public void setMatch(RemoteMatch matc) {
         match = matc;
     }
 
-    public static void setObserver(boolean observer) {
+    public void setObserver(boolean observer) {
         isObserver = observer;
     }
 
@@ -651,7 +668,7 @@ public class GamePlayerController implements Initializable {
                 match.leaveMatchAsPlayer(client);
             }
         } catch (RemoteException e) {
-            e.printStackTrace();
+            System.out.println("Prova");
         } finally {
             match = null;
             Parent root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
@@ -697,13 +714,6 @@ public class GamePlayerController implements Initializable {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                String message = reason + "\nla partita è finita";
-                Notifications notification = Notifications.create()
-                        .title("Notifica di partita")
-                        .text(message)
-                        .hideAfter(Duration.seconds(3))
-                        .position(Pos.BASELINE_RIGHT);
-                notification.showInformation();
                 Parent root = null;
                 try {
                     root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
@@ -715,6 +725,8 @@ public class GamePlayerController implements Initializable {
                 primaryStage.setTitle(FrameTitle.main);
                 primaryStage.setScene(scene);
                 primaryStage.show();
+                ApplicationCloser.setCloser(primaryStage);
+                TabPaneController.notifyMatchAbort(reason);
                 Stage oldStage = (Stage) exitButton.getScene().getWindow();
                 oldStage.close();
             }
@@ -831,22 +843,22 @@ public class GamePlayerController implements Initializable {
                         .hideAfter(Duration.seconds(3))
                         .position(Pos.BASELINE_RIGHT);
                 notification.showInformation();
+                match = null;
+                Parent root = null;
+                try {
+                    root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Stage primaryStage = new Stage();
+                Scene scene = new Scene(root);
+                primaryStage.setTitle(FrameTitle.main);
+                primaryStage.setScene(scene);
+                primaryStage.show();
+                Stage oldStage = (Stage) exitButton.getScene().getWindow();
+                oldStage.close();
             }
         });
-        match = null;
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Stage primaryStage = new Stage();
-        Scene scene = new Scene(root);
-        primaryStage.setTitle(FrameTitle.main);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-        Stage oldStage = (Stage) exitButton.getScene().getWindow();
-        oldStage.close();
     }
 
     /**

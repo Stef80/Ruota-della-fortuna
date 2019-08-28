@@ -46,6 +46,7 @@ public class GameViewController extends ListCell<MatchData> {
     private static Client client;
     private MatchData matchData;
     private static RemoteMatch match;
+    public static boolean player;
 
     public GameViewController(){}
 
@@ -94,6 +95,7 @@ public class GameViewController extends ListCell<MatchData> {
                 @Override
                 public void handle(ActionEvent event) {
                     try {
+                        player = true;
                         match = server.joinMatch(client, item.getIdMatch());
                         System.out.println("Entra nel match");
                     } catch (RemoteException e) {
@@ -108,6 +110,7 @@ public class GameViewController extends ListCell<MatchData> {
                         notification.showError();
                     }
                     System.out.println("Carico finestra");
+                    TabPaneController.creator = false;
                     FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("game_player_pane.fxml"));
                     Parent root = null;
                     try {
@@ -127,12 +130,13 @@ public class GameViewController extends ListCell<MatchData> {
             observeButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
                 @Override
                 public void handle(javafx.event.ActionEvent event) {
+                    player = false;
                     try {
                         match = server.observeMatch(client, item.getIdMatch());
                     } catch (RemoteException e) {
                         e.printStackTrace();
                     }
-                    TabPaneController.player = false;
+                    TabPaneController.creator = false;
                     FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("game_player_pane.fxml"));
                     Parent root = null;
                     try {
@@ -167,6 +171,6 @@ public class GameViewController extends ListCell<MatchData> {
     public static void setGameControllerObserver(GamePlayerController gpc){
         gpc.setClient(client);
         gpc.setMatch(match);
-        gpc.setObserver(true);
+        gpc.setObserver(!GameViewController.player);
     }
 }
