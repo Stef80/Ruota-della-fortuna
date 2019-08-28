@@ -48,7 +48,7 @@ public class InsubriaLoginController {
 
     /**
      * Questo metodo cerca di stabilire la connessione all'account Insubria attraverso l'invio di una email. Se l'invio avviene senza problemi,
-     * viene ricercata nel databse la presenza di admin. Se sono presenti degli admin, viene aperta la schermata di accesso, altrimenti viene aperta la schermata di registrazione
+     * viene ricercata nel database la presenza di admin. Se sono presenti degli admin, viene aperta la schermata di accesso, altrimenti viene aperta la schermata di registrazione
      *
      * @throws IOException     In caso non riesca a caricare la finestra successiva
      * @throws RemoteException

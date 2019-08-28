@@ -35,7 +35,7 @@ public class ForgottenPasswordController  implements Initializable {
 
 	/**
 	 * il metodo gestisce il click del pulsante di invio, che acquisisce l'indirizzo mail inserito e automaticamente
-	 * viene inviata una meil al proprio indirizzo con una nuova password
+	 * viene inviata una mail al proprio indirizzo con una nuova password
 	 *
 	 * @throws RemoteException In caso di errore di connesione al server
 	 */

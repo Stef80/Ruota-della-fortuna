@@ -44,7 +44,7 @@ public class MatchManager {
 
 
     /**
-     * Il client richiamera' questo metodo per creare una partita e ricevera' il refiremento all'oggetto che si occupera' della gestione del singolo Match
+     * Il client richiamera' questo metodo per creare una partita e ricevera' il riferemento all'oggetto che si occupera' della gestione del singolo Match
      *
      * @param c il riferimento del Client che sara' fornito all'oggetto remoto {@link Match} in modo da poter inviargli le notifiche (Observers design pattern)
      * @return match un riferimento all'oggetto remoto {@link RemoteMatch} della partita appena creata.
@@ -81,7 +81,7 @@ public class MatchManager {
     }
 
     /**
-     * @param c       il riferimento del Client che sara' fornito all'oggetto remoto {@link Match} in modo da poter inviargli le notifiche (Observers design pattern)
+     * @param c       il riferimento del Client che sara' fornito all'oggetto remoto {@link Match} in modo da poter inviargli le notifiche (Observer design pattern)
      * @param idMatch il nome del match al quale si vuole partecipare
      * @return un riferimento all'oggetto remoto {@link RemoteMatch} della partita a cui si ha appena partecipato, o null nel caso in cui la partita sia piena o ci siano stati problemi con la connessione al server
      */
@@ -118,7 +118,7 @@ public class MatchManager {
 
 
     /**
-     * @param c       il riferimento del Client che sara' fornito all'oggetto remoto {@link Match} in modo da poter inviargli le notifiche (Observers design pattern)
+     * @param c       il riferimento del Client che sara' fornito all'oggetto remoto {@link Match} in modo da poter inviargli le notifiche (Observer design pattern)
      * @param idMatch il nome del match al quale si vuole partecipare
      * @return match un riferimento all'oggetto remoto {@link RemoteMatch} della partita a cui si ha appena partecipato come osservatore, o null nel caso in cui ci siano stati problemi con la connessione al server
      */

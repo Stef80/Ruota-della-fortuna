@@ -461,6 +461,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
      * indica che e' stato commesso un errore e permette l'inizio di un nuovo turno o la giocata del jolly
      *
      * @param canJollyBeUsed <code>true</code> se il jolly può essere utilizzato, <code>false</code> altrimenti
+     * @param moveDone <code>true</code> se e' stata eseguita una mossa, <code>false</code> altrimenti
      */
     void errorInTurn(boolean canJollyBeUsed, boolean moveDone) {
         Player activePlayer = players.get(turn);
@@ -766,7 +767,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     /**
      * Conclude il match
      *
-     * @param isThereAWinner <code>true</code> se il match si è concluso dopo la conclusione della quinta manche, portando ad un vincitore, <code>false</code> altrimenti
+     * @param isThereAWinner <code>true</code> se il match si è concluso dopo la conclusione della quinta manche portando ad un vincitore, <code>false</code> altrimenti
      * @throws RemoteException
      */
     public void endMatch(boolean isThereAWinner) throws RemoteException {

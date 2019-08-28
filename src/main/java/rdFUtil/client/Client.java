@@ -212,7 +212,7 @@ public interface Client extends Remote {
     public void notifyTimeOut() throws RemoteException;
 
     /**
-     * Questo metodo visualizza il risulato ottenuto da un giro di ruota
+     * Questo metodo visualizza il risultato ottenuto da un giro di ruota
      *
      * @param risultato il risultato ottenuto
      * @throws RemoteException
@@ -220,7 +220,7 @@ public interface Client extends Remote {
     public void notifyWheelResult(String risultato) throws RemoteException;
 
     /**
-     * Chiede al giocatore che ha effettuato un errore se vuole usarlo
+     * Chiede al giocatore che ha effettuato un errore se vuole usare il jolly
      *
      * @throws RemoteException
      */

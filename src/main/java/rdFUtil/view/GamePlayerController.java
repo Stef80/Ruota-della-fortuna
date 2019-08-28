@@ -32,7 +32,7 @@ import java.util.ResourceBundle;
 import java.util.StringTokenizer;
 
 /**
- * il controller della finestra di gioco che visualizza mosse, turni e notifiche di gioco a tutti i giocatori e agli osservatori
+ * Il controller della finestra di gioco che visualizza mosse, turni e notifiche di gioco a tutti i giocatori e agli osservatori
  */
 
 public class GamePlayerController implements Initializable {
@@ -117,7 +117,7 @@ public class GamePlayerController implements Initializable {
     }
 
     /**
-     * il metodo crea il tabellone dove viene visualizzata la frase misteriosa
+     * Il metodo crea il tabellone dove viene visualizzata la frase misteriosa
      */
 
     public void createTableOfPhrase() {
@@ -178,7 +178,7 @@ public class GamePlayerController implements Initializable {
     }
 
     /**
-     * Aggiorna il tabellone degli osservatori entrati a meta' partita con le lettere che sono gia state richiamate
+     * Il metodo aggiorna il tabellone degli osservatori entrati a meta' partita con le lettere che sono gia' state richiamate
      *
      * @param phrase l'array di booleani che indica con <code>true</code> se una lettera e' gia' stata chiamata e false altrimenti
      */
@@ -228,7 +228,7 @@ public class GamePlayerController implements Initializable {
     }
 
     /**
-     * Il metodo aggiunge una nuova frase al tabellone  e aggionra l'etichetta del tema della frase
+     * Il metodo aggiunge una nuova frase al tabellone e aggiorna l'etichetta del tema della frase
      *
      * @param theme  Il tema della frase
      * @param phrase La frase
@@ -423,7 +423,7 @@ public class GamePlayerController implements Initializable {
 
     @FXML
     /**
-     * Premendo il tasto 'enter' dopo aver inserito una lettera, verra' comunicato al server che si sta provando a dare una vocale se prima e' stata girata la
+     * Premendo il tasto 'enter' dopo aver inserito una lettera, verra' comunicato al server che si sta provando a dare una consonante se prima e' stata girata la
      * ruota o una vocale se prima e' stato premuto il tasto 'vocale'
      */
     public void onEnter() throws RemoteException {

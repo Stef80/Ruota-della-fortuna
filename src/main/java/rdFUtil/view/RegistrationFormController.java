@@ -55,7 +55,7 @@ public class RegistrationFormController implements Initializable {
 
     /**
      * Registra il nuovo user verificando che non esista già tramite il confronto
-     * tra la mail inserita e quelle già registrate se non esiste la registra
+     * tra la mail inserita e quelle già registrate, se non esiste la registra,
      * visualizza una finestra di errore altrimenti
      *
      * @throws IOException In caso non sia possibile accedere alla finestra successiva

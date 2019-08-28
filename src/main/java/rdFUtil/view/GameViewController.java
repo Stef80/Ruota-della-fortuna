@@ -59,7 +59,7 @@ public class GameViewController extends ListCell<MatchData> {
      * e' disponibile e l'utente connesso non e' un admin.
      * Il tasto di join permette di partecipare alla partita, il tasto observe di parteciparvi.In entrambi i casi verra'
      * aperta la finestra di gioco.
-     *
+     * //TODO scrittura parametri
      * @param item
      * @param empty
      */

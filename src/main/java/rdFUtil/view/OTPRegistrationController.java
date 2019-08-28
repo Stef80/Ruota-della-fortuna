@@ -27,7 +27,7 @@ import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
 /**
- * Controller della finestra per l'inserimento di dell'OTP necessario al completamento della registrazione. Possiede un timer di dieci minuti oltre il
+ * Controller della finestra per l'inserimento dell'OTP necessario al completamento della registrazione. Possiede un timer di dieci minuti oltre il
  *  quale la registrazione viene annullata
  */
 public class OTPRegistrationController implements Initializable {
@@ -86,7 +86,7 @@ public class OTPRegistrationController implements Initializable {
     }
 
     /**
-     * Avvia il timer di dieci minuti. Quando il temnpo scade, si viene reindirizzati alla schermata di login e viene segnalato il time out
+     * Avvia il timer di dieci minuti. Quando il tempo scade, si viene reindirizzati alla schermata di login e viene segnalato il time out
      */
     public void runCountdown() {
         timeLabel.setText(String.valueOf(timeMinutes) + ":" + String.valueOf(timeSeconds));
@@ -130,7 +130,7 @@ public class OTPRegistrationController implements Initializable {
     }
 
     /**
-     * Notifica che l'OTP inserito non corrisponde con quello che e' stato inviato via email.
+     * Notifica che l'OTP inserito non corrisponde a quello inviato via email.
      */
     public void notifyWrongOTP(){
         Notifications notification = Notifications.create()

@@ -24,7 +24,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Il controller delle finestra di login. Da qui e' possibile inserire le credenziali del proprio account e accedere alle funzionalita' della piattaforma,
+ * Il controller della finestra di login. Da qui e' possibile inserire le credenziali del proprio account e accedere alle funzionalita' della piattaforma,
  * registrare un nuovo account oppure resettare la propria password.
  */
 public class Controller implements Initializable {

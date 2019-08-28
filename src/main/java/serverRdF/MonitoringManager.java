@@ -5,7 +5,7 @@ import serverRdF.dbComm.MovesDTO;
 import serverRdF.dbComm.UsersDTO;
 
 /**
- * Questa classe si occupa dell'accesso al database al fine di ottenere le statistiche diutilizzo della piattaforma
+ * Questa classe si occupa dell'accesso al database al fine di ottenere le statistiche di utilizzo della piattaforma
  */
 public class MonitoringManager {
     private DBManager dbManager;

@@ -169,7 +169,7 @@ public class TabPaneController implements Initializable {
             setGlobalStats();
 		} catch (RemoteException e) {
 			Notifications notification = Notifications.create()
-												 .title("Notifica erorre")
+												 .title("Notifica errore")
 												 .text("statistiche non caricate")
 												 .hideAfter(Duration.seconds(2))
 												 .position(Pos.BASELINE_RIGHT);
