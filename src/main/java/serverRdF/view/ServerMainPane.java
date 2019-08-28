@@ -54,7 +54,7 @@ public class ServerMainPane {
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			Stage oldStage = (Stage) confirmButton.getScene().getWindow();
-			oldStage.hide();
+			oldStage.close();
 
 		} catch (SQLException e) {
 			Notifications notification = Notifications.create()
