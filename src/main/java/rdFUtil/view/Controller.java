@@ -16,7 +16,6 @@ import rdFUtil.client.AdminChecker;
 import rdFUtil.client.Client;
 import rdFUtil.logging.Login;
 import serverRdF.Server;
-import serverRdF.view.HostViewController;
 import serverRdF.view.InsubriaLoginController;
 
 import java.io.IOException;
