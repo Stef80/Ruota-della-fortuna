@@ -1,8 +1,8 @@
 create table users
 (
     id       varchar(36) primary key,
-    type     numeric(1,1)  not null,
-    users_name     varchar(50) not null,
+    tipo     numeric(1)  not null,
+    name     varchar(50) not null,
     surname  varchar(50) not null,
     nickname varchar(50) not null unique,
     email    varchar(50) not null unique,
@@ -12,8 +12,8 @@ create table users
 create table matches
 (
     id   varchar(36) primary key,
-    date_matches varchar(10) not null,
-    time_matches varchar(10) not null
+    date varchar(10) not null,
+    time varchar(10) not null
 );
 
 create table phrases

@@ -213,4 +213,9 @@ public class ClientImplementation extends UnicastRemoteObject implements Client,
     public void notifyNoMoreConsonant() throws RemoteException {
         game.notifyNoMoreConsonant();
     }
+
+    @Override
+    public void setOtpPane(OTPRegistrationController otp) throws RemoteException {
+        otpRegistrationPane = otp;
+    }
 }

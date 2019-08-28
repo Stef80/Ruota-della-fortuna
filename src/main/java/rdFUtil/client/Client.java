@@ -2,6 +2,7 @@ package rdFUtil.client;
 
 
 import rdFUtil.view.GamePlayerController;
+import rdFUtil.view.OTPRegistrationController;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -243,4 +244,6 @@ public interface Client extends Remote {
     public void notifyLetterCall(String name, String letter) throws RemoteException;
 
     public void notifyNoMoreConsonant() throws RemoteException;
+
+    public void setOtpPane(OTPRegistrationController otp) throws RemoteException;
 }
