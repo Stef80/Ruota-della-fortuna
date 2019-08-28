@@ -85,7 +85,7 @@ public class RegistrationFormController implements Initializable {
                 String nickStr = nicknameTextField.getText();
                 String mailStr = mailTextField.getText();
                 String passwordStr = passwordTextField.getText();
-                user = new User(passwordStr, mailStr, nameStr, surnameStr, nickStr);
+                user = new User(passwordStr, buildString(mailStr), buildString(nameStr), buildString(surnameStr), buildString(nickStr));
                 otp = server.signUp(user, client, admin);//todo modificare l'import di OTPHelper
                 Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("OTP_registration_pane.fxml"));
                 Scene scene = new Scene(root);
@@ -166,5 +166,18 @@ public class RegistrationFormController implements Initializable {
         otpp.setClient(client);
         otpp.setServer(server);
         otpp.setOtp(otp);
+    }
+
+    private String buildString(String s){
+        String result = "";
+        char c;
+        for(int i=0; i<s.length(); i++){
+            c = s.charAt(i);
+            result += c;
+            if(c == '\''){
+                result += "'";
+            }
+        }
+        return result;
     }
 }
