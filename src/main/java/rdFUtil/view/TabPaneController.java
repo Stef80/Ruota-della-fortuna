@@ -14,6 +14,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import rdFUtil.ApplicationCloser;
@@ -141,7 +142,14 @@ public class TabPaneController implements Initializable {
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.show();
-            ApplicationCloser.setCloser(primaryStage);
+            primaryStage.setOnCloseRequest((WindowEvent event1) -> {
+                try {
+                    match.leaveMatchAsPlayer(client);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+                System.exit(0);
+            });
             Stage oldStage = (Stage) createMatchButton.getScene().getWindow();
             oldStage.close();
         } catch (IOException e) {
