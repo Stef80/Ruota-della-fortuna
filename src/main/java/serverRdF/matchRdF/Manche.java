@@ -115,6 +115,7 @@ public class Manche {
     public boolean endManche(Player winner) {
         if(numManche != 0) {
             ManchesDTO manche = new ManchesDTO();
+            setNumManche(numManche + 1);
             manche.setNumber(numManche);
             manche.setPhrase(getCurrentPhrase());
             manche.setMatch(new MatchesDTO(match, matchTime));
@@ -122,7 +123,6 @@ public class Manche {
             boolean man = dbManager.addManche(manche);
             boolean tur = turns.saveMoves(dbManager);
             if (winner != null) {
-                setNumManche(numManche + 1);
                 return dbManager.addMancheWinner(winner.getIdPlayer(), manche, winner.getPartialPoints());
             }
             if (man && tur) {

@@ -50,7 +50,7 @@ public class MovesDAOImpl implements MovesDAO {
         if(numManche == 0) {
             return 0;
         }else{
-            String queryGet = "SELECT COUNT(*) AS count FROM "+MovesTable+" MT JOIN "+ManchesDAO.ManchesTable+" MAN ON MT.idMatch = MAN.id AND MT.number = MAN.number JOIN "+MancheWinnersDAO.manchesWinnersTable+" " +
+            String queryGet = "SELECT COUNT(*) AS count FROM "+MovesTable+" MT JOIN "+ManchesDAO.ManchesTable+" MAN ON MT.idmanche = MAN.id AND MT.number = MAN.number JOIN "+MancheWinnersDAO.manchesWinnersTable+" " +
                     "MW ON MAN.id = MW.id AND MAN.number = MW.number";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(queryGet);

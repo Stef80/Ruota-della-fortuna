@@ -15,7 +15,7 @@ public class ManchesDAOImpl implements ManchesDAO {
 
     @Override
     public boolean addManche(ManchesDTO manche) throws SQLException {
-        String queryAdd = "INSERT INTO "+ManchesTable+"("+ManchesNumberAttribute+","+ManchesIdAttribute+","+ManchesPhraseAttribute+") " +
+        String queryAdd = "INSERT INTO "+ManchesTable+" ("+ManchesNumberAttribute+","+ManchesIdAttribute+","+ManchesPhraseAttribute+") " +
                 "VALUES ("+manche.getNumber()+",'"+manche.getMatch().getId()+"','"+manche.getPhrase().getPhrase()+"');";
         Statement stmt = con.createStatement();
         return stmt.executeUpdate(queryAdd) > 0;
