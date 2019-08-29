@@ -118,11 +118,6 @@ public class GameViewController extends ListCell<MatchData> {
                     Scene scene = new Scene(root);
                     primaryStage.setScene(scene);
                     primaryStage.show();
-                    try {
-                        match.tryForStartMatch();
-                    } catch (RemoteException e) {
-                        e.printStackTrace();
-                    }
                     ApplicationCloser.setCloser(primaryStage);
                     Stage oldStage = (Stage) joinButton.getScene().getWindow();
                     oldStage.close();

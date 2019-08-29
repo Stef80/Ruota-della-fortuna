@@ -19,8 +19,8 @@ public class PhrasesDAOImpl implements PhrasesDAO {
     public List<PhrasesDTO> get5Phrases(String idPlayer1, String idPlayer2, String idPlayer3) throws SQLException {
         String query5Phrases = "SELECT * FROM "+PhraseTable+" WHERE "+PhrasePhraseAttribute+" NOT IN " +
                 "(SELECT "+PhrasePhraseAttribute+" FROM Manches M JOIN MancheJoiners MJ ON M.id=MJ.id AND M.number = MJ.number " +
-                "WHERE idPlayer = '"+idPlayer1+"' OR idPlayer = '"+idPlayer2+"' OR idPlayer = '"+idPlayer3+"'" +
-                "GROUP BY "+PhrasePhraseAttribute+" HAVING COUNT(*)=5);";
+                "WHERE idPlayer = '"+idPlayer1+"' OR idPlayer = '"+idPlayer2+"' OR idPlayer = '"+idPlayer3+"' " +
+                "GROUP BY "+PhrasePhraseAttribute+");";
         Statement stmt = con.createStatement();
         ResultSet resultSet = stmt.executeQuery(query5Phrases);
         if(resultSet==null)
@@ -37,7 +37,6 @@ public class PhrasesDAOImpl implements PhrasesDAO {
         for(PhrasesDTO phrasesDTO : phrases){
            queryAdd = "INSERT INTO "+PhraseTable+" ("+PhraseThemeAttribute+","+PhrasePhraseAttribute+") VALUES ";
            queryAdd += "('"+phrasesDTO.getTheme()+"','"+phrasesDTO.getPhrase()+"');";
-           queryAdd += "\n";
            Statement stmt = con.createStatement();
            try {
                stmt.executeUpdate(queryAdd);
