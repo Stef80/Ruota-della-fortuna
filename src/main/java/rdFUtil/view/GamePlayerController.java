@@ -860,6 +860,7 @@ public class GamePlayerController implements Initializable {
                 primaryStage.setTitle(FrameTitle.main);
                 primaryStage.setScene(scene);
                 primaryStage.show();
+                ApplicationCloser.setCloser(primaryStage);
                 Stage oldStage = (Stage) exitButton.getScene().getWindow();
                 oldStage.close();
             }
@@ -893,6 +894,7 @@ public class GamePlayerController implements Initializable {
         primaryStage.setTitle(FrameTitle.main);
         primaryStage.setScene(scene);
         primaryStage.show();
+        ApplicationCloser.setCloser(primaryStage);
         Stage oldStage = (Stage) exitButton.getScene().getWindow();
         oldStage.close();
     }
