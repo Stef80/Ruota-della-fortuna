@@ -87,6 +87,8 @@ public class MatchManager {
      */
     public RemoteMatch joinMatch(Client c, String idMatch) {
         Match match = matches.get(idMatch);
+        if(match == null)
+            return null;
         System.out.println("Provo a partecipare alla partita: " + idMatch);
         boolean full;
         try {

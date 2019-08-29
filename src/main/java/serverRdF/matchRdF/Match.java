@@ -226,7 +226,13 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     @Override
     public void giveConsonant(String letter, int amount) throws RemoteException {
         Player activePlayer = players.get(turn);
-        char vocal = letter.charAt(0);
+        char vocal;
+        try{
+            vocal = letter.charAt(0);
+        }catch (IndexOutOfBoundsException e){
+            errorInTurn(true, false);
+            return;
+        }
         boolean isVocal = (vocal == 'A' || vocal == 'E' || vocal == 'I' || vocal == 'O' || vocal == 'U');
         if (firstTurn || !spinnedWheel || amount == 0 || timer.isThisForJolly() || timer.isThisForSolution() || letter.length() > 1 || isVocal || timer.isThisForVocal() || !manche.checkConsonant(letter)) {
             timer.interrupt();
@@ -374,7 +380,13 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     @Override
     public void giveVocal(String letter) throws RemoteException {
         Player activePlayer = players.get(turn);
-        char vocal = letter.charAt(0);
+        char vocal;
+        try{
+            vocal = letter.charAt(0);
+        }catch (IndexOutOfBoundsException e){
+            errorInTurn(true, false);
+            return;
+        }
         boolean isVocal = (vocal == 'A' || vocal == 'E' || vocal == 'I' || vocal == 'O' || vocal == 'U');
         if (firstTurn || timer.isThisForJolly() || timer.isThisForSolution() || letter.length() > 1 || !isVocal || !timer.isThisForVocal()) {
             timer.interrupt();
@@ -526,7 +538,12 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
 
 
     private void startTurn(int turn) throws RemoteException {
-        Player activePlayer = players.get(turn);
+        Player activePlayer = null;
+        try {
+            activePlayer = players.get(turn);
+        }catch (IndexOutOfBoundsException e){
+            return;
+        }
         spinnedWheel = false;
         for (Client c : observers) {
             try {
@@ -864,19 +881,20 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
             full = true;
         else {
             players.add(new Player(c));
-            int num = 0;
-            for (Player p : players) {
-                if (p.getClient().equals(c))
-                    break;
-                else
-                    num++;
-            }
+//            int num = 0;
+//            for (Player p : players) {
+//                if (p.getClient().equals(c))
+//                    break;
+//                else
+//                    num++;
+//            }
 //            System.out.println("inizio i cicli di notifica");
             if(players.size() != 1) {
                 for (Player p : players) {
                     try {
                         if (!p.getClient().equals(c))
-                            p.getClient().notifyPlayerStats(num, c.getNickname(), 0, 0, 0);
+                            for(int i=0; i<players.size(); i++)
+                                p.getClient().notifyPlayerStats(i, players.get(i).getClient().getNickname(), 0, 0, 0);
                     } catch (RemoteException e) {
                         leaveMatchAsPlayer(p);
                     }
@@ -884,7 +902,8 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
 //                System.out.println("primo ciclo");
                 for (Client client : observers) {
                     try {
-                        client.notifyPlayerStats(num, c.getNickname(), 0, 0, 0);
+                        for(int i=0; i<players.size(); i++)
+                            client.notifyPlayerStats(i, players.get(i).getClient().getNickname(), 0, 0, 0);
                     } catch (RemoteException e) {
                         leaveMatchAsObserver(client);
                     }
