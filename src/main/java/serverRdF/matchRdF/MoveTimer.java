@@ -47,14 +47,22 @@ public class MoveTimer extends Thread {
                     try {
                         c.updateTimer(i);
                     } catch (RemoteException e) {
-                        e.printStackTrace();
+                        try {
+                            match.leaveMatchAsObserver(c);
+                        } catch (RemoteException ex) {
+                            ex.printStackTrace();
+                        }
                     }
                 }
                 for(Player p : match.getPlayers()) {
                     try {
                         p.getClient().updateTimer(i);
                     } catch (RemoteException e) {
-                        e.printStackTrace();
+                        try {
+                            match.leaveMatchAsPlayer(p);
+                        } catch (RemoteException ex) {
+                            ex.printStackTrace();
+                        }
                     }
                 }
                 sleep(1000);

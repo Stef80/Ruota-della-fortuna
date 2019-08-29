@@ -280,7 +280,11 @@ public class TabPaneController implements Initializable {
 
             nickBestCallLabel.setText(bestMove.nextToken());
             letterCalledLabel.setText(bestMove.nextToken());
-            phraseAsociatedLabel.setText(bestMove.nextToken());
+            String phrase = "";
+            while(bestMove.hasMoreElements()){
+                phrase += bestMove.nextToken() + " ";
+            }
+            phraseAsociatedLabel.setText(phrase);
 
             averageMovesTillSolutionLabel.setText(String.valueOf(avSolManches));
         } catch (RemoteException e) {

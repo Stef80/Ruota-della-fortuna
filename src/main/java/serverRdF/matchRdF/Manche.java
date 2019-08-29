@@ -117,12 +117,17 @@ public class Manche {
             ManchesDTO manche = new ManchesDTO();
             setNumManche(numManche + 1);
             manche.setNumber(numManche);
-            manche.setPhrase(getCurrentPhrase());
+            PhrasesDTO newPhrase = getCurrentPhrase();
+            String theme = Match.prepareStringForDB(newPhrase.getTheme());
+            String phrase = Match.prepareStringForDB(newPhrase.getPhrase());
+            manche.setPhrase(new PhrasesDTO(theme,phrase));
             manche.setMatch(new MatchesDTO(match, matchTime));
             calledConsonant = new ArrayList<String>();
-            boolean man = dbManager.addManche(manche);
             boolean tur = turns.saveMoves(dbManager);
+            boolean man = true;
             if (winner != null) {
+                dbManager.addManche(manche);
+                manche.setNumber(manche.getNumber()-1);
                 return dbManager.addMancheWinner(winner.getIdPlayer(), manche, winner.getPartialPoints());
             }
             if (man && tur) {

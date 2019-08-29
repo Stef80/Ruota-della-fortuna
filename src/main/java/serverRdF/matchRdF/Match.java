@@ -261,17 +261,25 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                 leaveMatchAsPlayer(p);
             }
         }
-        String phrase = manche.getCurrentPhrase().getPhrase();
+//        System.out.println("Controllo phraseStatus");
+        String phrase = manche.getCurrentPhrase().getPhrase().toUpperCase();
+//        System.out.println("frase: " + phrase);
         StringTokenizer st = new StringTokenizer(phrase, " ',!?.:;\"/()\\^<>-+*");
         int counter = 0;
-        int j;
+        int j = 0;
+//        System.out.println("Lettera: " + vocal);
         while (st.hasMoreTokens()) {
-            j = 0;
             String ss = st.nextToken();
+//            System.out.println(ss);
             for (int i = 0; i < ss.length(); i++) {
-                if (ss.charAt(i) == letter.charAt(0)) {
+//                System.out.println("entro il ciclo per la " + i + " volta");
+//                System.out.println(ss.charAt(i) == vocal);
+                if (ss.charAt(i) == vocal) {
+//                    System.out.println("Entro l'if");
                     if (phraseStatus[j] == false) {
+//                        System.out.println("modifico...");
                         phraseStatus[j] = true;
+//                        System.out.println("Aggiornato");
                         counter++;
                     }
                     j++;
@@ -279,7 +287,8 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                     j++;
                 }
             }
-        }for(int i=0; i<phraseStatus.length; i++)
+        }
+        for(int i=0; i<phraseStatus.length; i++)
             System.out.println(phraseStatus[i]);
         if (counter > 0) {
             int result = counter * amount;
@@ -411,7 +420,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
             }
         }
         activePlayer.updatePartialPoints(-1000);
-        String phrase = manche.getCurrentPhrase().getPhrase();
+        String phrase = manche.getCurrentPhrase().getPhrase().toUpperCase();
         StringTokenizer st = new StringTokenizer(phrase, " ',!?.:;\"/()\\^<>-+*");
         int j = 0;
         int counter = 0;
@@ -670,11 +679,13 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                 manche.setPhrases(phrases);
                 manche.setNumManche(1);
                 PhrasesDTO newPhrase = manche.getCurrentPhrase();
+                String theme = prepareStringForDB(newPhrase.getTheme());
+                String phrase = prepareStringForDB(newPhrase.getPhrase());
                 resetPhraseStatus(newPhrase.getPhrase());
                 ManchesDTO manches = new ManchesDTO();
                 manches.setNumber(manche.getNumManche());
                 manches.setMatch(new MatchesDTO(id,creationTime));
-                manches.setPhrase(newPhrase);
+                manches.setPhrase(new PhrasesDTO(theme,phrase));
                 dbManager.addManche(manches);
                 for (Client c : observers) {
                     try {
@@ -726,13 +737,34 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         onGoing = true;
     }
 
+    /**
+     * Aggiunge un secondo apostrofo dove necessario per permettere l'inserimento nel database
+     *
+     * @param s la stringa da modificare
+     * @return la stringa aggiornata
+     */
+    static String prepareStringForDB(String s){
+        String result = "";
+        for(int i=0; i<s.length(); i++){
+                char c = s.charAt(i);
+                result += c;
+                if(c == '\''){
+                    result += "'";
+                }
+            }
+        return result;
+    }
+
     private void resetPhraseStatus(String phrase) {
+//        System.out.println(phrase);
         StringTokenizer st = new StringTokenizer(phrase, " ',!?.:;\"/()\\^<>-+*");
         int length = 0;
 
         while (st.hasMoreTokens()) {
             String s = st.nextToken();
+//            System.out.println(s);
             for (int j = 0; j < s.length(); j++) {
+//                System.out.println(length);
                 length++;
             }
         }
@@ -803,8 +835,6 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                 }
                 nextTurn();
             }
-        } else {
-            endMatch(false);
         }
     }
 

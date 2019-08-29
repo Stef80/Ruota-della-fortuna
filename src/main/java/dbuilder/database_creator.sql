@@ -35,7 +35,7 @@ create table moves
     moveid   varchar(36) primary key,
     id       varchar(36) references users (id) not null,
     movetype varchar(10)                       not null,
-    outcome  numeric(1)                        not null,
+    outcome  numeric(6)                        not null,
     idmanche varchar(36)                       not null,
     number   numeric(1)                        not null,
     foreign key (idmanche, number) references manches
