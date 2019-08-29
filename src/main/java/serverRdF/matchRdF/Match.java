@@ -34,6 +34,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     private MoveTimer timer = null;
     private boolean spinnedWheel = false;
     private boolean noConsonantLeft = false;
+    private boolean matchEnded = false;
 
     public Match() throws RemoteException {
 
@@ -973,6 +974,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                 leaveMatchAsObserver(client);
             }
         }
+        matchEnded = true;
         if (onGoing) {
             endManche(null);
             endMatch(false);
@@ -1017,12 +1019,14 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                 }
             }
         }
-        if (onGoing) {
-            endManche(null);
-            endMatch(false);
-        }else{
-            if(players.isEmpty()){
+        if(!matchEnded) {
+            if (onGoing) {
+                endManche(null);
                 endMatch(false);
+            } else {
+                if (players.isEmpty()) {
+                    endMatch(false);
+                }
             }
         }
     }

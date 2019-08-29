@@ -26,8 +26,12 @@ public class PhrasesDAOImpl implements PhrasesDAO {
         if(resultSet==null)
             return null;
         ArrayList<PhrasesDTO> pDTO = new ArrayList<>();
-        while(resultSet.next())
+        int i = 0;
+        while(resultSet.next() && i<5) {
             pDTO.add(new PhrasesDTO(resultSet.getString(PhraseThemeAttribute), resultSet.getString(PhrasePhraseAttribute)));
+            i++;
+        }
+        System.out.println("dimensione della lista: "+pDTO.size());//TODO DEBUG
         return pDTO;
     }
 
