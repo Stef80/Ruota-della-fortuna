@@ -58,6 +58,7 @@ public class PhraseManager {
                     theme += "'";
                 }
             }
+            nextLine[1] = nextLine[1].trim();
             for(int i=0; i<nextLine[1].length(); i++){
                 char c = nextLine[1].charAt(i);
                 phrase += c;
