@@ -15,6 +15,7 @@ import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import rdFUtil.ApplicationCloser;
 import rdFUtil.MatchData;
+import rdFUtil.Notification;
 import rdFUtil.client.AdminChecker;
 import rdFUtil.client.Client;
 import serverRdF.Server;
@@ -101,12 +102,7 @@ public class GameViewController extends ListCell<MatchData> {
                         e.printStackTrace();
                     }
                     if (match == null) {
-                        Notifications notification = Notifications.create()
-                                .title("")
-                                .text("")
-                                .hideAfter(Duration.seconds(3))
-                                .position(Pos.BASELINE_RIGHT);
-                        notification.showError();
+                        Notification.notification("Notifica Partita","Partita inesistente",3,true);
                     }
                     FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("game_player_pane.fxml"));
                     Parent root = null;
