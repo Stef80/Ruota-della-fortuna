@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import rdFUtil.ApplicationCloser;
+import rdFUtil.Notification;
 import rdFUtil.client.Client;
 import serverRdF.Server;
 import serverRdF.registrationRdF.OTPHelper;
@@ -67,12 +68,7 @@ public class OTPRegistrationController implements Initializable {
             e.printStackTrace();
         }
         if (!check) {
-            Notifications notification = Notifications.create()
-                    .title("OTP Notification")
-                    .text("CodiceOTP non valido\n")
-                    .hideAfter(Duration.seconds(3))
-                    .position(Pos.BASELINE_RIGHT);
-            notification.showError();
+            Notification.notification("OTP Notification","CodiceOTP non valido\n",3,true);
         } else {
             timeline.stop();
             Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("main_pane.fxml"));
@@ -100,10 +96,14 @@ public class OTPRegistrationController implements Initializable {
 
                 if (timeSeconds == 0) {
                     timeMinutes--;
-                    timeSeconds = 59;
+                    timeSeconds = 60;
                 }
                 timeSeconds--;
+                if(timeSeconds< 10 ) {
+                    timeLabel.setText(String.valueOf(timeMinutes) + ":0" + String.valueOf(timeSeconds));
+                }else {
                 timeLabel.setText(String.valueOf(timeMinutes) + ":" + String.valueOf(timeSeconds));
+                }
                 if (timeSeconds <= 0 && timeMinutes <= 0) {
                     timeline.stop();
                     Notifications notification = Notifications.create()

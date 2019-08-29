@@ -18,6 +18,7 @@ import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import rdFUtil.ApplicationCloser;
 import rdFUtil.MatchData;
+import rdFUtil.Notification;
 import rdFUtil.client.Client;
 import rdFUtil.logging.CryptPassword;
 import serverRdF.Server;
@@ -288,12 +289,12 @@ public class TabPaneController implements Initializable {
      * Notifica che la partita alla quale si ha provato a partecipare come giocatore e' piena
      */
     public void notifyTooManyPlayers() {
-        Notifications notification = Notifications.create()
-                .title("Giocatori")
-                .text("Troppi giocatori")
-                .hideAfter(Duration.seconds(2))
-                .position(Pos.BASELINE_RIGHT);
-        notification.showInformation();
+        Platform.runLater(new Runnable() {
+                              @Override
+                              public void run() {
+                                  Notification.notification("Giocatori","Troppi giocatori",2,true);
+                              }
+                          });
     }
 
     /**
@@ -330,19 +331,20 @@ public class TabPaneController implements Initializable {
         try {
             boolean bool = server.addPhrases(filePhrases);
             if (bool) {
-                Notifications notification = Notifications.create()
-                        .title("Successo")
-                        .text("Le frasi sono state aggiunte con successo")
-                        .hideAfter(Duration.seconds(3))
-                        .position(Pos.BASELINE_RIGHT);
-                notification.showInformation();
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        Notification.notification("Successo","Le frasi sono state aggiunte con successo",2,false);
+                    }
+                });
+
             } else {
-                Notifications notification = Notifications.create()
-                        .title("Notifica Errore")
-                        .text("Non e' stato possibile aggiungere le nuove frasi\n Riprova")
-                        .hideAfter(Duration.seconds(3))
-                        .position(Pos.BASELINE_RIGHT);
-                notification.showError();
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        Notification.notification("Notifica Errore","Non e' stato possibile aggiungere le nuove frasi\n Riprova",2,true);
+                    }
+                });
             }
         } catch (RemoteException e) {
             Notifications notification = Notifications.create()
