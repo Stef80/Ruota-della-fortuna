@@ -256,9 +256,10 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         }
         String phrase = manche.getCurrentPhrase().getPhrase();
         StringTokenizer st = new StringTokenizer(phrase, " ',!?.:;\"/()\\^<>-+*");
-        int j = 0;
         int counter = 0;
+        int j;
         while (st.hasMoreTokens()) {
+            j = 0;
             String ss = st.nextToken();
             for (int i = 0; i < ss.length(); i++) {
                 if (ss.charAt(i) == letter.charAt(0)) {
@@ -965,34 +966,36 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     }
 
     synchronized void leaveMatchAsPlayer(Player player) throws RemoteException {
-        String name = player.getNickname();
-        int num = 0;
-        for (Player p : players) {
-            if (p.equals(player))
-                break;
-            else
-                num++;
-        }
-        Player player1 = null;
-        for (Player p : players) {
-            try {
-                if (p.getClient().equals(player)) {
-                    player1 = p;
-                } else {
-                    p.getClient().notifyLeaver(name);
-                    p.getClient().notifyPlayerStats(num, "--", 0, 0, 0);
-                }
-            } catch (RemoteException e) {
-                player1 = p;
+        if(onGoing) {
+            String name = player.getNickname();
+            int num = 0;
+            for (Player p : players) {
+                if (p.equals(player))
+                    break;
+                else
+                    num++;
             }
-        }
-        players.remove(player1);
-        for (Client client : observers) {
-            try {
-                client.notifyLeaver(name);
-                client.notifyPlayerStats(num, "--", 0, 0, 0);
-            } catch (RemoteException e) {
-                leaveMatchAsObserver(client);
+            Player player1 = null;
+            for (Player p : players) {
+                try {
+                    if (p.getClient().equals(player)) {
+                        player1 = p;
+                    } else {
+                        p.getClient().notifyLeaver(name);
+                        p.getClient().notifyPlayerStats(num, "--", 0, 0, 0);
+                    }
+                } catch (RemoteException e) {
+                    player1 = p;
+                }
+            }
+            players.remove(player1);
+            for (Client client : observers) {
+                try {
+                    client.notifyLeaver(name);
+                    client.notifyPlayerStats(num, "--", 0, 0, 0);
+                } catch (RemoteException e) {
+                    leaveMatchAsObserver(client);
+                }
             }
         }
         if (onGoing) {

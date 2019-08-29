@@ -37,7 +37,6 @@ public class PhrasesDAOImpl implements PhrasesDAO {
         for(PhrasesDTO phrasesDTO : phrases){
            queryAdd = "INSERT INTO "+PhraseTable+" ("+PhraseThemeAttribute+","+PhrasePhraseAttribute+") VALUES ";
            queryAdd += "('"+phrasesDTO.getTheme()+"','"+phrasesDTO.getPhrase()+"');";
-           queryAdd += "\n";
            Statement stmt = con.createStatement();
            try {
                stmt.executeUpdate(queryAdd);

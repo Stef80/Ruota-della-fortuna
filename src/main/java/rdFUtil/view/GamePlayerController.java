@@ -479,7 +479,6 @@ public class GamePlayerController implements Initializable {
         letter = letter.trim();
         letter = letter.toUpperCase();
         if (wheelButtonPressed) {
-            System.out.println("Provo invio consonante con " + wheelResult); //TODO debug
             match.giveConsonant(letter, wheelResult);
             wheelButtonPressed = false;
         } else if (vowelButtonPressed) {
@@ -741,9 +740,20 @@ public class GamePlayerController implements Initializable {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                TabPaneController.notifyMatchAbort(reason);
-                Stage oldStage = (Stage) exitButton.getScene().getWindow();
-                oldStage.close();
+                try {
+                    Parent root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
+                    Stage primaryStage = new Stage();
+                    Scene scene = new Scene(root);
+                    primaryStage.setTitle(FrameTitle.main);
+                    primaryStage.setScene(scene);
+                    primaryStage.show();
+                    ApplicationCloser.setCloser(primaryStage);
+                    TabPaneController.notifyMatchAbort(reason);
+                    Stage oldStage = (Stage) exitButton.getScene().getWindow();
+                    oldStage.close();
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
             }
         });
     }

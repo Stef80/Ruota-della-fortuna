@@ -65,7 +65,9 @@ public class PhraseManager {
                     phrase += "'";
                 }
             }
-            phrases.add(new PhrasesDTO(nextLine[0],nextLine[1]));
+            phrases.add(new PhrasesDTO(theme,phrase));
+            theme = "";
+            phrase = "";
         }
         return dbManager.addPhrases(phrases);
     }
