@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import rdFUtil.ApplicationCloser;
@@ -49,7 +50,8 @@ public class GameViewController extends ListCell<MatchData> {
     private static RemoteMatch match;
     public static boolean player;
 
-    public GameViewController(){}
+    public GameViewController() {
+    }
 
     public GameViewController(Server server, Client client, MatchData matchData) {
         this.server = server;
@@ -63,6 +65,7 @@ public class GameViewController extends ListCell<MatchData> {
      * Il tasto di join permette di partecipare alla partita, il tasto observe di parteciparvi.In entrambi i casi verra'
      * aperta la finestra di gioco.
      * //TODO scrittura parametri
+     *
      * @param item
      * @param empty
      */
@@ -84,12 +87,12 @@ public class GameViewController extends ListCell<MatchData> {
                     e.printStackTrace();
                 }
             }
-            if(AdminChecker.isIsAdmin())
+            if (AdminChecker.isIsAdmin())
                 joinButton.setVisible(false);
 
             label1.setText(item.getPlayer1());
-			label2.setText(item.getPlayer2());
-			label3.setText(item.getPlayer3());
+            label2.setText(item.getPlayer2());
+            label3.setText(item.getPlayer3());
             setAviableLabel(!item.isOnGoing());
 
             joinButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -103,24 +106,33 @@ public class GameViewController extends ListCell<MatchData> {
                         e.printStackTrace();
                     }
                     if (match == null) {
-                        Notification.notification("Notifica Partita","Partita inesistente",3,true);
-                    }
+                        Notification.notification("Notifica Partita", "Partita inesistente", 3, true);
+                    } else {
 //                    System.out.println("Carico finestra");
-                    TabPaneController.creator = false;
-                    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("game_player_pane.fxml"));
-                    Parent root = null;
-                    try {
-                        root = loader.load();
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                        TabPaneController.creator = false;
+                        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("game_player_pane.fxml"));
+                        Parent root = null;
+                        try {
+                            root = loader.load();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        Stage primaryStage = new Stage();
+                        Scene scene = new Scene(root);
+                        primaryStage.setScene(scene);
+                        primaryStage.show();
+                        primaryStage.setOnCloseRequest((WindowEvent event1) -> {
+                            try {
+                                match.leaveMatchAsPlayer(client);
+                            } catch (RemoteException e) {
+                                e.printStackTrace();
+                            }
+                            System.exit(0);
+                        });
+
+                        Stage oldStage = (Stage) joinButton.getScene().getWindow();
+                        oldStage.close();
                     }
-                    Stage primaryStage = new Stage();
-                    Scene scene = new Scene(root);
-                    primaryStage.setScene(scene);
-                    primaryStage.show();
-                    ApplicationCloser.setCloser(primaryStage);
-                    Stage oldStage = (Stage) joinButton.getScene().getWindow();
-                    oldStage.close();
                 }
             });
             observeButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
@@ -164,7 +176,7 @@ public class GameViewController extends ListCell<MatchData> {
         }
     }
 
-    public static void setGameControllerObserver(GamePlayerController gpc){
+    public static void setGameControllerObserver(GamePlayerController gpc) {
         gpc.setClient(client);
         gpc.setMatch(match);
         gpc.setObserver(!GameViewController.player);
