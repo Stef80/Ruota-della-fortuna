@@ -271,7 +271,8 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                     j++;
                 }
             }
-        }
+        }for(int i=0; i<phraseStatus.length; i++)
+            System.out.println(phraseStatus[i]);
         if (counter > 0) {
             int result = counter * amount;
             manche.getTurns().addMove(activePlayer.getIdPlayer(), "" + letter, result);
@@ -625,10 +626,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                     }
                     for (Player p : players) {
                         try {
-                            if(!p.equals(players.get(2)))
-                                p.getClient().notifyMatchAbort("Partita annullata: non ci sono abbastanza frasi");
-                            else
-                                TabPaneController.notifyMatchAbort("Partita annullata: non ci sono abbastanza frasi");
+                            p.getClient().notifyMatchAbort("Partita annullata: non ci sono abbastanza frasi");
                         } catch (RemoteException er) {
                             players.remove(p);
                         }
