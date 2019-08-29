@@ -22,7 +22,7 @@ public class MancheJoinersDAOImpl implements MancheJoinersDAO {
 
     @Override
     public int getManchePlayedByUser(String id) throws SQLException {
-        String queryGet = "SELECT COUNT(*) AS count FROM "+mancheJoinersTable+" WHERE "+mancheJoinersIdPlayerAttribute+" = '"+id+"' AND "+mancheJoinersObserverAttribute+" = 0;";
+        String queryGet = "SELECT COUNT(*) AS count FROM "+mancheJoinersTable+" WHERE "+mancheJoinersIdPlayerAttribute+" = '"+id+"' AND "+mancheJoinersObserverAttribute+" = false;";
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(queryGet);
         if(rs.next()) {
@@ -33,7 +33,7 @@ public class MancheJoinersDAOImpl implements MancheJoinersDAO {
 
     @Override
     public int getMatchesPlayedByUser(String id) throws SQLException{
-        String queryGet = "SELECT COUNT(*) AS count FROM "+mancheJoinersTable+" WHERE "+mancheJoinersIdPlayerAttribute+" = '"+id+"' AND "+mancheJoinersObserverAttribute+" = 0 GROUP BY "+mancheJoinersIdMatchAttribute+";";
+        String queryGet = "SELECT COUNT(*) AS count FROM "+mancheJoinersTable+" WHERE "+mancheJoinersIdPlayerAttribute+" = '"+id+"' AND "+mancheJoinersObserverAttribute+" = false GROUP BY "+mancheJoinersIdMatchAttribute+";";
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(queryGet);
         if(rs.next()) {
@@ -44,7 +44,7 @@ public class MancheJoinersDAOImpl implements MancheJoinersDAO {
 
     @Override
     public int getObservedManches(String id) throws SQLException {
-        String queryGet = "SELECT COUNT(*) AS count FROM "+mancheJoinersTable+" WHERE "+mancheJoinersIdPlayerAttribute+" = '"+id+"' AND "+mancheJoinersObserverAttribute+" = 1;";
+        String queryGet = "SELECT COUNT(*) AS count FROM "+mancheJoinersTable+" WHERE "+mancheJoinersIdPlayerAttribute+" = '"+id+"' AND "+mancheJoinersObserverAttribute+" = true;";
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(queryGet);
         if(rs.next()) {
@@ -55,7 +55,7 @@ public class MancheJoinersDAOImpl implements MancheJoinersDAO {
 
     @Override
     public int getObservedMatches(String id) throws SQLException {
-        String queryGet = "SELECT COUNT(*) AS count FROM "+mancheJoinersTable+" WHERE "+mancheJoinersIdPlayerAttribute+" = '"+id+"' AND "+mancheJoinersObserverAttribute+" = 1 GROUP BY "+mancheJoinersIdMatchAttribute+";";
+        String queryGet = "SELECT COUNT(*) AS count FROM "+mancheJoinersTable+" WHERE "+mancheJoinersIdPlayerAttribute+" = '"+id+"' AND "+mancheJoinersObserverAttribute+" = true GROUP BY "+mancheJoinersIdMatchAttribute+";";
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(queryGet);
         if(rs.next()) {

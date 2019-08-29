@@ -4,9 +4,7 @@ import rdFUtil.MatchData;
 import rdFUtil.client.Client;
 import rdFUtil.view.TabPaneController;
 import serverRdF.ServerImplementation;
-import serverRdF.dbComm.DBManager;
-import serverRdF.dbComm.PhrasesDTO;
-import serverRdF.dbComm.UsersDTO;
+import serverRdF.dbComm.*;
 import serverRdF.emailRdF.EmailManager;
 
 import java.rmi.RemoteException;
@@ -660,6 +658,11 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                 manche.setNumManche(1);
                 PhrasesDTO newPhrase = manche.getCurrentPhrase();
                 resetPhraseStatus(newPhrase.getPhrase());
+                ManchesDTO manches = new ManchesDTO();
+                manches.setNumber(manche.getNumManche());
+                manches.setMatch(new MatchesDTO(id,creationTime));
+                manches.setPhrase(newPhrase);
+                dbManager.addManche(manches);
                 for (Client c : observers) {
                     try {
                         c.notifyMatchStart();

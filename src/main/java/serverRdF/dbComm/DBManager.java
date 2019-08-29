@@ -56,7 +56,8 @@ public class DBManager implements DBManagerInterface{
             createMatchesDAO();
         try {
             return matchesDAO.addMatch(new MatchesDTO(id, time));
-        }catch(SQLException e){
+        }catch (SQLException e){
+            System.err.println("SQLException in addMatch");
             return false;
         }
     }
@@ -66,7 +67,8 @@ public class DBManager implements DBManagerInterface{
             createMatchesDAO();
         try {
             return matchesDAO.deleteMatch(idMatch);
-        }catch(SQLException e){
+        }catch (SQLException e){
+            System.err.println("SQLException in deleteMatch");
             return false;
         }
     }
@@ -82,7 +84,7 @@ public class DBManager implements DBManagerInterface{
             createUsersDAO();
         try {
             return usersDAO.addUser(new UsersDTO(user.getId(), isAdmin, user.getName(), user.getSurname(), user.getNickname(), user.getEmail(), user.getPasswordC()));
-        }catch(SQLException e){
+        }catch (SQLException e){System.err.println("SQLException in addUser");
             return false;
         }
     }
@@ -93,7 +95,7 @@ public class DBManager implements DBManagerInterface{
             createUsersDAO();
         try {
             return usersDAO.getUserByEmail(email);
-        }catch(SQLException e){
+        }catch (SQLException e){System.err.println("SQLException in getUserByEmail");
             return null;
         }
     }
@@ -104,7 +106,7 @@ public class DBManager implements DBManagerInterface{
             createUsersDAO();
         try {
             return usersDAO.getUserByNickname(nickname);
-        }catch (SQLException e){
+        }catch (SQLException e){System.err.println("SQLException in getUserByNickname");
             return null;
         }
     }
@@ -115,7 +117,7 @@ public class DBManager implements DBManagerInterface{
             createUsersDAO();
         try {
             return usersDAO.getUserById(id);
-        }catch (SQLException e){
+        }catch (SQLException e){System.err.println("SQLException in getUserById");
             return null;
         }
     }
@@ -127,7 +129,7 @@ public class DBManager implements DBManagerInterface{
             createUsersDAO();
         try {
             return usersDAO.updateUser(user);
-        }catch(SQLException e){
+        }catch (SQLException e){System.err.println("SQLException in updateUser");
             return false;
         }
     }
@@ -138,7 +140,7 @@ public class DBManager implements DBManagerInterface{
             createUsersDAO();
         try {
             return usersDAO.deleteUser(id);
-        }catch (SQLException e){
+        }catch (SQLException e){System.err.println("SQLException in deleteUser");
             return false;
         }
     }
@@ -172,7 +174,7 @@ public class DBManager implements DBManagerInterface{
                 return false;
             }else
                 return true;
-        }catch (SQLException e){
+        }catch (SQLException e){System.err.println("SQLException in getAnyAdmin");
             return false;
         }
     }
@@ -184,7 +186,7 @@ public class DBManager implements DBManagerInterface{
         }
         try {
             return usersDAO.getAllAdmin();
-        }catch (SQLException e){
+        }catch (SQLException e){System.err.println("SQLException in getAllAdmin");
             return null;
         }
     }
@@ -195,7 +197,7 @@ public class DBManager implements DBManagerInterface{
             createUsersDAO();
         try{
             return usersDAO.getBestPlayerByManche();
-        }catch (SQLException e){
+        }catch (SQLException e){System.err.println("SQLException in getBestUserForManche");
             return null;
         }
     }
@@ -206,7 +208,7 @@ public class DBManager implements DBManagerInterface{
             createUsersDAO();
         try{
             return usersDAO.getBestPlayerByMatch();
-        }catch (SQLException e){
+        }catch (SQLException e){System.err.println("SQLException in getBestUserForMatch");
             return null;
         }
     }
@@ -218,6 +220,7 @@ public class DBManager implements DBManagerInterface{
         try{
             return usersDAO.getUserForMoreManchesPlayed();
         }catch (SQLException e){
+            System.err.println("SQLException in getUserForMostManchePlayed");
             return null;
         }
     }
@@ -228,7 +231,7 @@ public class DBManager implements DBManagerInterface{
             createUsersDAO();
         try{
             return usersDAO.getUserForBestMancheAverage();
-        }catch (SQLException e){
+        }catch (SQLException e){System.err.println("SQLException in getUserForBestMancheAverage");
             return null;
         }
     }
@@ -239,7 +242,7 @@ public class DBManager implements DBManagerInterface{
             createUsersDAO();
         try{
             return usersDAO.getUserForMostLostTurn();
-        }catch (SQLException e){
+        }catch (SQLException e){System.err.println("SQLException in getUserForMostLostTurn");
             return null;
         }
     }
@@ -250,7 +253,7 @@ public class DBManager implements DBManagerInterface{
             createUsersDAO();
         try{
             return usersDAO.getUserForMostLosses();
-        }catch (SQLException e){
+        }catch (SQLException e){System.err.println("SQLException in getUserForMostLosses");
             return null;
         }
     }
@@ -268,7 +271,7 @@ public class DBManager implements DBManagerInterface{
             createPhrasesDAO();
         try {
             return phrasesDAO.get5Phrases(idPlayer1, idPlayer2, idPlayer3);
-        }catch (SQLException e){
+        }catch (SQLException e){System.err.println("SQLException in get5Phrases");
             return null;
         }
     }
@@ -279,7 +282,7 @@ public class DBManager implements DBManagerInterface{
             createPhrasesDAO();
         try {
             return phrasesDAO.addPhrases(phrases);
-        }catch (SQLException e){
+        }catch (SQLException e){System.err.println("SQLException in addPhrases");
             return false;
         }
     }
@@ -290,7 +293,7 @@ public class DBManager implements DBManagerInterface{
             createPhrasesDAO();
         try {
             return phrasesDAO.getAllPhrases();
-        }catch (SQLException e){
+        }catch (SQLException e){System.err.println("SQLException in getAllPhrases");
             return null;
         }
     }
@@ -308,7 +311,7 @@ public class DBManager implements DBManagerInterface{
             createMovesDAO();
         try {
             return movesDAO.addMove(move);
-        }catch (SQLException e){
+        }catch (SQLException e){System.err.println("SQLException in addMove");
             return false;
         }
     }
@@ -319,7 +322,7 @@ public class DBManager implements DBManagerInterface{
             createMovesDAO();
         try {
             return movesDAO.getBestMove();
-        }catch(SQLException e){
+        }catch (SQLException e){System.err.println("SQLException in getBestMove");
             return null;
         }
     }
@@ -333,7 +336,7 @@ public class DBManager implements DBManagerInterface{
         try{
             int n = mancheWinnersDAO.getNumWinnedManches();
             return movesDAO.getAverageMovesPerManche(n);
-        }catch (SQLException e){
+        }catch (SQLException e){System.err.println("SQLException in getAverageMovesPerManche");
             return -1;
         }
     }
@@ -350,7 +353,7 @@ public class DBManager implements DBManagerInterface{
             if(totManches == 0)
                 return 0;
             return totalMoves/totManches;
-        }catch (SQLException e){
+        }catch (SQLException e){System.err.println("SQLException in getAveragePassedTurnPerMancheByUser");
             return 0;
         }
     }
@@ -367,7 +370,7 @@ public class DBManager implements DBManagerInterface{
             if(totMatches == 0)
                 return 0;
             return totalMoves/totMatches;
-        }catch (SQLException e){
+        }catch (SQLException e){System.err.println("SQLException in getAveragePassedTurnPerMatchByUser");
             return 0;
         }
     }
@@ -384,7 +387,7 @@ public class DBManager implements DBManagerInterface{
             if(totManches == 0)
                 return 0;
             return totalMoves/totManches;
-        }catch (SQLException e){
+        }catch (SQLException e){System.err.println("SQLException in getAverageLossPerMancheByUser");
             return 0;
         }
     }
@@ -401,7 +404,7 @@ public class DBManager implements DBManagerInterface{
             if(totMatches == 0)
                 return 0;
             return totalMoves/totMatches;
-        }catch (SQLException e){
+        }catch (SQLException e){System.err.println("SQLException in getAverageLossPerMatchByUser");
             return 0;
         }
     }
@@ -419,7 +422,7 @@ public class DBManager implements DBManagerInterface{
             createManchesDAO();
         try {
             return manchesDAO.addManche(manche);
-        }catch (SQLException e){
+        }catch (SQLException e){System.err.println("SQLException in addManche");
             return false;
         }
     }
@@ -435,7 +438,7 @@ public class DBManager implements DBManagerInterface{
             createMancheWinnersDAO();
         try {
             return mancheWinnersDAO.addMancheWinner(idPlayer, manche, amount);
-        }catch (SQLException e){
+        }catch (SQLException e){System.err.println("SQLException in addMancheWinner");
             return false;
         }
     }
@@ -446,7 +449,7 @@ public class DBManager implements DBManagerInterface{
             createMancheWinnersDAO();
         try{
             return mancheWinnersDAO.getMancheWonByUser(id);
-        }catch (SQLException e){
+        }catch (SQLException e){System.err.println("SQLException in getWonManchesByUser");
             return 0;
         }
     }
@@ -460,6 +463,7 @@ public class DBManager implements DBManagerInterface{
         try {
             return mancheJoinersDAO.addMancheJoiner(idMatch, numManche, userId, observer);
         } catch (SQLException e) {
+            System.err.println("SQLException in addMancheJoiner");
             return false;
         }
     }
@@ -470,7 +474,7 @@ public class DBManager implements DBManagerInterface{
             createMancheJoinersDAO();
         try{
             return mancheJoinersDAO.getManchePlayedByUser(id);
-        }catch (SQLException e){
+        }catch (SQLException e){System.err.println("SQLException in getManchePlayedByUser");
             return 0;
         }
     }
@@ -481,7 +485,7 @@ public class DBManager implements DBManagerInterface{
             createMancheJoinersDAO();
         try{
             return mancheJoinersDAO.getMatchesPlayedByUser(id);
-        }catch (SQLException e){
+        }catch (SQLException e){System.err.println("SQLException in getMatchesPlayedByUser");
             return 0;
         }
     }
@@ -492,7 +496,7 @@ public class DBManager implements DBManagerInterface{
             createMancheJoinersDAO();
         try{
             return mancheJoinersDAO.getObservedManches(id);
-        }catch (SQLException e){
+        }catch (SQLException e){System.err.println("SQLException in getObservedManchesByUser");
             return 0;
         }
     }
@@ -503,7 +507,7 @@ public class DBManager implements DBManagerInterface{
             createMancheJoinersDAO();
         try{
             return mancheJoinersDAO.getObservedMatches(id);
-        }catch (SQLException e){
+        }catch (SQLException e){System.err.println("SQLException in getObservedMatchesByUser");
             return 0;
         }
     }
@@ -517,6 +521,7 @@ public class DBManager implements DBManagerInterface{
         try {
             return matchWinnersDAO.addMatchWinner(idMatch, idPlayer, amount);
         } catch (SQLException e) {
+            System.err.println("SQLException in addMatchWinner");
             return false;
         }
     }
@@ -527,7 +532,7 @@ public class DBManager implements DBManagerInterface{
             createMatchWinnersDAO();
         try{
             return matchWinnersDAO.getWonMatchesByUser(id);
-        }catch (SQLException e){
+        }catch (SQLException e){System.err.println("SQLException in getWonMatchesByUser");
             return 0;
         }
     }
@@ -543,7 +548,7 @@ public class DBManager implements DBManagerInterface{
                 return (totalPoints/matchesWon);
             }else
                 return 0;
-        }catch (SQLException e){
+        }catch (SQLException e){System.err.println("SQLException in getAveragePointsWonByUser");
             return 0;
         }
     }

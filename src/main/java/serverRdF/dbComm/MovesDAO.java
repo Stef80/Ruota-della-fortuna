@@ -8,13 +8,13 @@ import java.sql.SQLException;
  * Interfaccia del Data Access Object che si occupa degli accessi al database relativi alle mosse
  */
 public interface MovesDAO {
-    String MovesTable = "Moves";
+    String MovesTable = "moves";
     String MovesIdPlayerAttribute = "id";
-    String MovesMoveTypeAttribute = "moveType";
+    String MovesMoveTypeAttribute = "movetype";
     String MovesOutcomeAttribute = "outcome";
-    String MovesIdMatchAttribute = "idMatch";
+    String MovesIdMatchAttribute = "idmatch";
     String MovesMancheNumberAttribute = "number";
-    String MovesMoveIdAttribute = "moveId";
+    String MovesMoveIdAttribute = "moveid";
 
     /**
      * Questo metodo aggiunge nel database una mossa

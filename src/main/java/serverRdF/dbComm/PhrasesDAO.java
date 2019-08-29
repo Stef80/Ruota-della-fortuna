@@ -8,7 +8,7 @@ import java.util.List;
  * Interfaccia del Data Access Object che si occupa degli accessi al database relativi alle frasi misteriose
  */
 public interface PhrasesDAO {
-    String PhraseTable = "Phrases";
+    String PhraseTable = "phrases";
     String PhrasePhraseAttribute = "phrase";
     String PhraseThemeAttribute = "theme";
 

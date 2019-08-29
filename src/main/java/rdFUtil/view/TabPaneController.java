@@ -250,15 +250,15 @@ public class TabPaneController implements Initializable {
      * Carica i record di utilizzo della piattaforma
      */
     public void setGlobalStats() throws RemoteException {
-        String recordStatStr = server.checkRecordPlayer();
+        try {
+            String recordStatStr = server.checkRecordPlayer();
 
-        int avSolManches = server.averageManches();
+            int avSolManches = server.averageManches();
 
-        String strBestMove = server.bestMove();
+            String strBestMove = server.bestMove();
 //           String recordStatStr = " ";
 //           int avSolManches = 1;
 //           String strBestMove = " ";
-        if ((recordStatStr != null) && (!strBestMove.equals(""))) {
             StringTokenizer bestMove = new StringTokenizer(strBestMove, " ");
             StringTokenizer recordStat = new StringTokenizer(recordStatStr, " ");
 
@@ -274,6 +274,13 @@ public class TabPaneController implements Initializable {
             phraseAsociatedLabel.setText(bestMove.nextToken());
 
             averageMovesTillSolutionLabel.setText(String.valueOf(avSolManches));
+        } catch (RemoteException e) {
+            Notifications notification = Notifications.create()
+                    .title("Notifica Errore")
+                    .text("Server offline")
+                    .hideAfter(Duration.seconds(3))
+                    .position(Pos.BASELINE_RIGHT);
+            notification.showError();
         }
     }
 

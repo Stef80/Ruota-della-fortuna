@@ -34,8 +34,9 @@ public class Turn {
                 }else{
                     dbManager.addMove(move);
                 }
-                moves.remove(move);
         }
+        for(int i=moves.size()-1; i>=0; i--)
+            moves.remove(i);
         return success;
     }
 

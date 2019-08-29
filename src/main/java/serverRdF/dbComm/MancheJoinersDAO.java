@@ -6,10 +6,10 @@ import java.sql.SQLException;
  * Interfaccia del Data Access Object che si occupa degli accessi al database relativi a chi ha partecipato ad una manche, sia come giocatore che osservatore
  */
 public interface MancheJoinersDAO {
-    String mancheJoinersTable = "MancheJoiners";
+    String mancheJoinersTable = "Manchejoiners";
     String mancheJoinersIdMatchAttribute = "id";
     String mancheJoinersNumMancheAttribute = "number";
-    String mancheJoinersIdPlayerAttribute = "idPlayer";
+    String mancheJoinersIdPlayerAttribute = "idplayer";
     String mancheJoinersObserverAttribute = "observer";
 
     /**

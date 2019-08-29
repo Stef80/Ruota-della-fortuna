@@ -37,7 +37,7 @@ public class EmailSender {
     msg.setText(body);
     // invio la mail
     Transport.send(msg, from, password);
-    System.out.println("\nMail was sent successfully.");
+//    System.out.println("\nMail was sent successfully.");
   }
 
   public static void main(String[] argv) {

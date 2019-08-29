@@ -443,7 +443,12 @@ public class GamePlayerController implements Initializable {
      * @param result il risultato da visualizzare
      */
     public void wheelResult(String result) {
-        wheelResultLabel.setText(result);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                wheelResultLabel.setText(result);
+            }
+        });
     }
 
     @FXML

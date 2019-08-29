@@ -6,10 +6,10 @@ import java.sql.SQLException;
  * Interfaccia del Data Access Object che si occupa degli accessi al database relativi ai vincitori delle singole manche
  */
 public interface MancheWinnersDAO {
-    String manchesWinnersTable = "MancheWinners";
+    String manchesWinnersTable = "manchewinners";
     String manchesWinnersidAttribute = "id";
     String manchesWinnersNumberAttribute = "number";
-    String manchesWinnersidPlayerAttribute = "idPlayer";
+    String manchesWinnersidPlayerAttribute = "idplayer";
     String manchesWinnersAmountAttribute = "amount";
 
     /**

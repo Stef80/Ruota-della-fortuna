@@ -6,10 +6,10 @@ import java.sql.SQLException;
  * Interfaccia del Data Access Object che si occupa degli accessi al database relativi alle manche
  */
 public interface ManchesDAO {
-    String ManchesTable = "Manches";
+    String ManchesTable = "manches";
     String ManchesNumberAttribute = "number";
     String ManchesIdAttribute = "id";
-    String ManchesPhraseAttribute = "Phrases";
+    String ManchesPhraseAttribute = "phrase";
 
     /**
      * Questo metodo aggiunge nel database una manche

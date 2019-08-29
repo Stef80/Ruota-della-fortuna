@@ -329,7 +329,7 @@
                                                     </font>
                                                 </Label>
                                                 <Label fx:id="averageMovesTillSolutionLabel" stylesheets="@style.css" text="Label" textAlignment="CENTER" VBox.vgrow="ALWAYS" />
-                                                <Label text="Label" textAlignment="CENTER" VBox.vgrow="ALWAYS" />
+                                                <Label textAlignment="CENTER" VBox.vgrow="ALWAYS" />
                                                 <Region VBox.vgrow="ALWAYS" />
                                             </children>
                                             <padding>

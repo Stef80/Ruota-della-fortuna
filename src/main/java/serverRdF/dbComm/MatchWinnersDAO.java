@@ -6,9 +6,9 @@ import java.sql.SQLException;
  * Interfaccia del Data Access Object che si occupa degli accessi al database relativi ai vincitori di una partita
  */
 public interface MatchWinnersDAO {
-    String matchWinnersTable = "MatchWinners";
+    String matchWinnersTable = "matchwinners";
     String matchWinnersIdMatchAttribute  = "id";
-    String matchWinnersidPlayerAttribute = "idPlayer";
+    String matchWinnersidPlayerAttribute = "idplayer";
     String matchWinnersAmountAttribute = "amount";
 
     /**

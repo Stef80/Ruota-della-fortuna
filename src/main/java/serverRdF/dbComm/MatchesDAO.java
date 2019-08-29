@@ -6,7 +6,7 @@ import java.sql.SQLException;
  * Interfaccia del Data Access Object che si occupa degli accessi al database relativi alle partite
  */
 public interface MatchesDAO {
-    String MatchTable = "Matches";
+    String MatchTable = "matches";
     String MatchIdAttribute = "id";
     String MatchDateAttribute = "date";
     String MatchTimeAttribute = "time";

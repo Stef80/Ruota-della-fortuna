@@ -41,7 +41,7 @@ public class MonitoringManager {
             result = "" + bestMove.getPlayer().getNickname() + " " + bestMove.getMoveType() + " " + bestMove.getManche().getPhrase().getPhrase();
             return result;
         }else
-            return "";
+            return "- - -";
     }
 
     /**
@@ -129,7 +129,6 @@ public class MonitoringManager {
         }else{
             result += "- ";
         }
-
         return result;
     }
 }
