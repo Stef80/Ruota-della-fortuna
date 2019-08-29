@@ -17,8 +17,8 @@ public class PhrasesDAOImpl implements PhrasesDAO {
     }
     @Override
     public List<PhrasesDTO> get5Phrases(String idPlayer1, String idPlayer2, String idPlayer3) throws SQLException {
-        String query5Phrases = "SELECT * FROM "+PhraseTable+" WHERE "+PhrasePhraseAttribute+" <>" +
-                "(SELECT "+PhrasePhraseAttribute+" FROM Manches M JOIN MatchJoiners MJ ON M.id=MJ.id AND M.number = MJ.number " +
+        String query5Phrases = "SELECT * FROM "+PhraseTable+" WHERE "+PhrasePhraseAttribute+" NOT IN " +
+                "(SELECT "+PhrasePhraseAttribute+" FROM Manches M JOIN MancheJoiners MJ ON M.id=MJ.id AND M.number = MJ.number " +
                 "WHERE idPlayer = '"+idPlayer1+"' OR idPlayer = '"+idPlayer2+"' OR idPlayer = '"+idPlayer3+"'" +
                 "GROUP BY "+PhrasePhraseAttribute+" HAVING COUNT(*)=5);";
         Statement stmt = con.createStatement();
@@ -39,8 +39,13 @@ public class PhrasesDAOImpl implements PhrasesDAO {
            queryAdd += "('"+phrasesDTO.getTheme()+"','"+phrasesDTO.getPhrase()+"');";
            queryAdd += "\n";
            Statement stmt = con.createStatement();
-           stmt.executeUpdate(queryAdd);
-           queryAdd = "";
+           try {
+               stmt.executeUpdate(queryAdd);
+           }catch (SQLException e){
+                System.out.println("Frase non aggiunta");
+           }finally {
+               queryAdd = "";
+           }
        }
         System.out.println(queryAdd);
 

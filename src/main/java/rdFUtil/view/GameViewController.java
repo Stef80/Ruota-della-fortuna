@@ -47,6 +47,7 @@ public class GameViewController extends ListCell<MatchData> {
     private static Client client;
     private MatchData matchData;
     private static RemoteMatch match;
+    public static boolean player;
 
     public GameViewController(){}
 
@@ -95,15 +96,17 @@ public class GameViewController extends ListCell<MatchData> {
                 @Override
                 public void handle(ActionEvent event) {
                     try {
+                        player = true;
                         match = server.joinMatch(client, item.getIdMatch());
-                        GamePlayerController.setMatch(match);
-                        GamePlayerController.setObserver(false);
+                        System.out.println("Entra nel match");
                     } catch (RemoteException e) {
                         e.printStackTrace();
                     }
                     if (match == null) {
                         Notification.notification("Notifica Partita","Partita inesistente",3,true);
                     }
+//                    System.out.println("Carico finestra");
+                    TabPaneController.creator = false;
                     FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("game_player_pane.fxml"));
                     Parent root = null;
                     try {
@@ -111,11 +114,15 @@ public class GameViewController extends ListCell<MatchData> {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    GamePlayerController game = loader.getController();
                     Stage primaryStage = new Stage();
                     Scene scene = new Scene(root);
                     primaryStage.setScene(scene);
                     primaryStage.show();
+                    try {
+                        match.tryForStartMatch();
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
                     ApplicationCloser.setCloser(primaryStage);
                     Stage oldStage = (Stage) joinButton.getScene().getWindow();
                     oldStage.close();
@@ -124,12 +131,13 @@ public class GameViewController extends ListCell<MatchData> {
             observeButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
                 @Override
                 public void handle(javafx.event.ActionEvent event) {
+                    player = false;
                     try {
                         match = server.observeMatch(client, item.getIdMatch());
                     } catch (RemoteException e) {
                         e.printStackTrace();
                     }
-                    TabPaneController.player = false;
+                    TabPaneController.creator = false;
                     FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("game_player_pane.fxml"));
                     Parent root = null;
                     try {
@@ -164,6 +172,6 @@ public class GameViewController extends ListCell<MatchData> {
     public static void setGameControllerObserver(GamePlayerController gpc){
         gpc.setClient(client);
         gpc.setMatch(match);
-        gpc.setObserver(true);
+        gpc.setObserver(!GameViewController.player);
     }
 }

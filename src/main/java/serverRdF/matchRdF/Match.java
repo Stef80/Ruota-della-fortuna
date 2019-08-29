@@ -2,6 +2,7 @@ package serverRdF.matchRdF;
 
 import rdFUtil.MatchData;
 import rdFUtil.client.Client;
+import rdFUtil.view.TabPaneController;
 import serverRdF.ServerImplementation;
 import serverRdF.dbComm.DBManager;
 import serverRdF.dbComm.PhrasesDTO;
@@ -612,7 +613,6 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
      */
     public void startMatch() throws RemoteException {
         Random rnd = new Random();
-        onGoing = true;
         try {
             String idPlayer1 = players.get(0).getIdPlayer();
             String idPlayer2 = players.get(1).getIdPlayer();
@@ -620,7 +620,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
 
             List<PhrasesDTO> phrases = dbManager.get5Phrases(idPlayer1, idPlayer2, idPlayer3);
 
-            if (phrases == null || phrases.isEmpty()) {
+            if (phrases == null || phrases.size()<5) {
                 try {
                     for (Client c : observers) {
                         try {
@@ -631,7 +631,10 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                     }
                     for (Player p : players) {
                         try {
-                            p.getClient().notifyMatchAbort("Partita annullata: non ci sono abbastanza frasi");
+                            if(!p.equals(players.get(2)))
+                                p.getClient().notifyMatchAbort("Partita annullata: non ci sono abbastanza frasi");
+                            else
+                                TabPaneController.notifyMatchAbort("Partita annullata: non ci sono abbastanza frasi");
                         } catch (RemoteException er) {
                             players.remove(p);
                         }
@@ -653,6 +656,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                     ServerImplementation.serverError(null);
                 }
             } else {
+                manche.setPhrases(phrases);
                 manche.setNumManche(1);
                 PhrasesDTO newPhrase = manche.getCurrentPhrase();
                 resetPhraseStatus(newPhrase.getPhrase());
@@ -703,6 +707,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                 ServerImplementation.serverError(null);
             }
         }
+        onGoing = true;
     }
 
     private void resetPhraseStatus(String phrase) {
@@ -868,11 +873,12 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                 else
                     num++;
             }
-//            System.out.println("cici");
+//            System.out.println("inizio i cicli di notifica");
             if(players.size() != 1) {
                 for (Player p : players) {
                     try {
-                        p.getClient().notifyPlayerStats(num, c.getNickname(), 0, 0, 0);
+                        if (!p.getClient().equals(c))
+                            p.getClient().notifyPlayerStats(num, c.getNickname(), 0, 0, 0);
                     } catch (RemoteException e) {
                         leaveMatchAsPlayer(p);
                     }
@@ -880,16 +886,17 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
 //                System.out.println("primo ciclo");
                 for (Client client : observers) {
                     try {
-                        c.notifyPlayerStats(num, c.getNickname(), 0, 0, 0);
+                        client.notifyPlayerStats(num, c.getNickname(), 0, 0, 0);
                     } catch (RemoteException e) {
                         leaveMatchAsObserver(client);
                     }
                 }
             }
+//            System.out.println("fine");
             full = false;
-            if (players.size() == 3) {
-                startMatch();
-            }
+//            if (players.size() == 3) {
+//                startMatch();
+//            }
         }
 //        System.out.println(full);
         return full;
@@ -904,6 +911,12 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         if (onGoing) {
             dbManager.addMancheJoiner(id, manche.getNumManche(), c.getId(), true);
         }
+    }
+
+    @Override
+    public void tryForStartMatch() throws RemoteException{
+        if(players.size() == 3)
+            startMatch();
     }
 
     /**
@@ -938,7 +951,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         for (Client client : observers) {
             try {
                 client.notifyLeaver(name);
-                c.notifyPlayerStats(num, "--", 0, 0, 0);
+                client.notifyPlayerStats(num, "--", 0, 0, 0);
             } catch (RemoteException e) {
                 leaveMatchAsObserver(client);
             }
@@ -1007,7 +1020,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
 
     @Override
     public void askNotify(Client c) throws RemoteException {
-        if (onGoing) {
+        if (onGoing && manche.getNumManche()>0) {
             Player p = null;
             for (int i = 0; i < players.size(); i++) {
                 p = players.get(i);

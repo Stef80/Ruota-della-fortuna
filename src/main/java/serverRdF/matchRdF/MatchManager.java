@@ -55,7 +55,7 @@ public class MatchManager {
         LocalDateTime currentTime = LocalDateTime.now();
         Match match = null;
         try {
-//            System.out.println("provo aggiunta a database");
+            System.out.println("id match creato: " + id);
             boolean bool = dbManager.addMatch(id, currentTime);
             if (!bool) {
                 try {
@@ -87,6 +87,7 @@ public class MatchManager {
      */
     public RemoteMatch joinMatch(Client c, String idMatch) {
         Match match = matches.get(idMatch);
+        System.out.println("Provo a partecipare alla partita: " + idMatch);
         boolean full;
         try {
             full = match.addPlayer(c);

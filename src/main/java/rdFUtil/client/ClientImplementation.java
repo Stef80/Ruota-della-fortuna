@@ -1,5 +1,9 @@
 package rdFUtil.client;
 
+import javafx.application.Platform;
+import javafx.geometry.Pos;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 import rdFUtil.view.GamePlayerController;
 import rdFUtil.view.OTPRegistrationController;
 import rdFUtil.view.TabPaneController;
@@ -79,6 +83,17 @@ public class ClientImplementation extends UnicastRemoteObject implements Client,
 
     @Override
     public void notifyServerError() throws RemoteException {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Notifications notification = Notifications.create()
+                        .title("Notifica Errore")
+                        .text("Errore di connessione al server")
+                        .hideAfter(Duration.seconds(3))
+                        .position(Pos.BASELINE_RIGHT);
+                notification.showError();
+            }
+        });
     }
 
     @Override
