@@ -93,11 +93,13 @@ public class GamePlayerController implements Initializable {
     @FXML
     private Label phraseThemeLabel;
     private static boolean isObserver;
-    private Timeline timeline;
-    private int timeSeconds;
+//    private Timeline timeline;
+//    private int timeSeconds;
     private int wheelResult;
     private static RemoteMatch match;
     private Client client;
+    private boolean wheelButtonPressed;
+    private boolean vowelButtonPressed;
 
     public GamePlayerController() {
 
@@ -386,21 +388,21 @@ public class GamePlayerController implements Initializable {
      * @param seconds i secondi di timer
      */
 
-    public void runCountdown(int seconds) {
-        timeSeconds = seconds;
-        timeline = new Timeline();
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                timeSeconds--;
-                timerLabel.setText(String.valueOf(timeSeconds));
-                if (timeSeconds <= 0)
-                    timeline.stop();
-            }
-        }));
-        timeline.playFromStart();
-    }
+//    public void runCountdown(int seconds) {
+//        timeSeconds = seconds;
+//        timeline = new Timeline();
+//        timeline.setCycleCount(Animation.INDEFINITE);
+//        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
+//            @Override
+//            public void handle(ActionEvent event) {
+//                timeSeconds--;
+//                timerLabel.setText(String.valueOf(timeSeconds));
+//                if (timeSeconds <= 0)
+//                    timeline.stop();
+//            }
+//        }));
+//        timeline.playFromStart();
+//    }
 
 
     /**
@@ -411,7 +413,7 @@ public class GamePlayerController implements Initializable {
     public void giveSolution() throws RemoteException {
         match.askForSolution();
         solutionTextField.setDisable(false);
-        runCountdown(10);
+//        runCountdown(10);
     }
 
     @FXML
@@ -431,10 +433,11 @@ public class GamePlayerController implements Initializable {
     public void wheelSpin() {
         try {
             wheelResult = match.wheelSpin();
+            wheelButtonPressed = true;
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-        if (wheelResult != 0) runCountdown(5);
+//        if (wheelResult != 0) runCountdown(5);
     }
 
     /**
@@ -451,19 +454,22 @@ public class GamePlayerController implements Initializable {
         });
     }
 
-    @FXML
     /**
      * Premendo il tasto 'enter' dopo aver inserito una lettera, verra' comunicato al server che si sta provando a dare una consonante se prima e' stata girata la
      * ruota o una vocale se prima e' stato premuto il tasto 'vocale'
      */
+    @FXML
     public void onEnter() throws RemoteException {
         String letter = letterTextField.getText();
         letter = letter.trim();
         letter = letter.toUpperCase();
-        if (spinButton.isPressed()) {
+        if (wheelButtonPressed) {
+            System.out.println("Provo invio consonante"); //TODO debug
             match.giveConsonant(letter, wheelResult);
-        } else if (vowelButton.isPressed()) {
+            wheelButtonPressed = false;
+        } else if (vowelButtonPressed) {
             match.giveVocal(letter);
+            vowelButtonPressed = false;
         }
     }
 
@@ -474,7 +480,8 @@ public class GamePlayerController implements Initializable {
      */
     public void giveVocal() throws RemoteException {
         match.askForVocal();
-        runCountdown(5);
+        vowelButtonPressed = true;
+//        runCountdown(5);
     }
 
     /**
@@ -516,7 +523,7 @@ public class GamePlayerController implements Initializable {
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
-                runCountdown(5);
+//                runCountdown(5);
             }
         });
     }
@@ -963,6 +970,15 @@ public class GamePlayerController implements Initializable {
                         .hideAfter(Duration.seconds(3))
                         .position(Pos.BASELINE_RIGHT);
                 notification.showInformation();
+            }
+        });
+    }
+
+    public void updateTimer(int time){
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                timerLabel.setText("" + time);
             }
         });
     }

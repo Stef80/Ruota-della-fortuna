@@ -56,17 +56,13 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     public int wheelSpin() throws RemoteException {
         Player activePlayer = players.get(turn);
 
-        if (timer.isThisForJolly() || timer.isThisForSolution() || timer.isThisForVocal() || noConsonantLeft || !spinnedWheel) {
+        if (timer.isThisForJolly() || timer.isThisForSolution() || timer.isThisForVocal() || noConsonantLeft || spinnedWheel) {
             errorInTurn(false, false);
             return 0;
         } else {
             firstTurn = false;
             timer.interrupt();
             wheelResult("GIRA...");
-            int j = 0;
-            for (int i = 0; i < 1000000000; i++) { //TODO controllare
-                j = j * 5;
-            }
             spinnedWheel = true;
             Random rnd = new Random();
             int result = rnd.nextInt(24);

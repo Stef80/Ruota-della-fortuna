@@ -233,4 +233,9 @@ public class ClientImplementation extends UnicastRemoteObject implements Client,
     public void setOtpPane(OTPRegistrationController otp) throws RemoteException {
         otpRegistrationPane = otp;
     }
+
+    @Override
+    public void updateTimer(int num) throws RemoteException {
+        game.updateTimer(num);
+    }
 }

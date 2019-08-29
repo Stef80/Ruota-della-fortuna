@@ -246,4 +246,6 @@ public interface Client extends Remote {
     public void notifyNoMoreConsonant() throws RemoteException;
 
     public void setOtpPane(OTPRegistrationController otp) throws RemoteException;
+
+    public void updateTimer(int num) throws RemoteException;
 }

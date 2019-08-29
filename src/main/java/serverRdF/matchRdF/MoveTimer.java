@@ -41,7 +41,25 @@ public class MoveTimer extends Thread {
      */
     public void run(){
         try{
-            sleep(time);
+            int seconds = time/1000;
+            for(int i=seconds; i>=0; i--){
+                for(Client c : match.getObservers()) {
+                    try {
+                        c.updateTimer(i);
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
+                }
+                for(Player p : match.getPlayers()) {
+                    try {
+                        p.getClient().updateTimer(i);
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
+                }
+                sleep(1000);
+            }
+//            sleep(time);
             for(Client c : match.getObservers()){
                 try {
                     c.notifyTimeOut();
