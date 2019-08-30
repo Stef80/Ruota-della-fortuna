@@ -92,8 +92,6 @@ public class GamePlayerController implements Initializable {
     @FXML
     private Label phraseThemeLabel;
     private static boolean isObserver;
-    //    private Timeline timeline;
-//    private int timeSeconds;
     private int wheelResult;
     private static RemoteMatch match;
     private Client client;
@@ -108,18 +106,15 @@ public class GamePlayerController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         if (TabPaneController.creator) {
             TabPaneController.setGameControlle(this);
-//            System.out.println("Utilizzato per creatore");
         } else {
             GameViewController.setGameControllerObserver(this);
             if (!GameViewController.player) {
                 hideAll();
-//                System.out.println("Utilizzato per osservatore");
             }
         }
 
         try {
             client.setGame(this);
-//            System.out.println("Creato oggetto game per " + client.getNickname());
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -148,6 +143,8 @@ public class GamePlayerController implements Initializable {
                 StackPane slotPane = new StackPane();
                 Label letterLabel = new Label();
                 letterLabel.setVisible(false);
+                letterLabel.setStyle("-fx-font-weight: bold" +
+                                             "-fx-font-size:36");
                 slotPane.getChildren().add(letterLabel);
                 slotPane.setStyle(" -fx-background-color: #eefcf9;\n" +
                         "    -fx-border-color: #08FBE1;\n" +
@@ -399,29 +396,6 @@ public class GamePlayerController implements Initializable {
         solutionButton.setDisable(false);
         letterTextField.setDisable(false);
     }
-//
-//    /**
-//     * Il metodo fa partire il conto alla rovescia
-//     *
-//     * @param seconds i secondi di timer
-//     */
-
-//    public void runCountdown(int seconds) {
-//        timeSeconds = seconds;
-//        timeline = new Timeline();
-//        timeline.setCycleCount(Animation.INDEFINITE);
-//        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
-//            @Override
-//            public void handle(ActionEvent event) {
-//                timeSeconds--;
-//                timerLabel.setText(String.valueOf(timeSeconds));
-//                if (timeSeconds <= 0)
-//                    timeline.stop();
-//            }
-//        }));
-//        timeline.playFromStart();
-//    }
-
 
     /**
      * Il metodo segnala al server che si vuole provare a dare la soluzione
@@ -431,7 +405,6 @@ public class GamePlayerController implements Initializable {
     public void giveSolution() throws RemoteException {
         match.askForSolution();
         solutionTextField.setDisable(false);
-//        runCountdown(10);
     }
 
     @FXML
@@ -456,7 +429,7 @@ public class GamePlayerController implements Initializable {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-//        if (wheelResult != 0) runCountdown(5);
+
     }
 
     /**
@@ -469,7 +442,6 @@ public class GamePlayerController implements Initializable {
             @Override
             public void run() {
                 wheelResultLabel.setText(result);
-//                wheelResult = Integer.parseInt(result);
             }
         });
     }
@@ -501,7 +473,6 @@ public class GamePlayerController implements Initializable {
     public void giveVocal() throws RemoteException {
         match.askForVocal();
         vowelButtonPressed = true;
-//        runCountdown(5);
     }
 
     /**
@@ -543,7 +514,6 @@ public class GamePlayerController implements Initializable {
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
-//                runCountdown(5);
             }
         });
     }
@@ -685,7 +655,7 @@ public class GamePlayerController implements Initializable {
             System.out.println("Prova");
         } finally {
             match = null;
-            Parent root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("tab_pane.fxml"));
             Stage primaryStage = new Stage();
             Scene scene = new Scene(root);
             primaryStage.setTitle(FrameTitle.main);
@@ -719,12 +689,11 @@ public class GamePlayerController implements Initializable {
      * @param reason il motivo per cui e' stata annullata
      */
     public void notifyMatchAbort(String reason) {
-
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
                 try {
-                    Parent root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
+                    Parent root = FXMLLoader.load(getClass().getResource("tab_pane.fxml"));
                     Stage primaryStage = new Stage();
                     Scene scene = new Scene(root);
                     primaryStage.setTitle(FrameTitle.main);
@@ -803,7 +772,6 @@ public class GamePlayerController implements Initializable {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-
                 Notification.notification("Notifica di partita", "e' il tuo turno", 3, false);
             }
         });
@@ -830,7 +798,7 @@ public class GamePlayerController implements Initializable {
                 match = null;
                 Parent root = null;
                 try {
-                    root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
+                    root = FXMLLoader.load(getClass().getResource("tab_pane.fxml"));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -862,7 +830,7 @@ public class GamePlayerController implements Initializable {
                 match = null;
                 Parent root = null;
                 try {
-                    root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
+                    root = FXMLLoader.load(getClass().getClassLoader().getResource("tab_pane.fxml"));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -876,6 +844,21 @@ public class GamePlayerController implements Initializable {
                 oldStage.close();
             }
         });
+        match = null;
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("tab_pane.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Stage primaryStage = new Stage();
+        Scene scene = new Scene(root);
+        primaryStage.setTitle(FrameTitle.main);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        ApplicationCloser.setCloser(primaryStage);
+        Stage oldStage = (Stage) exitButton.getScene().getWindow();
+        oldStage.close();
     }
 
     /**
