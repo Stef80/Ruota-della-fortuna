@@ -62,7 +62,7 @@ public class GameViewController extends ListCell<MatchData> {
     /**
      * Aggiorna i gli elementi con i dati del match. Il tasto per partecipare alla partita sara' disponibiile sono se il match
      * e' disponibile e l'utente connesso non e' un admin.
-     * Il tasto di join permette di partecipare alla partita, il tasto observe di parteciparvi.In entrambi i casi verra'
+     * Il tasto di join permette di partecipare alla partita, il tasto observe di parteciparvi da osservatore.In entrambi i casi verra'
      * aperta la finestra di gioco.
      * //TODO scrittura parametri
      *

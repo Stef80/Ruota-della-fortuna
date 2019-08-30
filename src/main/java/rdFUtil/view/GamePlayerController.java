@@ -874,7 +874,7 @@ public class GamePlayerController implements Initializable {
             public void run() {
                 Notifications notification = Notifications.create()
                         .title("Notifica di partita")
-                        .text("Tempo scduto ")
+                        .text("Tempo scaduto ")
                         .hideAfter(Duration.seconds(3))
                         .position(Pos.BASELINE_RIGHT);
                 notification.showInformation();
