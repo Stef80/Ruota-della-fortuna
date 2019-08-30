@@ -182,8 +182,8 @@ public class UsersDAOImpl implements UsersDAO {
         String queryBest = "SELECT "+UserNicknameAttribute+", COUNT(U."+UserIdAttribute+") AS count FROM " +UserTable+" U " +
                 "JOIN "+MancheJoinersDAO.mancheJoinersTable+" MW ON U.id = MW.idplayer " +
                 "JOIN "+ManchesDAO.ManchesTable+" MT ON MT.number = MW.number AND MT.id = MW.id " +
-                "JOIN " + MovesDAO.MovesTable + " M ON M.number = MT.number AND MT.id = M.idmanche " +
-                "WHERE M." + MovesDAO.MovesOutcomeAttribute + " = 0 AND M."+ MovesDAO.MovesMoveTypeAttribute + " <> 'perde' AND M."+ MovesDAO.MovesMoveTypeAttribute + "<> 'passa' " +
+                "JOIN " + MovesDAO.MovesTable + " M ON M.number = MT.number AND MT.id = M.idmanche AND U.id = M.id " +
+                "WHERE M." + MovesDAO.MovesOutcomeAttribute + " = 0 AND M."+ MovesDAO.MovesMoveTypeAttribute + " <> 'perde' AND M."+ MovesDAO.MovesMoveTypeAttribute + " <> 'passa' " +
                 "GROUP BY U." +UserIdAttribute +" ORDER BY count desc";
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(queryBest);
@@ -200,7 +200,7 @@ public class UsersDAOImpl implements UsersDAO {
         String queryBest = "SELECT "+UserNicknameAttribute+", COUNT(U."+UserIdAttribute+") AS count FROM " +UserTable+" U " +
                 "JOIN "+MancheJoinersDAO.mancheJoinersTable+" MW ON U.id = MW.idplayer " +
                 "JOIN "+ManchesDAO.ManchesTable+" MT ON MT.number = MW.number AND MT.id = MW.id " +
-                "JOIN " + MovesDAO.MovesTable + " M ON M.number = MT.number AND MT.id = M.idmanche " +
+                "JOIN " + MovesDAO.MovesTable + " M ON M.number = MT.number AND MT.id = M.idmanche AND U.id = M.id " +
                 "WHERE M."+ MovesDAO.MovesMoveTypeAttribute + " = 'perde' " +
                 "GROUP BY U." +UserIdAttribute +" ORDER BY count desc";
         Statement stmt = con.createStatement();
