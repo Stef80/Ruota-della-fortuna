@@ -221,7 +221,7 @@
                 </VBox>
             </content>
         </Tab>
-        <Tab fx:id="userStatisticsTabAdmin" text="Statistiche utente">
+        <Tab fx:id="userStatisticsTabAdmin" closable="false" text="Statistiche utente">
          <content>
             <VBox alignment="CENTER" spacing="2.0">
                <children>
