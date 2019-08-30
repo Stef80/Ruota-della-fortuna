@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import rdFUtil.ApplicationCloser;
+import rdFUtil.Notification;
 import rdFUtil.client.AdminChecker;
 import rdFUtil.client.Client;
 import rdFUtil.client.ClientImplementation;
@@ -55,12 +56,8 @@ public class WelcomePane {
 
 
 		}catch (RemoteException | NotBoundException e){
-			Notifications notification = Notifications.create()
-												 .title("Connection Notification")
-												 .text("Connessione non riuscita \nriprovare")
-												 .hideAfter(Duration.seconds(3))
-												 .position(Pos.BASELINE_RIGHT);
-			notification.showError();
+			Notification.notification("Connection Notification", "Connessione non riuscita \nriprovare", 3, true);
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
+import rdFUtil.Notification;
 import rdFUtil.client.Client;
 import serverRdF.Server;
 import java.net.URL;
@@ -44,19 +45,9 @@ public class ForgottenPasswordController  implements Initializable {
 		String mail = mailText.getText();
 		boolean bool = server.resetPassword(client, mail);
 		if(!bool){
-			Notifications notification = Notifications.create()
-					.title("Mail Notification")
-					.text("L'indirizzo email non esiste.\nriprova!")
-					.hideAfter(Duration.seconds(3))
-					.position(Pos.BASELINE_RIGHT);
-			notification.showError();
+			Notification.notification("Mail Notification", "L'indirizzo email non esiste.\nriprova!", 3, true);
 		}else {
-			Notifications notification = Notifications.create()
-					.title("Successo")
-					.text("E' stata inviata una mail contenente la nuova password")
-					.hideAfter(Duration.seconds(3))
-					.position(Pos.BASELINE_RIGHT);
-			notification.showInformation();
+			Notification.notification("Successo", "E' stata inviata una mail contenente la nuova password", 3, false);
 			Stage oldStage = (Stage) enterButton.getScene().getWindow();
 			oldStage.close();
 		}

@@ -108,7 +108,6 @@ public class GameViewController extends ListCell<MatchData> {
                     if (match == null) {
                         Notification.notification("Notifica Partita", "Partita inesistente", 3, true);
                     } else {
-//                    System.out.println("Carico finestra");
                         TabPaneController.creator = false;
                         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("game_player_pane.fxml"));
                         Parent root = null;

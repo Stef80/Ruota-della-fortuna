@@ -182,12 +182,7 @@ public class TabPaneController implements Initializable {
             gameObservableList.addAll(list);
             gameList.setItems(gameObservableList);
         } catch (RemoteException e) {
-            Notifications notification = Notifications.create()
-                    .title("Notifica Errore")
-                    .text("Server offline")
-                    .hideAfter(Duration.seconds(3))
-                    .position(Pos.BASELINE_RIGHT);
-            notification.showError();
+            Notification.notification("Notifica Errore", "Server Offline", 3, true);
         }
         for (MatchData matchData : list) {
             gameList.setCellFactory(e -> new GameViewController(server, client, matchData));
@@ -197,12 +192,7 @@ public class TabPaneController implements Initializable {
             setUserStat();
             setGlobalStats();
         } catch (RemoteException e) {
-            Notifications notification = Notifications.create()
-                    .title("Notifica errore")
-                    .text("statistiche non caricate")
-                    .hideAfter(Duration.seconds(2))
-                    .position(Pos.BASELINE_RIGHT);
-            notification.showError();
+            Notification.notification("Notifica Errore", "Statistiche non Caricate", 3, true);
         }
 
         try {
@@ -296,12 +286,7 @@ public class TabPaneController implements Initializable {
 
             averageMovesTillSolutionLabel.setText(String.valueOf(avSolManches));
         } catch (RemoteException e) {
-            Notifications notification = Notifications.create()
-                    .title("Notifica Errore")
-                    .text("Server offline")
-                    .hideAfter(Duration.seconds(3))
-                    .position(Pos.BASELINE_RIGHT);
-            notification.showError();
+            Notification.notification("Notifica Errore", "Server Offline", 3, true);
         }
     }
 
@@ -378,12 +363,7 @@ public class TabPaneController implements Initializable {
             try {
                 bool = server.changeName(name, client);
             } catch (RemoteException e) {
-                Notifications notification = Notifications.create()
-                        .title("Notifica Errore")
-                        .text("Server offline")
-                        .hideAfter(Duration.seconds(3))
-                        .position(Pos.BASELINE_RIGHT);
-                notification.showError();
+                Notification.notification("Notifica Errore", "Server Offline", 3, true);
             }
             if (bool) {
                 nameLabel.setText(name);
@@ -392,19 +372,10 @@ public class TabPaneController implements Initializable {
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
-                Notifications notification = Notifications.create()
-                        .title("Successo")
-                        .text("Il nome e' stato modificato con successo")
-                        .hideAfter(Duration.seconds(3))
-                        .position(Pos.BASELINE_RIGHT);
-                notification.showInformation();
+                Notification.notification("Successo", "Il tuo nome è stato modificato con successo", 3, false);
+
             } else {
-                Notifications notification = Notifications.create()
-                        .title("Notifica Errore")
-                        .text("Non e' stato possibile modificare il nome")
-                        .hideAfter(Duration.seconds(3))
-                        .position(Pos.BASELINE_RIGHT);
-                notification.showError();
+                Notification.notification("Notifica Errore", "Non è stato possibile modificare il nome", 3, true);
             }
         }
     }
@@ -421,12 +392,7 @@ public class TabPaneController implements Initializable {
             try {
                 bool = server.changeSurname(surname, client);
             } catch (RemoteException e) {
-                Notifications notification = Notifications.create()
-                        .title("Notifica Errore")
-                        .text("Server offline")
-                        .hideAfter(Duration.seconds(3))
-                        .position(Pos.BASELINE_RIGHT);
-                notification.showError();
+                Notification.notification("Notifica Errore", "Server Offline", 3, true);
             }
             if (bool) {
                 surnameLabel.setText(surname);
@@ -435,19 +401,10 @@ public class TabPaneController implements Initializable {
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
-                Notifications notification = Notifications.create()
-                        .title("Successo")
-                        .text("Il cognome e' stato modificato con successo")
-                        .hideAfter(Duration.seconds(3))
-                        .position(Pos.BASELINE_RIGHT);
-                notification.showInformation();
+                Notification.notification("Successo", "Il tuo cognome è stato modificato con successo", 3, false);
             } else {
-                Notifications notification = Notifications.create()
-                        .title("Notifica Errore")
-                        .text("Non e' stato possibile modificare il cognome")
-                        .hideAfter(Duration.seconds(3))
-                        .position(Pos.BASELINE_RIGHT);
-                notification.showError();
+                Notification.notification("Notifica Errore", "Non è stato possibile modificare il cognome", 3, true);
+
             }
         }
     }
@@ -464,12 +421,7 @@ public class TabPaneController implements Initializable {
             try {
                 bool = server.changeNickname(nickname, client);
             } catch (RemoteException e) {
-                Notifications notification = Notifications.create()
-                        .title("Notifica Errore")
-                        .text("Server offline")
-                        .hideAfter(Duration.seconds(3))
-                        .position(Pos.BASELINE_RIGHT);
-                notification.showError();
+                Notification.notification("Notifica Errore", "Server Offline", 3, true);
             }
             if (bool) {
                 try {
@@ -478,19 +430,9 @@ public class TabPaneController implements Initializable {
                     e.printStackTrace();
                 }
                 nicknameLabel.setText(nickname);
-                Notifications notification = Notifications.create()
-                        .title("Successo")
-                        .text("Il nickname e' stato modificato con successo")
-                        .hideAfter(Duration.seconds(3))
-                        .position(Pos.BASELINE_RIGHT);
-                notification.showInformation();
+                Notification.notification("Successo", "Il tuo nickname è stato modificato con successo", 3, false);
             } else {
-                Notifications notification = Notifications.create()
-                        .title("Notifica Errore")
-                        .text("Non e' stato possibile modificare il nickname oppure e' gia' in uso")
-                        .hideAfter(Duration.seconds(3))
-                        .position(Pos.BASELINE_RIGHT);
-                notification.showError();
+                Notification.notification("Notifica Errore", "Non è stato possibile modificare il nickname", 3, true);
             }
         }
     }
@@ -508,27 +450,12 @@ public class TabPaneController implements Initializable {
             try {
                 bool = server.changePassword(password, client);
             } catch (RemoteException e) {
-                Notifications notification = Notifications.create()
-                        .title("Notifica Errore")
-                        .text("Server offline")
-                        .hideAfter(Duration.seconds(3))
-                        .position(Pos.BASELINE_RIGHT);
-                notification.showError();
+                Notification.notification("Notifica Errore", "Server Offline", 3, true);
             }
             if (bool) {
-                Notifications notification = Notifications.create()
-                        .title("Successo")
-                        .text("La password e' stata modificata con successo")
-                        .hideAfter(Duration.seconds(3))
-                        .position(Pos.BASELINE_RIGHT);
-                notification.showInformation();
+                Notification.notification("Successo", "La tua password è stata modificata con successo", 3, false);
             } else {
-                Notifications notification = Notifications.create()
-                        .title("Notifica Errore")
-                        .text("Non e' stato possibile modificare la password")
-                        .hideAfter(Duration.seconds(3))
-                        .position(Pos.BASELINE_RIGHT);
-                notification.showError();
+                Notification.notification("Notifica Errore", "Non è stato possibile modificare la password", 3, true);
             }
         }
     }
