@@ -220,7 +220,6 @@ public class DBManager implements DBManagerInterface{
         try{
             return usersDAO.getUserForMoreManchesPlayed();
         }catch (SQLException e){
-            System.err.println("SQLException in getUserForMostManchePlayed");
             return null;
         }
     }
