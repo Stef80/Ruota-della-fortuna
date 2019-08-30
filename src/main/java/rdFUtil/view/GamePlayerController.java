@@ -143,8 +143,8 @@ public class GamePlayerController implements Initializable {
                 StackPane slotPane = new StackPane();
                 Label letterLabel = new Label();
                 letterLabel.setVisible(false);
-                letterLabel.setStyle("-fx-font-weight: bold" +
-                                             "-fx-font-size:36");
+                letterLabel.setStyle("-fx-font-weight: bold;\n" +
+                                             "-fx-font-size:36;");
                 slotPane.getChildren().add(letterLabel);
                 slotPane.setStyle(" -fx-background-color: #eefcf9;\n" +
                         "    -fx-border-color: #08FBE1;\n" +
@@ -655,7 +655,7 @@ public class GamePlayerController implements Initializable {
             System.out.println("Prova");
         } finally {
             match = null;
-            Parent root = FXMLLoader.load(getClass().getResource("tab_pane.fxml"));
+            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("tab_pane.fxml"));
             Stage primaryStage = new Stage();
             Scene scene = new Scene(root);
             primaryStage.setTitle(FrameTitle.main);
@@ -798,7 +798,7 @@ public class GamePlayerController implements Initializable {
                 match = null;
                 Parent root = null;
                 try {
-                    root = FXMLLoader.load(getClass().getResource("tab_pane.fxml"));
+                    root = FXMLLoader.load(getClass().getClassLoader().getResource("tab_pane.fxml"));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
