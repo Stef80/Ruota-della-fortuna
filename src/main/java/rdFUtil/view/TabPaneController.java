@@ -326,12 +326,7 @@ public class TabPaneController implements Initializable {
             gameObservableList.addAll(list);
             gameList.setItems(gameObservableList);
         } catch (RemoteException e) {
-            Notifications notification = Notifications.create()
-                    .title("Notifica Errore")
-                    .text("Server offline")
-                    .hideAfter(Duration.seconds(3))
-                    .position(Pos.BASELINE_RIGHT);
-            notification.showError();
+            Notification.notification("Notifica Errore","Non e' stato possibile aggiungere le nuove frasi\n Riprova",2,true);
         }
         for (MatchData matchData : list) {
             gameList.setCellFactory(e -> new GameViewController(server, client, matchData));
@@ -364,12 +359,7 @@ public class TabPaneController implements Initializable {
                 });
             }
         } catch (RemoteException e) {
-            Notifications notification = Notifications.create()
-                    .title("Notifica Errore")
-                    .text("Server offline")
-                    .hideAfter(Duration.seconds(3))
-                    .position(Pos.BASELINE_RIGHT);
-            notification.showError();
+            Notification.notification("Notifica Errore","Server offline",2,true);
         }
     }
 
