@@ -41,40 +41,40 @@ public class EmailSender {
 //    System.out.println("\nMail was sent successfully.");
   }
 
-  public static void main(String[] argv) {
-    try {
-      String password = "";
-      String username = "";
-      String subject = "";
-      String to = "";
-      String body = "";
-
-      final JTextField uf = new JTextField("name@studenti.uninsubria.it");
-      final JPasswordField pf = new JPasswordField();
-      final JTextField tf = new JTextField();
-      final JTextField sf = new JTextField("email subject");
-      final JTextArea bf = new JTextArea(null, "textual content of the email", 10, 20);
-
-      Object[] message = {
-              "Username / From:", uf,
-              "Password:", pf,
-              "To:", tf,
-              "Subject:", sf,
-              "Body:", bf
-      };
-      int option = JOptionPane.showOptionDialog(null, message, "Send email",
-              JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new String[]{"Send", "Cancel"}, "Send");
-      if (option == JOptionPane.YES_OPTION) {
-        password = new String(pf.getPassword());
-        username = new String(uf.getText());
-        to = new String(tf.getText());
-        subject = new String(sf.getText());
-        body = new String(bf.getText());
-        sendUninsubriaEmail(username, password, to, subject, body);
-      }
-    } catch (MessagingException e) {
-      System.err.println("SMTP SEND FAILED:");
-      System.err.println(e.getMessage());
-    }
-  }
+//  public static void main(String[] argv) {
+//    try {
+//      String password = "";
+//      String username = "";
+//      String subject = "";
+//      String to = "";
+//      String body = "";
+//
+//      final JTextField uf = new JTextField("name@studenti.uninsubria.it");
+//      final JPasswordField pf = new JPasswordField();
+//      final JTextField tf = new JTextField();
+//      final JTextField sf = new JTextField("email subject");
+//      final JTextArea bf = new JTextArea(null, "textual content of the email", 10, 20);
+//
+//      Object[] message = {
+//              "Username / From:", uf,
+//              "Password:", pf,
+//              "To:", tf,
+//              "Subject:", sf,
+//              "Body:", bf
+//      };
+//      int option = JOptionPane.showOptionDialog(null, message, "Send email",
+//              JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new String[]{"Send", "Cancel"}, "Send");
+//      if (option == JOptionPane.YES_OPTION) {
+//        password = new String(pf.getPassword());
+//        username = new String(uf.getText());
+//        to = new String(tf.getText());
+//        subject = new String(sf.getText());
+//        body = new String(bf.getText());
+//        sendUninsubriaEmail(username, password, to, subject, body);
+//      }
+//    } catch (MessagingException e) {
+//      System.err.println("SMTP SEND FAILED:");
+//      System.err.println(e.getMessage());
+//    }
+//  }
 }

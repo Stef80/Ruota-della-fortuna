@@ -16,7 +16,6 @@ import rdFUtil.ApplicationCloser;
 import rdFUtil.client.Client;
 import rdFUtil.client.ClientImplementation;
 import rdFUtil.view.Controller;
-import rdFUtil.view.ForgottenPasswordController;
 import rdFUtil.view.FrameTitle;
 import rdFUtil.view.RegistrationFormController;
 import serverRdF.Server;
@@ -26,7 +25,6 @@ import serverRdF.emailRdF.EmailManager;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 
@@ -45,7 +43,7 @@ public class InsubriaLoginController {
     private static Registry registry;
     private static Server server;
     private static Client client;
-    public static boolean gogo = false;
+    public static boolean forServer = false;
 
 
     /**
@@ -60,7 +58,7 @@ public class InsubriaLoginController {
         String password = passwordTextField.getText();
         boolean logged = EmailManager.logIntoAccount(user, password);
         if (logged) {
-            gogo = true;
+            forServer = true;
             emailManager = EmailManager.createEmailManager(user, password);
             server = new ServerImplementation(dbManager, emailManager);
 //            System.out.println("Server creato");

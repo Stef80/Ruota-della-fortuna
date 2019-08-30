@@ -1,6 +1,5 @@
 package rdFUtil.view;
 
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,7 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import rdFUtil.ApplicationCloser;
@@ -52,7 +50,7 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        if (!InsubriaLoginController.gogo)
+        if (!InsubriaLoginController.forServer)
             WelcomePane.setController(this);
         else
             InsubriaLoginController.setController(this);
@@ -138,6 +136,7 @@ public class Controller implements Initializable {
      * @throws IOException In caso non sia possibile aprire la nuova finestra
      */
     public void register() throws IOException {
+        InsubriaLoginController.forServer = false;
         Parent root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("registration_form_pane.fxml"));
         Stage primaryStage = new Stage();
         Scene scene = new Scene(root);

@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import rdFUtil.ApplicationCloser;
-import rdFUtil.client.AdminChecker;
 import rdFUtil.client.Client;
 import rdFUtil.logging.User;
 import serverRdF.Server;
@@ -160,7 +159,7 @@ public class RegistrationFormController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        if(InsubriaLoginController.gogo) {
+        if(InsubriaLoginController.forServer) {
             InsubriaLoginController.setReg(this);
         }else {
             Controller.setRegistration(this);

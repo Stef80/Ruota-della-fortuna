@@ -48,12 +48,6 @@ public class OTPRegistrationController implements Initializable {
 
     public OTPRegistrationController(){}
 
-    public OTPRegistrationController(Server server, Client client, OTPHelper otp) {
-        this.server = server;
-        this.client = client;
-        this.otp = otp;
-    }
-
     /**
      * Controlla che l'OTP inserito sia uguale a quello inviato via email. Se i due codici corrispondono, si viene reindirizzati alla schermata di login
      *
