@@ -126,7 +126,7 @@ public class GamePlayerController implements Initializable {
         }
         disableAll();
         try {
-            if(GameViewController.player)
+            if (GameViewController.player)
                 match.tryForStartMatch();
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -143,8 +143,8 @@ public class GamePlayerController implements Initializable {
                 StackPane slotPane = new StackPane();
                 Label letterLabel = new Label();
                 letterLabel.setVisible(false);
-                letterLabel.setStyle("-fx-font-weight: bold" +
-                                             "-fx-font-size:36");
+                letterLabel.setStyle("-fx-font-weight: bold;\n" +
+                                             "-fx-font-size:36;");
                 slotPane.getChildren().add(letterLabel);
                 slotPane.setStyle(" -fx-background-color: #eefcf9;\n" +
                         "    -fx-border-color: #08FBE1;\n" +
@@ -264,8 +264,8 @@ public class GamePlayerController implements Initializable {
             public void run() {
                 StackPane nod;
                 Label labe;
-                for(int i=0;i<5;i++){
-                    for(int j=0;j<14;j++){
+                for (int i = 0; i < 5; i++) {
+                    for (int j = 0; j < 14; j++) {
                         nod = (StackPane) getNodeByRowColumnIndex(i, j);
                         labe = (Label) nod.getChildren().get(0);
                         labe.setVisible(false);
@@ -693,7 +693,7 @@ public class GamePlayerController implements Initializable {
             @Override
             public void run() {
                 try {
-                    Parent root = FXMLLoader.load(getClass().getResource("tab_pane.fxml"));
+                    Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("tab_pane.fxml"));
                     Stage primaryStage = new Stage();
                     Scene scene = new Scene(root);
                     primaryStage.setTitle(FrameTitle.main);
@@ -789,11 +789,10 @@ public class GamePlayerController implements Initializable {
             @Override
             public void run() {
                 String message = winner + "\nha vinto la partita ";
-                Notification.notification("Notifica di partita", message, 3, false);
                 match = null;
                 Parent root = null;
                 try {
-                    root = FXMLLoader.load(getClass().getResource("tab_pane.fxml"));
+                    root = FXMLLoader.load(getClass().getClassLoader().getResource("tab_pane.fxml"));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -803,6 +802,7 @@ public class GamePlayerController implements Initializable {
                 primaryStage.setScene(scene);
                 primaryStage.show();
                 ApplicationCloser.setCloser(primaryStage);
+                TabPaneController.notifyMatchEnd(message);
                 Stage oldStage = (Stage) exitButton.getScene().getWindow();
                 oldStage.close();
             }
@@ -816,25 +816,24 @@ public class GamePlayerController implements Initializable {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                Notification.notification("Notifica di partita", "HAI VINTO!!!", 3, false);
-
+                match = null;
+                Parent root = null;
+                try {
+                    root = FXMLLoader.load(getClass().getClassLoader().getResource("tab_pane.fxml"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Stage primaryStage = new Stage();
+                Scene scene = new Scene(root);
+                primaryStage.setTitle(FrameTitle.main);
+                primaryStage.setScene(scene);
+                primaryStage.show();
+                ApplicationCloser.setCloser(primaryStage);
+                TabPaneController.notifyMatchWin();
+                Stage oldStage = (Stage) exitButton.getScene().getWindow();
+                oldStage.close();
             }
         });
-        match = null;
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("tab_pane.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Stage primaryStage = new Stage();
-        Scene scene = new Scene(root);
-        primaryStage.setTitle(FrameTitle.main);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-        ApplicationCloser.setCloser(primaryStage);
-        Stage oldStage = (Stage) exitButton.getScene().getWindow();
-        oldStage.close();
     }
 
     /**
@@ -872,7 +871,7 @@ public class GamePlayerController implements Initializable {
             @Override
             public void run() {
                 String message = name + "\nha commesso un errore";
-                Notification.notification("Notifica di partita",message, 3, false);
+                Notification.notification("Notifica di partita", message, 3, false);
             }
         });
     }
