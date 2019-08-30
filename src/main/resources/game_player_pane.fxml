@@ -195,7 +195,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0">
                <children>
-                  <Label fx:id="wheelResultLabel" text="perde" textFill="#1043ee">
+                  <Label fx:id="wheelResultLabel" text="-" textFill="#1043ee">
                      <font>
                         <Font name="System Bold" size="56.0" />
                      </font>

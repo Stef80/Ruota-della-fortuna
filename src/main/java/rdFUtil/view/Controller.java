@@ -10,9 +10,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import rdFUtil.ApplicationCloser;
+import rdFUtil.Notification;
 import rdFUtil.client.AdminChecker;
 import rdFUtil.client.Client;
 import rdFUtil.client.ClientImplementation;
@@ -79,12 +81,7 @@ public class Controller implements Initializable {
             Login login = new Login(password, mail);
             int result = server.signIn(login, client, admin);
             if (result < 0) {
-                Notifications notification = Notifications.create()
-                        .title("Mail Notification")
-                        .text("E-mail o password errati \nriprova!")
-                        .hideAfter(Duration.seconds(3))
-                        .position(Pos.BASELINE_RIGHT);
-                notification.showError();
+                Notification.notification("Mail Notification", "E-mail o password errati \nriprova!", 3, true);
             } else if (result == 0) {
                 if (!isServer) {
                     Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("tab_pane.fxml"));
@@ -113,12 +110,7 @@ public class Controller implements Initializable {
                     oldStage.close();
                 }
             } else {
-                Notifications notification = Notifications.create()
-                        .title("Mail Notification")
-                        .text("Si sta provando ad accedere alla piattaforma dal client sbagliato \nriprova!")
-                        .hideAfter(Duration.seconds(3))
-                        .position(Pos.BASELINE_RIGHT);
-                notification.showError();
+                Notification.notification("Mail Notification","Si sta provando ad accedere alla piattaforma dal client sbagliato \nriprova!", 3, true);
             }
         }
     }
@@ -130,7 +122,7 @@ public class Controller implements Initializable {
      */
     public void register() throws IOException {
         InsubriaLoginController.forServer = false;
-        Parent root = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("registration_form_pane.fxml"));
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("registration_form_pane.fxml"));
         Stage primaryStage = new Stage();
         Scene scene = new Scene(root);
         primaryStage.setTitle(FrameTitle.main);
@@ -149,7 +141,7 @@ public class Controller implements Initializable {
      * @throws IOException In caso non sia possibile aprire la finestra
      */
     public void reset() throws IOException {
-        Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("forgotten_password_pane.fxml"));
+        Parent root1 = FXMLLoader.load(getClass().getClassLoader().getResource("forgotten_password_pane.fxml"));
         Stage primaryStage = new Stage();
         Scene scene = new Scene(root1);
         primaryStage.setTitle(FrameTitle.main);
