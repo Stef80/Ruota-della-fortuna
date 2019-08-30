@@ -760,15 +760,14 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     }
 
     private void resetPhraseStatus(String phrase) {
-//        System.out.println(phrase);
+
         StringTokenizer st = new StringTokenizer(phrase, " ',!?.:;\"/()\\^<>-+*");
         int length = 0;
 
         while (st.hasMoreTokens()) {
             String s = st.nextToken();
-//            System.out.println(s);
+
             for (int j = 0; j < s.length(); j++) {
-//                System.out.println(length);
                 length++;
             }
         }
