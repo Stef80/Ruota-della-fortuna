@@ -800,6 +800,7 @@ public class GamePlayerController implements Initializable {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
+
                 Notification.notification("Notifica di partita", "e' il tuo turno", 3, false);
             }
         });
@@ -872,12 +873,8 @@ public class GamePlayerController implements Initializable {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                Notifications notification = Notifications.create()
-                        .title("Notifica di partita")
-                        .text("Tempo scaduto ")
-                        .hideAfter(Duration.seconds(3))
-                        .position(Pos.BASELINE_RIGHT);
-                notification.showInformation();
+                Notification.notification("Notifica di partita", "Tempo scaduto", 3, false);
+
             }
         });
     }
@@ -889,12 +886,7 @@ public class GamePlayerController implements Initializable {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                Notifications notification = Notifications.create()
-                        .title("Notifica di partita")
-                        .text("Hai fatto un errore. Vuoi usare il jolly?")
-                        .hideAfter(Duration.seconds(3))
-                        .position(Pos.BASELINE_RIGHT);
-                notification.showInformation();
+                Notification.notification("Notifica di partita", "Hai fatto un errore\nVuoi uasre il jolly?", 3, false);
             }
         });
     }
@@ -909,6 +901,8 @@ public class GamePlayerController implements Initializable {
             @Override
             public void run() {
                 String message = name + "\nha commesso un errore";
+                Notification.notification("Notifica di partita",message, 3, false);
+
                 Notifications notification = Notifications.create()
                         .title("Notifica di partita")
                         .text(message)
