@@ -7,7 +7,7 @@ import java.sql.SQLException;
  */
 public interface MatchWinnersDAO {
     String matchWinnersTable = "matchwinners";
-    String matchWinnersIdMatchAttribute  = "id";
+    String matchWinnersIdMatchAttribute  = "idmatch";
     String matchWinnersidPlayerAttribute = "idplayer";
     String matchWinnersAmountAttribute = "amount";
 

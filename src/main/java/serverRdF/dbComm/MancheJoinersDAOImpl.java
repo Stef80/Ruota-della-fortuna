@@ -33,7 +33,7 @@ public class MancheJoinersDAOImpl implements MancheJoinersDAO {
 
     @Override
     public int getMatchesPlayedByUser(String id) throws SQLException{
-        String queryGet = "SELECT COUNT(*) AS count FROM "+mancheJoinersTable+" WHERE "+mancheJoinersIdPlayerAttribute+" = '"+id+"' AND "+mancheJoinersObserverAttribute+" = false GROUP BY "+mancheJoinersIdMatchAttribute+";";
+        String queryGet = "SELECT COUNT(*) AS count FROM (SELECT id FROM "+mancheJoinersTable+" WHERE "+mancheJoinersIdPlayerAttribute+" = '"+id+"' AND "+mancheJoinersObserverAttribute+" = false GROUP BY "+mancheJoinersIdMatchAttribute+") as matches;";
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(queryGet);
         if(rs.next()) {
