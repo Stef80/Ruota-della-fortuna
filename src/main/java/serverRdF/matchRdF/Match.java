@@ -58,6 +58,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         Player activePlayer = players.get(turn);
 
         if (timer.isThisForJolly() || timer.isThisForSolution() || timer.isThisForVocal() || noConsonantLeft || spinnedWheel) {
+            timer.interrupt();
             errorInTurn(false, false);
             return 0;
         } else {
@@ -620,7 +621,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         }
         timer.interrupt();
         String phrase = manche.getCurrentPhrase().getPhrase();
-        if (solution.equals(phrase.toUpperCase())) {
+        if (solution.equals(phrase.toUpperCase().trim())) {
             manche.getTurns().addMove(activePlayer.getIdPlayer(), "soluzione", -1);
             endManche(activePlayer);
         } else {
@@ -845,7 +846,8 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
      * @throws RemoteException
      */
     public void endMatch(boolean isThereAWinner) throws RemoteException {
-        timer.interrupt();
+//        if(timer.isAlive())
+//            timer.interrupt();
         MatchManager.deleteMatch(id);
         if (isThereAWinner) {
             Player winner = null;
@@ -987,7 +989,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
         for (Player p : players) {
             try {
                 if (p.getClient().equals(c)) {
-                    player = p;
+//                    player = p;
                 } else {
                     p.getClient().notifyLeaver(name);
                     p.getClient().notifyPlayerStats(num, "--", 0, 0, 0);
@@ -996,7 +998,10 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                 player = p;
             }
         }
-        players.remove(player);
+        if(player != null)
+            players.remove(player);
+        else
+            players.remove(num);
         for (Client client : observers) {
             try {
                 client.notifyLeaver(name);

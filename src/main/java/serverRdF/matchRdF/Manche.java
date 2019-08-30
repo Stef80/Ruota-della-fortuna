@@ -115,24 +115,31 @@ public class Manche {
     public boolean endManche(Player winner) {
         if(numManche != 0) {
             ManchesDTO manche = new ManchesDTO();
-            setNumManche(numManche + 1);
-            manche.setNumber(numManche);
-            PhrasesDTO newPhrase = getCurrentPhrase();
-            String theme = Match.prepareStringForDB(newPhrase.getTheme());
-            String phrase = Match.prepareStringForDB(newPhrase.getPhrase());
-            manche.setPhrase(new PhrasesDTO(theme,phrase));
             manche.setMatch(new MatchesDTO(match, matchTime));
-            calledConsonant = new ArrayList<String>();
-            boolean tur = turns.saveMoves(dbManager);
-            boolean man = true;
             if (winner != null) {
-                dbManager.addManche(manche);
-                manche.setNumber(manche.getNumber()-1);
+                manche.setNumber(numManche);
+                PhrasesDTO newPhras = getCurrentPhrase();
+                String them = Match.prepareStringForDB(newPhras.getTheme());
+                String phras = Match.prepareStringForDB(newPhras.getPhrase());
+                manche.setPhrase(new PhrasesDTO(them, phras));
                 return dbManager.addMancheWinner(winner.getIdPlayer(), manche, winner.getPartialPoints());
             }
-            if (man && tur) {
-                return true;
-            } else
+            setNumManche(numManche + 1);
+            manche.setNumber(numManche);
+            if(numManche < 6) {
+                PhrasesDTO newPhrase = getCurrentPhrase();
+                String theme = Match.prepareStringForDB(newPhrase.getTheme());
+                String phrase = Match.prepareStringForDB(newPhrase.getPhrase());
+                manche.setPhrase(new PhrasesDTO(theme, phrase));
+                calledConsonant = new ArrayList<String>();
+                boolean tur = turns.saveMoves(dbManager);
+                boolean man = true;
+                dbManager.addManche(manche);
+                if (man && tur) {
+                    return true;
+                } else
+                    return false;
+            }else
                 return false;
         }else
             return true;

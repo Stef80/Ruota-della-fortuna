@@ -902,13 +902,6 @@ public class GamePlayerController implements Initializable {
             public void run() {
                 String message = name + "\nha commesso un errore";
                 Notification.notification("Notifica di partita",message, 3, false);
-
-                Notifications notification = Notifications.create()
-                        .title("Notifica di partita")
-                        .text(message)
-                        .hideAfter(Duration.seconds(3))
-                        .position(Pos.BASELINE_RIGHT);
-                notification.showInformation();
             }
         });
     }
