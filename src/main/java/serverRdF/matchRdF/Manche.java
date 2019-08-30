@@ -122,7 +122,7 @@ public class Manche {
                 String them = Match.prepareStringForDB(newPhras.getTheme());
                 String phras = Match.prepareStringForDB(newPhras.getPhrase());
                 manche.setPhrase(new PhrasesDTO(them, phras));
-                return dbManager.addMancheWinner(winner.getIdPlayer(), manche, winner.getPartialPoints());
+                dbManager.addMancheWinner(winner.getIdPlayer(), manche, winner.getPartialPoints());
             }
             setNumManche(numManche + 1);
             manche.setNumber(numManche);

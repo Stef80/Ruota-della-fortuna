@@ -131,7 +131,8 @@ public class GamePlayerController implements Initializable {
         }
         disableAll();
         try {
-            match.tryForStartMatch();
+            if(GameViewController.player)
+                match.tryForStartMatch();
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -442,6 +443,7 @@ public class GamePlayerController implements Initializable {
         solution = solution.trim();
         solution = solution.toUpperCase();
         match.giveSolution(solution);
+        solutionTextField.setText("");
     }
 
     /**
@@ -488,6 +490,7 @@ public class GamePlayerController implements Initializable {
             match.giveVocal(letter);
             vowelButtonPressed = false;
         }
+        letterTextField.setText("");
     }
 
     /**

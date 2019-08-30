@@ -783,6 +783,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
      */
     public void endManche(Player winner) throws RemoteException {
         manche.endManche(winner);
+        firstTurn = true;
         if (winner != null) {
             for (Player p : players) {
                 try {
@@ -798,7 +799,6 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                     leaveMatchAsPlayer(p);
                 }
             }
-
             if (manche.getNumManche() > 5) {
                 endMatch(true);
                 return;
