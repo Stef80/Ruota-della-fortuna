@@ -40,6 +40,8 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
 
     }
 
+
+
     public Match(String id, LocalDateTime localDateTime, DBManager db, EmailManager email) throws RemoteException {
         this.id = id;
         onGoing = false;
@@ -1149,5 +1151,9 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
     private void startTimer(int time, boolean jolly, boolean solution, boolean vocal) {
         timer = new MoveTimer(time, this, jolly, solution, vocal);
         timer.start();
+    }
+
+    public boolean isMatchEnded() {
+        return matchEnded;
     }
 }

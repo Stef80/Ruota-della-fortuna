@@ -693,7 +693,7 @@ public class GamePlayerController implements Initializable {
             @Override
             public void run() {
                 try {
-                    Parent root = FXMLLoader.load(getClass().getResource("tab_pane.fxml"));
+                    Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("tab_pane.fxml"));
                     Stage primaryStage = new Stage();
                     Scene scene = new Scene(root);
                     primaryStage.setTitle(FrameTitle.main);
@@ -789,7 +789,6 @@ public class GamePlayerController implements Initializable {
             @Override
             public void run() {
                 String message = winner + "\nha vinto la partita ";
-                Notification.notification("Notifica di partita", message, 3, false);
                 match = null;
                 Parent root = null;
                 try {
@@ -803,6 +802,7 @@ public class GamePlayerController implements Initializable {
                 primaryStage.setScene(scene);
                 primaryStage.show();
                 ApplicationCloser.setCloser(primaryStage);
+                TabPaneController.notifyMatchEnd(message);
                 Stage oldStage = (Stage) exitButton.getScene().getWindow();
                 oldStage.close();
             }
@@ -816,7 +816,6 @@ public class GamePlayerController implements Initializable {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                Notification.notification("Notifica di partita", "HAI VINTO!!!", 3, false);
                 match = null;
                 Parent root = null;
                 try {
@@ -830,6 +829,7 @@ public class GamePlayerController implements Initializable {
                 primaryStage.setScene(scene);
                 primaryStage.show();
                 ApplicationCloser.setCloser(primaryStage);
+                TabPaneController.notifyMatchWin();
                 Stage oldStage = (Stage) exitButton.getScene().getWindow();
                 oldStage.close();
             }

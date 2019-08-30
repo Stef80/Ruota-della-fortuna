@@ -68,32 +68,34 @@ public class MoveTimer extends Thread {
                 sleep(1000);
             }
 //            sleep(time);
-            for(Client c : match.getObservers()){
-                try {
-                    c.notifyTimeOut();
-                }catch(RemoteException e){
+            if(!match.isMatchEnded()) {
+                for (Client c : match.getObservers()) {
                     try {
-                        match.leaveMatchAsObserver(c);
-                    }catch(RemoteException ex){
-                        ServerImplementation.serverError(null);
+                        c.notifyTimeOut();
+                    } catch (RemoteException e) {
+                        try {
+                            match.leaveMatchAsObserver(c);
+                        } catch (RemoteException ex) {
+                            ServerImplementation.serverError(null);
+                        }
                     }
                 }
-            }
-            for(Player p : match.getPlayers()){
-                try {
-                    p.getClient().notifyTimeOut();
-                }catch(RemoteException e){
+                for (Player p : match.getPlayers()) {
                     try {
-                        match.leaveMatchAsPlayer(p);
-                    }catch(RemoteException ex){
-                        ServerImplementation.serverError(null);
+                        p.getClient().notifyTimeOut();
+                    } catch (RemoteException e) {
+                        try {
+                            match.leaveMatchAsPlayer(p);
+                        } catch (RemoteException ex) {
+                            ServerImplementation.serverError(null);
+                        }
                     }
                 }
-            }
-            if (isThisForJolly) {
-                match.errorInTurn(false,true);
-            }else{
-                match.errorInTurn(true,false);
+                if (isThisForJolly) {
+                    match.errorInTurn(false, true);
+                } else {
+                    match.errorInTurn(true, false);
+                }
             }
         }catch(InterruptedException e){
             return;

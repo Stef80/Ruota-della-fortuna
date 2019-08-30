@@ -135,27 +135,27 @@ public class TabPaneController implements Initializable {
     public void addMatch(ActionEvent actionEvent) throws RemoteException {
         try {
             match = server.createMatch(client);
+            try {
+                Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("game_player_pane.fxml"));
+                Stage primaryStage = new Stage();
+                Scene scene = new Scene(root);
+                primaryStage.setScene(scene);
+                primaryStage.show();
+                primaryStage.setOnCloseRequest((WindowEvent event1) -> {
+                    try {
+                        match.leaveMatchAsPlayer(client);
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
+                    System.exit(0);
+                });
+                Stage oldStage = (Stage) createMatchButton.getScene().getWindow();
+                oldStage.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } catch (RemoteException e) {
             client.notifyServerError();
-        }
-        try {
-            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("game_player_pane.fxml"));
-            Stage primaryStage = new Stage();
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-            primaryStage.setOnCloseRequest((WindowEvent event1) -> {
-                try {
-                    match.leaveMatchAsPlayer(client);
-                } catch (RemoteException e) {
-                    e.printStackTrace();
-                }
-                System.exit(0);
-            });
-            Stage oldStage = (Stage) createMatchButton.getScene().getWindow();
-            oldStage.close();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
     }
@@ -286,7 +286,7 @@ public class TabPaneController implements Initializable {
             nickBestCallLabel.setText(bestMove.nextToken());
             letterCalledLabel.setText(bestMove.nextToken());
             String phrase = "";
-            while(bestMove.hasMoreElements()){
+            while (bestMove.hasMoreElements()) {
                 phrase += bestMove.nextToken() + " ";
             }
             phraseAsociatedLabel.setText(phrase);
@@ -307,11 +307,11 @@ public class TabPaneController implements Initializable {
      */
     public void notifyTooManyPlayers() {
         Platform.runLater(new Runnable() {
-                              @Override
-                              public void run() {
-                                  Notification.notification("Giocatori","Troppi giocatori",2,true);
-                              }
-                          });
+            @Override
+            public void run() {
+                Notification.notification("Giocatori", "Troppi giocatori", 2, true);
+            }
+        });
     }
 
     /**
@@ -326,7 +326,7 @@ public class TabPaneController implements Initializable {
             gameObservableList.addAll(list);
             gameList.setItems(gameObservableList);
         } catch (RemoteException e) {
-            Notification.notification("Notifica Errore","Non e' stato possibile aggiornare la lista dei match\n Riprova",2,true);
+            Notification.notification("Notifica Errore", "Non e' stato possibile aggiornare la lista dei match\n Riprova", 2, true);
         }
         for (MatchData matchData : list) {
             gameList.setCellFactory(e -> new GameViewController(server, client, matchData));
@@ -346,7 +346,7 @@ public class TabPaneController implements Initializable {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        Notification.notification("Successo","Le frasi sono state aggiunte con successo",2,false);
+                        Notification.notification("Successo", "Le frasi sono state aggiunte con successo", 2, false);
                     }
                 });
 
@@ -354,12 +354,12 @@ public class TabPaneController implements Initializable {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        Notification.notification("Notifica Errore","Non e' stato possibile aggiungere le nuove frasi\n Riprova",2,true);
+                        Notification.notification("Notifica Errore", "Non e' stato possibile aggiungere le nuove frasi\n Riprova", 2, true);
                     }
                 });
             }
         } catch (RemoteException e) {
-            Notification.notification("Notifica Errore","Server offline",2,true);
+            Notification.notification("Notifica Errore", "Server offline", 2, true);
         }
     }
 
@@ -552,13 +552,25 @@ public class TabPaneController implements Initializable {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                String message = reason + "\nla partita è finita";
-                Notifications notification = Notifications.create()
-                        .title("Notifica di partita")
-                        .text(message)
-                        .hideAfter(Duration.seconds(3))
-                        .position(Pos.BASELINE_RIGHT);
-                notification.showInformation();
+                Notification.notification("Notifica di partita", reason, 3, false);
+            }
+        });
+    }
+
+    public static void notifyMatchEnd(String message) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Notification.notification("Notifica di partita", message, 3, false);
+            }
+        });
+    }
+
+    public static void notifyMatchWin() {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Notification.notification("Notifica di partita", "HAI VINTO!!!", 3, false);
             }
         });
     }
