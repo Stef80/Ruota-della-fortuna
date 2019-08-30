@@ -2,19 +2,17 @@ package rdFUtil.view;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-import org.controlsfx.control.Notifications;
 import rdFUtil.ApplicationCloser;
+import rdFUtil.Notification;
 import rdFUtil.client.AdminChecker;
 import rdFUtil.client.Client;
-import rdFUtil.client.ClientImplementation;
 import serverRdF.Server;
+
 import java.io.IOException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
