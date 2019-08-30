@@ -845,6 +845,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
      * @throws RemoteException
      */
     public void endMatch(boolean isThereAWinner) throws RemoteException {
+        timer.interrupt();
         MatchManager.deleteMatch(id);
         if (isThereAWinner) {
             Player winner = null;
