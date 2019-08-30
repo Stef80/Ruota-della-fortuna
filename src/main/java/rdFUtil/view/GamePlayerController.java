@@ -655,7 +655,7 @@ public class GamePlayerController implements Initializable {
             System.out.println("Prova");
         } finally {
             match = null;
-            Parent root = FXMLLoader.load(getClass().getResource("tab_pane.fxml"));
+            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("tab_pane.fxml"));
             Stage primaryStage = new Stage();
             Scene scene = new Scene(root);
             primaryStage.setTitle(FrameTitle.main);

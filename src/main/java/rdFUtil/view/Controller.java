@@ -78,7 +78,6 @@ public class Controller implements Initializable {
         if (!(mail.equals("") || password.equals(""))) {
             Login login = new Login(password, mail);
             int result = server.signIn(login, client, admin);
-
             if (result < 0) {
                 Notifications notification = Notifications.create()
                         .title("Mail Notification")
@@ -98,7 +97,7 @@ public class Controller implements Initializable {
                     Stage oldStage = (Stage) loginButton.getScene().getWindow();
                     oldStage.close();
                 } else {
-                    FXMLLoader loader = new FXMLLoader(Thread.currentThread().getContextClassLoader().getResource("host_view.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("host_view.fxml"));
                     Parent root = null;
                     try {
                         root = loader.load();
