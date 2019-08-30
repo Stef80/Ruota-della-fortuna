@@ -11,3 +11,25 @@
     -fx-background-radius: 3px;
     -fx-border-width: 2px;
 }
+.tab{
+    -fx-background-color: #eefcf9;
+    -fx-border-color: #FEFE00;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+    -fx-border-width: 2px;
+}
+.tab-pane .tab-header-area .tab-header-background{
+    -fx-background-color: #eefcf9;
+}
+
+.list-view{
+   -fx-background-color: #eefcf9;
+}
+
+.scroll-pane {
+   -fx-background: #eefcf9 ;
+}
+
+.labelgame{
+  -fx-font-weight: bold;
+}
