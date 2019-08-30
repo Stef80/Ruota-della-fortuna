@@ -3,6 +3,7 @@ package rdFUtil.client;
 
 import rdFUtil.view.GamePlayerController;
 import rdFUtil.view.OTPRegistrationController;
+import rdFUtil.view.RegistrationFormController;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -248,4 +249,5 @@ public interface Client extends Remote {
     public void setOtpPane(OTPRegistrationController otp) throws RemoteException;
 
     public void updateTimer(int num) throws RemoteException;
+
 }

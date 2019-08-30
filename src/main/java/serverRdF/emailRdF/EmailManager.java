@@ -45,7 +45,7 @@ public class EmailManager {
         try {
             EmailSender.sendUninsubriaEmail(email, password, to, sub, txt);
         } catch (MessagingException e) {
-            ServerImplementation.serverError(null);
+            throw new EmailAddressDoesNotExistException();
         }
     }
 

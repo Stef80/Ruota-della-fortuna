@@ -53,7 +53,7 @@ public class ServerImplementation extends UnicastRemoteObject implements Server 
      */
     public static void serverError(Client c) {
         if (c == null) {
-            System.out.println("Server error");
+            System.err.println("Server error");
         } else {
             try {
                 c.notifyServerError();

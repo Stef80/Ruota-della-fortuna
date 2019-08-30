@@ -268,6 +268,7 @@ public class GamePlayerController implements Initializable {
                     for (int j = 0; j < 14; j++) {
                         nod = (StackPane) getNodeByRowColumnIndex(i, j);
                         labe = (Label) nod.getChildren().get(0);
+                        labe.setText("");
                         labe.setVisible(false);
                         nod.setStyle(" -fx-background-color: #eefcf9;\n" +
                                 "    -fx-border-color: #08FBE1;\n" +
