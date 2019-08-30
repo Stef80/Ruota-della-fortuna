@@ -78,7 +78,7 @@
                                           <Image url="@male_avatar-512.png" />
                                        </image>
                                     </ImageView>
-                                    <Label fx:id="player1Label" alignment="TOP_CENTER" contentDisplay="TOP" graphicTextGap="6.0" prefWidth="70.0" text="nik1" textAlignment="CENTER" />
+                                    <Label fx:id="player1Label" alignment="TOP_CENTER" contentDisplay="TOP" graphicTextGap="6.0" prefWidth="70.0" text="--" textAlignment="CENTER" />
                                  </children>
                                  <padding>
                                     <Insets top="15.0" />
@@ -90,8 +90,8 @@
                               <Insets left="5.0" />
                            </padding>
                         </HBox>
-                        <Label fx:id="partial1Label" prefHeight="50.0" text="Label" />
-                        <Label fx:id="total1Label" prefHeight="50.0" text="Label" />
+                        <Label fx:id="partial1Label" prefHeight="50.0" text="0" />
+                        <Label fx:id="total1Label" prefHeight="50.0" text="0" />
                      </children>
                   </VBox>
                   <VBox fx:id="player2Box" alignment="CENTER" prefHeight="200.0" prefWidth="180.0" spacing="15.0">
@@ -106,7 +106,7 @@
                                           <Image url="@male_avatar-512.png" />
                                        </image>
                                     </ImageView>
-                                    <Label fx:id="player2Label" alignment="TOP_CENTER" contentDisplay="TOP" graphicTextGap="6.0" prefWidth="70.0" text="nik2" textAlignment="CENTER" />
+                                    <Label fx:id="player2Label" alignment="TOP_CENTER" contentDisplay="TOP" graphicTextGap="6.0" prefWidth="70.0" text="--" textAlignment="CENTER" />
                                  </children>
                                  <padding>
                                     <Insets top="15.0" />
@@ -118,8 +118,8 @@
                               <Insets left="5.0" />
                            </padding>
                         </HBox>
-                        <Label fx:id="partial2Label" prefHeight="60.0" text="Label" />
-                        <Label fx:id="total2Label" prefHeight="60.0" text="Label" />
+                        <Label fx:id="partial2Label" prefHeight="60.0" text="0" />
+                        <Label fx:id="total2Label" prefHeight="60.0" text="0" />
                      </children>
                   </VBox>
                   <VBox fx:id="player3Box" alignment="CENTER" prefHeight="200.0" prefWidth="180.0" spacing="15.0">
@@ -134,7 +134,7 @@
                                           <Image url="@male_avatar-512.png" />
                                        </image>
                                     </ImageView>
-                                    <Label fx:id="player3Label" alignment="TOP_CENTER" contentDisplay="TOP" graphicTextGap="6.0" prefWidth="70.0" text="nik3" textAlignment="CENTER" />
+                                    <Label fx:id="player3Label" alignment="TOP_CENTER" contentDisplay="TOP" graphicTextGap="6.0" prefWidth="70.0" text="--" textAlignment="CENTER" />
                                  </children>
                                  <padding>
                                     <Insets top="15.0" />
@@ -146,8 +146,8 @@
                               <Insets left="5.0" />
                            </padding>
                         </HBox>
-                        <Label fx:id="partial3Label" prefHeight="60.0" text="Label" />
-                        <Label fx:id="total3Label" prefHeight="60.0" text="Label" />
+                        <Label fx:id="partial3Label" prefHeight="60.0" text="0" />
+                        <Label fx:id="total3Label" prefHeight="60.0" text="0" />
                      </children>
                   </VBox>
                </children>

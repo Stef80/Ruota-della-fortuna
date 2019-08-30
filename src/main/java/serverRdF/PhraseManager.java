@@ -50,25 +50,27 @@ public class PhraseManager {
         String[] nextLine;
         String theme = "";
         String phrase = "";
-        while((nextLine = reader.readNext()) != null){
-            for(int i=0; i<nextLine[0].length(); i++){
-                char c = nextLine[0].charAt(i);
-                theme += c;
-                if(c == '\''){
-                    theme += "'";
+        while((nextLine = reader.readNext()) != null) {
+            if (!nextLine[0].equals("")) {
+                for (int i = 0; i < nextLine[0].length(); i++) {
+                    char c = nextLine[0].charAt(i);
+                    theme += c;
+                    if (c == '\'') {
+                        theme += "'";
+                    }
                 }
-            }
-            nextLine[1] = nextLine[1].trim();
-            for(int i=0; i<nextLine[1].length(); i++){
-                char c = nextLine[1].charAt(i);
-                phrase += c;
-                if(c == '\''){
-                    phrase += "'";
+                nextLine[1] = nextLine[1].trim();
+                for (int i = 0; i < nextLine[1].length(); i++) {
+                    char c = nextLine[1].charAt(i);
+                    phrase += c;
+                    if (c == '\'') {
+                        phrase += "'";
+                    }
                 }
+                phrases.add(new PhrasesDTO(theme, phrase));
+                theme = "";
+                phrase = "";
             }
-            phrases.add(new PhrasesDTO(theme,phrase));
-            theme = "";
-            phrase = "";
         }
         return dbManager.addPhrases(phrases);
     }

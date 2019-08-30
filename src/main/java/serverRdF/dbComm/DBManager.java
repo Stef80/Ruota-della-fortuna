@@ -95,7 +95,7 @@ public class DBManager implements DBManagerInterface{
             createUsersDAO();
         try {
             return usersDAO.getUserByEmail(email);
-        }catch (SQLException e){System.err.println("SQLException in getUserByEmail");
+        }catch (SQLException e){
             return null;
         }
     }
@@ -106,7 +106,7 @@ public class DBManager implements DBManagerInterface{
             createUsersDAO();
         try {
             return usersDAO.getUserByNickname(nickname);
-        }catch (SQLException e){System.err.println("SQLException in getUserByNickname");
+        }catch (SQLException e){
             return null;
         }
     }

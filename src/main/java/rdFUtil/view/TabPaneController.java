@@ -110,6 +110,8 @@ public class TabPaneController implements Initializable {
     private Tab phraseAdder;
     @FXML
     private javafx.scene.control.TabPane tabs;
+    @FXML
+    private Tab userStatisticsTab;
 
 
     private ObservableList<MatchData> gameObservableList = FXCollections.observableArrayList();
@@ -166,8 +168,10 @@ public class TabPaneController implements Initializable {
         Controller.setArgs(this);
         creator = true;
 
-        if (isAdmin)
+        if (isAdmin) {
             createMatchButton.setVisible(false);
+        }
+
         gameList.setItems(gameObservableList);
         ArrayList<MatchData> list = new ArrayList<>();
         try {
@@ -212,6 +216,7 @@ public class TabPaneController implements Initializable {
         if (!this.isAdmin) {
             tabs.getTabs().remove(phraseAdder);
         } else {
+            tabs.getTabs().remove(userStatisticsTab);
             phraseAdder.setDisable(false);
         }
     }

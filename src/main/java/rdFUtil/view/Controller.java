@@ -50,8 +50,12 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        if (!InsubriaLoginController.forServer)
+        if (!InsubriaLoginController.forServer) {
             WelcomePane.setController(this);
+            if(server == null){
+                InsubriaLoginController.setController(this);
+            }
+        }
         else
             InsubriaLoginController.setController(this);
         try {
