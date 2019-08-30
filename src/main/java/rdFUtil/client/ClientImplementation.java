@@ -6,6 +6,7 @@ import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import rdFUtil.view.GamePlayerController;
 import rdFUtil.view.OTPRegistrationController;
+import rdFUtil.view.RegistrationFormController;
 import rdFUtil.view.TabPaneController;
 
 import java.io.Serializable;

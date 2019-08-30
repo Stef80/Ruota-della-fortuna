@@ -13,14 +13,17 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import rdFUtil.ApplicationCloser;
+import rdFUtil.Notification;
 import rdFUtil.client.Client;
 import rdFUtil.logging.User;
 import serverRdF.Server;
+import serverRdF.emailRdF.EmailAddressDoesNotExistException;
 import serverRdF.registrationRdF.OTPHelper;
 import serverRdF.view.InsubriaLoginController;
 
 import java.io.IOException;
 import java.net.URL;
+import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
 /**
@@ -87,16 +90,20 @@ public class RegistrationFormController implements Initializable {
                 String passwordStr = passwordTextField.getText();
 //                user = new User(passwordStr, buildString(mailStr), buildString(nameStr), buildString(surnameStr), buildString(nickStr));
                 user = new User(passwordStr,mailStr,nameStr,surnameStr,nickStr);
-                otp = server.signUp(user, client, admin);//todo modificare l'import di OTPHelper
-                Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("OTP_registration_pane.fxml"));
-                Scene scene = new Scene(root);
-                Stage primaryStage = new Stage();
-                primaryStage.setTitle(FrameTitle.main);
-                primaryStage.setScene(scene);
-                primaryStage.show();
-                ApplicationCloser.setCloser(primaryStage);
-                Stage thisStage = (Stage) confirmButton.getScene().getWindow();
-                thisStage.close();
+                try {
+                    otp = server.signUp(user, client, admin);
+                    Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("OTP_registration_pane.fxml"));
+                    Scene scene = new Scene(root);
+                    Stage primaryStage = new Stage();
+                    primaryStage.setTitle(FrameTitle.main);
+                    primaryStage.setScene(scene);
+                    primaryStage.show();
+                    ApplicationCloser.setCloser(primaryStage);
+                    Stage thisStage = (Stage) confirmButton.getScene().getWindow();
+                    thisStage.close();
+                }catch (EmailAddressDoesNotExistException e){
+                    this.notifyIllegalEmailAddress();
+                }
             }
         } else {
             Notifications notification = Notifications.create()
@@ -170,6 +177,10 @@ public class RegistrationFormController implements Initializable {
         otpp.setClient(client);
         otpp.setServer(server);
         otpp.setOtp(otp);
+    }
+
+    public void notifyIllegalEmailAddress(){
+        Notification.notification("Errore","L'indirizzo email inserito non\ne' disponibile o non esiste.",3,true);
     }
 
 //    private String buildString(String s){

@@ -34,11 +34,13 @@ public class UsersDAOImpl implements UsersDAO {
         ResultSet resultSet = stmt.executeQuery(querySearch);
         if(resultSet==null)
             return null;
-        resultSet.next();
-        return new UsersDTO(resultSet.getString(UserIdAttribute),resultSet.getInt(UserTipoAttribute) == 1,
-                resultSet.getString(UserNameAttribute),resultSet.getString(UserSurnameAttribute),
-                resultSet.getString(UserNicknameAttribute), email,
-                resultSet.getString(UserPasswordAttribute));
+        if(resultSet.next()) {
+            return new UsersDTO(resultSet.getString(UserIdAttribute), resultSet.getInt(UserTipoAttribute) == 1,
+                    resultSet.getString(UserNameAttribute), resultSet.getString(UserSurnameAttribute),
+                    resultSet.getString(UserNicknameAttribute), email,
+                    resultSet.getString(UserPasswordAttribute));
+        }else
+            return null;
     }
 
     @Override
@@ -48,10 +50,12 @@ public class UsersDAOImpl implements UsersDAO {
         ResultSet resultSet = stmt.executeQuery(querySearch);
         if(resultSet==null)
             return null;
-        resultSet.next();
-        return new UsersDTO(resultSet.getString(UserIdAttribute),resultSet.getInt(UserTipoAttribute) == 1,
-                resultSet.getString(UserNameAttribute),resultSet.getString(UserSurnameAttribute), nickname,
-                resultSet.getString(UserEmailAttribute), resultSet.getString(UserPasswordAttribute));
+        if(resultSet.next()) {
+            return new UsersDTO(resultSet.getString(UserIdAttribute), resultSet.getInt(UserTipoAttribute) == 1,
+                    resultSet.getString(UserNameAttribute), resultSet.getString(UserSurnameAttribute), nickname,
+                    resultSet.getString(UserEmailAttribute), resultSet.getString(UserPasswordAttribute));
+        }else
+            return null;
     }
 
     @Override
@@ -148,11 +152,13 @@ public class UsersDAOImpl implements UsersDAO {
         ResultSet rs = stmt.executeQuery(queryBest);
 //        System.out.println("Risultato resultset: " + rs == null? "null" : "ok");
         if(rs != null) {
-            rs.next();
-            UsersDTO user = new UsersDTO();
-            user.setNickname(rs.getString(UserNicknameAttribute));
+            if(rs.next()) {
+                UsersDTO user = new UsersDTO();
+                user.setNickname(rs.getString(UserNicknameAttribute));
 //            System.out.println("User trovato");
-            return user;
+                return user;
+            }else
+                return null;
         }else
             return null;
     }

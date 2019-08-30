@@ -35,6 +35,7 @@ public class WaitingThread extends Thread {
             boolean bool = dbManager.addUser(user, admin);
             if (!bool) {
                 ServerImplementation.serverError(client);
+                e.printStackTrace();
             }
             try {
                 client.notifyRegistrationResult(true);

@@ -5,6 +5,7 @@ import rdFUtil.logging.CryptPassword;
 import rdFUtil.logging.User;
 import serverRdF.dbComm.DBManager;
 import serverRdF.dbComm.UsersDTO;
+import serverRdF.emailRdF.EmailAddressDoesNotExistException;
 import serverRdF.emailRdF.EmailManager;
 
 import java.rmi.RemoteException;
@@ -50,7 +51,11 @@ public class RegistrationManager {
         String otp = generateOTP();
         String sub = "Conferma della registrazione a Ruota della Fortuna";
         String text = "Prego inserire il codice: " + otp + " per ultimare la registrazione. Il codice deve essere inserito entro 10 minuti pena l'annullamento della registrazione";
-        emailManager.sendEmail(form.getEmail(), sub, text);
+        try {
+            emailManager.sendEmail(form.getEmail(), sub, text);
+        }catch (EmailAddressDoesNotExistException e){
+            throw new EmailAddressDoesNotExistException();
+        }
         WaitingThread thread = new WaitingThread(c, dbManager, form, admin);
         String cryptedOTP = CryptPassword.encrypt(otp);
         OTPHelperImplementation otpHelper = new OTPHelperImplementation(thread, cryptedOTP);

@@ -39,6 +39,7 @@ public class OTPHelperImplementation extends UnicastRemoteObject implements OTPH
                 c.notifyWrongOTP();
             } catch (RemoteException e) {
                 ServerImplementation.serverError(c);
+                e.printStackTrace();
             }
             return false;
         }
