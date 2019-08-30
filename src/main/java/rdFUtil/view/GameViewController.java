@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,8 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import javafx.util.Duration;
-import org.controlsfx.control.Notifications;
 import rdFUtil.ApplicationCloser;
 import rdFUtil.MatchData;
 import rdFUtil.Notification;
@@ -106,7 +103,7 @@ public class GameViewController extends ListCell<MatchData> {
                         e.printStackTrace();
                     }
                     if (match == null) {
-                        Notification.notification("Notifica Partita", "Partita inesistente", 3, true);
+                        Notification.notify("Notifica Partita", "Partita inesistente", true);
                     } else {
                         TabPaneController.creator = false;
                         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("game_player_pane.fxml"));

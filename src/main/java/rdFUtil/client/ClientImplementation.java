@@ -1,19 +1,16 @@
 package rdFUtil.client;
 
 import javafx.application.Platform;
-import javafx.geometry.Pos;
-import javafx.util.Duration;
-import org.controlsfx.control.Notifications;
+import rdFUtil.Notification;
 import rdFUtil.view.GamePlayerController;
 import rdFUtil.view.OTPRegistrationController;
-import rdFUtil.view.RegistrationFormController;
 import rdFUtil.view.TabPaneController;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-public class ClientImplementation extends UnicastRemoteObject implements Client,Serializable {
+public class ClientImplementation extends UnicastRemoteObject implements Client, Serializable {
 
     public static final long serialVersionUID = 1L;
 
@@ -26,9 +23,10 @@ public class ClientImplementation extends UnicastRemoteObject implements Client,
     private String surname;
     private String email;
 
-    public ClientImplementation() throws RemoteException{}
+    public ClientImplementation() throws RemoteException {
+    }
 
-    public void setGame(GamePlayerController e) throws RemoteException{
+    public void setGame(GamePlayerController e) throws RemoteException {
         game = e;
     }
 
@@ -87,12 +85,7 @@ public class ClientImplementation extends UnicastRemoteObject implements Client,
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                Notifications notification = Notifications.create()
-                        .title("Notifica Errore")
-                        .text("Errore di connessione al server")
-                        .hideAfter(Duration.seconds(3))
-                        .position(Pos.BASELINE_RIGHT);
-                notification.showError();
+                Notification.notify("Errore", "Errore di connessione al server", true);
             }
         });
     }
@@ -103,12 +96,12 @@ public class ClientImplementation extends UnicastRemoteObject implements Client,
 
     @Override
     public void notifyWrongOTP() throws RemoteException {
-       otpRegistrationPane.notifyWrongOTP();
+        otpRegistrationPane.notifyWrongOTP();
     }
 
     @Override
     public void notifyTooManyPlayers() throws RemoteException {
-       tab.notifyTooManyPlayers();
+        tab.notifyTooManyPlayers();
     }
 
     @Override
@@ -143,7 +136,7 @@ public class ClientImplementation extends UnicastRemoteObject implements Client,
 
     @Override
     public void setNewPhrase(String theme, String phrase) throws RemoteException {
-        game.setNewPhrase(theme,phrase);
+        game.setNewPhrase(theme, phrase);
     }
 
     @Override
@@ -201,7 +194,7 @@ public class ClientImplementation extends UnicastRemoteObject implements Client,
         game.notifyPlayerError(name);
     }
 
-    public void setGameController(GamePlayerController game){
+    public void setGameController(GamePlayerController game) {
         this.game = game;
     }
 

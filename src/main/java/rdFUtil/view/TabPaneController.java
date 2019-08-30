@@ -182,7 +182,7 @@ public class TabPaneController implements Initializable {
             gameObservableList.addAll(list);
             gameList.setItems(gameObservableList);
         } catch (RemoteException e) {
-            Notification.notification("Notifica Errore", "Server Offline", 3, true);
+            Notification.notify("Errore", "Server offline", true);
         }
         for (MatchData matchData : list) {
             gameList.setCellFactory(e -> new GameViewController(server, client, matchData));
@@ -192,7 +192,7 @@ public class TabPaneController implements Initializable {
             setUserStat();
             setGlobalStats();
         } catch (RemoteException e) {
-            Notification.notification("Notifica Errore", "Statistiche non Caricate", 3, true);
+            Notification.notify("Errore", "Statistiche non caricate", true);
         }
 
         try {
@@ -286,7 +286,7 @@ public class TabPaneController implements Initializable {
 
             averageMovesTillSolutionLabel.setText(String.valueOf(avSolManches));
         } catch (RemoteException e) {
-            Notification.notification("Notifica Errore", "Server Offline", 3, true);
+            Notification.notify("Errore", "Server offline", true);
         }
     }
 
@@ -297,7 +297,7 @@ public class TabPaneController implements Initializable {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                Notification.notification("Giocatori", "Troppi giocatori", 2, true);
+                Notification.notify("Giocatori", "Troppi giocatori", true);
             }
         });
     }
@@ -314,7 +314,7 @@ public class TabPaneController implements Initializable {
             gameObservableList.addAll(list);
             gameList.setItems(gameObservableList);
         } catch (RemoteException e) {
-            Notification.notification("Notifica Errore", "Non e' stato possibile aggiornare la lista dei match\n Riprova", 2, true);
+            Notification.notify("Errore", "Non è stato possibile aggiornare la lista dei match\n Riprova", true);
         }
         for (MatchData matchData : list) {
             gameList.setCellFactory(e -> new GameViewController(server, client, matchData));
@@ -334,7 +334,7 @@ public class TabPaneController implements Initializable {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        Notification.notification("Successo", "Le frasi sono state aggiunte con successo", 2, false);
+                        Notification.notify("Successo", "Le frasi sono state aggiunte con successo", false);
                     }
                 });
 
@@ -342,12 +342,12 @@ public class TabPaneController implements Initializable {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        Notification.notification("Notifica Errore", "Non e' stato possibile aggiungere le nuove frasi\n Riprova", 2, true);
+                        Notification.notify("Errore", "Non è stato possibile aggiungere le nuove frasi\n Riprova", true);
                     }
                 });
             }
         } catch (RemoteException e) {
-            Notification.notification("Notifica Errore", "Server offline", 2, true);
+            Notification.notify("Errore", "Server offline", true);
         }
     }
 
@@ -363,7 +363,7 @@ public class TabPaneController implements Initializable {
             try {
                 bool = server.changeName(name, client);
             } catch (RemoteException e) {
-                Notification.notification("Notifica Errore", "Server Offline", 3, true);
+                Notification.notify("Errore", "Server offline", true);
             }
             if (bool) {
                 nameLabel.setText(name);
@@ -372,10 +372,9 @@ public class TabPaneController implements Initializable {
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
-                Notification.notification("Successo", "Il tuo nome è stato modificato con successo", 3, false);
-
+                Notification.notify("Successo", "Il nome è stato modificato con successo", false);
             } else {
-                Notification.notification("Notifica Errore", "Non è stato possibile modificare il nome", 3, true);
+                Notification.notify("Errore", "Non è stato possibile modificare il nome", true);
             }
         }
     }
@@ -392,7 +391,7 @@ public class TabPaneController implements Initializable {
             try {
                 bool = server.changeSurname(surname, client);
             } catch (RemoteException e) {
-                Notification.notification("Notifica Errore", "Server Offline", 3, true);
+                Notification.notify("Errore", "Server offline", true);
             }
             if (bool) {
                 surnameLabel.setText(surname);
@@ -401,10 +400,9 @@ public class TabPaneController implements Initializable {
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
-                Notification.notification("Successo", "Il tuo cognome è stato modificato con successo", 3, false);
+                Notification.notify("Successo", "Il cognome è stato modificato con successo", false);
             } else {
-                Notification.notification("Notifica Errore", "Non è stato possibile modificare il cognome", 3, true);
-
+                Notification.notify("Errore", "Non è stato possibile modificare il cognome", true);
             }
         }
     }
@@ -421,7 +419,7 @@ public class TabPaneController implements Initializable {
             try {
                 bool = server.changeNickname(nickname, client);
             } catch (RemoteException e) {
-                Notification.notification("Notifica Errore", "Server Offline", 3, true);
+                Notification.notify("Errore", "Server offline", true);
             }
             if (bool) {
                 try {
@@ -430,9 +428,9 @@ public class TabPaneController implements Initializable {
                     e.printStackTrace();
                 }
                 nicknameLabel.setText(nickname);
-                Notification.notification("Successo", "Il tuo nickname è stato modificato con successo", 3, false);
+                Notification.notify("Successo", "Il nickname è stato modificato con successo", false);
             } else {
-                Notification.notification("Notifica Errore", "Non è stato possibile modificare il nickname", 3, true);
+                Notification.notify("Errore", "Non è stato possibile modificare il nickname oppure è già in uso", true);
             }
         }
     }
@@ -450,12 +448,12 @@ public class TabPaneController implements Initializable {
             try {
                 bool = server.changePassword(password, client);
             } catch (RemoteException e) {
-                Notification.notification("Notifica Errore", "Server Offline", 3, true);
+                Notification.notify("Errore", "Server offline", true);
             }
             if (bool) {
-                Notification.notification("Successo", "La tua password è stata modificata con successo", 3, false);
+                Notification.notify("Successo", "La password è stata modificata con successo", false);
             } else {
-                Notification.notification("Notifica Errore", "Non è stato possibile modificare la password", 3, true);
+                Notification.notify("Errore", "Non è stato possibile modificare la password", true);
             }
         }
     }
@@ -482,7 +480,7 @@ public class TabPaneController implements Initializable {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                Notification.notification("Notifica di partita", reason, 3, false);
+                Notification.notify("Notifica di partita", reason, false);
             }
         });
     }
@@ -491,7 +489,7 @@ public class TabPaneController implements Initializable {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                Notification.notification("Notifica di partita", message, 3, false);
+                Notification.notify("Notifica di partita", message, false);
             }
         });
     }
@@ -500,7 +498,7 @@ public class TabPaneController implements Initializable {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                Notification.notification("Notifica di partita", "HAI VINTO!!!", 3, false);
+                Notification.notify("Notifica di partita", "HAI VINTO!!!", false);
             }
         });
     }

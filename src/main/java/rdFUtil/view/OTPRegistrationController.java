@@ -8,7 +8,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -16,7 +15,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import org.controlsfx.control.Notifications;
 import rdFUtil.ApplicationCloser;
 import rdFUtil.Notification;
 import rdFUtil.client.Client;
@@ -30,7 +28,7 @@ import java.util.ResourceBundle;
 
 /**
  * Controller della finestra per l'inserimento dell'OTP necessario al completamento della registrazione. Possiede un timer di dieci minuti oltre il
- *  quale la registrazione viene annullata
+ * quale la registrazione viene annullata
  */
 public class OTPRegistrationController implements Initializable {
     @FXML
@@ -46,7 +44,8 @@ public class OTPRegistrationController implements Initializable {
     private Client client;
     private OTPHelper otp;
 
-    public OTPRegistrationController(){}
+    public OTPRegistrationController() {
+    }
 
     /**
      * Controlla che l'OTP inserito sia uguale a quello inviato via email. Se i due codici corrispondono, si viene reindirizzati alla schermata di login
@@ -62,7 +61,7 @@ public class OTPRegistrationController implements Initializable {
             e.printStackTrace();
         }
         if (!check) {
-            Notification.notification("OTP Notification","CodiceOTP non valido\n",3,true);
+            Notification.notify("OTP Notification", "CodiceOTP non valido\n", true);
         } else {
             timeline.stop();
             Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("main_pane.fxml"));
@@ -93,19 +92,15 @@ public class OTPRegistrationController implements Initializable {
                     timeSeconds = 60;
                 }
                 timeSeconds--;
-                if(timeSeconds< 10 ) {
+                if (timeSeconds < 10) {
                     timeLabel.setText(String.valueOf(timeMinutes) + ":0" + String.valueOf(timeSeconds));
-                }else {
-                timeLabel.setText(String.valueOf(timeMinutes) + ":" + String.valueOf(timeSeconds));
+                } else {
+                    timeLabel.setText(String.valueOf(timeMinutes) + ":" + String.valueOf(timeSeconds));
                 }
                 if (timeSeconds <= 0 && timeMinutes <= 0) {
                     timeline.stop();
-                    Notifications notification = Notifications.create()
-                            .title("OTP Notification")
-                            .text("Tempo esaurito \nripeti la procedura di registrazione")
-                            .hideAfter(Duration.seconds(3))
-                            .position(Pos.BASELINE_RIGHT);
-                    notification.showError();
+                    Notification.notify("OTP Notification", "Tempo esaurito \nripeti la procedura di registrazione", true);
+
                     Parent root = null;
                     try {
                         root = FXMLLoader.load(getClass().getClassLoader().getResource("main_pane.fxml"));
@@ -129,13 +124,8 @@ public class OTPRegistrationController implements Initializable {
     /**
      * Notifica che l'OTP inserito non corrisponde a quello inviato via email.
      */
-    public void notifyWrongOTP(){
-        Notifications notification = Notifications.create()
-                                             .title("OTP Notification")
-                                             .text("OTP inserito errato \nriprova")
-                                             .hideAfter(Duration.seconds(3))
-                                             .position(Pos.BASELINE_RIGHT);
-        notification.showError();
+    public void notifyWrongOTP() {
+        Notification.notify("OTP Notification", "OTP inserito errato \nriprova", true);
     }
 
     @Override

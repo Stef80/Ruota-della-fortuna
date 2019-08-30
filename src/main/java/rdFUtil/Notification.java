@@ -7,9 +7,15 @@ import org.controlsfx.control.Notifications;
 import java.nio.charset.StandardCharsets;
 
 public class Notification {
-    public static void notification(String title, String msg, int duration, boolean error) {
+    /**
+     * @param title il titolo della notifica
+     * @param msg   il messaggio della notifica
+     * @param error <code>true</code> se far visualizzare la notifica come errore, <code>false</code> altrimenti
+     */
+    public static void notify(String title, String msg, boolean error) {
         byte[] bTitle = title.getBytes();
         byte[] bMsg = msg.getBytes();
+        int duration = 3;
         if (error) {
             System.out.println();
             Notifications.create()

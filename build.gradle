@@ -69,7 +69,7 @@ task runServer(type: JavaExec, dependsOn: classes, group: 'test') {
 task createJar(type: Jar, group: 'test') {
     manifest {
         attributes 'Implementation-Title': 'RdF',
-                'Implementation-Version': archiveVersion.get(),
+                'Implementation-Version': version,
                 'Main-Class': '' // TODO - da impostare il nome del main
     }
     from {
