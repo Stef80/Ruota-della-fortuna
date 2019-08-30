@@ -14,7 +14,8 @@
                 <Font name="System Bold" size="18.0" />
             </font>
         </Label>
-        <TextField fx:id="hostnameTextField" promptText="inserisci l'hostname" stylesheets="@style.css" VBox.vgrow="ALWAYS" />
+      <Label text="Inserire l'hostname" />
+        <TextField fx:id="hostnameTextField" promptText="inserisci l'hostname qui" stylesheets="@style.css" VBox.vgrow="ALWAYS" />
         <Button fx:id="confirmButton" mnemonicParsing="false" onAction="#startGameView" text="Conferma" VBox.vgrow="ALWAYS" />
     </children>
     <padding>
