@@ -92,22 +92,16 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                     activePlayer.addJolly();
                     for (Client c : observers) {
                         try {
-                            Player p = null;
-                            for (int i = 0; i < 3; i++) {
-                                p = players.get(i);
-                                c.notifyPlayerStats(i, p.getNickname(), 0, p.getPoints(), p.getNumJolly());
-                            }
+                                c.notifyPlayerStats(turn, activePlayer.getNickname(), activePlayer.getPartialPoints(), activePlayer.getPoints(), activePlayer.getNumJolly());
+
                         } catch (RemoteException e) {
                             leaveMatchAsObserver(c);
                         }
                     }
                     for (Player p : players) {
                         try {
-                            Player pl = null;
-                            for (int i = 0; i < 3; i++) {
-                                pl = players.get(i);
-                                p.getClient().notifyPlayerStats(i, pl.getNickname(), 0, pl.getPoints(), pl.getNumJolly());
-                            }
+                                p.getClient().notifyPlayerStats(turn, activePlayer.getNickname(), activePlayer.getPartialPoints(), activePlayer.getPoints(), activePlayer.getNumJolly());
+
                         } catch (RemoteException e) {
                             leaveMatchAsPlayer(p);
                         }
