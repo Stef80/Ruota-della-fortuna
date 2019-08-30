@@ -7,17 +7,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ListView;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import javafx.util.Duration;
-import org.controlsfx.control.Notifications;
-import rdFUtil.ApplicationCloser;
 import rdFUtil.MatchData;
 import rdFUtil.Notification;
 import rdFUtil.client.Client;
@@ -123,7 +117,6 @@ public class TabPaneController implements Initializable {
     private static MatchData matchData;
     private boolean isAdmin;
     public static boolean creator = true;
-
 
 
     public TabPaneController() {
