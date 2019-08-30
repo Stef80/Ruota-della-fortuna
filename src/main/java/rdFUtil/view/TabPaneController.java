@@ -326,7 +326,7 @@ public class TabPaneController implements Initializable {
             gameObservableList.addAll(list);
             gameList.setItems(gameObservableList);
         } catch (RemoteException e) {
-            Notification.notification("Notifica Errore","Non e' stato possibile aggiungere le nuove frasi\n Riprova",2,true);
+            Notification.notification("Notifica Errore","Non e' stato possibile aggiornare la lista dei match\n Riprova",2,true);
         }
         for (MatchData matchData : list) {
             gameList.setCellFactory(e -> new GameViewController(server, client, matchData));

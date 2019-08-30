@@ -790,11 +790,6 @@ public class GamePlayerController implements Initializable {
             public void run() {
                 String message = winner + "\nha vinto la partita ";
                 Notification.notification("Notifica di partita", message, 3, false);
-                try {
-                    Thread.sleep(4000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
                 match = null;
                 Parent root = null;
                 try {
@@ -822,11 +817,6 @@ public class GamePlayerController implements Initializable {
             @Override
             public void run() {
                 Notification.notification("Notifica di partita", "HAI VINTO!!!", 3, false);
-                try {
-                    Thread.sleep(4000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
                 match = null;
                 Parent root = null;
                 try {
