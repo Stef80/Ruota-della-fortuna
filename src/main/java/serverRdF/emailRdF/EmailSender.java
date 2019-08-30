@@ -27,7 +27,7 @@ public class EmailSender {
     props.put("mail.smtp.starttls.enable", "true");
     // porta per la mail di outlook 587
     props.put("mail.smtp.port", 587);
-  //  props.put("mail.smtp.ssl.trust", host);
+    props.put("mail.smtp.ssl.trust", host);
     // creo la sessione con le proprieta'
     Session session = Session.getInstance(props);
     // creo il messaggio

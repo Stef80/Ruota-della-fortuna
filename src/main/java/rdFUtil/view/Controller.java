@@ -78,7 +78,7 @@ public class Controller implements Initializable {
         if (!(mail.equals("") || password.equals(""))) {
             Login login = new Login(password, mail);
             int result = server.signIn(login, client, admin);
-            //int result = 0;
+
             if (result < 0) {
                 Notifications notification = Notifications.create()
                         .title("Mail Notification")
@@ -87,18 +87,8 @@ public class Controller implements Initializable {
                         .position(Pos.BASELINE_RIGHT);
                 notification.showError();
             } else if (result == 0) {
-                //     FXMLLoader loader = new FXMLLoader(Thread.currentThread().getContextClassLoader().getResource("tab_pane.fxml"));
                 if (!isServer) {
                     Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("tab_pane.fxml"));
-//                Parent root = null;
-//                try {
-//                    root = loader.load();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                TabPane tabPane = loader.getController();
-//                tabPane.setGlobalStats();
-//                tabPane.setUserStat();
                     Stage primaryStage = new Stage();
                     Scene scene = new Scene(root);
                     primaryStage.setTitle(FrameTitle.main);
