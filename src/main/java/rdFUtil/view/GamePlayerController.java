@@ -844,21 +844,6 @@ public class GamePlayerController implements Initializable {
                 oldStage.close();
             }
         });
-        match = null;
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("tab_pane.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Stage primaryStage = new Stage();
-        Scene scene = new Scene(root);
-        primaryStage.setTitle(FrameTitle.main);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-        ApplicationCloser.setCloser(primaryStage);
-        Stage oldStage = (Stage) exitButton.getScene().getWindow();
-        oldStage.close();
     }
 
     /**
