@@ -160,7 +160,7 @@ public class RegistrationFormController implements Initializable {
     }
 
     public void notifyIllegalEmailAddress() {
-        Notification.notify("Errore", "L'indirizzo email inserito non\ne' disponibile o non esiste.", true);
+        Notification.notify("Errore", "L'indirizzo email inserito non\nè disponibile o non esiste.", true);
     }
 
 //    private String buildString(String s){
