@@ -274,14 +274,14 @@ public class GamePlayerController implements Initializable {
                 int row = 0;
                 char car;
                 StackPane node;
-                StringTokenizer st = new StringTokenizer(phrase, " ',!?.:;\"/()\\^<>-+*");
+                StringTokenizer st = new StringTokenizer(phrase, " ',!?.:;\"/()\\^<>-+*0123456789");
                 String s = st.nextToken();
                 Label label;
                 int pointer = 0;
                 for (int i = 0; i < phrase.length(); i++) {
                     car = phrase.charAt(i);
                     if (car != ' ' && car != ',' && car != '\'' && car != '.' && car != ':' && car != ';' && car != '?' && car != '!' && car != '"' && car != '/' && car != '\\' && car != '(' && car != ')'
-                            && car != '^' && car != '<' && car != '>' && car != '-' && car != '+' && car != '*') {
+                            && car != '^' && car != '<' && car != '>' && car != '-' && car != '+' && car != '*' && car != '0' && car != '1'  && car != '2' && car != '3' && car != '4' && car != '5' && car != '6' && car != '7' && car != '8' && car != '9') {
                         if (pointer == s.length() - 1) {
                             if (st.hasMoreTokens()) {
                                 s = st.nextToken();

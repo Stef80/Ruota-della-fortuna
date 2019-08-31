@@ -252,7 +252,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
 //        System.out.println("Controllo phraseStatus");
         String phrase = manche.getCurrentPhrase().getPhrase().toUpperCase();
 //        System.out.println("frase: " + phrase);
-        StringTokenizer st = new StringTokenizer(phrase, " ',!?.:;\"/()\\^<>-+*");
+        StringTokenizer st = new StringTokenizer(phrase, " ',!?.:;\"/()\\^<>-+*0123456789");
         int counter = 0;
         int j = 0;
 //        System.out.println("Lettera: " + vocal);
