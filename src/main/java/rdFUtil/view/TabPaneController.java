@@ -108,6 +108,10 @@ public class TabPaneController implements Initializable {
     private Tab userStatisticsTab;
     @FXML
     private Tab userStatisticsTabAdmin;
+    @FXML
+    private Label numberManchesObservedLabel1;
+    @FXML
+    private Label numberMatchesObservedLabel1;
 
 
     private ObservableList<MatchData> gameObservableList = FXCollections.observableArrayList();
@@ -219,8 +223,12 @@ public class TabPaneController implements Initializable {
             StringTokenizer stasts = new StringTokenizer(userStat, " ");
             numberManchesPlayedLabel.setText(stasts.nextToken());
             numberMatchesplayedLabel.setText(stasts.nextToken());
-            numberManchesObservedLabel.setText(stasts.nextToken());
-            numberMatchesObservedLabel.setText(stasts.nextToken());
+            String numMancheObserved = stasts.nextToken();
+            numberManchesObservedLabel.setText(numMancheObserved);
+            numberManchesObservedLabel1.setText(numMancheObserved);
+            String numMatchObserved = stasts.nextToken();
+            numberMatchesObservedLabel.setText(numMatchObserved);
+            numberMatchesObservedLabel1.setText(numMatchObserved);
             numberOfManchesWonLabel.setText(stasts.nextToken());
             numberOfMatchesWonLabel.setText(stasts.nextToken());
             averagePointsWonLabel.setText(stasts.nextToken());
@@ -492,6 +500,15 @@ public class TabPaneController implements Initializable {
             @Override
             public void run() {
                 Notification.notify("Notifica di partita", "HAI VINTO!!!", false);
+            }
+        });
+    }
+
+    public static void notifyLeaver(String message){
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Notification.notify("Notifica di partita", message, false);
             }
         });
     }

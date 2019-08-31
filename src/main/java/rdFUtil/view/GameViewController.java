@@ -140,21 +140,25 @@ public class GameViewController extends ListCell<MatchData> {
                     } catch (RemoteException e) {
                         e.printStackTrace();
                     }
-                    TabPaneController.creator = false;
-                    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("game_player_pane.fxml"));
-                    Parent root = null;
-                    try {
-                        root = loader.load();
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    if (match == null) {
+                        Notification.notify("Notifica Partita", "Partita inesistente", true);
+                    } else {
+                        TabPaneController.creator = false;
+                        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("game_player_pane.fxml"));
+                        Parent root = null;
+                        try {
+                            root = loader.load();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        Stage primaryStage = new Stage();
+                        Scene scene = new Scene(root);
+                        primaryStage.setScene(scene);
+                        primaryStage.show();
+                        ApplicationCloser.setCloser(primaryStage);
+                        Stage oldStage = (Stage) observeButton.getScene().getWindow();
+                        oldStage.close();
                     }
-                    Stage primaryStage = new Stage();
-                    Scene scene = new Scene(root);
-                    primaryStage.setScene(scene);
-                    primaryStage.show();
-                    ApplicationCloser.setCloser(primaryStage);
-                    Stage oldStage = (Stage) observeButton.getScene().getWindow();
-                    oldStage.close();
                 }
             });
         }

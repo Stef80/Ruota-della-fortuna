@@ -166,7 +166,7 @@ public class GamePlayerController implements Initializable {
                         node = (StackPane) getNodeByRowColumnIndex(i, j);
                         label = (Label) node.getChildren().get(0);
                         String let = label.getText();
-                        if (let.equals(letter) && !let.equals("")) {
+                        if (let.equals(letter) && !let.equals("") && !let.equals("0") && !let.equals("1") && !let.equals("2") && !let.equals("3") && !let.equals("4") && !let.equals("5") && !let.equals("6") && !let.equals("7") && !let.equals("8") && !let.equals("9")) {
                             label.setVisible(true);
                             node.setStyle(" -fx-background-color: #d6e2e0;\n" +
                                     "    -fx-border-color: #08FBE1;\n" +
@@ -671,7 +671,7 @@ public class GamePlayerController implements Initializable {
             @Override
             public void run() {
                 String message = nickname + "\nha lasciato la partita";
-                Notification.notify("Notifica di partita", message, false);
+                TabPaneController.notifyLeaver(message);
             }
         });
     }
