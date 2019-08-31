@@ -1094,7 +1094,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
 
         String noName = "--";
         result.setPlayer1(players.get(0).getNickname());
-        if (players.size() == 2) {
+        if (players.size() >= 2) {
             result.setPlayer2(players.get(1).getNickname());
         } else {
             result.setPlayer2(noName);
