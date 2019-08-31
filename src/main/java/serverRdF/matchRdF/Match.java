@@ -664,6 +664,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                     ServerImplementation.serverError(null);
                 }
             } else {
+                matchEnded = false;
                 manche.setPhrases(phrases);
                 manche.setNumManche(1);
                 PhrasesDTO newPhrase = manche.getCurrentPhrase();
