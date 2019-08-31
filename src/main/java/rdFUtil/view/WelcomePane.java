@@ -50,8 +50,6 @@ public class WelcomePane {
             ApplicationCloser.setCloser(primaryStage);
             Stage oldStage = (Stage) confirmButton.getScene().getWindow();
             oldStage.close();
-
-
         } catch (RemoteException | NotBoundException e) {
             Notification.notify("Connection Notification", "Connessione non riuscita \nriprovare", true);
         } catch (IOException e) {
