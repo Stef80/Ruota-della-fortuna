@@ -2,7 +2,6 @@ package serverRdF.matchRdF;
 
 import rdFUtil.MatchData;
 import rdFUtil.client.Client;
-import rdFUtil.view.TabPaneController;
 import serverRdF.ServerImplementation;
 import serverRdF.dbComm.*;
 import serverRdF.emailRdF.EmailManager;
