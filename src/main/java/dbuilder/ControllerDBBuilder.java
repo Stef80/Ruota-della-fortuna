@@ -50,7 +50,7 @@ public class ControllerDBBuilder {
                 String s = sb.toString();
                 System.out.println(s);
                 statement.executeUpdate(s);
-                Notification.notify("Successo", "Il databse è stato creato con successo.", false);
+                Notification.notify("Successo", "Il database è stato creato con successo.", false);
                 dbCreated = true;
             } else {
                 Notification.notify("Database già creato", "Il database è già stato creato", true);
