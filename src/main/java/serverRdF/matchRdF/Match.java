@@ -769,7 +769,8 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
      * @throws RemoteException
      */
     public void endManche(Player winner) throws RemoteException {
-        manche.endManche(winner);
+        if(!matchEnded)
+            manche.endManche(winner);
         firstTurn = true;
         if (winner != null) {
             for (Player p : players) {
