@@ -57,7 +57,6 @@ public class WelcomePane {
 
 		}catch (RemoteException | NotBoundException e){
 			Notification.notification("Connection Notification", "Connessione non riuscita \nriprovare", 3, true);
-			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

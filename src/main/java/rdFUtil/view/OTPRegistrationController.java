@@ -81,7 +81,7 @@ public class OTPRegistrationController implements Initializable {
      * Avvia il timer di dieci minuti. Quando il tempo scade, si viene reindirizzati alla schermata di login e viene segnalato il time out
      */
     public void runCountdown() {
-        timeLabel.setText(String.valueOf(timeMinutes) + ":" + String.valueOf(timeSeconds));
+        timeLabel.setText(String.valueOf(timeMinutes) + ":0" + String.valueOf(timeSeconds));
         timeline = new Timeline();
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
