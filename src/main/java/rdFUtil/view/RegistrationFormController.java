@@ -153,12 +153,21 @@ public class RegistrationFormController implements Initializable {
         }
     }
 
+    /**
+     * Metodo utilizzato per passare le informazioni del client a {@link OTPRegistrationController}
+     *
+     * @param otpp il riferimento al controller {@link OTPRegistrationController}
+     */
     public static void setOTP(OTPRegistrationController otpp) {
         otpp.setClient(client);
         otpp.setServer(server);
         otpp.setOtp(otp);
     }
 
+    /**
+     * Notifica che non e' stato possibile inviare la mail all'indirizzo email specificato al momento della registrazione
+     * per problemi di connessione o perche' non esistente
+     */
     public void notifyIllegalEmailAddress() {
         Notification.notify("Errore", "L'indirizzo email inserito non\nè disponibile o non esiste.", true);
     }

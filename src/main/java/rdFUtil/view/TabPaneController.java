@@ -471,12 +471,22 @@ public class TabPaneController implements Initializable {
         isAdmin = admin;
     }
 
+    /**
+     * Metodo utilizzato per passare le informazioni del client a {@link GamePlayerController}
+     *
+     * @param gpc il riferimento al controller {@link GamePlayerController}
+     */
     public static void setGameControlle(GamePlayerController gpc) {
         gpc.setClient(client);
         gpc.setMatch(match);
         gpc.setObserver(false);
     }
 
+    /**
+     * Notifica che una partita e' stata annullata a causa di un problema
+     *
+     * @param reason il motivo per cui la partita e' stata annullata (ad esempio perche' non e' stato possibile scegliere le cinque frasi)
+     */
     public static void notifyMatchAbort(String reason) {
         Platform.runLater(new Runnable() {
             @Override
@@ -486,6 +496,11 @@ public class TabPaneController implements Initializable {
         });
     }
 
+    /**
+     * Notifica che la partita si e' conclusa
+     *
+     * @param message un messaggio contenente il vincitore della partita, o nessuno in caso in cui la partita si sia interrotta a meta'
+     */
     public static void notifyMatchEnd(String message) {
         Platform.runLater(new Runnable() {
             @Override
@@ -495,6 +510,9 @@ public class TabPaneController implements Initializable {
         });
     }
 
+    /**
+     * Notifica che il client corrente e' il vincitore della partita
+     */
     public static void notifyMatchWin() {
         Platform.runLater(new Runnable() {
             @Override
@@ -504,6 +522,11 @@ public class TabPaneController implements Initializable {
         });
     }
 
+    /**
+     * Notifica che un utente ha abbandonato la partita
+     *
+     * @param message il messaggio contenente il nickname di chi ha abbandonato
+     */
     public static void notifyLeaver(String message){
         Platform.runLater(new Runnable() {
             @Override

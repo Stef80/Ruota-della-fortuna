@@ -869,6 +869,9 @@ public class GamePlayerController implements Initializable {
         });
     }
 
+    /**
+     * Notifica che tutte le consonanti sono state chiamate
+     */
     public void notifyNoMoreConsonant() {
         Platform.runLater(new Runnable() {
             @Override
@@ -878,6 +881,11 @@ public class GamePlayerController implements Initializable {
         });
     }
 
+    /**
+     * Aggiorna il timer con il tempo rimanente
+     *
+     * @param time il tempo rimanente in secondi
+     */
     public void updateTimer(int time) {
         Platform.runLater(new Runnable() {
             @Override

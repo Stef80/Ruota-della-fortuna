@@ -176,6 +176,11 @@ public class GameViewController extends ListCell<MatchData> {
         }
     }
 
+    /**
+     * Metodo utilizzato per passare le informazioni del client a {@link GamePlayerController}
+     *
+     * @param gpc il riferimento al controller {@link GamePlayerController}
+     */
     public static void setGameControllerObserver(GamePlayerController gpc) {
         gpc.setClient(client);
         gpc.setMatch(match);

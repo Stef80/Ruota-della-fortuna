@@ -58,6 +58,11 @@ public class WelcomePane {
 
     }
 
+    /**
+     * Metodo utilizzato per passare le informazioni del client a {@link Controller}
+     *
+     * @param c il riferimento al controller {@link Controller}
+     */
     public static void setController(Controller c) {
         c.setServer(server);
         c.setAdmin(AdminChecker.isIsAdmin());

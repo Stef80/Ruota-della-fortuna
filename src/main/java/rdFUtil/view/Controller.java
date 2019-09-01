@@ -156,6 +156,11 @@ public class Controller implements Initializable {
         tb.setAdmin(admin);
     }
 
+    /**
+     * Metodo utilizzato per passare le informazioni del client a {@link RegistrationFormController}
+     *
+     * @param registration il riferimento al controller {@link RegistrationFormController}
+     */
     public static void setRegistration(RegistrationFormController registration){
         registration.setClient(client);
         registration.setServer(server);
@@ -163,6 +168,11 @@ public class Controller implements Initializable {
         registration.setAdmin(AdminChecker.isIsAdmin());
     }
 
+    /**
+     * Metodo utilizzato per passare le informazioni del client a {@link ForgottenPasswordController}
+     *
+     * @param f il riferimento al controller {@link ForgottenPasswordController}
+     */
     public static void setResetPanel(ForgottenPasswordController f){
         f.setClient(client);
         f.setServer(server);

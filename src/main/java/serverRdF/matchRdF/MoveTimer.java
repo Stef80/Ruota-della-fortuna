@@ -37,7 +37,7 @@ public class MoveTimer extends Thread {
     }
 
     /**
-     * Aspetta per un tempo stabilito. Se non riceve l'interrupt segnala l'errore
+     * Aspetta per un tempo stabilito. Se non riceve l'interrupt segnala il tempo scaduto e quindi l'errore
      */
     public void run(){
         try{
