@@ -33,22 +33,26 @@ dependencies {
     compile 'com.opencsv:opencsv:4.6'
 }
 
-task runPlayer(type: JavaExec, dependsOn: classes, group: 'test') {
+task runPlayer(type: JavaExec, dependsOn: 'classes', group: 'test') {
     classpath = sourceSets.main.runtimeClasspath
     main = 'playerRdF.PrimePane'
 }
 
-task runAdmin(type: JavaExec, dependsOn: classes, group: 'test') {
+task runAdmin(type: JavaExec, dependsOn: 'classes', group: 'test') {
     classpath = sourceSets.main.runtimeClasspath
     main = 'adminRdF.PrimePane'
 }
 
-task runDatabase(type: JavaExec, dependsOn: classes, group: 'test') {
+task buildAll(type: GradleBuild, dependsOn: 'clean', group: 'test') {
+    tasks = ['build', 'runDatabaseBuilder']
+}
+
+task runDatabaseBuilder(type: JavaExec, dependsOn: 'classes', group: 'test') {
     classpath = sourceSets.main.runtimeClasspath
     main = 'dbuilder.DatabaseBuilder'
 }
 
-task runServer(type: JavaExec, dependsOn: classes, group: 'test') {
+task runServer(type: JavaExec, dependsOn: 'classes', group: 'test') {
     classpath = sourceSets.main.runtimeClasspath
     main = 'serverRdF.view.PrimePaneServer'
 }
@@ -69,7 +73,7 @@ task runServer(type: JavaExec, dependsOn: classes, group: 'test') {
 task createJar(type: Jar, group: 'test') {
     manifest {
         attributes 'Implementation-Title': 'RdF',
-                'Implementation-Version': archiveVersion.get(),
+                'Implementation-Version': version,
                 'Main-Class': '' // TODO - da impostare il nome del main
     }
     from {

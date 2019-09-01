@@ -1,16 +1,10 @@
 package rdFUtil.view;
 
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -21,8 +15,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-import org.controlsfx.control.Notifications;
 import rdFUtil.ApplicationCloser;
 import rdFUtil.Notification;
 import rdFUtil.client.Client;
@@ -174,7 +166,7 @@ public class GamePlayerController implements Initializable {
                         node = (StackPane) getNodeByRowColumnIndex(i, j);
                         label = (Label) node.getChildren().get(0);
                         String let = label.getText();
-                        if (let.equals(letter) && !let.equals("")) {
+                        if (let.equals(letter) && !let.equals("") && !let.equals("0") && !let.equals("1") && !let.equals("2") && !let.equals("3") && !let.equals("4") && !let.equals("5") && !let.equals("6") && !let.equals("7") && !let.equals("8") && !let.equals("9")) {
                             label.setVisible(true);
                             node.setStyle(" -fx-background-color: #d6e2e0;\n" +
                                     "    -fx-border-color: #08FBE1;\n" +
@@ -282,14 +274,14 @@ public class GamePlayerController implements Initializable {
                 int row = 0;
                 char car;
                 StackPane node;
-                StringTokenizer st = new StringTokenizer(phrase, " ',!?.:;\"/()\\^<>-+*");
+                StringTokenizer st = new StringTokenizer(phrase, " ',!?.:;\"/()\\^<>-+*0123456789");
                 String s = st.nextToken();
                 Label label;
                 int pointer = 0;
                 for (int i = 0; i < phrase.length(); i++) {
                     car = phrase.charAt(i);
                     if (car != ' ' && car != ',' && car != '\'' && car != '.' && car != ':' && car != ';' && car != '?' && car != '!' && car != '"' && car != '/' && car != '\\' && car != '(' && car != ')'
-                            && car != '^' && car != '<' && car != '>' && car != '-' && car != '+' && car != '*') {
+                            && car != '^' && car != '<' && car != '>' && car != '-' && car != '+' && car != '*' && car != '0' && car != '1'  && car != '2' && car != '3' && car != '4' && car != '5' && car != '6' && car != '7' && car != '8' && car != '9') {
                         if (pointer == s.length() - 1) {
                             if (st.hasMoreTokens()) {
                                 s = st.nextToken();
@@ -573,7 +565,7 @@ public class GamePlayerController implements Initializable {
             @Override
             public void run() {
                 String message = nickname + " ha chiamato la vocale";
-                Notification.notification("Notifica di partita", message, 3, false);
+                Notification.notify("Notifica di partita", message, false);
             }
         });
     }
@@ -588,7 +580,7 @@ public class GamePlayerController implements Initializable {
             @Override
             public void run() {
                 String message = nickname + " da la soluzione ";
-                Notification.notification("Notifica di partita", message, 3, false);
+                Notification.notify("Notifica di partita", message, false);
 
             }
         });
@@ -604,7 +596,7 @@ public class GamePlayerController implements Initializable {
             @Override
             public void run() {
                 String message = nickname + " ha giocato il jolly";
-                Notification.notification("Notifica di partita", message, 3, false);
+                Notification.notify("Notifica di partita", message, false);
             }
         });
 
@@ -621,7 +613,7 @@ public class GamePlayerController implements Initializable {
             @Override
             public void run() {
                 String message = nickname + " ha scelto la lettera " + letter;
-                Notification.notification("Notifica di partita", message, 3, false);
+                Notification.notify("Notifica di partita", message, false);
 
             }
         });
@@ -679,7 +671,7 @@ public class GamePlayerController implements Initializable {
             @Override
             public void run() {
                 String message = nickname + "\nha lasciato la partita";
-                Notification.notification("Notifica di partita", message, 3, false);
+                TabPaneController.notifyLeaver(message);
             }
         });
     }
@@ -719,7 +711,7 @@ public class GamePlayerController implements Initializable {
             @Override
             public void run() {
                 String message = "Partita iniziata";
-                Notification.notification("Notifica di partita", message, 3, false);
+                Notification.notify("Notifica di partita", message, false);
             }
         });
     }
@@ -731,7 +723,7 @@ public class GamePlayerController implements Initializable {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                Notification.notification("Notifica di partita", "HAI VINTO LA MANCHE!!!", 3, false);
+                Notification.notify("Notifica di partita", "HAI VINTO LA MANCHE!!!", false);
             }
         });
     }
@@ -746,7 +738,7 @@ public class GamePlayerController implements Initializable {
             @Override
             public void run() {
                 String message = winner + "\nha vinto la manche ";
-                Notification.notification("Notifica di partita", message, 3, false);
+                Notification.notify("Notifica di partita", message, false);
             }
         });
     }
@@ -761,7 +753,7 @@ public class GamePlayerController implements Initializable {
             @Override
             public void run() {
                 String message = "la manche numero " + numManche + "\nsta per cominciare";
-                Notification.notification("Notifica di partita", message, 3, false);
+                Notification.notify("Notifica di partita", message, false);
             }
         });
     }
@@ -773,7 +765,7 @@ public class GamePlayerController implements Initializable {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                Notification.notification("Notifica di partita", "e' il tuo turno", 3, false);
+                Notification.notify("Notifica di partita", "è il tuo turno", false);
             }
         });
         yourTurn();
@@ -844,7 +836,7 @@ public class GamePlayerController implements Initializable {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                Notification.notification("Notifica di partita", "Tempo scaduto", 3, false);
+                Notification.notify("Notifica di partita", "Tempo scaduto", false);
 
             }
         });
@@ -857,7 +849,7 @@ public class GamePlayerController implements Initializable {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                Notification.notification("Notifica di partita", "Hai fatto un errore\nVuoi uasre il jolly?", 3, false);
+                Notification.notify("Notifica di partita", "Hai fatto un errore\nVuoi usare il jolly?", false);
             }
         });
     }
@@ -872,20 +864,28 @@ public class GamePlayerController implements Initializable {
             @Override
             public void run() {
                 String message = name + "\nha commesso un errore";
-                Notification.notification("Notifica di partita", message, 3, false);
+                Notification.notify("Notifica di partita", message, false);
             }
         });
     }
 
+    /**
+     * Notifica che tutte le consonanti sono state chiamate
+     */
     public void notifyNoMoreConsonant() {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                Notification.notification("Notifica di partita", "sono state chiamate tutte le consonanti", 3, false);
+                Notification.notify("Notifica di partita", "sono state chiamate tutte le consonanti", false);
             }
         });
     }
 
+    /**
+     * Aggiorna il timer con il tempo rimanente
+     *
+     * @param time il tempo rimanente in secondi
+     */
     public void updateTimer(int time) {
         Platform.runLater(new Runnable() {
             @Override

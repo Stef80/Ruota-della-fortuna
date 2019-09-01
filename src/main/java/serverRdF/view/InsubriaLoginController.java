@@ -2,7 +2,6 @@ package serverRdF.view;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -10,9 +9,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import javafx.util.Duration;
-import org.controlsfx.control.Notifications;
 import rdFUtil.ApplicationCloser;
+import rdFUtil.Notification;
 import rdFUtil.client.Client;
 import rdFUtil.client.ClientImplementation;
 import rdFUtil.view.Controller;
@@ -88,12 +86,7 @@ public class InsubriaLoginController {
 
             }
         } else {
-            Notifications notification = Notifications.create()
-                    .title("Mail Notification")
-                    .text("E-mail o password errati \nimmettere nuova mail")
-                    .hideAfter(Duration.seconds(3))
-                    .position(Pos.BASELINE_RIGHT);
-            notification.showError();
+            Notification.notify("Mail Notification", "E-mail o password errati \nimmettere nuova mail", true);
         }
     }
 
@@ -109,21 +102,21 @@ public class InsubriaLoginController {
         return registry;
     }
 
-    public static void setReg(RegistrationFormController r){
+    public static void setReg(RegistrationFormController r) {
         r.setServer(true);
         r.setServer(server);
         r.setAdmin(true);
         r.setClient(client);
     }
 
-    public static void setController(Controller ctr){
+    public static void setController(Controller ctr) {
         ctr.setClient(client);
         ctr.setServer(server);
         ctr.setAdmin(true);
         ctr.setIsServer(true);
     }
 
-    public static void setHost(HostViewController host){
+    public static void setHost(HostViewController host) {
         host.setServer(server);
         host.setR(registry);
     }

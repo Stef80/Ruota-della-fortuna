@@ -127,6 +127,8 @@ public class MatchManager {
      */
     public RemoteMatch observeMatch(Client c, String idMatch) {
         Match match = matches.get(idMatch);
+        if(match == null)
+            return null;
         try {
             match.addObserver(c);
         } catch (RemoteException e) {

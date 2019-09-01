@@ -3,15 +3,12 @@ package rdFUtil.view;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-import org.controlsfx.control.Notifications;
 import rdFUtil.ApplicationCloser;
 import rdFUtil.Notification;
 import rdFUtil.client.Client;
@@ -23,7 +20,6 @@ import serverRdF.view.InsubriaLoginController;
 
 import java.io.IOException;
 import java.net.URL;
-import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
 /**
@@ -67,21 +63,10 @@ public class RegistrationFormController implements Initializable {
         //se la mail non esiste visualizza notifica
         if (!(nameTextField.getText().equals("") || surnameTextField.getText().equals("") || nicknameTextField.getText().equals("") || mailTextField.getText().equals("") || passwordTextField.getText().equals(""))) {
             if (!server.checkEMail(mailTextField.getText())) {
-                Notifications notification = Notifications.create()
-                        .title("Mail Notification")
-                        .text("E-mail già presente \nimmettere nuova mail")
-                        .hideAfter(Duration.seconds(3))
-                        .position(Pos.BASELINE_RIGHT);
-                notification.showError();
+                Notification.notify("Mail Notification", "E-mail già presente \nimmettere nuova mail", true);
                 //se esiste nickName visualizza notifica
             } else if (!server.checkNickname(nicknameTextField.getText())) {
-                Notifications notification = Notifications.create()
-                        .title("Mail Notification")
-                        .text("NickName già presente \nimmettere un nuovo nickname")
-                        .hideAfter(Duration.seconds(3))
-                        .position(Pos.BASELINE_RIGHT);
-                notification.showError();
-
+                Notification.notify("Mail Notification", "Nickname già presente \nimmettere un nuovo nickname", true);
             } else {
                 String nameStr = nameTextField.getText();
                 String surnameStr = surnameTextField.getText();
@@ -89,7 +74,7 @@ public class RegistrationFormController implements Initializable {
                 String mailStr = mailTextField.getText();
                 String passwordStr = passwordTextField.getText();
 //                user = new User(passwordStr, buildString(mailStr), buildString(nameStr), buildString(surnameStr), buildString(nickStr));
-                user = new User(passwordStr,mailStr,nameStr,surnameStr,nickStr);
+                user = new User(passwordStr, mailStr, nameStr, surnameStr, nickStr);
                 try {
                     otp = server.signUp(user, client, admin);
                     Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("OTP_registration_pane.fxml"));
@@ -101,17 +86,12 @@ public class RegistrationFormController implements Initializable {
                     ApplicationCloser.setCloser(primaryStage);
                     Stage thisStage = (Stage) confirmButton.getScene().getWindow();
                     thisStage.close();
-                }catch (EmailAddressDoesNotExistException e){
+                } catch (EmailAddressDoesNotExistException e) {
                     this.notifyIllegalEmailAddress();
                 }
             }
         } else {
-            Notifications notification = Notifications.create()
-                    .title("Registration Notification")
-                    .text("Errore:\nTutti i campi sono obbligatori")
-                    .hideAfter(Duration.seconds(3))
-                    .position(Pos.BASELINE_RIGHT);
-            notification.showError();
+            Notification.notify("Registration Notification", "Errore:\nTutti i campi sono obbligatori", true);
         }
     }
 
@@ -120,8 +100,8 @@ public class RegistrationFormController implements Initializable {
      *
      * @throws IOException In caso non sia possibile accedere alla finestra
      */
-    public void back() throws IOException{
-        if(!isServer) {
+    public void back() throws IOException {
+        if (!isServer) {
             Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("main_pane.fxml"));
             Scene scene = new Scene(root);
             Stage primaryStage = new Stage();
@@ -131,7 +111,7 @@ public class RegistrationFormController implements Initializable {
             ApplicationCloser.setCloser(primaryStage);
             Stage thisStage = (Stage) backButton.getScene().getWindow();
             thisStage.close();
-        }else{
+        } else {
             Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("insubria_login_pane.fxml"));
             Scene scene = new Scene(root);
             Stage primaryStage = new Stage();
@@ -166,21 +146,30 @@ public class RegistrationFormController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        if(InsubriaLoginController.forServer) {
+        if (InsubriaLoginController.forServer) {
             InsubriaLoginController.setReg(this);
-        }else {
+        } else {
             Controller.setRegistration(this);
         }
     }
 
-    public static void setOTP(OTPRegistrationController otpp){
+    /**
+     * Metodo utilizzato per passare le informazioni del client a {@link OTPRegistrationController}
+     *
+     * @param otpp il riferimento al controller {@link OTPRegistrationController}
+     */
+    public static void setOTP(OTPRegistrationController otpp) {
         otpp.setClient(client);
         otpp.setServer(server);
         otpp.setOtp(otp);
     }
 
-    public void notifyIllegalEmailAddress(){
-        Notification.notification("Errore","L'indirizzo email inserito non\ne' disponibile o non esiste.",3,true);
+    /**
+     * Notifica che non e' stato possibile inviare la mail all'indirizzo email specificato al momento della registrazione
+     * per problemi di connessione o perche' non esistente
+     */
+    public void notifyIllegalEmailAddress() {
+        Notification.notify("Errore", "L'indirizzo email inserito non\nè disponibile o non esiste.", true);
     }
 
 //    private String buildString(String s){

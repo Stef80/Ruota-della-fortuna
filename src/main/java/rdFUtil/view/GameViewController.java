@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,8 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import javafx.util.Duration;
-import org.controlsfx.control.Notifications;
 import rdFUtil.ApplicationCloser;
 import rdFUtil.MatchData;
 import rdFUtil.Notification;
@@ -106,7 +103,7 @@ public class GameViewController extends ListCell<MatchData> {
                         e.printStackTrace();
                     }
                     if (match == null) {
-                        Notification.notification("Notifica Partita", "Partita inesistente", 3, true);
+                        Notification.notify("Notifica Partita", "Partita inesistente", true);
                     } else {
                         TabPaneController.creator = false;
                         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("game_player_pane.fxml"));
@@ -143,21 +140,25 @@ public class GameViewController extends ListCell<MatchData> {
                     } catch (RemoteException e) {
                         e.printStackTrace();
                     }
-                    TabPaneController.creator = false;
-                    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("game_player_pane.fxml"));
-                    Parent root = null;
-                    try {
-                        root = loader.load();
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    if (match == null) {
+                        Notification.notify("Notifica Partita", "Partita inesistente", true);
+                    } else {
+                        TabPaneController.creator = false;
+                        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("game_player_pane.fxml"));
+                        Parent root = null;
+                        try {
+                            root = loader.load();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        Stage primaryStage = new Stage();
+                        Scene scene = new Scene(root);
+                        primaryStage.setScene(scene);
+                        primaryStage.show();
+                        ApplicationCloser.setCloser(primaryStage);
+                        Stage oldStage = (Stage) observeButton.getScene().getWindow();
+                        oldStage.close();
                     }
-                    Stage primaryStage = new Stage();
-                    Scene scene = new Scene(root);
-                    primaryStage.setScene(scene);
-                    primaryStage.show();
-                    ApplicationCloser.setCloser(primaryStage);
-                    Stage oldStage = (Stage) observeButton.getScene().getWindow();
-                    oldStage.close();
                 }
             });
         }
@@ -175,6 +176,11 @@ public class GameViewController extends ListCell<MatchData> {
         }
     }
 
+    /**
+     * Metodo utilizzato per passare le informazioni del client a {@link GamePlayerController}
+     *
+     * @param gpc il riferimento al controller {@link GamePlayerController}
+     */
     public static void setGameControllerObserver(GamePlayerController gpc) {
         gpc.setClient(client);
         gpc.setMatch(match);

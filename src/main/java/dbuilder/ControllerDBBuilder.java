@@ -50,16 +50,16 @@ public class ControllerDBBuilder {
                 String s = sb.toString();
                 System.out.println(s);
                 statement.executeUpdate(s);
-                Notification.notification("Successo", "Il databse è stato creato con successo.", 5, false);
+                Notification.notify("Successo", "Il database è stato creato con successo.", false);
                 dbCreated = true;
             } else {
-                Notification.notification("Database già creato", "Il database è già stato creato", 5, true);
+                Notification.notify("Database già creato", "Il database è già stato creato", true);
             }
         } catch (SQLException ex) {
-            Notification.notification("Errore", "Non è stato possibile eseguire l'accesso.", 5, true);
+            Notification.notify("Errore", "Non è stato possibile eseguire l'accesso.", true);
             ex.printStackTrace();
         } catch (FileNotFoundException ex) {
-            Notification.notification("Errore", "Non ho trovato il file per la creazione del database", 5, true);
+            Notification.notify("Errore", "Non ho trovato il file per la creazione del database", true);
             ex.printStackTrace();
         }
     }

@@ -2,7 +2,6 @@ package serverRdF.matchRdF;
 
 import rdFUtil.MatchData;
 import rdFUtil.client.Client;
-import rdFUtil.view.TabPaneController;
 import serverRdF.ServerImplementation;
 import serverRdF.dbComm.*;
 import serverRdF.emailRdF.EmailManager;
@@ -252,7 +251,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
 //        System.out.println("Controllo phraseStatus");
         String phrase = manche.getCurrentPhrase().getPhrase().toUpperCase();
 //        System.out.println("frase: " + phrase);
-        StringTokenizer st = new StringTokenizer(phrase, " ',!?.:;\"/()\\^<>-+*");
+        StringTokenizer st = new StringTokenizer(phrase, " ',!?.:;\"/()\\^<>-+*0123456789");
         int counter = 0;
         int j = 0;
 //        System.out.println("Lettera: " + vocal);
@@ -665,6 +664,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                     ServerImplementation.serverError(null);
                 }
             } else {
+                matchEnded = false;
                 manche.setPhrases(phrases);
                 manche.setNumManche(1);
                 PhrasesDTO newPhrase = manche.getCurrentPhrase();
@@ -769,7 +769,8 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
      * @throws RemoteException
      */
     public void endManche(Player winner) throws RemoteException {
-        manche.endManche(winner);
+        if(!matchEnded)
+            manche.endManche(winner);
         firstTurn = true;
         if (winner != null) {
             for (Player p : players) {
@@ -1093,7 +1094,7 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
 
         String noName = "--";
         result.setPlayer1(players.get(0).getNickname());
-        if (players.size() == 2) {
+        if (players.size() >= 2) {
             result.setPlayer2(players.get(1).getNickname());
         } else {
             result.setPlayer2(noName);

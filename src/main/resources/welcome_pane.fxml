@@ -15,7 +15,7 @@
             </font>
         </Label>
       <Label text="Inserire l'hostname" />
-        <TextField fx:id="hostnameTextField" promptText="inserisci l'hostname qui" stylesheets="@style.css" VBox.vgrow="ALWAYS" />
+        <TextField fx:id="hostnameTextField" promptText="inserire l'hostname del server qui" stylesheets="@style.css" VBox.vgrow="ALWAYS" />
         <Button fx:id="confirmButton" mnemonicParsing="false" onAction="#startGameView" text="Conferma" VBox.vgrow="ALWAYS" />
     </children>
     <padding>

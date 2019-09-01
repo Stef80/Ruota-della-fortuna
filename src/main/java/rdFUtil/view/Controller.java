@@ -3,16 +3,12 @@ package rdFUtil.view;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import javafx.util.Duration;
-import org.controlsfx.control.Notifications;
 import rdFUtil.ApplicationCloser;
 import rdFUtil.Notification;
 import rdFUtil.client.AdminChecker;
@@ -39,8 +35,6 @@ public class Controller implements Initializable {
     @FXML
     private Button loginButton;
     @FXML
-    private Button resetButton;
-    @FXML
     private Button registerButton;
     private static Server server;
     private static Client client;
@@ -54,11 +48,10 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         if (!InsubriaLoginController.forServer) {
             WelcomePane.setController(this);
-            if(server == null){
+            if (server == null) {
                 InsubriaLoginController.setController(this);
             }
-        }
-        else
+        } else
             InsubriaLoginController.setController(this);
         try {
             client = new ClientImplementation();
@@ -81,7 +74,7 @@ public class Controller implements Initializable {
             Login login = new Login(password, mail);
             int result = server.signIn(login, client, admin);
             if (result < 0) {
-                Notification.notification("Mail Notification", "E-mail o password errati \nriprova!", 3, true);
+                Notification.notify("Mail Notification", "E-mail o password errati \nriprova!", true);
             } else if (result == 0) {
                 if (!isServer) {
                     Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("tab_pane.fxml"));
@@ -110,7 +103,7 @@ public class Controller implements Initializable {
                     oldStage.close();
                 }
             } else {
-                Notification.notification("Mail Notification","Si sta provando ad accedere alla piattaforma dal client sbagliato \nriprova!", 3, true);
+                Notification.notify("Mail Notification", "Si sta provando ad accedere alla piattaforma dal client sbagliato \nriprova!", true);
             }
         }
     }
@@ -132,7 +125,6 @@ public class Controller implements Initializable {
         ApplicationCloser.setCloser(primaryStage);
         Stage oldStage = (Stage) registerButton.getScene().getWindow();
         oldStage.close();
-
     }
 
     /**
@@ -149,9 +141,8 @@ public class Controller implements Initializable {
         primaryStage.show();
     }
 
-
-    public static void setIsServer(boolean isS){
-        isServer =isS;
+    public static void setIsServer(boolean isS) {
+        isServer = isS;
     }
 
     /**
@@ -165,6 +156,11 @@ public class Controller implements Initializable {
         tb.setAdmin(admin);
     }
 
+    /**
+     * Metodo utilizzato per passare le informazioni del client a {@link RegistrationFormController}
+     *
+     * @param registration il riferimento al controller {@link RegistrationFormController}
+     */
     public static void setRegistration(RegistrationFormController registration){
         registration.setClient(client);
         registration.setServer(server);
@@ -172,6 +168,11 @@ public class Controller implements Initializable {
         registration.setAdmin(AdminChecker.isIsAdmin());
     }
 
+    /**
+     * Metodo utilizzato per passare le informazioni del client a {@link ForgottenPasswordController}
+     *
+     * @param f il riferimento al controller {@link ForgottenPasswordController}
+     */
     public static void setResetPanel(ForgottenPasswordController f){
         f.setClient(client);
         f.setServer(server);
