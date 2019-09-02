@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 
 <VBox spacing="6.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="rdFUtil.view.RegistrationFormController">
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="util.view.RegistrationFormController">
     <children>
         <Label layoutX="69.0" layoutY="46.0" text="La Ruota della Fortuna" AnchorPane.bottomAnchor="427.0"
                AnchorPane.leftAnchor="69.0" AnchorPane.rightAnchor="69.0">

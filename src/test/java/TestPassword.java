@@ -1,4 +1,4 @@
-import rdFUtil.logging.CryptPassword;
+import util.logging.CryptPassword;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

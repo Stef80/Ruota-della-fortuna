@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import rdFUtil.view.FrameTitle;
+import util.view.FrameTitle;
 
 import java.io.IOException;
 

@@ -3,7 +3,7 @@ package dbuilder;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import rdFUtil.Notification;
+import util.Notification;
 
 import java.io.File;
 import java.io.FileNotFoundException;

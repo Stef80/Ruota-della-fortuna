@@ -35,12 +35,12 @@ dependencies {
 
 task runPlayer(type: JavaExec, dependsOn: 'classes', group: 'test') {
     classpath = sourceSets.main.runtimeClasspath
-    main = 'playerRdF.PrimePane'
+    main = 'player.PrimePane'
 }
 
 task runAdmin(type: JavaExec, dependsOn: 'classes', group: 'test') {
     classpath = sourceSets.main.runtimeClasspath
-    main = 'adminRdF.PrimePane'
+    main = 'admin.PrimePane'
 }
 
 task buildAll(type: GradleBuild, dependsOn: 'clean', group: 'test') {
@@ -54,7 +54,7 @@ task runDatabaseBuilder(type: JavaExec, dependsOn: 'classes', group: 'test') {
 
 task runServer(type: JavaExec, dependsOn: 'classes', group: 'test') {
     classpath = sourceSets.main.runtimeClasspath
-    main = 'serverRdF.view.PrimePaneServer'
+    main = 'server.view.PrimePaneServer'
 }
 
 //jar {
