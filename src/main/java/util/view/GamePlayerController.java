@@ -645,7 +645,7 @@ public class GamePlayerController implements Initializable {
                 match.leaveMatchAsPlayer(client);
             }
         } catch (RemoteException e) {
-            System.out.println("Prova");
+            e.printStackTrace();
         } finally {
             match = null;
             Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("tab_pane.fxml"));

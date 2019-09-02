@@ -55,7 +55,6 @@ public class ControllerDBBuilder {
                         sb.append(scan.nextLine());
                     }
                     String s = sb.toString();
-                    System.out.println(s);
                     statement.executeUpdate(s);
                     Notification.notify("Successo", "Il database è stato creato con successo.", false);
                     dbCreated = true;

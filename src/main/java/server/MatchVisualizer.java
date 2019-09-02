@@ -41,7 +41,6 @@ public class MatchVisualizer {
         Collection<Match> collection = hash.values();
         ArrayList<MatchData> list = new ArrayList<>();
         for (Match match : collection) {
-//            System.out.println(match.createMatchData().getIdMatch());
             list.add(match.createMatchData());
         }
         return list;

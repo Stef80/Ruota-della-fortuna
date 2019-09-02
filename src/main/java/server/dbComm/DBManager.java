@@ -96,7 +96,7 @@ public class DBManager implements DBManagerInterface{
         try {
             return usersDAO.getUserByEmail(email);
         }catch (SQLException e){
-            System.out.println("SQLException in getUserByEmail");
+            System.err.println("SQLException in getUserByEmail");
             return null;
         }
     }

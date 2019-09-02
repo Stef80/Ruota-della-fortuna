@@ -59,7 +59,6 @@ public class InsubriaLoginController {
             forServer = true;
             emailManager = EmailManager.createEmailManager(user, password);
             server = new ServerImplementation(dbManager, emailManager);
-//            System.out.println("Server creato");
             client = new ClientImplementation();
             if (dbManager.getAnyAdmin()) {
                 Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("main_pane.fxml"));

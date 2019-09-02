@@ -17,7 +17,6 @@ public class Notification {
         byte[] bMsg = msg.getBytes();
         int duration = 3;
         if (error) {
-            System.out.println();
             Notifications.create()
                     .title(new String(bTitle, StandardCharsets.UTF_8))
                     .text(new String(bMsg, StandardCharsets.UTF_8))
@@ -25,7 +24,6 @@ public class Notification {
                     .position(Pos.BASELINE_RIGHT)
                     .showError();
         } else {
-            System.out.println();
             Notifications.create()
                     .title(new String(bTitle, StandardCharsets.UTF_8))
                     .text(new String(bMsg, StandardCharsets.UTF_8))

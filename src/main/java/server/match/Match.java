@@ -248,25 +248,16 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                 leaveMatchAsPlayer(p);
             }
         }
-//        System.out.println("Controllo phraseStatus");
         String phrase = manche.getCurrentPhrase().getPhrase().toUpperCase();
-//        System.out.println("frase: " + phrase);
         StringTokenizer st = new StringTokenizer(phrase, " ',!?.:;\"/()\\^<>-+*0123456789");
         int counter = 0;
         int j = 0;
-//        System.out.println("Lettera: " + vocal);
         while (st.hasMoreTokens()) {
             String ss = st.nextToken();
-//            System.out.println(ss);
             for (int i = 0; i < ss.length(); i++) {
-//                System.out.println("entro il ciclo per la " + i + " volta");
-//                System.out.println(ss.charAt(i) == vocal);
                 if (ss.charAt(i) == vocal) {
-//                    System.out.println("Entro l'if");
                     if (phraseStatus[j] == false) {
-//                        System.out.println("modifico...");
                         phraseStatus[j] = true;
-//                        System.out.println("Aggiornato");
                         counter++;
                     }
                     j++;
@@ -275,8 +266,6 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                 }
             }
         }
-        for (int i = 0; i < phraseStatus.length; i++)
-            System.out.println(phraseStatus[i]);
         if (counter > 0) {
             int result = counter * amount;
             manche.getTurns().addMove(activePlayer.getIdPlayer(), "" + letter, result);
@@ -903,14 +892,6 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
             full = true;
         else {
             players.add(new Player(c));
-//            int num = 0;
-//            for (Player p : players) {
-//                if (p.getClient().equals(c))
-//                    break;
-//                else
-//                    num++;
-//            }
-//            System.out.println("inizio i cicli di notifica");
             if (players.size() != 1) {
                 for (Player p : players) {
                     try {
@@ -921,7 +902,6 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                         leaveMatchAsPlayer(p);
                     }
                 }
-//                System.out.println("primo ciclo");
                 for (Client client : observers) {
                     try {
                         for (int i = 0; i < players.size(); i++)
@@ -931,13 +911,8 @@ public class Match extends UnicastRemoteObject implements RemoteMatch {
                     }
                 }
             }
-//            System.out.println("fine");
             full = false;
-//            if (players.size() == 3) {
-//                startMatch();
-//            }
         }
-//        System.out.println(full);
         return full;
     }
 

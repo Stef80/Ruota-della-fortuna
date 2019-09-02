@@ -43,9 +43,7 @@ public class ProfileManager {
      */
     public boolean changeName(String name, String idUser) {
         UsersDTO user = dbManager.getUserById(idUser);
-        System.out.println("Ho provato a prendere l'utente");
         if(user != null) {
-            System.out.println("Utente preso");
             user.setName(name);
             return dbManager.updateUser(user);
         }else

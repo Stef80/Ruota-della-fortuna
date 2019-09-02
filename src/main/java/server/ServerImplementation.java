@@ -115,7 +115,6 @@ public class ServerImplementation extends UnicastRemoteObject implements Server 
     @Override
     public boolean changeName(String name, Client c) throws RemoteException {
         String idUser = c.getId();
-        System.out.println("Chiamo metodo di profile");
         return profileManager.changeName(name, idUser);
     }
 

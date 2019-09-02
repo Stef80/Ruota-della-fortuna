@@ -50,12 +50,10 @@ public class MatchManager {
      * @return match un riferimento all'oggetto remoto {@link RemoteMatch} della partita appena creata.
      */
     public synchronized RemoteMatch createMatch(Client c) {
-//        System.out.println("Entro metodo creazione match");
         String id = UUID.randomUUID().toString();
         LocalDateTime currentTime = LocalDateTime.now();
         Match match = null;
         try {
-            System.out.println("id match creato: " + id);
             boolean bool = dbManager.addMatch(id, currentTime);
             if (!bool) {
                 try {
@@ -65,13 +63,9 @@ public class MatchManager {
                     System.err.println(ex.getMessage());
                 }
             }
-//            System.out.println("OK");
             match = new Match(id, currentTime, dbManager, emailmng);
-//            System.out.println("Creato oggetto");
             match.addPlayer(c);
-//            System.out.println("Aggiunto giocatore");
             matches.put(id, match);
-//            System.out.println("Aggiunto match");
             return match;
         } catch (RemoteException e) {
             ServerImplementation.serverError(c);
@@ -89,7 +83,6 @@ public class MatchManager {
         Match match = matches.get(idMatch);
         if(match == null)
             return null;
-        System.out.println("Provo a partecipare alla partita: " + idMatch);
         boolean full;
         try {
             full = match.addPlayer(c);

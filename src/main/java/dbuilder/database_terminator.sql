@@ -1,1 +1,0 @@
-drop table users,matches,phrases,manches,moves,matchwinners,manchewinners,manchejoiners;

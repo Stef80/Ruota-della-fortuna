@@ -98,7 +98,6 @@ public class GameViewController extends ListCell<MatchData> {
                     try {
                         player = true;
                         match = server.joinMatch(client, item.getIdMatch());
-                        System.out.println("Entra nel match");
                     } catch (RemoteException e) {
                         e.printStackTrace();
                     }

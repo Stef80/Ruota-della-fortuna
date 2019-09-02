@@ -31,7 +31,6 @@ public class PhrasesDAOImpl implements PhrasesDAO {
             pDTO.add(new PhrasesDTO(resultSet.getString(PhraseThemeAttribute), resultSet.getString(PhrasePhraseAttribute)));
             i++;
         }
-        System.out.println("dimensione della lista: "+pDTO.size());//TODO DEBUG
         return pDTO;
     }
 
@@ -45,13 +44,11 @@ public class PhrasesDAOImpl implements PhrasesDAO {
            try {
                stmt.executeUpdate(queryAdd);
            }catch (SQLException e){
-                System.out.println("Frase non aggiunta");
+                System.err.println("Frase non aggiunta");
            }finally {
                queryAdd = "";
            }
        }
-        System.out.println(queryAdd);
-
         return true;
     }
 

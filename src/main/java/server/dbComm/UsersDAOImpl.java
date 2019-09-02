@@ -145,17 +145,14 @@ public class UsersDAOImpl implements UsersDAO {
 
     @Override
     public UsersDTO getUserForMoreManchesPlayed() throws SQLException {
-//        System.out.println("Faccio la query");
         String queryBest = "SELECT "+UserNicknameAttribute+", COUNT(U."+UserIdAttribute+") AS count FROM " +UserTable+" U JOIN "+MancheJoinersDAO.mancheJoinersTable+" MJ ON U.id = MJ.idPlayer GROUP BY " +
                 "U."+UserIdAttribute+" ORDER BY count desc";
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(queryBest);
-//        System.out.println("Risultato resultset: " + rs == null? "null" : "ok");
         if(rs != null) {
             if(rs.next()) {
                 UsersDTO user = new UsersDTO();
                 user.setNickname(rs.getString(UserNicknameAttribute));
-//            System.out.println("User trovato");
                 return user;
             }else
                 return null;
