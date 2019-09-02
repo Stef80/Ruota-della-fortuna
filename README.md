@@ -32,3 +32,21 @@ in Windows
 ```
 .\gradlew.bat runServer
 ```
+Dopo di è possibile eseguire i client con il comando:
+```
+./gradlew runPlayer
+```
+in Windows
+```
+.\gradlew.bat runPlayer
+```
+
+### Gestione amministrativa del gioco
+Per la gestione amministrativa del gioco eseguire il comando:
+```
+./gradlew runAdmin
+```
+in Windows
+```
+.\gradlew.bat runAdmin
+```
