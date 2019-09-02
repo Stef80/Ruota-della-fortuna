@@ -26,7 +26,7 @@ public class DBManager implements DBManagerInterface{
     private MatchWinnersDAO matchWinnersDAO;
 
     private DBManager(String url, String userID, String password) throws SQLException {
-        con = DriverManager.getConnection("jdbc:postgresql://" + url +"/postgres",userID, password);
+        con = DriverManager.getConnection("jdbc:postgresql://" + url +"/dbrdf",userID, password);
     }
 
     /**
