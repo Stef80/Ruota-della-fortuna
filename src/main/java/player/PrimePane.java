@@ -30,6 +30,7 @@ public class PrimePane extends Application {
         Scene scene = new Scene(root);
         primaryStage.setTitle(FrameTitle.main);
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
         primaryStage.show();
 
         primaryStage.setOnCloseRequest((WindowEvent event1) -> {

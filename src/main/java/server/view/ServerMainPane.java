@@ -30,6 +30,8 @@ public class ServerMainPane {
     private TextField hostnameTextField;
     @FXML
     private Button confirmButton;
+    @FXML
+    private TextField portTextField;
     private DBManager manager;
 
 
@@ -44,14 +46,17 @@ public class ServerMainPane {
         String user = userTextField.getText();
         String password = passwordTextField.getText();
         String hostname = hostnameTextField.getText();
+        String port = portTextField.getText();
         try {
-            manager = DBManager.createDBManager(hostname, user, password);
+            String url = hostname + ":" + port;
+            manager = DBManager.createDBManager(url, user, password);
             InsubriaLoginController.setDbManager(manager);
             Parent root1 = FXMLLoader.load(Thread.currentThread().getContextClassLoader().getResource("insubria_login_pane.fxml"));
             Stage primaryStage = new Stage();
             Scene scene = new Scene(root1);
             primaryStage.setTitle(FrameTitle.main);
             primaryStage.setScene(scene);
+            primaryStage.setResizable(false);
             primaryStage.show();
             primaryStage.setOnCloseRequest((WindowEvent event1) -> {
                 Platform.exit();

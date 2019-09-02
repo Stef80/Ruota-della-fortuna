@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="40.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="util.view.WelcomePane">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="util.view.WelcomePane">
     <children>
         <Label text="The Wheel of Fortune" textAlignment="CENTER" VBox.vgrow="ALWAYS">
             <font>
@@ -15,10 +15,10 @@
             </font>
         </Label>
       <Label text="Inserire l'hostname" />
-        <TextField fx:id="hostnameTextField" promptText="inserire l'hostname del server qui" stylesheets="@style.css" VBox.vgrow="ALWAYS" />
+        <TextField fx:id="hostnameTextField" promptText="hostname" stylesheets="@style.css" VBox.vgrow="ALWAYS" />
         <Button fx:id="confirmButton" mnemonicParsing="false" onAction="#startGameView" text="Conferma" VBox.vgrow="ALWAYS" />
     </children>
-    <padding>
-        <Insets bottom="60.0" left="20.0" right="20.0" top="20.0" />
-    </padding>
+   <padding>
+      <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+   </padding>
 </VBox>

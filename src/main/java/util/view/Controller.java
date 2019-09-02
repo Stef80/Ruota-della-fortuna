@@ -96,7 +96,9 @@ public class Controller implements Initializable {
                     }
                     Stage primaryStage = new Stage();
                     Scene scene = new Scene(root);
+                    primaryStage.setTitle(FrameTitle.main);
                     primaryStage.setScene(scene);
+                    primaryStage.setResizable(false);
                     primaryStage.show();
                     ApplicationCloser.setCloser(primaryStage);
                     Stage oldStage = (Stage) loginButton.getScene().getWindow();
@@ -138,6 +140,7 @@ public class Controller implements Initializable {
         Scene scene = new Scene(root1);
         primaryStage.setTitle(FrameTitle.main);
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
