@@ -1,4 +1,5 @@
 # Ruota della Fortuna
+
 ### Preparazione di Gradle
 Per la prima esecuzione di gradle digitare da riga di comando sui sistemi Unix:
 ```
@@ -8,6 +9,7 @@ Nel caso desse problemi di esecuzione del file dare il comando:
 ```
 $ sudo chmod 775 gradlew
 ```
+quindi è poi possibile eseguire il comando.
 Per i sistemi Windows invece eseguire il comando:
 ```
 .\gradlew.bat
@@ -21,7 +23,8 @@ in Windows:
 ```
 .\gradlew.bat buildAll
 ```
-Questo comando eseguirà il build e aprirà una finestra per la creazione del database e delle relative tabelle. Completare l'esecuzione inserendo l'indirizzo del server di postgres con la relativa porta in uso e le credenziali dell'user di postgres.
+Questo comando eseguirà il build e aprirà una finestra per la creazione del database e delle relative tabelle.
+Completare l'esecuzione inserendo l'indirizzo del server di postgres con la relativa porta in uso e le credenziali dell'user di postgres.
 
 ### Esecuzione del programma
 Per l'esecuzione del programma bisogna eseguire come prima cosa il server con il comando:
