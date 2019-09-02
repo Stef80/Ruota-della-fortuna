@@ -38,29 +38,38 @@ public class ControllerDBBuilder {
     }
 
     private void createTable(String host, String port, String user, String password) {
-        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://" + host + ":" + port + "/postgres", user, password)) {
-            if (!dbCreated) {
-                statement = connection.createStatement();
-                File sqlCreator = new File(PATH);
-                sb = new StringBuilder("");
-                scan = new Scanner(sqlCreator);
-                while (scan.hasNextLine()) {
-                    sb.append(scan.nextLine());
+        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://" + host + ":" + port + "/", user, password)) {
+            try {
+                Statement stmt = connection.createStatement();
+                stmt.execute("CREATE DATABASE dbrdf");
+            } catch (SQLException e) {
+                System.out.println("DATABASE GIA' ESISTENTE");
+            } finally {
+                if (!dbCreated) {
+                    Connection conn = DriverManager.getConnection("jdbc:postgresql://" + host + ":" + port + "/dbrdf", user, password);
+                    statement = conn.createStatement();
+                    File sqlCreator = new File(PATH);
+                    sb = new StringBuilder("");
+                    scan = new Scanner(sqlCreator);
+                    while (scan.hasNextLine()) {
+                        sb.append(scan.nextLine());
+                    }
+                    String s = sb.toString();
+                    System.out.println(s);
+                    statement.executeUpdate(s);
+                    Notification.notify("Successo", "Il database è stato creato con successo.", false);
+                    dbCreated = true;
+                    conn.close();
+                } else {
+                    Notification.notify("Database già creato", "Il database è già stato creato", true);
                 }
-                String s = sb.toString();
-                System.out.println(s);
-                statement.executeUpdate(s);
-                Notification.notify("Successo", "Il database è stato creato con successo.", false);
-                dbCreated = true;
-            } else {
-                Notification.notify("Database già creato", "Il database è già stato creato", true);
             }
-        } catch (SQLException ex) {
-            Notification.notify("Errore", "Non è stato possibile eseguire l'accesso.", true);
-            ex.printStackTrace();
-        } catch (FileNotFoundException ex) {
-            Notification.notify("Errore", "Non ho trovato il file per la creazione del database", true);
-            ex.printStackTrace();
+        } catch(SQLException ex){
+                Notification.notify("Errore", "Non è stato possibile eseguire l'accesso.", true);
+                ex.printStackTrace();
+        } catch(FileNotFoundException ex){
+                Notification.notify("Errore", "Non ho trovato il file per la creazione del database", true);
+                ex.printStackTrace();
         }
     }
 }
